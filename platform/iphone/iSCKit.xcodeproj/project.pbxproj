@@ -57,7 +57,6 @@
 		5D9362B5199A21060051802E /* scsynthsend.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5D9362A6199A21060051802E /* scsynthsend.cpp */; };
 		5D9362B6199A21060051802E /* strtod.c in Sources */ = {isa = PBXBuildFile; fileRef = 5D9362A8199A21060051802E /* strtod.c */; };
 		5D990FDF199A66CA00974FE2 /* lockpool.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5D990FDE199A66CA00974FE2 /* lockpool.cpp */; };
-		5DAE73A51A24E2F50099594C /* libscsynth.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7751B8240F435F700044CAC0 /* libscsynth.a */; };
 		5DAE73A71A24E2F60099594C /* libsndfile.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DAE73A61A24E2F60099594C /* libsndfile.a */; };
 		5DB1214F199A4DB1000D2100 /* codecvt_error_category.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5DB12146199A4DB1000D2100 /* codecvt_error_category.cpp */; };
 		5DB12150199A4DB1000D2100 /* operations.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5DB12147199A4DB1000D2100 /* operations.cpp */; };
@@ -159,23 +158,6 @@
 		77BA523E129C376000CE89DD /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77BA523D129C376000CE89DD /* Foundation.framework */; };
 		77C1204511D67558002067D4 /* PostViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 77C1204411D67558002067D4 /* PostViewController.mm */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		7751B8230F435F700044CAC0 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 7751B8120F435F6F0044CAC0 /* iPhone_Synth.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 77AA93920EB3685400DC0BCB;
-			remoteInfo = libscsynth;
-		};
-		77597B651123357500D2A968 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 7751B8120F435F6F0044CAC0 /* iPhone_Synth.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 77AA93910EB3685300DC0BCB;
-			remoteInfo = libscsynth;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		7713C6A00F422BE400B0055E /* CopyFiles */ = {
@@ -514,7 +496,7 @@
 		7751AA060EB36D890051CF38 /* ChangeCounter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangeCounter.h; sourceTree = "<group>"; };
 		7751AA080EB36D890051CF38 /* DrawBackground.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawBackground.h; sourceTree = "<group>"; };
 		7751AA100EB36D890051CF38 /* SCGeom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCGeom.h; sourceTree = "<group>"; };
-		7751B8120F435F6F0044CAC0 /* iPhone_Synth.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = iPhone_Synth.xcodeproj; sourceTree = "<group>"; };
+		7751B8120F435F6F0044CAC0 /* libscsynth.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = libscsynth.xcodeproj; sourceTree = "<group>"; };
 		775574040FBE45A500192282 /* SuperCollider_FileTransfer.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = SuperCollider_FileTransfer.xib; path = "iPhone Resources/SuperCollider_FileTransfer.xib"; sourceTree = "<group>"; };
 		7759955212FDE20A00603187 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		775E782D1475DCB0008CD702 /* SC_Alloca.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SC_Alloca.h; sourceTree = "<group>"; };
@@ -573,7 +555,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				5DAE73A71A24E2F60099594C /* libsndfile.a in Frameworks */,
-				5DAE73A51A24E2F50099594C /* libscsynth.a in Frameworks */,
 				77BA5223129C371F00CE89DD /* CFNetwork.framework in Frameworks */,
 				77BA5234129C373400CE89DD /* CoreFoundation.framework in Frameworks */,
 				77BA5236129C373B00CE89DD /* CoreGraphics.framework in Frameworks */,
@@ -611,7 +592,7 @@
 			isa = PBXGroup;
 			children = (
 				5D8EA414199A023D0026877D /* Default-568h@2x.png */,
-				7751B8120F435F6F0044CAC0 /* iPhone_Synth.xcodeproj */,
+				7751B8120F435F6F0044CAC0 /* libscsynth.xcodeproj */,
 				7751A9330EB36D500051CF38 /* scapp */,
 				7751A9580EB36D500051CF38 /* common */,
 				7751A9650EB36D500051CF38 /* lang */,
@@ -1162,14 +1143,6 @@
 			path = plugin_interface;
 			sourceTree = "<group>";
 		};
-		7751B8130F435F6F0044CAC0 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				7751B8240F435F700044CAC0 /* libscsynth.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		77597AF11123325400D2A968 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -1356,7 +1329,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				77597B661123357500D2A968 /* PBXTargetDependency */,
 			);
 			name = iSCKit;
 			productName = isclang;
@@ -1380,28 +1352,12 @@
 			);
 			mainGroup = 29B97314FDCFA39411CA2CEA /* CustomTemplate */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = 7751B8130F435F6F0044CAC0 /* Products */;
-					ProjectRef = 7751B8120F435F6F0044CAC0 /* iPhone_Synth.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				7713C5EB0F422BE400B0055E /* iSCKit */,
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		7751B8240F435F700044CAC0 /* libscsynth.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libscsynth.a;
-			remoteRef = 7751B8230F435F700044CAC0 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		7713C5EC0F422BE400B0055E /* Resources */ = {
@@ -1553,14 +1509,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		77597B661123357500D2A968 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = libscsynth;
-			targetProxy = 77597B651123357500D2A968 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		7713C6A70F422BE400B0055E /* Debug */ = {

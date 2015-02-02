@@ -898,7 +898,7 @@
 			attributes = {
 				LastUpgradeCheck = 0500;
 			};
-			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "iPhone_Synth" */;
+			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "libscsynth" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 1;
@@ -1071,6 +1071,7 @@
 				PREBINDING = NO;
 				SDKROOT = iphoneos;
 				SYMROOT = lib;
+				VALID_ARCHS = "arm64 armv7 armv7s i386 x86_64";
 			};
 			name = Debug;
 		};
@@ -1091,6 +1092,7 @@
 				PREBINDING = NO;
 				SDKROOT = iphoneos;
 				SYMROOT = lib;
+				VALID_ARCHS = "arm64 armv7 armv7s i386 x86_64";
 			};
 			name = Release;
 		};
@@ -1106,7 +1108,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C01FCF4E08A954540054247B /* Build configuration list for PBXProject "iPhone_Synth" */ = {
+		C01FCF4E08A954540054247B /* Build configuration list for PBXProject "libscsynth" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C01FCF4F08A954540054247B /* Debug */,

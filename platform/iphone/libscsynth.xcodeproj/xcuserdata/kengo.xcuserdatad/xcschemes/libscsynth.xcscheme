@@ -17,7 +17,7 @@
                BlueprintIdentifier = "77AA93910EB3685300DC0BCB"
                BuildableName = "libscsynth.a"
                BlueprintName = "libscsynth"
-               ReferencedContainer = "container:iPhone_Synth.xcodeproj">
+               ReferencedContainer = "container:libscsynth.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -39,6 +39,15 @@
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
       allowLocationSimulation = "YES">
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "77AA93910EB3685300DC0BCB"
+            BuildableName = "libscsynth.a"
+            BlueprintName = "libscsynth"
+            ReferencedContainer = "container:libscsynth.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
