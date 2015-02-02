@@ -36,7 +36,7 @@
 	UIViewController *viewController;
 }
 
-- (BOOL) canBecomeKeyWindow ;
+- (BOOL) canBecomeKeyWindow;
 - (BOOL) hasBorders;
 - (void) setHasBorders: (BOOL) flag;
 - (void) setiSCGraphView: (UIView*) view;

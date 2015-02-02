@@ -24,7 +24,7 @@
 #include "SC_DirUtils.h"
 #include "SC_LanguageClient.h"
 #include "SC_WorldOptions.h"
-
+#import  "iSCAppDelegate.h"
 
 #define START_HTTP_SERVER
 
@@ -34,7 +34,6 @@ extern PyrSymbol* s_tick;
 
 PyrSymbol* s_stop;
 PyrSymbol* s_interpretPrintCmdLine;
-
 
 static iSCController* internal_sc_controller = 0;
 
@@ -61,7 +60,7 @@ struct PostBuf
 
 static PostBuf mainPostBuf;
 
-#define POSTBUFLEN 131072
+#define POSTBUFLEN  131072
 #define POSTBUFMASK 131071
 
 void PostBuf::Init()
@@ -74,13 +73,11 @@ void PostBuf::Init()
 
 void PostBuf::Flush(UITextView *logView)
 {
-    // kengo: add error return
     if(logView == nil) { return; }
     
 	long numtoread;
 	long localwritepos = wrpos;
 
-    // kengo:add
     NSString *log_text = [logView text] ? [logView text] : @"";
     
 	if (localwritepos >= rdpos) {
@@ -101,21 +98,20 @@ void PostBuf::Flush(UITextView *logView)
 			endpos -= POSTBUFLEN;
 			secondpart = endpos;
 
-            // kengo: add if scope
-            NSString *c_to_str = [[NSString alloc] initWithUTF8String: buf + rdpos /*length: numtoread*/];
+            NSString *c_to_str = [[NSString alloc] initWithUTF8String: buf + rdpos];
             if(c_to_str)
             {
-                NSString *s = [log_text stringByAppendingString:[NSString stringWithUTF8String: buf + rdpos /*length:firstpart*/]];    // kengo:
-                NSString *s2 = [s stringByAppendingString:[NSString stringWithUTF8String:buf /*length:secondpart*/]]; // kengo:
+                NSString *s = [log_text stringByAppendingString:[NSString stringWithUTF8String: buf + rdpos]];
+                NSString *s2 = [s stringByAppendingString:[NSString stringWithUTF8String:buf]];
                 [logView setText:s2];
             }
             
 			rdpos = endpos;
 		} else {
-            NSString *c_to_str = [[NSString alloc] initWithUTF8String: buf + rdpos /*length: numtoread*/];
+            NSString *c_to_str = [[NSString alloc] initWithUTF8String: buf + rdpos];
             if(c_to_str)
             {
-                NSString *s = [log_text stringByAppendingString:c_to_str];  // kengo:
+                NSString *s = [log_text stringByAppendingString:c_to_str];
                 [logView setText:s];
             }
             
@@ -137,12 +133,12 @@ void initPostBuffer()
 //void vposttext(const char *str, int length);
 void vposttext(const char *str, int length)
 {
-	//printf(str);  // kengo:comment out.
-
 	pthread_mutex_lock(&mainPostBuf.mutex);
 
-	for (int i=0; i<length && str[i]; ++i) {
-		if (((mainPostBuf.wrpos+1) & POSTBUFMASK) == mainPostBuf.rdpos) {
+	for (int i=0; i<length && str[i]; ++i)
+    {
+		if (((mainPostBuf.wrpos+1) & POSTBUFMASK) == mainPostBuf.rdpos)
+        {
 			break;
 			//mainPostBuf.Flush(); CANNOT DO THIS FROM OTHER THAN COCOA'S THREAD!
 		}
@@ -205,7 +201,6 @@ void postChar(char c)
 
 void flushPostBuf()
 {
-	//if (internal_sc_controller) mainPostBuf.Flush([internal_sc_controller logView]);
     if(internal_sc_controller)
     {
         iSCAppDelegate *app = [iSCAppDelegate sharedInstance];
@@ -226,7 +221,6 @@ int vpost(const char *fmt, va_list ap)
 	return 0;
 }
 
-
 void setCmdLine(const char *buf)
 {
 	int size = (int)strlen(buf);
@@ -245,41 +239,7 @@ void setCmdLine(const char *buf)
 	}
 }
 
-void AudioSessionAudioRouteChangeCbk(void *inClientData, AudioSessionPropertyID inID, UInt32 inDataSize, const void *inData)
-{
-	iSCController *c = (__bridge iSCController *) inClientData;
-	if (inID==kAudioSessionProperty_AudioRouteChange && inData)
-	{
-		CFDictionaryRef dict = (CFDictionaryRef) inData;
-		CFNumberRef reason = (CFNumberRef) CFDictionaryGetValue(dict, CFSTR(kAudioSession_AudioRouteChangeKey_Reason));
-		SInt32 r;
-		CFNumberGetValue(reason, kCFNumberSInt32Type, &r);
-		if (r==kAudioSessionRouteChangeReason_Override) return;
-		/*
-		CFStringRef route;
-		UInt32 size = sizeof(route);
-		AudioSessionGetProperty(kAudioSessionProperty_AudioRoute, &size, &route);
-		if (!CFStringCompare(route, CFSTR("Speaker"), 0)) [[c speakersButton] setStyle:UIBarButtonItemStyleDone];
-		else [[c speakersButton] setStyle:UIBarButtonItemStyleBordered];
-		CFRelease(route);
-		*/
-		c.routeOverride = kAudioSessionOverrideAudioRoute_None;
-		
-        //[[c speakersButton] setStyle:UIBarButtonItemStyleBordered];
-        
-		/*
-		UInt32 override = c.routeOverride;
-		if (override==kAudioSessionOverrideAudioRoute_Speaker)
-		{
-			AudioSessionSetProperty(kAudioSessionProperty_OverrideAudioRoute, sizeof(override), &override);
-		}
-		*/
-	}
-}
-
 @implementation iSCController
-
-@synthesize routeOverride;
 
 + (iSCController *) sharedInstance
 {
@@ -292,44 +252,16 @@ void AudioSessionAudioRouteChangeCbk(void *inClientData, AudioSessionPropertyID 
 
 - (id) init
 {
-	//if(internal_sc_controller) { return nil; }
-
 	if (self = [super init])
 	{
 		internal_sc_controller = self;
-		deferredOperations = [NSMutableArray arrayWithCapacity: 8];
+		deferredOperations = [NSMutableArray arrayWithCapacity:8];
 	}
-
 	return self;
 }
 
 - (void) setup
 {
-    /*
-	routeOverride = kAudioSessionOverrideAudioRoute_None;
-	AudioSessionSetProperty(kAudioSessionProperty_OverrideAudioRoute, sizeof(routeOverride), &routeOverride);
-	AudioSessionAddPropertyListener(kAudioSessionProperty_AudioRouteChange, AudioSessionAudioRouteChangeCbk, (__bridge void*)self); // kengo:as01
-    */
-    
-    /*
-    AVAudioSession *av_session = [AVAudioSession sharedInstance];
-    NSError *error = nil;
-    if(av_session.inputAvailable)
-    {
-        [av_session setCategory:AVAudioSessionCategoryPlayback error:&error];
-        if(error)
-        {
-            NSLog(@"audioSession: %@, %ld, %@", [error domain], (long)[error code], [[error userInfo] description]);
-        }
-    }
-    
-    [av_session setActive:YES error:&error];
-    if(error)
-    {
-        NSLog(@"audioSession: %@ %ld %@", [error domain], (long)[error code], [[error userInfo] description]);
-    }
-    */
-     
 	NSFileManager *manager = [NSFileManager defaultManager];
 	CFBundleRef bundle = CFBundleGetMainBundle();
 	CFURLRef url = CFBundleCopyBundleURL(bundle);
@@ -483,13 +415,13 @@ void AudioSessionAudioRouteChangeCbk(void *inClientData, AudioSessionPropertyID 
 	free(cmd);
 }
 
-- (void)doPeriodicTask: (NSTimer*) timer
+- (void)doPeriodicTask:(NSTimer*)timer
 {
 	[self performDeferredOperations];
 	flushPostBuf();
 }
 
-- (void)doClockTask: (NSTimer*) timer
+- (void)doClockTask:(NSTimer*)timer
 {
 	if (pthread_mutex_trylock(&gLangMutex) == 0)
 	{
@@ -499,50 +431,10 @@ void AudioSessionAudioRouteChangeCbk(void *inClientData, AudioSessionPropertyID 
     flushPostBuf();
 }
 
-- (void) insertWindow:(iSCWindow *)window
-{
-    iSCAppDelegate *app = [iSCAppDelegate sharedInstance];
-    NSArray *controllers = [app.tab_bar_controller viewControllers];
-	controllers = [controllers arrayByAddingObject:[window controller]];
-    
-	[app.tab_bar_controller setViewControllers:controllers animated:YES];
-}
-
-- (void) makeWindowFront:(iSCWindow *)window
-{
-    iSCAppDelegate *app = [iSCAppDelegate sharedInstance];
-	UINavigationController *more = [app.tab_bar_controller moreNavigationController];
-
-	NSArray *controllers = [app.tab_bar_controller viewControllers];
-	if ([controllers count]>5) [app.tab_bar_controller setSelectedViewController:more];
-	else [app.tab_bar_controller setSelectedViewController:[window controller]];
-}
-
-- (void) closeWindow:(iSCWindow *)window
-{
-    iSCAppDelegate *app = [iSCAppDelegate sharedInstance];
-	NSArray *controllers = [app.tab_bar_controller viewControllers];
-	NSArray *new_controllers = [NSArray array];
-	UIViewController *the_controller = [window controller];
-	UIViewController *selection;
-	for (UIViewController *v in controllers)
-	{
-		if (v!=the_controller)
-		{
-			new_controllers = [new_controllers arrayByAddingObject:v];
-			selection = v;
-		}
-	}
-	[app.tab_bar_controller setViewControllers:new_controllers animated:YES];
-	[app.tab_bar_controller setSelectedViewController:selection];
-	[window close];
-}
-
 - (void)defer: (NSInvocation*) action
 {
     [deferredOperations addObject: action];
 }
-
 
 - (void)removeDeferredOperationsFor:(id) object
 {
@@ -566,23 +458,6 @@ void AudioSessionAudioRouteChangeCbk(void *inClientData, AudioSessionPropertyID 
         [deferredOperations removeObjectAtIndex: 0];
         [action invoke];
     }
-}
-
-- (void) selectRecording:(NSString *)string
-{
-	NSURL *url = [NSURL fileURLWithPath:string];
-	recordingPlayer = [[MPMoviePlayerController alloc] initWithContentURL:url];
-	[recordingPlayer setScalingMode:MPMovieScalingModeAspectFill];
-    recordingPlayer.controlStyle = MPMovieControlStyleDefault;
-	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(recordingPlaybackDidFinish:) name:MPMoviePlayerPlaybackDidFinishNotification object:recordingPlayer];
-	[recordingPlayer play];
-}
-
-- (void) recordingPlaybackDidFinish:(NSNotification *)notification
-{
-	[[NSNotificationCenter defaultCenter] removeObserver:self name:MPMoviePlayerPlaybackDidFinishNotification object:recordingPlayer];
-    if (recordingPlayer) { recordingPlayer = nil; }
-	recordingPlayer = 0;
 }
 
 - (void) dealloc

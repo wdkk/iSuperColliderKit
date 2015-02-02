@@ -7,6 +7,7 @@
 //
 
 #import "iSCAppDelegate.h"
+#import "iSCWindow.h"
 
 @implementation iSCAppDelegate
 

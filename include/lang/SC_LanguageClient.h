@@ -219,7 +219,7 @@ private:
 	SC_StringBuffer				mScratch;
 	bool						mRunning;
 	static SC_LanguageClient*	gInstance;
-	static SC_Lock gInstanceMutex;
+	static SC_Lock              gInstanceMutex;
 };
 
 // =====================================================================

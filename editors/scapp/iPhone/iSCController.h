@@ -11,32 +11,23 @@
 #import "FileBrowserNaviController.h"
 #import "LiveCodingViewController.h"
 #import "iSCWindow.h"
-#import "iSCAppDelegate.h"
 
 @interface iSCController : NSObject
 {
-	UInt32 routeOverride;
 	NSTimer *appClockTimer;
 	NSTimer *deferredTaskTimer;
     NSMutableArray *deferredOperations;
 	MPMoviePlayerController *recordingPlayer;
 }
 
-@property UInt32 routeOverride;
-
 + (iSCController *) sharedInstance;
 
 - (void) setup;
 
 - (void) start;
-- (void) selectRecording:(NSString *)string;
 - (void) interpret:(NSString *)string;
 - (void) doClockTask:(NSTimer*)timer;
 
-- (void) insertWindow:(iSCWindow *)window;
-- (void) makeWindowFront:(iSCWindow *)window;
-- (void) closeWindow:(iSCWindow *)window;
-- (void) defer:(NSInvocation*) action;
 - (void) performDeferredOperations;
 - (void) removeDeferredOperationsFor:(id)object;
 

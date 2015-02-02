@@ -34,6 +34,7 @@
 #import "iSCWindow.h"
 #import "iSCController.h"
 
+static iSCWindow *internal_sc_window = nil;
 
 extern ChangeCounter gUIChangeCounter;
 PyrSymbol *s_draw;
@@ -46,7 +47,6 @@ PyrSymbol *s_didResignKey;
 
 extern bool docCreatedFromLang;
 int slotColorVal(PyrSlot *slot, SCColor *sccolor);
-
 
 int slotGetCGRect(PyrSlot* a, CGRect *r)
 {
@@ -134,18 +134,16 @@ int prSCWindow_New(struct VMGlobals *g, int numArgsPushed)
 	int err = slotGetCGRect(c, &bounds);
 	if (err) return err;
 
-
 	iSCWindow *window = [[iSCWindow alloc] initWithFrame: bounds];
 	[window setHasBorders: YES];
 
-	iSCController *controller = [iSCController sharedInstance];
 	iSCGraphView* view = [[iSCGraphView alloc] initWithFrame: bounds];
 	[view setSCObject: slotRawObject(a)];
-	SetPtr(slotRawObject(a)->slots + 0, (__bridge void*)view);  // kengo:
-	[controller insertWindow:window];
+	SetPtr(slotRawObject(a)->slots + 0, (__bridge void*)view);
 	[window setiSCGraphView: view];
 
-	if(IsTrue(h)) {
+	if(IsTrue(h))
+    {
 
 	}
     else
@@ -153,6 +151,8 @@ int prSCWindow_New(struct VMGlobals *g, int numArgsPushed)
 		[view setSCTopView: (SCTopView*)slotRawPtr(slotRawObject(f)->slots)];
 		[window addSubview: view];
 	}
+    
+    internal_sc_window = window;
 
 	return errNone;
 }
@@ -161,23 +161,14 @@ int prSCWindow_New(struct VMGlobals *g, int numArgsPushed)
 int prSCWindow_Refresh(struct VMGlobals *g, int numArgsPushed);
 int prSCWindow_Refresh(struct VMGlobals *g, int numArgsPushed)
 {
-    if (!g->canCallOS) return errCantCallOS;
+    if (!g->canCallOS) { return errCantCallOS; }
 
     PyrSlot *a = g->sp;
     iSCGraphView* view = (__bridge iSCGraphView*)slotRawPtr(slotRawObject(a)->slots);
-    if (!view) return errNone;
+    if (!view) { return errNone; }
 
-    SEL sel = @selector(setNeedsDisplay:);
-    NSMethodSignature *sig = [UIView instanceMethodSignatureForSelector: sel];
-
-    NSInvocation *anInvocation = [NSInvocation invocationWithMethodSignature: sig];
-    iSCController* controller = [iSCController sharedInstance];
-    [anInvocation setTarget: view];
-    [anInvocation setSelector: sel];
-    BOOL flag = YES;
-    [anInvocation setArgument: &flag atIndex: 2];
-    [controller defer: anInvocation];
-
+    [view setNeedsDisplay];
+    
     return errNone;
 }
 
@@ -190,17 +181,8 @@ int prSCWindow_Close(struct VMGlobals *g, int numArgsPushed)
     iSCGraphView* view = (__bridge iSCGraphView*)slotRawPtr(slotRawObject(a)->slots);
     if (!view) return errNone;
 
-    iSCWindow *window = (iSCWindow *) [view superview];
-
-    SEL sel = @selector(closeWindow:);
-    NSMethodSignature *sig = [iSCController instanceMethodSignatureForSelector: sel];
-
-    NSInvocation *anInvocation = [NSInvocation invocationWithMethodSignature: sig];
-    iSCController* controller = [iSCController sharedInstance];
-    [anInvocation setTarget: controller];
-    [anInvocation setSelector: sel];
-    [anInvocation setArgument: &window atIndex: 2];
-    [controller defer: anInvocation];
+    iSCWindow *sc_window = (iSCWindow *) [view superview];
+    [sc_window close];
 
     return errNone;
 }
@@ -213,20 +195,12 @@ int prSCWindow_ToFront(struct VMGlobals *g, int numArgsPushed)
 
     PyrSlot *a = g->sp;
     iSCGraphView* view = (__bridge iSCGraphView*)slotRawPtr(slotRawObject(a)->slots);
-    if (!view) return errNone;
+    if (!view) { return errNone; }
 
-    iSCWindow *window = (iSCWindow *) [view superview];
-
-    SEL sel = @selector(makeWindowFront:);
-    NSMethodSignature *sig = [iSCController instanceMethodSignatureForSelector: sel];
-
-    NSInvocation *anInvocation = [NSInvocation invocationWithMethodSignature: sig];
-    iSCController* controller = [iSCController sharedInstance];
-    [anInvocation setTarget: controller];
-    [anInvocation setSelector: sel];
-    [anInvocation setArgument: &window atIndex: 2];
-    [controller defer: anInvocation];
-
+    //iSCWindow *sc_window = (iSCWindow *) [view superview];
+    
+    // no process.
+    
     return errNone;
 }
 
@@ -259,7 +233,8 @@ int prFont_AvailableFonts(struct VMGlobals *g, int numArgsPushed)
 	PyrObject* array = newPyrArray(g->gc, size, 0, true);
 	SetObject(a, array);
 
-	for (int i=0; i<size; ++i) {
+	for (int i=0; i<size; ++i)
+    {
 		NSString *name = [fonts objectAtIndex: i];
 	
 		PyrString *string = newPyrString(g->gc, [name UTF8String], 0, true);

@@ -11,7 +11,6 @@
 
 int main(int argc, char *argv[])
 {
-    // kengo:ARC
     @autoreleasepool
     {
         return UIApplicationMain(argc, argv, nil, NSStringFromClass([iSCAppDelegate class]));
