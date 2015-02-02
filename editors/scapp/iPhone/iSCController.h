@@ -28,12 +28,10 @@
 
 - (void) setup;
 
-- (void) start:(id)arg;
-- (void) selectFile:(NSString *)string;
-- (void) selectPatch:(NSString *)string;
+- (void) start;
 - (void) selectRecording:(NSString *)string;
 - (void) interpret:(NSString *)string;
-- (void) doClockTask:(NSTimer*) timer;
+- (void) doClockTask:(NSTimer*)timer;
 
 - (void) triggerStop:(id)sender;
 - (void) toggleSpeakers:(id)sender;

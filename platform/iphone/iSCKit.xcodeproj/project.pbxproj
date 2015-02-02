@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		39D745D514D4FFB1002A4E59 /* SC_CoreMIDI.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7751A9860EB36D500051CF38 /* SC_CoreMIDI.cpp */; };
 		39D745D714D5004F002A4E59 /* CoreMIDI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39D745D614D5004F002A4E59 /* CoreMIDI.framework */; };
-		5D1090AB1A7F81AF00C653FF /* libsndfile.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D3B9B6019AC18BF007A1373 /* libsndfile.a */; };
 		5D1090AD1A7F81AF00C653FF /* libscsynth.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D1090AC1A7F81AF00C653FF /* libscsynth.a */; };
 		5D560F4A199E879E007CDE26 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D560F49199E879E007CDE26 /* AVFoundation.framework */; };
 		5D5C0F3D199F03A700397E51 /* lex_scdoc.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5D5C0F3C199F03A700397E51 /* lex_scdoc.cpp */; };
@@ -58,6 +57,7 @@
 		5D9362B4199A21060051802E /* SC_Win32Utils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5D9362A4199A21060051802E /* SC_Win32Utils.cpp */; };
 		5D9362B5199A21060051802E /* scsynthsend.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5D9362A6199A21060051802E /* scsynthsend.cpp */; };
 		5D9362B6199A21060051802E /* strtod.c in Sources */ = {isa = PBXBuildFile; fileRef = 5D9362A8199A21060051802E /* strtod.c */; };
+		5D95289F1A7F865000758498 /* libsndfile.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D95289E1A7F865000758498 /* libsndfile.a */; };
 		5D990FDF199A66CA00974FE2 /* lockpool.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5D990FDE199A66CA00974FE2 /* lockpool.cpp */; };
 		5DB1214F199A4DB1000D2100 /* codecvt_error_category.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5DB12146199A4DB1000D2100 /* codecvt_error_category.cpp */; };
 		5DB12150199A4DB1000D2100 /* operations.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5DB12147199A4DB1000D2100 /* operations.cpp */; };
@@ -67,7 +67,6 @@
 		5DB12154199A4DB1000D2100 /* unique_path.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5DB1214B199A4DB1000D2100 /* unique_path.cpp */; };
 		5DB12155199A4DB1000D2100 /* utf8_codecvt_facet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5DB1214C199A4DB1000D2100 /* utf8_codecvt_facet.cpp */; };
 		5DB12156199A4DB1000D2100 /* windows_file_codecvt.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5DB1214D199A4DB1000D2100 /* windows_file_codecvt.cpp */; };
-		5DFDC27619F21CA8009546FC /* FileBrowserNaviController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5DFDC27519F21CA8009546FC /* FileBrowserNaviController.mm */; };
 		5DFDC27919F21CB3009546FC /* iSCmain.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DFDC27819F21CB3009546FC /* iSCmain.m */; };
 		5DFDC27C19F21CBC009546FC /* iSCController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5DFDC27B19F21CBC009546FC /* iSCController.mm */; };
 		5DFDC28719F25637009546FC /* LogViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DFDC28619F25637009546FC /* LogViewController.m */; };
@@ -115,9 +114,7 @@
 		7713C67F0F422BE400B0055E /* PyrArchiver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7751A9730EB36D500051CF38 /* PyrArchiver.cpp */; };
 		7713C6800F422BE400B0055E /* SC_ComPort.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7751A9840EB36D500051CF38 /* SC_ComPort.cpp */; };
 		7713C6970F422BE400B0055E /* DrawBackground.M in Sources */ = {isa = PBXBuildFile; fileRef = 7751A9360EB36D500051CF38 /* DrawBackground.M */; };
-		7725B4BD1191E0510056CA2F /* SuperCollider_BrowserPage.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7725B4BC1191E0510056CA2F /* SuperCollider_BrowserPage.xib */; };
 		772C0F3312DA126F009C0126 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77BA5239129C374C00CE89DD /* MediaPlayer.framework */; };
-		775574050FBE45A500192282 /* SuperCollider_FileTransfer.xib in Resources */ = {isa = PBXBuildFile; fileRef = 775574040FBE45A500192282 /* SuperCollider_FileTransfer.xib */; };
 		7759955312FDE20A00603187 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7759955212FDE20A00603187 /* Accelerate.framework */; };
 		775E78EC1475DE26008CD702 /* once.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 775E789A1475DE26008CD702 /* once.cpp */; };
 		775E78ED1475DE26008CD702 /* thread.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 775E789B1475DE26008CD702 /* thread.cpp */; };
@@ -157,7 +154,6 @@
 		77BA5238129C374100CE89DD /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77BA5237129C374100CE89DD /* AudioToolbox.framework */; };
 		77BA523C129C375700CE89DD /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77BA523B129C375700CE89DD /* UIKit.framework */; };
 		77BA523E129C376000CE89DD /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77BA523D129C376000CE89DD /* Foundation.framework */; };
-		77C1204511D67558002067D4 /* PostViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 77C1204411D67558002067D4 /* PostViewController.mm */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -203,7 +199,6 @@
 		0B57438114D6DC5100EB191B /* SC_Errors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SC_Errors.h; path = server/SC_Errors.h; sourceTree = "<group>"; };
 		39D745D614D5004F002A4E59 /* CoreMIDI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMIDI.framework; path = System/Library/Frameworks/CoreMIDI.framework; sourceTree = SDKROOT; };
 		5D1090AC1A7F81AF00C653FF /* libscsynth.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libscsynth.a; path = lib/libscsynth.a; sourceTree = "<group>"; };
-		5D3B9B6019AC18BF007A1373 /* libsndfile.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libsndfile.a; path = lib/libsndfile.a; sourceTree = "<group>"; };
 		5D560F49199E879E007CDE26 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		5D5C0F3C199F03A700397E51 /* lex_scdoc.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = lex_scdoc.cpp; sourceTree = "<group>"; };
 		5D8EA3C4199A01BB0026877D /* aliasmanager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = aliasmanager.cpp; sourceTree = "<group>"; };
@@ -282,6 +277,7 @@
 		5D9362A6199A21060051802E /* scsynthsend.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = scsynthsend.cpp; sourceTree = "<group>"; };
 		5D9362A7199A21060051802E /* server_shm.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = server_shm.hpp; sourceTree = "<group>"; };
 		5D9362A8199A21060051802E /* strtod.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = strtod.c; sourceTree = "<group>"; };
+		5D95289E1A7F865000758498 /* libsndfile.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libsndfile.a; path = lib/libsndfile.a; sourceTree = "<group>"; };
 		5D990FBB199A66CA00974FE2 /* base.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = base.hpp; sourceTree = "<group>"; };
 		5D990FBC199A66CA00974FE2 /* cas32strong.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cas32strong.hpp; sourceTree = "<group>"; };
 		5D990FBD199A66CA00974FE2 /* cas32weak.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cas32weak.hpp; sourceTree = "<group>"; };
@@ -313,7 +309,6 @@
 		5D990FD9199A66CA00974FE2 /* spsc_queue.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = spsc_queue.hpp; sourceTree = "<group>"; };
 		5D990FDA199A66CA00974FE2 /* stack.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = stack.hpp; sourceTree = "<group>"; };
 		5D990FDE199A66CA00974FE2 /* lockpool.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = lockpool.cpp; sourceTree = "<group>"; };
-		5DAE73A61A24E2F60099594C /* libsndfile.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libsndfile.a; path = "libsndfile-iOS/../lib/libsndfile.a"; sourceTree = "<group>"; };
 		5DB12146199A4DB1000D2100 /* codecvt_error_category.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = codecvt_error_category.cpp; path = src/codecvt_error_category.cpp; sourceTree = "<group>"; };
 		5DB12147199A4DB1000D2100 /* operations.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = operations.cpp; path = src/operations.cpp; sourceTree = "<group>"; };
 		5DB12148199A4DB1000D2100 /* path_traits.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = path_traits.cpp; path = src/path_traits.cpp; sourceTree = "<group>"; };
@@ -323,8 +318,6 @@
 		5DB1214C199A4DB1000D2100 /* utf8_codecvt_facet.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = utf8_codecvt_facet.cpp; path = src/utf8_codecvt_facet.cpp; sourceTree = "<group>"; };
 		5DB1214D199A4DB1000D2100 /* windows_file_codecvt.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = windows_file_codecvt.cpp; path = src/windows_file_codecvt.cpp; sourceTree = "<group>"; };
 		5DB1214E199A4DB1000D2100 /* windows_file_codecvt.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = windows_file_codecvt.hpp; path = src/windows_file_codecvt.hpp; sourceTree = "<group>"; };
-		5DFDC27419F21CA8009546FC /* FileBrowserNaviController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileBrowserNaviController.h; sourceTree = "<group>"; };
-		5DFDC27519F21CA8009546FC /* FileBrowserNaviController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = FileBrowserNaviController.mm; sourceTree = "<group>"; };
 		5DFDC27819F21CB3009546FC /* iSCmain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iSCmain.m; sourceTree = "<group>"; };
 		5DFDC27A19F21CBC009546FC /* iSCController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iSCController.h; sourceTree = "<group>"; };
 		5DFDC27B19F21CBC009546FC /* iSCController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = iSCController.mm; sourceTree = "<group>"; };
@@ -342,7 +335,6 @@
 		7709038A0F509FAA005C05DC /* LiveCodingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LiveCodingViewController.h; sourceTree = "<group>"; };
 		7709038B0F509FAA005C05DC /* LiveCodingViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = LiveCodingViewController.mm; sourceTree = "<group>"; };
 		7713C6A90F422BE400B0055E /* iSCKit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iSCKit.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		7725B4BC1191E0510056CA2F /* SuperCollider_BrowserPage.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = SuperCollider_BrowserPage.xib; path = "iPhone Resources/SuperCollider_BrowserPage.xib"; sourceTree = "<group>"; };
 		772C0E2E12DA0C69009C0126 /* clz.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = clz.h; sourceTree = "<group>"; };
 		772C0E2F12DA0C69009C0126 /* dfftlib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dfftlib.h; sourceTree = "<group>"; };
 		772C0E3012DA0C69009C0126 /* fftlib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fftlib.h; sourceTree = "<group>"; };
@@ -516,7 +508,6 @@
 		7751AA080EB36D890051CF38 /* DrawBackground.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawBackground.h; sourceTree = "<group>"; };
 		7751AA100EB36D890051CF38 /* SCGeom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCGeom.h; sourceTree = "<group>"; };
 		7751B8120F435F6F0044CAC0 /* libscsynth.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = libscsynth.xcodeproj; sourceTree = "<group>"; };
-		775574040FBE45A500192282 /* SuperCollider_FileTransfer.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = SuperCollider_FileTransfer.xib; path = "iPhone Resources/SuperCollider_FileTransfer.xib"; sourceTree = "<group>"; };
 		7759955212FDE20A00603187 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		775E782D1475DCB0008CD702 /* SC_Alloca.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SC_Alloca.h; sourceTree = "<group>"; };
 		775E789A1475DE26008CD702 /* once.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = once.cpp; sourceTree = "<group>"; };
@@ -564,8 +555,6 @@
 		77BA5239129C374C00CE89DD /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		77BA523B129C375700CE89DD /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		77BA523D129C376000CE89DD /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		77C1204311D67558002067D4 /* PostViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostViewController.h; sourceTree = "<group>"; };
-		77C1204411D67558002067D4 /* PostViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = PostViewController.mm; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -573,8 +562,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5D95289F1A7F865000758498 /* libsndfile.a in Frameworks */,
 				5D1090AD1A7F81AF00C653FF /* libscsynth.a in Frameworks */,
-				5D1090AB1A7F81AF00C653FF /* libsndfile.a in Frameworks */,
 				77BA5223129C371F00CE89DD /* CFNetwork.framework in Frameworks */,
 				77BA5234129C373400CE89DD /* CoreFoundation.framework in Frameworks */,
 				77BA5236129C373B00CE89DD /* CoreGraphics.framework in Frameworks */,
@@ -631,8 +620,6 @@
 			children = (
 				7725B4AF1191DFA20056CA2F /* Bundled */,
 				778F12C90F50A94600CB6629 /* icon.png */,
-				775574040FBE45A500192282 /* SuperCollider_FileTransfer.xib */,
-				7725B4BC1191E0510056CA2F /* SuperCollider_BrowserPage.xib */,
 				778F17E50F50AE1100CB6629 /* SuperCollider.plist */,
 			);
 			name = Resources;
@@ -848,12 +835,8 @@
 				7709037F0F509FAA005C05DC /* iSCGraphView.mm */,
 				5DFDC28519F25637009546FC /* LogViewController.h */,
 				5DFDC28619F25637009546FC /* LogViewController.m */,
-				5DFDC27419F21CA8009546FC /* FileBrowserNaviController.h */,
-				5DFDC27519F21CA8009546FC /* FileBrowserNaviController.mm */,
 				7709038A0F509FAA005C05DC /* LiveCodingViewController.h */,
 				7709038B0F509FAA005C05DC /* LiveCodingViewController.mm */,
-				77C1204311D67558002067D4 /* PostViewController.h */,
-				77C1204411D67558002067D4 /* PostViewController.mm */,
 			);
 			path = iPhone;
 			sourceTree = "<group>";
@@ -1174,9 +1157,8 @@
 		77597AF11123325400D2A968 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				5D95289E1A7F865000758498 /* libsndfile.a */,
 				5D1090AC1A7F81AF00C653FF /* libscsynth.a */,
-				5DAE73A61A24E2F60099594C /* libsndfile.a */,
-				5D3B9B6019AC18BF007A1373 /* libsndfile.a */,
 				5D560F49199E879E007CDE26 /* AVFoundation.framework */,
 				39D745D614D5004F002A4E59 /* CoreMIDI.framework */,
 				7759955212FDE20A00603187 /* Accelerate.framework */,
@@ -1412,8 +1394,6 @@
 			files = (
 				778F12CA0F50A94600CB6629 /* icon.png in Resources */,
 				5D8EA415199A023D0026877D /* Default-568h@2x.png in Resources */,
-				775574050FBE45A500192282 /* SuperCollider_FileTransfer.xib in Resources */,
-				7725B4BD1191E0510056CA2F /* SuperCollider_BrowserPage.xib in Resources */,
 				775E78EE1475DE26008CD702 /* timeconv.inl in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1443,7 +1423,6 @@
 				7713C65A0F422BE400B0055E /* PyrMathOps.cpp in Sources */,
 				7713C65B0F422BE400B0055E /* PyrMathPrim.cpp in Sources */,
 				7713C65C0F422BE400B0055E /* PyrMathSupport.cpp in Sources */,
-				5DFDC27619F21CA8009546FC /* FileBrowserNaviController.mm in Sources */,
 				7713C65D0F422BE400B0055E /* PyrMessage.cpp in Sources */,
 				7713C65E0F422BE400B0055E /* PyrObject.cpp in Sources */,
 				5D8EA40E199A01BB0026877D /* scantoken.cpp in Sources */,
@@ -1503,7 +1482,6 @@
 				770903930F509FAA005C05DC /* iSCAppDelegate.m in Sources */,
 				770903950F509FAA005C05DC /* LiveCodingViewController.mm in Sources */,
 				5DB12153199A4DB1000D2100 /* portability.cpp in Sources */,
-				77C1204511D67558002067D4 /* PostViewController.mm in Sources */,
 				775E78EC1475DE26008CD702 /* once.cpp in Sources */,
 				5D8EA407199A01BB0026877D /* null.cpp in Sources */,
 				775E78ED1475DE26008CD702 /* thread.cpp in Sources */,

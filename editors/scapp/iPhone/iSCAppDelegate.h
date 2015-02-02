@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 #import "LogViewController.h"
-#import "FileBrowserNaviController.h"
 #import "LiveCodingViewController.h"
 #import "iSCController.h"
 #import "iSCWindow.h"
@@ -19,7 +18,6 @@
 @property (nonatomic, strong) UITabBarController *tab_bar_controller;
 
 @property (nonatomic, strong) LogViewController *log_vc;
-@property (nonatomic, strong) FileBrowserNavigationController *browser_navi;
 @property (nonatomic, strong) LiveCodingViewController *live_vc;
 
 +(iSCAppDelegate*) sharedInstance;

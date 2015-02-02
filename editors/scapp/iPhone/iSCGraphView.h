@@ -33,12 +33,7 @@
 }
 
 - (void)drawRect: (CGRect)bounds;
-/*
-- (void) keyDown: (NSEvent*) event;
-- (void) keyUp: (NSEvent*) event;
-- (void) mouseDown: (NSEvent*) event;
-- (void) mouseMoved:(NSEvent*) theEvent;  //jan t
-*/
+
 - (void)setSCObject: (struct PyrObject*)inObject;
 - (struct PyrObject*)getSCObject;
 - (BOOL)isFlipped;
@@ -50,7 +45,6 @@
 - (void) touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event;
 
 - (void)setSCTopView: (SCTopView*)inView;
-//- (void)dealloc;
 - (void)closeWindow;
 - (void)willClose;
 - (void)setWindowShouldClose:(BOOL)boo;
@@ -59,12 +53,9 @@
 - (void)setAutoScrolls:(BOOL)boo;
 - (void) beginDragFrom:(CGPoint)where of:(PyrSlot*)slot string:(NSString*) string;
 
-//- (NSMenu*) menuForEvent:(NSEvent*)event;
 - (void)startMenuTracking: (SCView*) inView;
 
-//- (IBAction) toggleUIEditMode: (id) sender;
 - (void)scrollViewResized:(NSNotification *)notification;
 - (void)userScrolled:(NSNotification *)notification;
-//- (void)setFrameSizeToMinimum;    // kengo:
 
 @end

@@ -12,20 +12,20 @@
 
 @synthesize window;
 
++(iSCAppDelegate*) sharedInstance
+{
+    return [UIApplication sharedApplication].delegate;
+}
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // ウィンドウの作成
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
     self.log_vc = [[LogViewController alloc] initWithNibName:nil bundle:nil];
-    self.log_vc.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Post"
+    self.log_vc.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Log"
                                                             image:[[UIImage imageNamed:@"tab_login"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]
                                                     selectedImage:[[UIImage imageNamed:@"tab_login_selected"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
-    
-    self.browser_navi = [[FileBrowserNavigationController alloc] initWithNibName:nil bundle:nil];
-    self.browser_navi.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Browser"
-                                                                 image:[[UIImage imageNamed:@"tab_login"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]
-                                                         selectedImage:[[UIImage imageNamed:@"tab_login_selected"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
     
     self.live_vc = [[LiveCodingViewController alloc] initWithNibName:nil bundle:nil];
     self.live_vc.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Live"
@@ -34,22 +34,19 @@
     
     // タブバーコントローラの作成
     self.tab_bar_controller = [[UITabBarController alloc] initWithNibName:nil bundle:nil];
-    [self.tab_bar_controller setViewControllers:@[self.log_vc, self.browser_navi, self.live_vc] animated:YES];
+    [self.tab_bar_controller setViewControllers:@[self.log_vc, self.live_vc] animated:YES];
     
-    iSCController *cont = [iSCController sharedInstance];
-    [cont setup];
+    iSCController *scc = [iSCController sharedInstance];
+    [scc setup];
+    
+    [self.tab_bar_controller setCustomizableViewControllers:nil];
+    [self.live_vc setTarget:scc withSelector:@selector(interpret:)];
     
     // Override point for customization after application launch
     self.window.rootViewController = self.tab_bar_controller;
-	
     [self.window makeKeyAndVisible];
     
     return YES;
-}
-
-+(iSCAppDelegate*) sharedInstance
-{
-    return [UIApplication sharedApplication].delegate;
 }
 
 @end

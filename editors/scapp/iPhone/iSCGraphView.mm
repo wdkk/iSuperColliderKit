@@ -46,12 +46,6 @@ extern PyrSymbol *s_toggleEditMode;
 {
 	autoScrolls = boo;
 }
-/*
-- (BOOL)acceptsFirstMouse:(NSEvent *)theEvent
-{
-	return acceptsClickThrough;
-}
-*/
 
 // kengo:reborn
 - (BOOL)isFlipped
@@ -64,94 +58,6 @@ extern PyrSymbol *s_toggleEditMode;
 {
 	return NO;
 }
-
-/*
-//eat all key Events might add this
-- (BOOL)performKeyEquivalent:(NSEvent *)event
-{
-//	NSString *characters = [event characters];
-	unsigned int modifiers = [event modifierFlags];
-    //control tab/escape doesn't get passed here at all ?
-	if(modifiers & NSCommandKeyMask) // allow cmd-key only
-		[self keyDown: event];
-	return NO; //for now pass on the event
-}
-
-- (void)flagsChanged:(NSEvent *)event
-{
-    unsigned int modifiers = [event modifierFlags];
-//    NSLog(@" modifiers %d %08X",modifiers, modifiers);
-    if (mTopView) {
-	     SCView *view = mTopView->focusView();
-        if (view) {
-            view->keyModifiersChanged(modifiers);
-        } else {
-            mTopView->keyModifiersChanged(modifiers);
-        }
-	}
-}
-- (void) keyDown: (NSEvent*) event
-{
-    NSString *characters = [event characters];
-    unsigned int modifiers = [event modifierFlags];
-    unichar character = 0;
-    if([characters length] > 0) {
-        character = [characters characterAtIndex: 0];
-    }
-    //control tab/escape doesn't get passed here at all ?
- //   NSLog(@"unicode %d  length:%d clength:%d mTopView %08X  modifiers %d %08X",
-//		character,[characters length],[characters cStringLength], mTopView, modifiers, modifiers);
-    
-    if (mTopView) {
-		// for some reason modifiers becomes 256 on my machine with no keys pressed. So need to mask against known keys.
-		uint32 allKnownModifiers = NSAlphaShiftKeyMask | NSShiftKeyMask | NSControlKeyMask | NSCommandKeyMask 
-			| NSAlternateKeyMask | NSHelpKeyMask | NSFunctionKeyMask | NSCommandKeyMask;
-        if(character == 9 && ((modifiers & allKnownModifiers) == 0)) {
-            mTopView->tabPrevFocus();
-            return;
-        } else if (character == 25 && ((modifiers & allKnownModifiers) == NSShiftKeyMask)) {
-			mTopView->tabNextFocus();
-			return;
-        } // other tab keys avail for user 
-        SCView *view = mTopView->focusView();
-        if (view) {
-            view->keyDown(character, modifiers,[event keyCode]);
-        } else {
-            mTopView->keyDown(character,modifiers,[event keyCode]);
-        }
-    }
-}
-
-
-- (void) keyUp: (NSEvent*) event
-{
-    NSString *characters = [event characters];
-    unsigned int modifiers = [event modifierFlags];
-    unichar character = 0;
-    if([characters length] > 0) {
-        character = [characters characterAtIndex: 0];
-    }
-//   NSLog(@"keyUp: unicode %d  length:%d clength:%d mTopView %08X  modifiers %d %08X",
-//		character,[characters length],[characters cStringLength], mTopView, modifiers, modifiers);
-    if (mTopView) {
-
-		uint32 allKnownModifiers = NSAlphaShiftKeyMask | NSShiftKeyMask | NSControlKeyMask | NSCommandKeyMask 
-			| NSAlternateKeyMask | NSHelpKeyMask | NSFunctionKeyMask;
-        if(character == 9 && ((modifiers & allKnownModifiers) == 0)) {
-            return;
-        } else if (character == 25 && ((modifiers & allKnownModifiers) == NSShiftKeyMask)) {
-			return;
-        } // other tab keys avail for user 
-
-        SCView *view = mTopView->focusView();
-        if (view) {
-            view->keyUp(character, modifiers,[event keyCode]);
-        } else {
-            mTopView->keyUp(character,modifiers,[event keyCode]);
-        }
-    }
-}
-*/
 
 static CGRect SCtoCGRect(SCRect screct)
 {
@@ -168,7 +74,6 @@ static CGRect SCtoCGRect(SCRect screct)
 - (id)initWithFrame: (CGRect) frame
 {
     self = [super initWithFrame: frame];
-	//[self registerForDraggedTypes: [NSArray arrayWithObjects: sSCObjType, NSStringPboardType, nil]];
 	mDragStarted = NO;
 	mMenuView = 0;
 	mWindowObj = 0;
@@ -216,71 +121,7 @@ static CGRect SCtoCGRect(SCRect screct)
 			}
 		}
 	}	
-		
-		
-		
-		
-		//else view->setConstructionModeFromPoint(scpoint);
-
-		//[self displayIfNeeded];
- /*       
-        while (keepOn && !mDragStarted && !mMenuView) {
-            theEvent = [[self window] nextEventMatchingMask: NSLeftMouseUpMask |NSRightMouseUp | NSOtherMouseUp |
-                    NSLeftMouseDraggedMask | NSRightMouseDragged | NSOtherMouseDragged 
-					| NSKeyDownMask | NSKeyUpMask
-			];
-            mouseLoc = [self convertPoint:[theEvent locationInWindow] fromView:nil];
-            //isInside = [self mouse:mouseLoc inRect:[self bounds]];
-            scpoint = SCMakePoint(mouseLoc.x, mouseLoc.y);			
-            int evtype = [theEvent type];
-            switch ([theEvent type]) {
-				case NSLeftMouseDown:
-				case NSRightMouseDown:
-					if(constructionmode)
-					{
-						view->doConstructionMove(scpoint);
-						mTopView->refresh();
-					}else
-						view->mouseDownAction(scpoint, modifiers,theEvent);	
-//						post("down \n");
-						break;
-                case NSLeftMouseDragged:
-					if(autoScrolls) [self autoscroll:theEvent];
-                case NSRightMouseDragged:
-                case NSOtherMouseDragged:
-						if(constructionmode)
-						{
-							view->doConstructionMove(scpoint);
-							mTopView->refresh();
-						}else
-							view->mouseTrack(scpoint, modifiers,theEvent);
-							view->mouseMoveAction(scpoint, modifiers,theEvent);				
-//							post("drag \n");
-                        break;
-                case NSLeftMouseUp:
-                case NSRightMouseUp:
-                case NSOtherMouseUp:
-						if(constructionmode)
-						{
-			//				view->doConstructionMove(scpoint);
-							mTopView->refresh();
-						}else
-						{
-//							if(!view.GetSCObj()) break;						
-							view->mouseUpAction(scpoint, modifiers,theEvent);						
-							view->mouseEndTrack(scpoint, modifiers,theEvent);
-						}
-                        keepOn = NO;
-                        break;
-               default:
-                    post("evtype %d %4.4s\n", evtype, (char*)&evtype);
-                        break;
-            }
-//			display:
-            //[self displayIfNeeded];
-            flushPostBuf();
-        }
-*/		
+	
 	mMenuView = 0;
     return;
 }
@@ -304,140 +145,6 @@ static CGRect SCtoCGRect(SCRect screct)
 {
 	printf("touches cancelled\n");
 }
-
-
-
-/*
-- (NSMenu*) menuForEvent:(NSEvent*)theEvent;
-{
-    NSPoint mouseLoc;
-    mouseLoc = [self convertPoint:[theEvent locationInWindow] fromView:nil];
-    SCPoint scpoint = SCMakePoint(mouseLoc.x, mouseLoc.y);
-	if (!mTopView) return 0;
-    SCView *view = mTopView->findView(scpoint);
-    if (!view) return 0;
-	return view->contextMenu(scpoint);
-}
-
--(void)rightMouseDown:(NSEvent*)theEvent { [self mouseDown:theEvent]; }
--(void)otherMouseDown:(NSEvent*)theEvent { [self mouseDown:theEvent]; }
-- (void)mouseDown:(NSEvent *)theEvent
-{
-//	NSLog(@"iSCGraphView MOUSEDOWN");
-    BOOL keepOn = YES;
-    //BOOL isInside = YES;
-    NSPoint mouseLoc;
-	//NSLog(@"Click count: %i", [theEvent clickCount]);
-	//if([theEvent clickCount] == 2) return;
-	if (!mTopView) return;
-    unsigned int modifiers = [theEvent modifierFlags];
-    mouseLoc = [self convertPoint:[theEvent locationInWindow] fromView:nil];
-    SCPoint scpoint = SCMakePoint(mouseLoc.x, mouseLoc.y);
-    SCView *view = mTopView->findView(scpoint);
-    if (view) {
-		mDragStarted = NO;
-		mMenuView = 0;
-        view->makeFocus(true);
-		bool constructionmode = mTopView->ConstructionMode();
-		if(!constructionmode)
-		{
-			view->mouseDownAction(scpoint, modifiers,theEvent);				
-			view->mouseBeginTrack(scpoint, modifiers,theEvent);
-		}else
-		view->setConstructionModeFromPoint(scpoint);
-
-        [self displayIfNeeded];
-        
-        while (keepOn && !mDragStarted && !mMenuView) {
-            theEvent = [[self window] nextEventMatchingMask: NSLeftMouseUpMask |NSRightMouseUp | NSOtherMouseUp |
-                    NSLeftMouseDraggedMask | NSRightMouseDragged | NSOtherMouseDragged 
-					| NSKeyDownMask | NSKeyUpMask
-			];
-            mouseLoc = [self convertPoint:[theEvent locationInWindow] fromView:nil];
-            //isInside = [self mouse:mouseLoc inRect:[self bounds]];
-            scpoint = SCMakePoint(mouseLoc.x, mouseLoc.y);			
-            int evtype = [theEvent type];
-            switch ([theEvent type]) {
-				case NSLeftMouseDown:
-				case NSRightMouseDown:
-					if(constructionmode)
-					{
-						view->doConstructionMove(scpoint);
-						mTopView->refresh();
-					}else
-						view->mouseDownAction(scpoint, modifiers,theEvent);	
-//						post("down \n");
-						break;
-                case NSLeftMouseDragged:
-					if(autoScrolls) [self autoscroll:theEvent];
-                case NSRightMouseDragged:
-                case NSOtherMouseDragged:
-						if(constructionmode)
-						{
-							view->doConstructionMove(scpoint);
-							mTopView->refresh();
-						}else
-							view->mouseTrack(scpoint, modifiers,theEvent);
-							view->mouseMoveAction(scpoint, modifiers,theEvent);				
-//							post("drag \n");
-                        break;
-                case NSLeftMouseUp:
-                case NSRightMouseUp:
-                case NSOtherMouseUp:
-						if(constructionmode)
-						{
-			//				view->doConstructionMove(scpoint);
-							mTopView->refresh();
-						}else
-						{
-//							if(!view.GetSCObj()) break;						
-							view->mouseUpAction(scpoint, modifiers,theEvent);						
-							view->mouseEndTrack(scpoint, modifiers,theEvent);
-						}
-                        keepOn = NO;
-                        break;
-				case NSKeyDown:
-						if(!constructionmode)
-						{
-							[self keyDown:theEvent];
-						}
-						break;
-				case NSKeyUp:
-						if(!constructionmode)
-						{
-							[self keyUp:theEvent];
-						}
-						break;
-                default:
-                    post("evtype %d %4.4s\n", evtype, (char*)&evtype);
-                        break;
-            }
-//			display:
-            [self displayIfNeeded];
-            flushPostBuf();
-        }
-    }
-	mMenuView = 0;
-    return;
-}
-
--(void)mouseMoved:(NSEvent*)theEvent 
-{
-	NSPoint mouseLoc;
-	if (!mTopView) return;
-    unsigned int modifiers = [theEvent modifierFlags];
-    mouseLoc = [self convertPoint:[theEvent locationInWindow] fromView:nil];
-    SCPoint scpoint = SCMakePoint(mouseLoc.x, mouseLoc.y);
-    SCView *view = mTopView->findView(scpoint);
-    if (view) {
-		mDragStarted = NO;
-		mMenuView = 0;
-//        view->makeFocus(true);
-        view->mouseOver(scpoint, modifiers, theEvent);
-	}
-}
-*/
-//scrollWheel:(NSEvent*)theEvent;
 
 - (void)setSCObject: (struct PyrObject*)inObject;
 {
@@ -467,34 +174,7 @@ void dragFunc(SCPoint where, PyrSlot *inSlot, NSString* inString, NSString* labe
 - (void) beginDragFrom: (CGPoint)where of: (PyrSlot*)slot string:(NSString*)string
 {
     NSLog(@"iiSCGraphViewのbeginDragFrom:of:stringが呼ばれましたが、処理をスキップします");
-    
-    /* OSX向けコード
-    NSImage *image = [self makeDragImage: slot label: label];
-    
-    NSPasteboard *pboard = [NSPasteboard pasteboardWithName: NSDragPboard];
-    [pboard declareTypes: [NSArray arrayWithObjects: sSCObjType, NSStringPboardType, nil] owner: self];
-    
-	int fakeData;
-    NSData *data = [NSData dataWithBytes: &fakeData length: sizeof(int)];
-    
-    [pboard setData: data forType: sSCObjType];
-    [pboard setString: string forType: NSStringPboardType];
-    
-    where.x -= circDiam / 2;
-    where.y += circDiam / 4;
-    
-    NSSize dragOffset = NSMakeSize(0.0, 0.0);
-    mDragStarted = YES;
-    [self dragImage: image at: where offset: dragOffset event: [NSApp currentEvent] pasteboard: pboard source: self slideBack: YES];
-    */
 }
-
-/*
-- (unsigned int)draggingSourceOperationMaskForLocal: (BOOL)flag
-{
-    return flag ? NSDragOperationEvery : NSDragOperationNone;
-}
-*/
 
 - (void)setSCTopView: (SCTopView*)inView
 {
@@ -558,10 +238,6 @@ void dragFunc(SCPoint where, PyrSlot *inSlot, NSString* inString, NSString* labe
     return windowShouldClose;
 }
 
-//const int circDiam = 20;  // kengo:
-
-//static int ivxGUIScreen_frameNumber = 11;
-
 - (void)drawRect: (CGRect)drawBounds
 {
 	if (mTopView) {
@@ -579,12 +255,7 @@ void dragFunc(SCPoint where, PyrSlot *inSlot, NSString* inString, NSString* labe
         screct.y = drawBounds.origin.y;
         screct.width = drawBounds.size.width;
         screct.height = drawBounds.size.height;
-
-/*                
-        Rect qdrect = {(int)screct.x, (int)screct.y, 
-            (int)(screct.x + screct.width), (int)(screct.y + screct.height)};
-        ClipRect(&qdrect);
-*/		
+	
 		if(mTopView->isSubViewScroller()) {
 			((SCScrollView*)mTopView)->drawSubViewIfNecessary(screct);
 		} else {
@@ -609,57 +280,8 @@ void dragFunc(SCPoint where, PyrSlot *inSlot, NSString* inString, NSString* labe
     pthread_mutex_unlock (&gLangMutex);
 }
 
-/*
-NSDictionary *makeFontAttrDict(char *cFontName, float fontSize, SCColor sccolor)
-{
-    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
-
-    NSString *fontName = [NSString stringWithCString: cFontName];
-
-    UIFont *font = [UIFont fontWithName: fontName size: fontSize];
-    if (!font) return 0;
-
-
-    UIColor *nscolor = [UIColor colorWithRed: sccolor.red
-                            green: sccolor.green 
-                            blue: sccolor.blue 
-                            alpha: sccolor.alpha];    
-	[dict setObject: font forKey: NSFontAttributeName ];
-	[dict setObject: nscolor forKey: NSForegroundColorAttributeName ];
-    return dict;
-}
-*/
-
 int nsStringDrawInRect(NSString *string, SCRect screct, char *cFontName, float fontSize, SCColor sccolor)
 {
-/* 
-	NSDictionary* dict = makeFontAttrDict(cFontName, fontSize, sccolor);
-    if (!dict) return errFailed;
-    
-    [nsstring drawInRect: NSRectToCGRect(SCtoNSRect(screct)) withAttributes: dict];
-*/
-/*
-	int len = (int)[nsstring length];
-	char *buf = (char *) malloc(len+1);
-	[nsstring getCString:buf maxLength:len+1 encoding:NSASCIIStringEncoding];
-	
-    CGRect drawBounds = SCtoCGRect(screct);
-
-    CGRect cgrect = *(CGRect*)&screct;
-    CGContextRef cgc = (CGContextRef)UIGraphicsGetCurrentContext();
-    CGContextSaveGState(cgc);
-    CGContextClipToRect(cgc, cgrect);
- 
-	CGContextSelectFont(cgc, cFontName, fontSize, kCGEncodingMacRoman);
-	CGContextSetTextDrawingMode(cgc, kCGTextFill);
-	CGContextSetRGBFillColor(cgc, sccolor.red, sccolor.green, sccolor.blue, sccolor.alpha);
-	CGContextSetTextMatrix(cgc, CGAffineTransformMakeScale(1, -1));
-	CGContextShowTextAtPoint(cgc, drawBounds.origin.x, drawBounds.origin.y+drawBounds.size.height, buf, len);
- 
-    CGContextRestoreGState(cgc);
-
-	free(buf);
-*/
     [string drawInRect:CGRectMake(screct.x, screct.y, screct.width, screct.height)
         withAttributes:@{
                          NSFontAttributeName:[UIFont systemFontOfSize:fontSize],

@@ -333,7 +333,7 @@ void AudioSessionAudioRouteChangeCbk(void *inClientData, AudioSessionPropertyID 
 	NSFileManager *manager = [NSFileManager defaultManager];
 	CFBundleRef bundle = CFBundleGetMainBundle();
 	CFURLRef url = CFBundleCopyBundleURL(bundle);
-	NSString *s = (NSString *) CFBridgingRelease(CFURLCopyFileSystemPath(url, kCFURLPOSIXPathStyle));   // kengo:
+	NSString *s = (NSString *) CFBridgingRelease(CFURLCopyFileSystemPath(url, kCFURLPOSIXPathStyle));
 	CFRelease(url);
     
 	NSError *error;
@@ -341,8 +341,6 @@ void AudioSessionAudioRouteChangeCbk(void *inClientData, AudioSessionPropertyID 
 	sc_GetUserAppSupportDirectory(supportpath, 256);
 	NSString *support = [NSString stringWithCString:supportpath encoding:NSASCIIStringEncoding];
 
-    // kengo:
-	//if (![manager fileExistsAtPath:support]) [manager createDirectoryAtPath:support attributes:nil];
     if (![manager fileExistsAtPath:support])
     {
         [manager createDirectoryAtPath:support withIntermediateDirectories:YES attributes:nil error:&error];
@@ -352,8 +350,6 @@ void AudioSessionAudioRouteChangeCbk(void *inClientData, AudioSessionPropertyID 
 	dir = [support stringByAppendingString:@"/SCClassLibrary"];
 	if (![manager fileExistsAtPath:dir])
 	{
-        // kengo:
-		//[manager createDirectoryAtPath:dir attributes:nil];
         [manager createDirectoryAtPath:dir withIntermediateDirectories:YES attributes:nil error:&error];
 
 		NSString *from, *dest;
@@ -409,8 +405,6 @@ void AudioSessionAudioRouteChangeCbk(void *inClientData, AudioSessionPropertyID 
 		}
 	}
 	dir = [support stringByAppendingString:@"/patches"];
-	// kengo:
-    //if (![manager fileExistsAtPath:dir]) [manager createDirectoryAtPath:dir attributes:nil];
     if(![manager fileExistsAtPath:dir])
     {
         [manager createDirectoryAtPath:dir withIntermediateDirectories:YES attributes:nil error:&error];
@@ -428,36 +422,18 @@ void AudioSessionAudioRouteChangeCbk(void *inClientData, AudioSessionPropertyID 
 	dir = [support stringByAppendingString:@"/Recordings"];
 	if (![manager fileExistsAtPath:dir])
 	{
-        // kengo:
-		//[manager createDirectoryAtPath:dir attributes:nil];
         [manager createDirectoryAtPath:dir withIntermediateDirectories:YES attributes:nil error:&error];
 	}
 	dir = [support stringByAppendingString:@"/synthdefs"];
 	if (![manager fileExistsAtPath:dir])
 	{
-        // kengo:
-		//[manager createDirectoryAtPath:dir attributes:nil];
         [manager createDirectoryAtPath:dir withIntermediateDirectories:YES attributes:nil error:&error];
 	}
 	dir = [support stringByAppendingString:@"/tmp"];
 	if ([manager fileExistsAtPath:dir]) { [manager removeItemAtPath:dir error:&error]; }
-    // kengo:
-	//[manager createDirectoryAtPath:dir attributes:nil];
     [manager createDirectoryAtPath:dir withIntermediateDirectories:YES attributes:nil error:&error];
 	
-    //CFRelease(s); // kengo:
-    
-	initPostBuffer();
-
-    iSCAppDelegate *app = [iSCAppDelegate sharedInstance];
-    
-	// NSString *path = [support stringByAppendingString:@"/patches"];
-	[app.browser_navi setTarget:self withSelector:@selector(selectFile:)];
-	[app.browser_navi setPath:support];
-
-    [app.tab_bar_controller setCustomizableViewControllers:nil];
-
-	[app.live_vc setTarget:self withSelector:@selector(interpret:)];
+    initPostBuffer();
     
 /*
 #ifdef START_HTTP_SERVER
@@ -469,18 +445,16 @@ void AudioSessionAudioRouteChangeCbk(void *inClientData, AudioSessionPropertyID 
 	[httpServer start:&error];
 #endif
 */
-	//[self performSelectorInBackground:@selector(start:) withObject:nil];
-    // kengo:(1)
-	[self performSelector:@selector(start:) withObject:nil afterDelay:0.2f];
+
+    [self start];
 }
 
-- (void) start:(id)arg
+- (void) start
 {
-	//pyr_init_mem_pools(2*1024*1024, 256*1024);
-	pyr_init_mem_pools(1*1024*1024, 256*1024);
+	pyr_init_mem_pools(2*1024*1024, 256*1024);
 	init_OSC(57120);
 	schedInit();
-    // kengo:(2)
+
 	compileLibrary();
 
 	appClockTimer = [NSTimer scheduledTimerWithTimeInterval:0.02f target:self selector:@selector(doClockTask:) userInfo:nil repeats:YES];
@@ -488,23 +462,6 @@ void AudioSessionAudioRouteChangeCbk(void *inClientData, AudioSessionPropertyID 
 
 	s_stop = getsym("stop");
 	s_interpretPrintCmdLine = getsym("interpretPrintCmdLine");
-}
-
-// called by FileBrowserViewController when selected any files (not directories).
-- (void) selectFile:(NSString *)string
-{
-	NSString *ext = [string pathExtension];
-	if (![ext compare:@"aif"] || ![ext compare:@"aiff"] || ![ext compare:@"wav"]) [self selectRecording:string];
-	else [self selectPatch:string];
-}
-
-- (void) selectPatch:(NSString *)string
-{
-    iSCAppDelegate *app = [iSCAppDelegate sharedInstance];
-
-    [app.live_vc loadFile:string];
-
-	[app.tab_bar_controller performSelector:@selector(setSelectedViewController:) withObject:app.live_vc afterDelay:0.5f];
 }
 
 - (void) interpret:(NSString *)string
@@ -526,7 +483,6 @@ void AudioSessionAudioRouteChangeCbk(void *inClientData, AudioSessionPropertyID 
 - (void)doPeriodicTask: (NSTimer*) timer
 {
 	[self performDeferredOperations];
-	//[self doAnimatedViews];
 	flushPostBuf();
 }
 
@@ -575,10 +531,7 @@ void AudioSessionAudioRouteChangeCbk(void *inClientData, AudioSessionPropertyID 
 {
     iSCAppDelegate *app = [iSCAppDelegate sharedInstance];
 	UINavigationController *more = [app.tab_bar_controller moreNavigationController];
-	/*
-	if (more) [tabBarController setSelectedViewController:more];
-	else [tabBarController setSelectedViewController:[window controller]];
-	*/
+
 	NSArray *controllers = [app.tab_bar_controller viewControllers];
 	if ([controllers count]>5) [app.tab_bar_controller setSelectedViewController:more];
 	else [app.tab_bar_controller setSelectedViewController:[window controller]];
@@ -613,26 +566,24 @@ void AudioSessionAudioRouteChangeCbk(void *inClientData, AudioSessionPropertyID 
 - (void)removeDeferredOperationsFor:(id) object
 {
 	NSMutableArray *newArray = [NSMutableArray arrayWithCapacity: 8];
-	//[newArray retain];    // kengo:
-	for (unsigned int i=0; i<[deferredOperations count]; ++i) {
+	for (unsigned int i=0; i<[deferredOperations count]; ++i)
+    {
 		NSInvocation* action = (NSInvocation*)[deferredOperations objectAtIndex: i];
-		if ([action target] != object) {
+		if ([action target] != object)
+        {
 			[newArray addObject: action];
 		}
 	}
-	//[deferredOperations release]; // kengo:
 	deferredOperations = newArray;
 }
 
 - (void)performDeferredOperations
 {
-    while ([deferredOperations count]) {
+    while ([deferredOperations count])
+    {
 		NSInvocation* action = (NSInvocation*)[deferredOperations objectAtIndex: 0];
-		//[action retain];  // kengo:
         [deferredOperations removeObjectAtIndex: 0];
-		///NSLog(@"%d %@ %08X\n", [deferredOperations count], action, [action target]);
-		[action invoke];
-		//[action release]; // kengo:
+        [action invoke];
     }
 }
 
@@ -641,9 +592,7 @@ void AudioSessionAudioRouteChangeCbk(void *inClientData, AudioSessionPropertyID 
 	NSURL *url = [NSURL fileURLWithPath:string];
 	recordingPlayer = [[MPMoviePlayerController alloc] initWithContentURL:url];
 	[recordingPlayer setScalingMode:MPMovieScalingModeAspectFill];
-    // kengo:
     recordingPlayer.controlStyle = MPMovieControlStyleDefault;
-	//[recordingPlayer setMovieControlMode:MPMovieControlModeDefault];
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(recordingPlaybackDidFinish:) name:MPMoviePlayerPlaybackDidFinishNotification object:recordingPlayer];
 	[recordingPlayer play];
 }
@@ -651,7 +600,7 @@ void AudioSessionAudioRouteChangeCbk(void *inClientData, AudioSessionPropertyID 
 - (void) recordingPlaybackDidFinish:(NSNotification *)notification
 {
 	[[NSNotificationCenter defaultCenter] removeObserver:self name:MPMoviePlayerPlaybackDidFinishNotification object:recordingPlayer];
-	if (recordingPlayer) { recordingPlayer = nil; /*[recordingPlayer release];*/ } // kengo:
+    if (recordingPlayer) { recordingPlayer = nil; }
 	recordingPlayer = 0;
 }
 

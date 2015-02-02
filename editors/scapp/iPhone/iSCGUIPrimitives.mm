@@ -136,11 +136,6 @@ int prSCWindow_New(struct VMGlobals *g, int numArgsPushed)
 
 
 	iSCWindow *window = [[iSCWindow alloc] initWithFrame: bounds];
-
-    // kengo: title = nilになる。nilだとsetTitleでアプリが止まる
-	//PyrString *string = slotRawString(b);
-    //NSString *title = [NSString stringWithUTF8String:string->s];
-    //[window setTitle: title];
 	[window setHasBorders: YES];
 
 	iSCController *controller = [iSCController sharedInstance];
@@ -151,52 +146,13 @@ int prSCWindow_New(struct VMGlobals *g, int numArgsPushed)
 	[window setiSCGraphView: view];
 
 	if(IsTrue(h)) {
-/*
-		SCScrollTopView* scrollTopView = (SCScrollTopView*)slotRawInt(slotRawObject(f)->slots);
-		[view setSCTopView: scrollTopView];
 
-		NSScrollView *scrollView = [[NSScrollView alloc] initWithFrame: bounds];
-		[scrollView setHasVerticalScroller:YES];
-		[scrollView setHasHorizontalScroller:YES];
-		[scrollView setAutohidesScrollers:YES];
-		[[scrollView horizontalScroller] setControlSize:NSSmallControlSize];
-		[[scrollView verticalScroller] setControlSize:NSSmallControlSize];
-		[[scrollView horizontalScroller] setControlTint:NSGraphiteControlTint];
-		[[scrollView verticalScroller] setControlTint:NSGraphiteControlTint];
-
-		[scrollView setBackgroundColor:[NSColor clearColor]];
-		[scrollView setDrawsBackground:NO];
-		// configure the scroller to have no visible border
-		[scrollView setBorderType:NSNoBorder];
-		[scrollView setAutoresizingMask:NSViewWidthSizable|NSViewHeightSizable];
-		[scrollView setDocumentView:view];
-
-		[scrollView setPostsFrameChangedNotifications: YES]; // we need this to resize the iSCGraphView if the scroll view exceeds its bounds
-		[[NSNotificationCenter defaultCenter] addObserver:view
-												 selector:@selector(scrollViewResized:)
-													 name:@"NSViewFrameDidChangeNotification"
-												   object:scrollView];
-
-		NSClipView *contentView = [scrollView contentView];
-		[contentView setPostsBoundsChangedNotifications:YES];
-		[[NSNotificationCenter defaultCenter] addObserver:view
-												 selector:@selector(userScrolled:)
-													 name:@"NSViewBoundsDidChangeNotification"
-												   object:contentView];
-
-		scrollTopView->SetNSScrollView(scrollView);
-		[view autorelease];
-
-		[window setContentView: scrollView];
-		[scrollView autorelease];
-*/
-	} else {
+	}
+    else
+    {
 		[view setSCTopView: (SCTopView*)slotRawPtr(slotRawObject(f)->slots)];
 		[window addSubview: view];
 	}
-	//[window makeFirstResponder: view];
-	//[window setFrameOrigin: bounds.origin];
-
 
 	return errNone;
 }
@@ -247,22 +203,6 @@ int prSCWindow_Close(struct VMGlobals *g, int numArgsPushed)
     [controller defer: anInvocation];
 
     return errNone;
-/*
-    PyrSlot *a = g->sp;
-    iSCGraphView* view = (iSCGraphView*)slotRawPtr(slotRawObject(a)->slots);
-    if (!view) return errNone;
-
-    SEL sel = @selector(closeWindow);
-    NSMethodSignature *sig = [iSCGraphView instanceMethodSignatureForSelector: sel];
-
-    NSInvocation *anInvocation = [NSInvocation invocationWithMethodSignature: sig];
-    iSCController* controller = [iSCController sharedInstance];
-    [anInvocation setTarget: view];
-    [anInvocation setSelector: sel];
-    [controller defer: anInvocation];
-
-    return errNone;
-*/
 }
 
 
@@ -301,10 +241,7 @@ int prSCWindow_SetName(struct VMGlobals *g, int numArgsPushed)
     if (!(isKindOfSlot(b, class_string))) return errWrongType;
 
     iSCGraphView* view = (__bridge iSCGraphView*)slotRawPtr(slotRawObject(a)->slots);
-    if (!view) return errNone;
-    //PyrString *string = slotRawString(b);
-    //NSString *title = [NSString stringWithUTF8String:string->s]; // kengo:
-    //[[view window] setTitle: title];  // kengo:※maybe problem.
+    if (!view) { return errNone; }
     return errNone;
 }
 
@@ -324,7 +261,7 @@ int prFont_AvailableFonts(struct VMGlobals *g, int numArgsPushed)
 
 	for (int i=0; i<size; ++i) {
 		NSString *name = [fonts objectAtIndex: i];
-		//if (!name) continue;
+	
 		PyrString *string = newPyrString(g->gc, [name UTF8String], 0, true);
 		SetObject(array->slots + array->size, string);
 		array->size++;
