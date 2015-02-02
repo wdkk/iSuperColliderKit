@@ -1071,7 +1071,6 @@
 				PREBINDING = NO;
 				SDKROOT = iphoneos;
 				SYMROOT = lib;
-				VALID_ARCHS = "arm64 armv7 armv7s i386 x86_64";
 			};
 			name = Debug;
 		};
@@ -1092,7 +1091,6 @@
 				PREBINDING = NO;
 				SDKROOT = iphoneos;
 				SYMROOT = lib;
-				VALID_ARCHS = "arm64 armv7 armv7s i386 x86_64";
 			};
 			name = Release;
 		};
