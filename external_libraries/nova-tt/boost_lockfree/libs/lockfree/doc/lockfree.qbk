@@ -1,0 +1,204 @@
+[library Boost.Lockfree
+    [quickbook 1.4]
+    [authors [Blechmann, Tim]]
+    [copyright 2008-2011 Tim Blechmann]
+    [category algorithms]
+    [purpose
+        lockfree concurrent data structures
+    ]
+    [id lockfree]
+    [dirname lockfree]
+    [license
+        Distributed under the Boost Software License, Version 1.0.
+        (See accompanying file LICENSE_1_0.txt or copy at
+        [@http://www.boost.org/LICENSE_1_0.txt])
+    ]
+]
+
+[c++]
+
+
+[/  Images   ]
+
+[def _note_                         [$images/note.png]]
+[def _alert_                        [$images/caution.png]]
+[def _detail_                       [$images/note.png]]
+[def _tip_                          [$images/tip.png]]
+
+[/  Links   ]
+
+[def _lockfree_                      [^boost.lockfree]]
+
+[/  unspecified stuff   ]
+[def __unspecified_int__ /unspecified-int-type/]
+[def __unspecified_bool__ /unspecified-bool-type/]
+
+[section:disclaimer Disclaimer]
+_lockfree_ is NOT a boost library!
+[endsect]
+
+[section Introduction & Motivation]
+
+[h2 Introduction & Terminology]
+
+he term *non-blocking* denotes concurrent data structures, which do not use traditional synchronization primitives like
+guards to ensure correctness. According Maurice Herlihy distinguishes between 3 types of non-blocking data structures,
+each having different properties (compare "The Art of Multiprocessor Programming"):
+
+* data structures are *wait-free*, if every concurrent operation is guaranteed to be finished in a finite number of
+  steps. It is therefore possible to give worst-case guarantees for the number of operations.
+
+* data structures are *lock-free*, if some concurrent operation are guaranteed to be finished in a finite number of
+  steps. While it is in theory possible that some operations never make any progress, it is very unlikely to happen in
+  practical applications.
+
+* data structures are *obstruction-free*, if a concurrent operation is guaranteed to be finished in a finite number of
+  steps, unless another concurrent operation interferes.
+
+
+Some data structures can only be implemented in a lock-free manner, if they are used under certain restrictions. The
+relevant aspects for the implementation of _lockfree_ are the number of producer and consumer threads. *Single-producer*
+(*sp*) or *multiple producer* (*mp*) means that only a single thread or multiple concurrent threads are allowed to add
+data to a data structure.  *Single-consumer* (*sc*) or *Multiple-consumer* (*mc*) denote the equivalent for the removal
+of data from the data structure.
+
+
+[h2 Properties of Non-Blocking Data Structures]
+
+Non-blocking data structures do not rely on guards to ensure the correctness. The synchronization is done completely in
+user-space with no interaction without any direct interaction with the operating system [footnote Spinlocks do not
+directly interact with the operating system either. However it is possible that the owning thread is preempted by the
+operating system, which violates the lock-free property]. This implies that they are not prone to issues like priority
+inversion (a low-priority thread needs to wait for a high-priority thread).
+
+Instead of relying on guards, non-blocking data structures require *atomic operations*, specific CPU instructions, which
+are executed atomically. This means that any thread either sees the state before or after the operation, but no
+intermediate state can be observed.  Not every hardware supports the same set of atomic instructions. If it is not
+available in hardware, it can be emulated in software using guards. However this has the obvious drawback of loosing the
+lock-free property.
+
+
+[h2 Performance of Non-Blocking Data Structures]
+
+When discussing the performance of non-blocking data structures, one has to distinguish between *amortized* and
+*worst-case* costs. The definition of `lock-free' and `wait-free' only mention the upper bound of an operation. In order
+to maximise the throughput of an application one should consider a high-performance lock-based data structure [footnote
+Intel's Thread Building Blocks provide many efficient concurrent data structures, which are not lock-free]. `Lock-free'
+data structures may will be a better choice in order to optimize the latency of a system or to avoid priority inversion,
+which may be necessary in real-time applications.
+
+
+
+[h2 Sources of Blocking Behavior]
+
+Apart from guards (which we are not using in _lockfree_ anyway), there are three other aspects, that could cause a
+violation of the lock-free property. First, some architectures do not provide the necessary atomic primitives
+natively. A mentioned earlier, they can be emulated in software using locks. A second source are memory allocations for
+node-based data structures: this makes it impossible to implement true dynamically-sized non-blocking data structures. A
+final possible source is C++ exception handling, but this is easy to avoid.
+
+
+[section Design & Implementation of _lockfree_]
+
+_lockfree_ implements three different data structures, which are mainly used for message passing between threads. The
+data structures are:
+
+* [classref boost::lockfree::fifo], a lock-free multi-produced/multi-consumer queue
+* [classref boost::lockfree::stack], a lock-free multi-produced/multi-consumer stack
+* [classref boost::lockfree::ringbuffer], a wait-free single-producer/single-consumer ringbuffer
+
+The implementations are `text-book' implementations of well-known data structures. the queue is based on a paper of
+Michael Scott and Maged Michael, stack and ringbuffer are considered as `folklore' and are implemented in several
+open-source projects.
+
+* The data structures are *fixed sized* in order to avoid memory allocations. The node-based
+  [classref boost::lockfree::fifo] and [classref boost::lockfree::stack] can be configured to allocate memory from the
+  operating system, if their memory pool is exhausted. However this will compromise the lock-freedom.
+
+* The node-based [classref boost::lockfree::fifo] and [classref boost::lockfree::stack] do not return any memory to the
+  operating system, but instead maintain a free-list. This is done for two reasons: first, depending on the implementation
+  of the memory allocator freeing the memory may block, and second, most memory reclamation algorithms are patented.
+
+* The data structures provide an interface, which is not compatible to the stl containers. This is due to the concurrent
+  nature of the API.
+
+* The node-based [classref boost::lockfree::fifo] and [classref boost::lockfree::stack] use more memory than actually
+  required to avoid the problem known as `false sharing' by forcing different atomic data structures into diffrent cache lines.
+
+* Not all common architectures provide all required atomic operations. The node-based [classref boost::lockfree::fifo]
+  and [classref boost::lockfree::stack] require a compare_exchange working on the size of pointer and an integer tag. This
+  operation is available on almost every x86 and x86-64 architecture, but is missing on many risc architectures. Some
+  64bit architectures only provide a 64bit compare_exchange, but do not use the full 64bit address space. It is possible
+  to pack pointer and tag into a single 64bit memory region.  For details please consult the implementation of the
+  /boost::lockfree::detail::tagged_ptr/ class.
+
+[endsect]
+
+
+[section Examples]
+
+[h2 Fifo]
+
+The [classref boost::lockfree::fifo boost::lockfree::fifo] class implements a multi-writer/multi-reader fifo queue. The
+following example shows how integer values are produced and consumed by 2 threads each:
+
+[import ../examples/fifo.cpp]
+[fifo_example]
+
+The program output is:
+
+[pre
+produced 40000000 objects.
+consumed 40000000 objects.
+]
+
+
+[h2 Stack]
+
+The [classref boost::lockfree::stack boost::lockfree::stack] class implements a multi-writer/multi-reader stack. The
+following example shows how integer values are produced and consumed by 2 threads each:
+
+[import ../examples/stack.cpp]
+[stack_example]
+
+
+The program output is:
+
+[pre
+produced 4000000 objects.
+consumed 4000000 objects.
+]
+
+[h2 Ringbuffer]
+
+The [classref boost::lockfree::ringbuffer boost::lockfree::ringbuffer] class implements a wait-free single-writer/single-reader queue. The
+following example shows how integer values are produced and consumed by 2 separate threads:
+
+[import ../examples/ringbuffer.cpp]
+[ringbuffer_example]
+
+
+The program output is:
+
+[pre
+produced 10000000 objects.
+consumed 10000000 objects.
+]
+
+
+[endsect]
+
+
+[xinclude autodoc.xml]
+
+
+[section References]
+
+# Maged M. Michael and Michael L. Scott. Simple, Fast, and Practical Non-Blocking and Blocking Concurrent Queue Algorithms.
+In Symposium on Principles of Distributed Computing, pages 267–275, 1996.
+# M. Herlihy, V. Luchangco, P. Martin, and M. Moir. Nonblocking memory management support for dynamic-sized data
+structures. ACM Transactions on Computer Systems (TOCS), 23(2):146–196, 2005.
+# M. Herlihy & Nir Shavit. The Art of Multiprocessor Programming. Morgan Kaufmann Publishers, 2008
+
+
+[endsect]
