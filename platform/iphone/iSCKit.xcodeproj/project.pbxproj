@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		39D745D514D4FFB1002A4E59 /* SC_CoreMIDI.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7751A9860EB36D500051CF38 /* SC_CoreMIDI.cpp */; };
 		39D745D714D5004F002A4E59 /* CoreMIDI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39D745D614D5004F002A4E59 /* CoreMIDI.framework */; };
+		5D1090AB1A7F81AF00C653FF /* libsndfile.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D3B9B6019AC18BF007A1373 /* libsndfile.a */; };
+		5D1090AD1A7F81AF00C653FF /* libscsynth.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D1090AC1A7F81AF00C653FF /* libscsynth.a */; };
 		5D560F4A199E879E007CDE26 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D560F49199E879E007CDE26 /* AVFoundation.framework */; };
 		5D5C0F3D199F03A700397E51 /* lex_scdoc.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5D5C0F3C199F03A700397E51 /* lex_scdoc.cpp */; };
 		5D8EA3F8199A01BB0026877D /* aliasmanager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5D8EA3C4199A01BB0026877D /* aliasmanager.cpp */; };
@@ -57,7 +59,6 @@
 		5D9362B5199A21060051802E /* scsynthsend.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5D9362A6199A21060051802E /* scsynthsend.cpp */; };
 		5D9362B6199A21060051802E /* strtod.c in Sources */ = {isa = PBXBuildFile; fileRef = 5D9362A8199A21060051802E /* strtod.c */; };
 		5D990FDF199A66CA00974FE2 /* lockpool.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5D990FDE199A66CA00974FE2 /* lockpool.cpp */; };
-		5DAE73A71A24E2F60099594C /* libsndfile.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DAE73A61A24E2F60099594C /* libsndfile.a */; };
 		5DB1214F199A4DB1000D2100 /* codecvt_error_category.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5DB12146199A4DB1000D2100 /* codecvt_error_category.cpp */; };
 		5DB12150199A4DB1000D2100 /* operations.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5DB12147199A4DB1000D2100 /* operations.cpp */; };
 		5DB12151199A4DB1000D2100 /* path_traits.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5DB12148199A4DB1000D2100 /* path_traits.cpp */; };
@@ -159,6 +160,23 @@
 		77C1204511D67558002067D4 /* PostViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 77C1204411D67558002067D4 /* PostViewController.mm */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		5D1090A81A7F812100C653FF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7751B8120F435F6F0044CAC0 /* libscsynth.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 77AA93910EB3685300DC0BCB;
+			remoteInfo = libscsynth;
+		};
+		5DD2C1961A7F7EF800FF9517 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7751B8120F435F6F0044CAC0 /* libscsynth.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 77AA93920EB3685400DC0BCB;
+			remoteInfo = libscsynth;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXCopyFilesBuildPhase section */
 		7713C6A00F422BE400B0055E /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
@@ -184,6 +202,7 @@
 		0B1F3B2214C9C3B700DCE518 /* SC_WorldOptions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SC_WorldOptions.h; path = server/SC_WorldOptions.h; sourceTree = "<group>"; };
 		0B57438114D6DC5100EB191B /* SC_Errors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SC_Errors.h; path = server/SC_Errors.h; sourceTree = "<group>"; };
 		39D745D614D5004F002A4E59 /* CoreMIDI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMIDI.framework; path = System/Library/Frameworks/CoreMIDI.framework; sourceTree = SDKROOT; };
+		5D1090AC1A7F81AF00C653FF /* libscsynth.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libscsynth.a; path = lib/libscsynth.a; sourceTree = "<group>"; };
 		5D3B9B6019AC18BF007A1373 /* libsndfile.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libsndfile.a; path = lib/libsndfile.a; sourceTree = "<group>"; };
 		5D560F49199E879E007CDE26 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		5D5C0F3C199F03A700397E51 /* lex_scdoc.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = lex_scdoc.cpp; sourceTree = "<group>"; };
@@ -554,7 +573,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5DAE73A71A24E2F60099594C /* libsndfile.a in Frameworks */,
+				5D1090AD1A7F81AF00C653FF /* libscsynth.a in Frameworks */,
+				5D1090AB1A7F81AF00C653FF /* libsndfile.a in Frameworks */,
 				77BA5223129C371F00CE89DD /* CFNetwork.framework in Frameworks */,
 				77BA5234129C373400CE89DD /* CoreFoundation.framework in Frameworks */,
 				77BA5236129C373B00CE89DD /* CoreGraphics.framework in Frameworks */,
@@ -801,6 +821,14 @@
 				5D990FDE199A66CA00974FE2 /* lockpool.cpp */,
 			);
 			path = src;
+			sourceTree = "<group>";
+		};
+		5DD2C1931A7F7EF800FF9517 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				5DD2C1971A7F7EF800FF9517 /* libscsynth.a */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		770903780F509F56005C05DC /* iPhone */ = {
@@ -1146,6 +1174,7 @@
 		77597AF11123325400D2A968 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				5D1090AC1A7F81AF00C653FF /* libscsynth.a */,
 				5DAE73A61A24E2F60099594C /* libsndfile.a */,
 				5D3B9B6019AC18BF007A1373 /* libsndfile.a */,
 				5D560F49199E879E007CDE26 /* AVFoundation.framework */,
@@ -1329,6 +1358,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				5D1090A91A7F812100C653FF /* PBXTargetDependency */,
 			);
 			name = iSCKit;
 			productName = isclang;
@@ -1352,12 +1382,28 @@
 			);
 			mainGroup = 29B97314FDCFA39411CA2CEA /* CustomTemplate */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 5DD2C1931A7F7EF800FF9517 /* Products */;
+					ProjectRef = 7751B8120F435F6F0044CAC0 /* libscsynth.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				7713C5EB0F422BE400B0055E /* iSCKit */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		5DD2C1971A7F7EF800FF9517 /* libscsynth.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libscsynth.a;
+			remoteRef = 5DD2C1961A7F7EF800FF9517 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		7713C5EC0F422BE400B0055E /* Resources */ = {
@@ -1510,6 +1556,14 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		5D1090A91A7F812100C653FF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = libscsynth;
+			targetProxy = 5D1090A81A7F812100C653FF /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
 		7713C6A70F422BE400B0055E /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -1587,7 +1641,7 @@
 				);
 				PREBINDING = NO;
 				SDKROOT = iphoneos;
-				SYMROOT = build;
+				SYMROOT = "$(PROJECT_DIR)/build";
 			};
 			name = Cydia;
 		};
@@ -1645,7 +1699,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				PREBINDING = NO;
 				SDKROOT = iphoneos;
-				SYMROOT = build;
+				SYMROOT = "$(PROJECT_DIR)/build";
 			};
 			name = Debug;
 		};
@@ -1672,7 +1726,7 @@
 				);
 				PREBINDING = NO;
 				SDKROOT = iphoneos;
-				SYMROOT = build;
+				SYMROOT = "$(PROJECT_DIR)/build";
 			};
 			name = Release;
 		};

@@ -12,9 +12,9 @@
 	}
 
 	calculateViewBounds {
-		var width = 288, height = 98, taskBarHeight = 27; // the latter should be in SCWindow
+		var width = 300, height = 140, taskBarHeight = 40; // the latter should be in SCWindow
 		var keys = set.asArray.collect(_.name).sort;
-		^Rect(5, keys.indexOf(name) * (height + taskBarHeight) + 5, width, height)
+		^Rect(5, keys.indexOf(name) * (height + taskBarHeight) + 55, width, height)
 	}
 
 	makeGui { arg w;
@@ -28,7 +28,7 @@
 		if (window.notNil) { ^window.front };
 
 		gui = GUI.current;
-		font = Font.sansSerif(10);
+		font = Font.sansSerif(12);
 
 		if (gui.id == \qt) {
 			buttonColor = gui.palette.button;
@@ -48,7 +48,7 @@
 		};
 
 		if(isLocal) {
-			booter = gui.button.new(w, Rect(0,0, 44, 18));
+			booter = gui.button.new(w, Rect(0, 0, 60, 30));
 			booter.canFocus = false;
 			booter.font = font;
 			booter.states = [["Boot"],
@@ -65,20 +65,20 @@
 			};
 			booter.setProperty(\value,serverRunning.binaryValue);
 
-			killer = gui.button.new(w, Rect(0,0, 20, 18));
+			killer = gui.button.new(w, Rect(0, 0, 60, 30));
 			killer.states = [["K"]];
 			killer.font = font;
 			killer.canFocus = false;
 			killer.action = { Server.killAll; stopped.value; };
 		};
 
-		active = gui.staticText.new(w, Rect(0,0, 78, 18));
+		active = gui.staticText.new(w, Rect(0, 0, 80, 30));
 		active.string = this.name.asString;
 		active.align = \center;
-		active.font = Font.sansSerif( 12 ).boldVariant;
+		active.font = Font.sansSerif(12).boldVariant;
 		if(serverRunning,running,stopped);
 
-		makeDefault = gui.button.new(w, Rect(0,0, 54, 18));
+		makeDefault = gui.button.new(w, Rect(0, 0, 80, 30));
 		makeDefault.font = font;
 		makeDefault.canFocus = false;
 		makeDefault.states = [["-> default"],
@@ -89,7 +89,7 @@
 		//w.view.decorator.nextLine;
 
 		if(isLocal){
-			recorder = gui.button.new(w, Rect(0,0, 66, 18));
+			recorder = gui.button.new(w, Rect(0, 0, 80, 30));
 			recorder.font = font;
 			recorder.states = [
 				["record >"],

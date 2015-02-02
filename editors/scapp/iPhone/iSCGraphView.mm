@@ -630,7 +630,7 @@ NSDictionary *makeFontAttrDict(char *cFontName, float fontSize, SCColor sccolor)
 }
 */
 
-int nsStringDrawInRect(NSString *nsstring, SCRect screct, char *cFontName, float fontSize, SCColor sccolor)
+int nsStringDrawInRect(NSString *string, SCRect screct, char *cFontName, float fontSize, SCColor sccolor)
 {
 /* 
 	NSDictionary* dict = makeFontAttrDict(cFontName, fontSize, sccolor);
@@ -638,12 +638,11 @@ int nsStringDrawInRect(NSString *nsstring, SCRect screct, char *cFontName, float
     
     [nsstring drawInRect: NSRectToCGRect(SCtoNSRect(screct)) withAttributes: dict];
 */
+/*
 	int len = (int)[nsstring length];
 	char *buf = (char *) malloc(len+1);
 	[nsstring getCString:buf maxLength:len+1 encoding:NSASCIIStringEncoding];
 	
-    
-    
     CGRect drawBounds = SCtoCGRect(screct);
 
     CGRect cgrect = *(CGRect*)&screct;
@@ -660,15 +659,21 @@ int nsStringDrawInRect(NSString *nsstring, SCRect screct, char *cFontName, float
     CGContextRestoreGState(cgc);
 
 	free(buf);
+*/
+    [string drawInRect:CGRectMake(screct.x, screct.y, screct.width, screct.height)
+        withAttributes:@{
+                         NSFontAttributeName:[UIFont systemFontOfSize:fontSize],
+                         NSForegroundColorAttributeName:[UIColor colorWithRed:sccolor.red
+                                                                        green:sccolor.green
+                                                                         blue:sccolor.blue
+                                                                        alpha:sccolor.alpha]}
+     ];
+    
     return errNone;
 }
 
 CGSize nsStringSize(NSString *nsstring, char *cFontName, float fontSize, SCColor sccolor)
 {
-/*
-    NSDictionary* dict = makeFontAttrDict(cFontName, fontSize, sccolor);
-	return [nsstring sizeWithAttributes: dict];
-*/
 	return CGSizeMake(0,0);
 }
 
@@ -676,44 +681,6 @@ int nsStringDrawInRectAlign(NSString *nsstring, SCRect screct, char *cFontName, 
 	int hAlign, int vAlign, CGSize *outSize)
 {
 	return nsStringDrawInRect(nsstring, screct, cFontName, fontSize, sccolor);
-/*
-	NSDictionary* dict = makeFontAttrDict(cFontName, fontSize, sccolor);
-    if (!dict) return errFailed;
-    
-    NSSize size = [nsstring sizeWithAttributes: dict];
-    if (outSize) *outSize = size;
-
-
-    UIFont *font = [UIFont fontWithName: fontName size: fontSize];
-	
-    NSRect drawBounds = SCtoNSRect(screct);
-
-    float hdiff = drawBounds.size.width - size.width;
-    float vdiff = drawBounds.size.height - size.height;
-    
-	if (hAlign == 0) {
-	    drawBounds.origin.x += hdiff * .5;
-	} else if (hAlign > 0) {
- 	   drawBounds.origin.x += hdiff;
-	}
-    
-	if (vAlign == 0) {
-	    drawBounds.origin.y += vdiff * .5;
-	} else if (vAlign > 0) {
- 	   drawBounds.origin.y += vdiff;
-	}
-    
-    CGRect cgrect = *(CGRect*)&screct;
-    CGContextRef cgc = (CGContextRef)UIGraphicsGetCurrentContext();
-    CGContextSaveGState(cgc);
-    CGContextClipToRect(cgc, cgrect);
-    
-    //[nsstring drawInRect: drawBounds withAttributes: dict];
-    
-    CGContextRestoreGState(cgc);
-
-    return errNone;
-*/
 }
 
 
@@ -835,36 +802,9 @@ void QDDrawBevelRect(CGContextRef cgc, CGRect bounds, float width, bool inout)
 	mMenuView = inView;
 }
 
-/*
-- (IBAction) toggleUIEditMode: (id) sender;
-{
-//	if (!mTopView) return;
-//	mTopView->SetConstructionMode(!mTopView->GetConstructionMode());
-//	[self setNeedsDisplay: YES];
-
-    VMGlobals *g = gMainVMGlobals;
-	g->canCallOS = true;
-	++g->sp;  SetObject(g->sp, mWindowObj); // push window obj
-	runInterpreter(g, s_toggleEditMode, 1);
-	g->canCallOS = false;
-}
-*/
-
 - (void)scrollViewResized:(NSNotification *)notification
 {
-	//[self setFrameSizeToMinimum]; // kengo:
-	
-	// this seems to be needed for correct resize behaivour
-/*
-	SCVirtualMachine* scvm = [SCVirtualMachine sharedInstance];
-	SEL sel = @selector(display);
-    NSMethodSignature *sig = [NSView instanceMethodSignatureForSelector: sel];
-    
-    NSInvocation *anInvocation = [NSInvocation invocationWithMethodSignature: sig];
-    [anInvocation setTarget: [[self window] contentView]];
-    [anInvocation setSelector: sel];     
-    [scvm defer: anInvocation];
-*/
+
 }
 
 extern PyrSymbol* s_doaction;
@@ -877,28 +817,4 @@ extern PyrSymbol* s_doaction;
 		mTopView->sendMessage(s_doaction, 0, 0, 0); // this must be a scroll view
 	}
 }
-
-/*
-- (void)setFrameSizeToMinimum
-{
-	NSScrollView* sv;
-	if (sv = [self enclosingScrollView]){
-		
-		NSSize visSize = [[sv contentView] documentVisibleRect].size;
-		
-		NSSize candidate = SCtoNSRect(((SCScrollTopView*)mTopView)->checkMinimumSize()).size;
-		if((candidate.width > visSize.width) || (candidate.height > visSize.height)){
-			[self setFrameSize: candidate]; // set then check visible rect again to account for scroll bars that may have appeared or vanished
-			visSize = [[sv contentView] visibleRect].size;
-			[self setFrameSize: NSMakeSize(sc_max(candidate.width, visSize.width), sc_max(candidate.height, visSize.height))];
-		} else {
-			[self setFrameSize: visSize]; // always at least this big
-		}
-			
-		[self setNeedsDisplay: YES];
-		[sv setNeedsDisplay: YES];
-	}
-}
-*/
-
 @end

@@ -74,6 +74,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		5D1090A51A7F811700C653FF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5D990F73199A5E2300974FE2 /* libsndfile.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = D2AAC07D0554694100DB518D;
+			remoteInfo = libsndfile;
+		};
 		5D990F77199A5E2300974FE2 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 5D990F73199A5E2300974FE2 /* libsndfile.xcodeproj */;
@@ -884,6 +891,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				5D1090A61A7F811700C653FF /* PBXTargetDependency */,
 			);
 			name = libscsynth;
 			productName = libiscsynth;
@@ -998,6 +1006,14 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		5D1090A61A7F811700C653FF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = libsndfile;
+			targetProxy = 5D1090A51A7F811700C653FF /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
 		77AA93930EB3685400DC0BCB /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -1066,11 +1082,11 @@
 					../../external_libraries/boost,
 					"../../external_libraries/boost-lockfree",
 				);
-				OBJROOT = build;
+				OBJROOT = "$(PROJECT_DIR)/build";
 				ONLY_ACTIVE_ARCH = YES;
 				PREBINDING = NO;
 				SDKROOT = iphoneos;
-				SYMROOT = lib;
+				SYMROOT = "$(PROJECT_DIR)/lib";
 			};
 			name = Debug;
 		};
@@ -1087,10 +1103,10 @@
 					../../external_libraries/boost,
 					"../../external_libraries/boost-lockfree",
 				);
-				OBJROOT = build;
+				OBJROOT = "$(PROJECT_DIR)/build";
 				PREBINDING = NO;
 				SDKROOT = iphoneos;
-				SYMROOT = lib;
+				SYMROOT = "$(PROJECT_DIR)/lib";
 			};
 			name = Release;
 		};
