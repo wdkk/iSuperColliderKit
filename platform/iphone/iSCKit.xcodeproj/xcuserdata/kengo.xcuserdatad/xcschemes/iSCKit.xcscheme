@@ -16,8 +16,8 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "7713C5EB0F422BE400B0055E"
                BuildableName = "SuperCollider.app"
-               BlueprintName = "SuperCollider"
-               ReferencedContainer = "container:iPhone_Language.xcodeproj">
+               BlueprintName = "iSCKit"
+               ReferencedContainer = "container:iSCKit.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -34,8 +34,8 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "7713C5EB0F422BE400B0055E"
             BuildableName = "SuperCollider.app"
-            BlueprintName = "SuperCollider"
-            ReferencedContainer = "container:iPhone_Language.xcodeproj">
+            BlueprintName = "iSCKit"
+            ReferencedContainer = "container:iSCKit.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </TestAction>
@@ -53,8 +53,8 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "7713C5EB0F422BE400B0055E"
             BuildableName = "SuperCollider.app"
-            BlueprintName = "SuperCollider"
-            ReferencedContainer = "container:iPhone_Language.xcodeproj">
+            BlueprintName = "iSCKit"
+            ReferencedContainer = "container:iSCKit.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -71,8 +71,8 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "7713C5EB0F422BE400B0055E"
             BuildableName = "SuperCollider.app"
-            BlueprintName = "SuperCollider"
-            ReferencedContainer = "container:iPhone_Language.xcodeproj">
+            BlueprintName = "iSCKit"
+            ReferencedContainer = "container:iSCKit.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
