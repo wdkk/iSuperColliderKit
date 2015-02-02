@@ -19,7 +19,8 @@ IPhonePlatform : UnixPlatform
 		//Document.implementationClass.startup;
 		// make server window
 		Server.internal.recSampleFormat = "int16";
-        Server.internal.makeWindow;
+        // kengo: hidden server console window, please call "s.boot" to use [iSCController interpret:];
+        //Server.internal.makeWindow;
 		Server.internal.options.hardwareBufferSize = 256;
 		Server.internal.options.blockSize = 256;
         Server.default = Server.internal;

@@ -24,12 +24,12 @@
 @interface iSCGraphView : UIView
 {
     struct PyrObject *mWindowObj;
-    SCTopView *mTopView;
-    bool mDragStarted;
-    SCView* mMenuView;
-    bool windowShouldClose;
-	bool acceptsClickThrough;
-	bool autoScrolls;
+    SCTopView        *mTopView;
+    bool              mDragStarted;
+    SCView           *mMenuView;
+    bool              windowShouldClose;
+	bool              acceptsClickThrough;
+	bool              autoScrolls;
 }
 
 - (void)drawRect: (CGRect)bounds;

@@ -35,12 +35,10 @@
     // タブバーコントローラの作成
     self.tab_bar_controller = [[UITabBarController alloc] initWithNibName:nil bundle:nil];
     [self.tab_bar_controller setViewControllers:@[self.log_vc, self.live_vc] animated:YES];
+    [self.tab_bar_controller setCustomizableViewControllers:nil];
     
     iSCController *scc = [iSCController sharedInstance];
-    [scc setup];
-    
-    [self.tab_bar_controller setCustomizableViewControllers:nil];
-    [self.live_vc setTarget:scc withSelector:@selector(interpret:)];
+    [scc setup];    
     
     // Override point for customization after application launch
     self.window.rootViewController = self.tab_bar_controller;

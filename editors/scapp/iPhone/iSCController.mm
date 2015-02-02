@@ -462,6 +462,9 @@ void AudioSessionAudioRouteChangeCbk(void *inClientData, AudioSessionPropertyID 
 
 	s_stop = getsym("stop");
 	s_interpretPrintCmdLine = getsym("interpretPrintCmdLine");
+    
+    // これでサーバ起動する
+    [self interpret:@"s.boot"];
 }
 
 - (void) interpret:(NSString *)string
@@ -495,28 +498,6 @@ void AudioSessionAudioRouteChangeCbk(void *inClientData, AudioSessionPropertyID 
     }
     flushPostBuf();
 }
-
-- (void) triggerStop:(id)sender
-{
-	if (pthread_mutex_trylock(&gLangMutex) == 0)
-	{
-        runLibrary(s_stop);
-        pthread_mutex_unlock(&gLangMutex);
-	}
-}
-
-
-- (void) toggleSpeakers:(id)sender
-{
-	UIBarButtonItem *b = (UIBarButtonItem *) sender;
-	if (routeOverride==kAudioSessionOverrideAudioRoute_None) routeOverride = kAudioSessionOverrideAudioRoute_Speaker;
-	else routeOverride = kAudioSessionOverrideAudioRoute_None;
-	AudioSessionSetProperty(kAudioSessionProperty_OverrideAudioRoute, sizeof(routeOverride), &routeOverride);
-
-	[b setStyle:(routeOverride==kAudioSessionOverrideAudioRoute_None)?UIBarButtonItemStyleBordered:UIBarButtonItemStyleDone];
-}
-
-
 
 - (void) insertWindow:(iSCWindow *)window
 {

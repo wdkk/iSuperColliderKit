@@ -33,13 +33,10 @@
 - (void) interpret:(NSString *)string;
 - (void) doClockTask:(NSTimer*)timer;
 
-- (void) triggerStop:(id)sender;
-- (void) toggleSpeakers:(id)sender;
-
 - (void) insertWindow:(iSCWindow *)window;
 - (void) makeWindowFront:(iSCWindow *)window;
 - (void) closeWindow:(iSCWindow *)window;
-- (void) defer: (NSInvocation*) action;
+- (void) defer:(NSInvocation*) action;
 - (void) performDeferredOperations;
 - (void) removeDeferredOperationsFor:(id)object;
 
