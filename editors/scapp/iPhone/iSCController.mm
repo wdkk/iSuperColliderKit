@@ -24,7 +24,6 @@
 #include "SC_DirUtils.h"
 #include "SC_LanguageClient.h"
 #include "SC_WorldOptions.h"
-#import  "iSCAppDelegate.h"
 
 #define START_HTTP_SERVER
 
@@ -203,8 +202,7 @@ void flushPostBuf()
 {
     if(internal_sc_controller)
     {
-        iSCAppDelegate *app = [iSCAppDelegate sharedInstance];
-        mainPostBuf.Flush(app.log_vc.log_view);
+        mainPostBuf.Flush([iSCController logView]);
     }
 }
 
@@ -241,7 +239,7 @@ void setCmdLine(const char *buf)
 
 @implementation iSCController
 
-+ (iSCController *) sharedInstance
++ (iSCController *)sharedInstance
 {
 	if(!internal_sc_controller)
     {
@@ -250,12 +248,23 @@ void setCmdLine(const char *buf)
 	return internal_sc_controller;
 }
 
++ (iSCLogView *)logView
+{
+    return [iSCController sharedInstance]->log_view;
+}
+
 - (id) init
 {
 	if (self = [super init])
 	{
 		internal_sc_controller = self;
 		deferredOperations = [NSMutableArray arrayWithCapacity:8];
+        
+        log_view = [[iSCLogView alloc] initWithFrame:[UIScreen mainScreen].bounds];
+        log_view.textColor = [UIColor blueColor];
+        log_view.font = [UIFont systemFontOfSize:10.0];
+        [log_view setAutocapitalizationType:UITextAutocapitalizationTypeNone];
+        [log_view setAutocorrectionType:UITextAutocorrectionTypeNo];
 	}
 	return self;
 }
@@ -364,7 +373,7 @@ void setCmdLine(const char *buf)
 	dir = [support stringByAppendingString:@"/tmp"];
 	if ([manager fileExistsAtPath:dir]) { [manager removeItemAtPath:dir error:&error]; }
     [manager createDirectoryAtPath:dir withIntermediateDirectories:YES attributes:nil error:&error];
-	
+    
     initPostBuffer();
     
 /*
@@ -390,7 +399,7 @@ void setCmdLine(const char *buf)
 	compileLibrary();
 
 	appClockTimer = [NSTimer scheduledTimerWithTimeInterval:0.02f target:self selector:@selector(doClockTask:) userInfo:nil repeats:YES];
-	deferredTaskTimer = [NSTimer scheduledTimerWithTimeInterval:0.038 target: self selector:@selector(doPeriodicTask:) userInfo: nil repeats: YES];
+	deferredTaskTimer = [NSTimer scheduledTimerWithTimeInterval:0.038 target:self selector:@selector(doPeriodicTask:) userInfo: nil repeats: YES];
 
 	s_stop = getsym("stop");
 	s_interpretPrintCmdLine = getsym("interpretPrintCmdLine");
@@ -464,5 +473,9 @@ void setCmdLine(const char *buf)
 {
 	deferredOperations = nil;
 }
+
+@end
+
+@implementation iSCLogView
 
 @end

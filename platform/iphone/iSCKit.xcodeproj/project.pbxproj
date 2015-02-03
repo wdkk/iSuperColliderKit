@@ -45,7 +45,7 @@
 		5D8EA432199A0DC00026877D /* SCDocPrim.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5D8EA427199A0DC00026877D /* SCDocPrim.cpp */; };
 		5D9362A9199A21060051802E /* fftlib.c in Sources */ = {isa = PBXBuildFile; fileRef = 5D936297199A21060051802E /* fftlib.c */; };
 		5D9362AA199A21060051802E /* SC_AllocPool.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5D936298199A21060051802E /* SC_AllocPool.cpp */; };
-		5D9362AB199A21060051802E /* SC_DirUtils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5D936299199A21060051802E /* SC_DirUtils.cpp */; };
+		5D9362AB199A21060051802E /* SC_DirUtils.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5D936299199A21060051802E /* SC_DirUtils.mm */; };
 		5D9362AC199A21060051802E /* SC_fftlib.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5D93629A199A21060051802E /* SC_fftlib.cpp */; };
 		5D9362AD199A21060051802E /* sc_popen.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5D93629B199A21060051802E /* sc_popen.cpp */; };
 		5D9362AE199A21060051802E /* SC_Reply.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5D93629C199A21060051802E /* SC_Reply.cpp */; };
@@ -261,7 +261,7 @@
 		5D8EA428199A0DC00026877D /* SCDocPrim.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCDocPrim.h; sourceTree = "<group>"; };
 		5D936297199A21060051802E /* fftlib.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = fftlib.c; sourceTree = "<group>"; };
 		5D936298199A21060051802E /* SC_AllocPool.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SC_AllocPool.cpp; sourceTree = "<group>"; };
-		5D936299199A21060051802E /* SC_DirUtils.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SC_DirUtils.cpp; sourceTree = "<group>"; };
+		5D936299199A21060051802E /* SC_DirUtils.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SC_DirUtils.mm; sourceTree = "<group>"; };
 		5D93629A199A21060051802E /* SC_fftlib.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SC_fftlib.cpp; sourceTree = "<group>"; };
 		5D93629B199A21060051802E /* sc_popen.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = sc_popen.cpp; sourceTree = "<group>"; };
 		5D93629C199A21060051802E /* SC_Reply.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SC_Reply.cpp; sourceTree = "<group>"; };
@@ -872,7 +872,7 @@
 			children = (
 				5D936297199A21060051802E /* fftlib.c */,
 				5D936298199A21060051802E /* SC_AllocPool.cpp */,
-				5D936299199A21060051802E /* SC_DirUtils.cpp */,
+				5D936299199A21060051802E /* SC_DirUtils.mm */,
 				5D93629A199A21060051802E /* SC_fftlib.cpp */,
 				5D93629B199A21060051802E /* sc_popen.cpp */,
 				5D93629C199A21060051802E /* SC_Reply.cpp */,
@@ -1474,7 +1474,7 @@
 				7709038D0F509FAA005C05DC /* iSCGraphView.mm in Sources */,
 				5D9362B3199A21060051802E /* SC_TextUtils.cpp in Sources */,
 				5DB1214F199A4DB1000D2100 /* codecvt_error_category.cpp in Sources */,
-				5D9362AB199A21060051802E /* SC_DirUtils.cpp in Sources */,
+				5D9362AB199A21060051802E /* SC_DirUtils.mm in Sources */,
 				7709038F0F509FAA005C05DC /* iSCWindow.mm in Sources */,
 				5D8EA40B199A01BB0026877D /* scanner.cpp in Sources */,
 				770903910F509FAA005C05DC /* iSCView.mm in Sources */,

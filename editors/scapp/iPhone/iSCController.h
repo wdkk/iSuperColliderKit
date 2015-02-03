@@ -12,23 +12,28 @@
 #import "LiveCodingViewController.h"
 #import "iSCWindow.h"
 
+@class iSCLogView;
+
 @interface iSCController : NSObject
 {
-	NSTimer *appClockTimer;
-	NSTimer *deferredTaskTimer;
-    NSMutableArray *deferredOperations;
-	MPMoviePlayerController *recordingPlayer;
+	NSTimer         *appClockTimer;
+	NSTimer         *deferredTaskTimer;
+    NSMutableArray  *deferredOperations;
+    iSCLogView      *log_view;
 }
 
 + (iSCController *) sharedInstance;
++ (iSCLogView *)    logView;
 
 - (void) setup;
-
 - (void) start;
 - (void) interpret:(NSString *)string;
-- (void) doClockTask:(NSTimer*)timer;
 
 - (void) performDeferredOperations;
 - (void) removeDeferredOperationsFor:(id)object;
+
+@end
+
+@interface iSCLogView : UITextView
 
 @end

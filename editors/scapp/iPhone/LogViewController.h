@@ -10,6 +10,4 @@
 
 @interface LogViewController : UIViewController<UITextViewDelegate>
 
-@property (nonatomic,strong) UITextView *log_view;
-
 @end

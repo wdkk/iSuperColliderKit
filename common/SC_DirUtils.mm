@@ -47,6 +47,10 @@
 #ifndef SC_IPHONE
 # include <CoreServices/CoreServices.h>
 #endif
+#ifdef SC_IPHONE
+# include <Foundation/Foundation.h>
+#endif
+
 #endif
 
 const char * gIdeName = "none";
@@ -356,9 +360,13 @@ void sc_GetUserAppSupportDirectory(char *str, int size)
 	}
 
 	sc_GetUserHomeDirectory(str, size);
-
+    
 #if defined(SC_IPHONE)
-	sc_AppendToPath(str, size, "Documents");
+    // kengo:
+    // NSString *bundle_path = [[NSBundle mainBundle] bundlePath];
+    // NSString *path = [bundle_path stringByDeletingLastPathComponent];
+    // strncpy(str, [path UTF8String], size);
+    sc_AppendToPath(str, size, "Documents");
 #elif defined(__APPLE__)
 	// Get the main bundle name for the app
 	sc_AppendToPath(str, size, "Library/Application Support");
