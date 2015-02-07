@@ -186,6 +186,12 @@
 		5D9E84F41A860F2B0057C9A8 /* wc_regex_traits.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7796FFB7148D8E42003E89BB /* wc_regex_traits.cpp */; };
 		5D9E84F51A860F2B0057C9A8 /* wide_posix_api.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7796FFB8148D8E42003E89BB /* wide_posix_api.cpp */; };
 		5D9E84F61A860F2B0057C9A8 /* winstances.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7796FFB9148D8E42003E89BB /* winstances.cpp */; };
+		5D9E84F71A860FDA0057C9A8 /* iSCController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5DFDC27B19F21CBC009546FC /* iSCController.mm */; };
+		5D9E84F81A860FDA0057C9A8 /* iSCGUIPrimitives.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7709037E0F509FAA005C05DC /* iSCGUIPrimitives.mm */; };
+		5D9E84F91A860FDA0057C9A8 /* iSCWindow.mm in Sources */ = {isa = PBXBuildFile; fileRef = 770903820F509FAA005C05DC /* iSCWindow.mm */; };
+		5D9E84FA1A860FDA0057C9A8 /* iSCView.mm in Sources */ = {isa = PBXBuildFile; fileRef = 770903840F509FAA005C05DC /* iSCView.mm */; };
+		5D9E84FB1A860FDA0057C9A8 /* iSCGraphView.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7709037F0F509FAA005C05DC /* iSCGraphView.mm */; };
+		5D9E84FC1A860FDA0057C9A8 /* DrawBackground.M in Sources */ = {isa = PBXBuildFile; fileRef = 7751A9360EB36D500051CF38 /* DrawBackground.M */; };
 		5DB1214F199A4DB1000D2100 /* codecvt_error_category.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5DB12146199A4DB1000D2100 /* codecvt_error_category.cpp */; };
 		5DB12150199A4DB1000D2100 /* operations.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5DB12147199A4DB1000D2100 /* operations.cpp */; };
 		5DB12151199A4DB1000D2100 /* path_traits.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5DB12148199A4DB1000D2100 /* path_traits.cpp */; };
@@ -1670,6 +1676,12 @@
 				5D9E84F51A860F2B0057C9A8 /* wide_posix_api.cpp in Sources */,
 				5D9E84F61A860F2B0057C9A8 /* winstances.cpp in Sources */,
 				5D9E84E51A860F2B0057C9A8 /* error_code.cpp in Sources */,
+				5D9E84F71A860FDA0057C9A8 /* iSCController.mm in Sources */,
+				5D9E84F81A860FDA0057C9A8 /* iSCGUIPrimitives.mm in Sources */,
+				5D9E84F91A860FDA0057C9A8 /* iSCWindow.mm in Sources */,
+				5D9E84FA1A860FDA0057C9A8 /* iSCView.mm in Sources */,
+				5D9E84FB1A860FDA0057C9A8 /* iSCGraphView.mm in Sources */,
+				5D9E84FC1A860FDA0057C9A8 /* DrawBackground.M in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
