@@ -72,6 +72,120 @@
 		5D9E84821A8607BE0057C9A8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77BA523D129C376000CE89DD /* Foundation.framework */; };
 		5D9E84831A8607BE0057C9A8 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77BA5239129C374C00CE89DD /* MediaPlayer.framework */; };
 		5D9E84841A8607BE0057C9A8 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77BA523B129C375700CE89DD /* UIKit.framework */; };
+		5D9E84851A860C600057C9A8 /* fftlib.c in Sources */ = {isa = PBXBuildFile; fileRef = 5D936297199A21060051802E /* fftlib.c */; };
+		5D9E84861A860C600057C9A8 /* SC_AllocPool.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5D936298199A21060051802E /* SC_AllocPool.cpp */; };
+		5D9E84871A860C600057C9A8 /* SC_DirUtils.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5D936299199A21060051802E /* SC_DirUtils.mm */; };
+		5D9E84881A860C600057C9A8 /* SC_fftlib.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5D93629A199A21060051802E /* SC_fftlib.cpp */; };
+		5D9E84891A860C600057C9A8 /* sc_popen.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5D93629B199A21060051802E /* sc_popen.cpp */; };
+		5D9E848A1A860C600057C9A8 /* SC_Reply.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5D93629C199A21060051802E /* SC_Reply.cpp */; };
+		5D9E848B1A860C600057C9A8 /* SC_Sem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5D93629D199A21060051802E /* SC_Sem.cpp */; };
+		5D9E848C1A860C600057C9A8 /* SC_StandAloneInfo_Darwin.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5D93629F199A21060051802E /* SC_StandAloneInfo_Darwin.cpp */; };
+		5D9E848D1A860C600057C9A8 /* SC_StringBuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5D9362A0199A21060051802E /* SC_StringBuffer.cpp */; };
+		5D9E848E1A860C600057C9A8 /* SC_StringParser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5D9362A1199A21060051802E /* SC_StringParser.cpp */; };
+		5D9E848F1A860C600057C9A8 /* SC_TextUtils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5D9362A2199A21060051802E /* SC_TextUtils.cpp */; };
+		5D9E84901A860C600057C9A8 /* SC_Win32Utils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5D9362A4199A21060051802E /* SC_Win32Utils.cpp */; };
+		5D9E84911A860C600057C9A8 /* scsynthsend.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5D9362A6199A21060051802E /* scsynthsend.cpp */; };
+		5D9E84921A860C6A0057C9A8 /* strtod.c in Sources */ = {isa = PBXBuildFile; fileRef = 5D9362A8199A21060051802E /* strtod.c */; };
+		5D9E84931A860CA90057C9A8 /* OSCData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7751A9720EB36D500051CF38 /* OSCData.cpp */; };
+		5D9E84941A860CA90057C9A8 /* PyrArchiver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7751A9730EB36D500051CF38 /* PyrArchiver.cpp */; };
+		5D9E84951A860CA90057C9A8 /* PyrArrayPrimitives.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7751A9740EB36D500051CF38 /* PyrArrayPrimitives.cpp */; };
+		5D9E84961A860CA90057C9A8 /* PyrBitPrim.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7751A9750EB36D500051CF38 /* PyrBitPrim.cpp */; };
+		5D9E84971A860CA90057C9A8 /* PyrCharPrim.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7751A9760EB36D500051CF38 /* PyrCharPrim.cpp */; };
+		5D9E84981A860CA90057C9A8 /* PyrFilePrim.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7751A9770EB36D500051CF38 /* PyrFilePrim.cpp */; };
+		5D9E84991A860CA90057C9A8 /* PyrListPrim.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7751A9780EB36D500051CF38 /* PyrListPrim.cpp */; };
+		5D9E849A1A860CA90057C9A8 /* PyrMathPrim.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7751A9790EB36D500051CF38 /* PyrMathPrim.cpp */; };
+		5D9E849B1A860CA90057C9A8 /* PyrPlatformPrim.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7751A97A0EB36D500051CF38 /* PyrPlatformPrim.cpp */; };
+		5D9E849C1A860CA90057C9A8 /* PyrPrimitive.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7751A97B0EB36D500051CF38 /* PyrPrimitive.cpp */; };
+		5D9E849D1A860CA90057C9A8 /* PyrSched.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7751A97C0EB36D500051CF38 /* PyrSched.cpp */; };
+		5D9E849E1A860CA90057C9A8 /* PyrSerialPrim.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7751A97D0EB36D500051CF38 /* PyrSerialPrim.cpp */; };
+		5D9E849F1A860CA90057C9A8 /* PyrSignalPrim.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7751A97E0EB36D500051CF38 /* PyrSignalPrim.cpp */; };
+		5D9E84A01A860CA90057C9A8 /* PyrStringPrim.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7751A97F0EB36D500051CF38 /* PyrStringPrim.cpp */; };
+		5D9E84A11A860CA90057C9A8 /* PyrSymbolPrim.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7751A9800EB36D500051CF38 /* PyrSymbolPrim.cpp */; };
+		5D9E84A21A860CA90057C9A8 /* PyrUnixPrim.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7751A9810EB36D500051CF38 /* PyrUnixPrim.cpp */; };
+		5D9E84A31A860CA90057C9A8 /* SC_ComPort.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7751A9840EB36D500051CF38 /* SC_ComPort.cpp */; };
+		5D9E84A41A860CCE0057C9A8 /* SC_CoreMIDI.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7751A9860EB36D500051CF38 /* SC_CoreMIDI.cpp */; };
+		5D9E84A51A860D320057C9A8 /* AdvancingAllocPool.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7751A9930EB36D500051CF38 /* AdvancingAllocPool.cpp */; };
+		5D9E84A61A860D320057C9A8 /* lang11d_tab.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7751A9970EB36D500051CF38 /* lang11d_tab.cpp */; };
+		5D9E84A71A860D320057C9A8 /* ByteCodeArray.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7751A9990EB36D500051CF38 /* ByteCodeArray.cpp */; };
+		5D9E84A81A860D320057C9A8 /* dumpByteCodes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7751A99B0EB36D500051CF38 /* dumpByteCodes.cpp */; };
+		5D9E84A91A860D320057C9A8 /* DumpParseNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7751A99C0EB36D500051CF38 /* DumpParseNode.cpp */; };
+		5D9E84AA1A860D320057C9A8 /* GC.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7751A99D0EB36D500051CF38 /* GC.cpp */; };
+		5D9E84AB1A860D320057C9A8 /* InitAlloc.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7751A99E0EB36D500051CF38 /* InitAlloc.cpp */; };
+		5D9E84AC1A860D320057C9A8 /* PyrFileUtils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7751A99F0EB36D500051CF38 /* PyrFileUtils.cpp */; };
+		5D9E84AD1A860D320057C9A8 /* PyrInterpreter3.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7751A9A00EB36D500051CF38 /* PyrInterpreter3.cpp */; };
+		5D9E84AE1A860D320057C9A8 /* PyrLexer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7751A9A10EB36D500051CF38 /* PyrLexer.cpp */; };
+		5D9E84AF1A860D320057C9A8 /* PyrMathOps.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7751A9A20EB36D500051CF38 /* PyrMathOps.cpp */; };
+		5D9E84B01A860D320057C9A8 /* PyrMathSupport.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7751A9A30EB36D500051CF38 /* PyrMathSupport.cpp */; };
+		5D9E84B11A860D320057C9A8 /* PyrMessage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7751A9A40EB36D500051CF38 /* PyrMessage.cpp */; };
+		5D9E84B21A860D320057C9A8 /* PyrObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7751A9A50EB36D500051CF38 /* PyrObject.cpp */; };
+		5D9E84B31A860D320057C9A8 /* PyrParseNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7751A9A60EB36D500051CF38 /* PyrParseNode.cpp */; };
+		5D9E84B41A860D320057C9A8 /* PyrSignal.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7751A9A70EB36D500051CF38 /* PyrSignal.cpp */; };
+		5D9E84B51A860D320057C9A8 /* PyrSymbolTable.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7751A9A80EB36D500051CF38 /* PyrSymbolTable.cpp */; };
+		5D9E84B61A860D320057C9A8 /* SC_LibraryConfig.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7751A9AB0EB36D500051CF38 /* SC_LibraryConfig.cpp */; };
+		5D9E84B71A860D320057C9A8 /* SimpleStack.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7751A9AD0EB36D500051CF38 /* SimpleStack.cpp */; };
+		5D9E84B81A860D320057C9A8 /* VMGlobals.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7751A9AE0EB36D500051CF38 /* VMGlobals.cpp */; };
+		5D9E84B91A860D6B0057C9A8 /* lex_scdoc.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5D5C0F3C199F03A700397E51 /* lex_scdoc.cpp */; };
+		5D9E84BA1A860D6B0057C9A8 /* SCDoc.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5D8EA421199A0DC00026877D /* SCDoc.cpp */; };
+		5D9E84BB1A860D6B0057C9A8 /* SCDoc.tab.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5D8EA424199A0DC00026877D /* SCDoc.tab.cpp */; };
+		5D9E84BC1A860D6B0057C9A8 /* SCDocPrim.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5D8EA427199A0DC00026877D /* SCDocPrim.cpp */; };
+		5D9E84BD1A860DE70057C9A8 /* aliasmanager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5D8EA3C4199A01BB0026877D /* aliasmanager.cpp */; };
+		5D9E84BE1A860DE70057C9A8 /* binary.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5D8EA3C5199A01BB0026877D /* binary.cpp */; };
+		5D9E84BF1A860DE70057C9A8 /* graphbuilder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5D8EA3C8199A01BB0026877D /* graphbuilder.cpp */; };
+		5D9E84C01A860DE70057C9A8 /* graphbuilderadapter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5D8EA3C9199A01BB0026877D /* graphbuilderadapter.cpp */; };
+		5D9E84C11A860DE70057C9A8 /* conversion.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5D8EA3CB199A01BB0026877D /* conversion.cpp */; };
+		5D9E84C21A860DE70057C9A8 /* directives.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5D8EA3CC199A01BB0026877D /* directives.cpp */; };
+		5D9E84C31A860DE70057C9A8 /* emitfromevents.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5D8EA3CE199A01BB0026877D /* emitfromevents.cpp */; };
+		5D9E84C41A860DE70057C9A8 /* emitter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5D8EA3CF199A01BB0026877D /* emitter.cpp */; };
+		5D9E84C51A860DE70057C9A8 /* emitterstate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5D8EA3D0199A01BB0026877D /* emitterstate.cpp */; };
+		5D9E84C61A860DE70057C9A8 /* emitterutils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5D8EA3D2199A01BB0026877D /* emitterutils.cpp */; };
+		5D9E84C71A860DE70057C9A8 /* exp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5D8EA3D4199A01BB0026877D /* exp.cpp */; };
+		5D9E84C81A860DE70057C9A8 /* iterator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5D8EA3D7199A01BB0026877D /* iterator.cpp */; };
+		5D9E84C91A860DE70057C9A8 /* node.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5D8EA3D9199A01BB0026877D /* node.cpp */; };
+		5D9E84CA1A860DE70057C9A8 /* nodebuilder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5D8EA3DA199A01BB0026877D /* nodebuilder.cpp */; };
+		5D9E84CB1A860DE70057C9A8 /* nodeownership.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5D8EA3DC199A01BB0026877D /* nodeownership.cpp */; };
+		5D9E84CC1A860DE70057C9A8 /* null.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5D8EA3DE199A01BB0026877D /* null.cpp */; };
+		5D9E84CD1A860DE70057C9A8 /* ostream.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5D8EA3DF199A01BB0026877D /* ostream.cpp */; };
+		5D9E84CE1A860DE70057C9A8 /* parser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5D8EA3E0199A01BB0026877D /* parser.cpp */; };
+		5D9E84CF1A860DE70057C9A8 /* regex.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5D8EA3E3199A01BB0026877D /* regex.cpp */; };
+		5D9E84D01A860DE70057C9A8 /* scanner.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5D8EA3E6199A01BB0026877D /* scanner.cpp */; };
+		5D9E84D11A860DE70057C9A8 /* scanscalar.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5D8EA3E8199A01BB0026877D /* scanscalar.cpp */; };
+		5D9E84D21A860DE70057C9A8 /* scantag.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5D8EA3EA199A01BB0026877D /* scantag.cpp */; };
+		5D9E84D31A860DE70057C9A8 /* scantoken.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5D8EA3EC199A01BB0026877D /* scantoken.cpp */; };
+		5D9E84D41A860DE70057C9A8 /* simplekey.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5D8EA3EE199A01BB0026877D /* simplekey.cpp */; };
+		5D9E84D51A860DE70057C9A8 /* singledocparser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5D8EA3EF199A01BB0026877D /* singledocparser.cpp */; };
+		5D9E84D61A860DE70057C9A8 /* stream.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5D8EA3F1199A01BB0026877D /* stream.cpp */; };
+		5D9E84D71A860DE70057C9A8 /* tag.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5D8EA3F5199A01BB0026877D /* tag.cpp */; };
+		5D9E84D81A860E110057C9A8 /* tlsf.c in Sources */ = {isa = PBXBuildFile; fileRef = 7796FF95148D8DF5003E89BB /* tlsf.c */; };
+		5D9E84D91A860E680057C9A8 /* lockpool.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5D990FDE199A66CA00974FE2 /* lockpool.cpp */; };
+		5D9E84DA1A860EAB0057C9A8 /* codecvt_error_category.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5DB12146199A4DB1000D2100 /* codecvt_error_category.cpp */; };
+		5D9E84DB1A860EAB0057C9A8 /* operations.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5DB12147199A4DB1000D2100 /* operations.cpp */; };
+		5D9E84DC1A860EAB0057C9A8 /* path_traits.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5DB12148199A4DB1000D2100 /* path_traits.cpp */; };
+		5D9E84DD1A860EAB0057C9A8 /* path.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5DB12149199A4DB1000D2100 /* path.cpp */; };
+		5D9E84DE1A860EAB0057C9A8 /* portability.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5DB1214A199A4DB1000D2100 /* portability.cpp */; };
+		5D9E84DF1A860EAB0057C9A8 /* unique_path.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5DB1214B199A4DB1000D2100 /* unique_path.cpp */; };
+		5D9E84E01A860EAB0057C9A8 /* utf8_codecvt_facet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5DB1214C199A4DB1000D2100 /* utf8_codecvt_facet.cpp */; };
+		5D9E84E11A860EAB0057C9A8 /* windows_file_codecvt.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5DB1214D199A4DB1000D2100 /* windows_file_codecvt.cpp */; };
+		5D9E84E21A860ED80057C9A8 /* once.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 775E789A1475DE26008CD702 /* once.cpp */; };
+		5D9E84E31A860ED80057C9A8 /* thread.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 775E789B1475DE26008CD702 /* thread.cpp */; };
+		5D9E84E41A860ED80057C9A8 /* tss_null.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 775E789D1475DE26008CD702 /* tss_null.cpp */; };
+		5D9E84E51A860F2B0057C9A8 /* error_code.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 775E78F71475DE6D008CD702 /* error_code.cpp */; };
+		5D9E84E61A860F2B0057C9A8 /* c_regex_traits.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7796FFA8148D8E42003E89BB /* c_regex_traits.cpp */; };
+		5D9E84E71A860F2B0057C9A8 /* cpp_regex_traits.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7796FFA9148D8E42003E89BB /* cpp_regex_traits.cpp */; };
+		5D9E84E81A860F2B0057C9A8 /* cregex.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7796FFAA148D8E42003E89BB /* cregex.cpp */; };
+		5D9E84E91A860F2B0057C9A8 /* fileiter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7796FFAB148D8E42003E89BB /* fileiter.cpp */; };
+		5D9E84EA1A860F2B0057C9A8 /* icu.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7796FFAC148D8E42003E89BB /* icu.cpp */; };
+		5D9E84EB1A860F2B0057C9A8 /* instances.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7796FFAD148D8E42003E89BB /* instances.cpp */; };
+		5D9E84EC1A860F2B0057C9A8 /* posix_api.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7796FFAF148D8E42003E89BB /* posix_api.cpp */; };
+		5D9E84ED1A860F2B0057C9A8 /* regex.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7796FFB0148D8E42003E89BB /* regex.cpp */; };
+		5D9E84EE1A860F2B0057C9A8 /* regex_debug.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7796FFB1148D8E42003E89BB /* regex_debug.cpp */; };
+		5D9E84EF1A860F2B0057C9A8 /* regex_raw_buffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7796FFB2148D8E42003E89BB /* regex_raw_buffer.cpp */; };
+		5D9E84F01A860F2B0057C9A8 /* regex_traits_defaults.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7796FFB3148D8E42003E89BB /* regex_traits_defaults.cpp */; };
+		5D9E84F11A860F2B0057C9A8 /* static_mutex.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7796FFB4148D8E42003E89BB /* static_mutex.cpp */; };
+		5D9E84F21A860F2B0057C9A8 /* usinstances.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7796FFB5148D8E42003E89BB /* usinstances.cpp */; };
+		5D9E84F31A860F2B0057C9A8 /* w32_regex_traits.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7796FFB6148D8E42003E89BB /* w32_regex_traits.cpp */; };
+		5D9E84F41A860F2B0057C9A8 /* wc_regex_traits.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7796FFB7148D8E42003E89BB /* wc_regex_traits.cpp */; };
+		5D9E84F51A860F2B0057C9A8 /* wide_posix_api.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7796FFB8148D8E42003E89BB /* wide_posix_api.cpp */; };
+		5D9E84F61A860F2B0057C9A8 /* winstances.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7796FFB9148D8E42003E89BB /* winstances.cpp */; };
 		5DB1214F199A4DB1000D2100 /* codecvt_error_category.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5DB12146199A4DB1000D2100 /* codecvt_error_category.cpp */; };
 		5DB12150199A4DB1000D2100 /* operations.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5DB12147199A4DB1000D2100 /* operations.cpp */; };
 		5DB12151199A4DB1000D2100 /* path_traits.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5DB12148199A4DB1000D2100 /* path_traits.cpp */; };
@@ -1442,6 +1556,120 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5D9E84921A860C6A0057C9A8 /* strtod.c in Sources */,
+				5D9E84851A860C600057C9A8 /* fftlib.c in Sources */,
+				5D9E84861A860C600057C9A8 /* SC_AllocPool.cpp in Sources */,
+				5D9E84871A860C600057C9A8 /* SC_DirUtils.mm in Sources */,
+				5D9E84881A860C600057C9A8 /* SC_fftlib.cpp in Sources */,
+				5D9E84891A860C600057C9A8 /* sc_popen.cpp in Sources */,
+				5D9E848A1A860C600057C9A8 /* SC_Reply.cpp in Sources */,
+				5D9E848B1A860C600057C9A8 /* SC_Sem.cpp in Sources */,
+				5D9E848C1A860C600057C9A8 /* SC_StandAloneInfo_Darwin.cpp in Sources */,
+				5D9E848D1A860C600057C9A8 /* SC_StringBuffer.cpp in Sources */,
+				5D9E848E1A860C600057C9A8 /* SC_StringParser.cpp in Sources */,
+				5D9E848F1A860C600057C9A8 /* SC_TextUtils.cpp in Sources */,
+				5D9E84901A860C600057C9A8 /* SC_Win32Utils.cpp in Sources */,
+				5D9E84911A860C600057C9A8 /* scsynthsend.cpp in Sources */,
+				5D9E84931A860CA90057C9A8 /* OSCData.cpp in Sources */,
+				5D9E84941A860CA90057C9A8 /* PyrArchiver.cpp in Sources */,
+				5D9E84951A860CA90057C9A8 /* PyrArrayPrimitives.cpp in Sources */,
+				5D9E84961A860CA90057C9A8 /* PyrBitPrim.cpp in Sources */,
+				5D9E84971A860CA90057C9A8 /* PyrCharPrim.cpp in Sources */,
+				5D9E84981A860CA90057C9A8 /* PyrFilePrim.cpp in Sources */,
+				5D9E84991A860CA90057C9A8 /* PyrListPrim.cpp in Sources */,
+				5D9E849A1A860CA90057C9A8 /* PyrMathPrim.cpp in Sources */,
+				5D9E849B1A860CA90057C9A8 /* PyrPlatformPrim.cpp in Sources */,
+				5D9E849C1A860CA90057C9A8 /* PyrPrimitive.cpp in Sources */,
+				5D9E849D1A860CA90057C9A8 /* PyrSched.cpp in Sources */,
+				5D9E849E1A860CA90057C9A8 /* PyrSerialPrim.cpp in Sources */,
+				5D9E849F1A860CA90057C9A8 /* PyrSignalPrim.cpp in Sources */,
+				5D9E84A01A860CA90057C9A8 /* PyrStringPrim.cpp in Sources */,
+				5D9E84A11A860CA90057C9A8 /* PyrSymbolPrim.cpp in Sources */,
+				5D9E84A21A860CA90057C9A8 /* PyrUnixPrim.cpp in Sources */,
+				5D9E84A41A860CCE0057C9A8 /* SC_CoreMIDI.cpp in Sources */,
+				5D9E84A31A860CA90057C9A8 /* SC_ComPort.cpp in Sources */,
+				5D9E84A51A860D320057C9A8 /* AdvancingAllocPool.cpp in Sources */,
+				5D9E84A71A860D320057C9A8 /* ByteCodeArray.cpp in Sources */,
+				5D9E84A81A860D320057C9A8 /* dumpByteCodes.cpp in Sources */,
+				5D9E84A91A860D320057C9A8 /* DumpParseNode.cpp in Sources */,
+				5D9E84AA1A860D320057C9A8 /* GC.cpp in Sources */,
+				5D9E84AB1A860D320057C9A8 /* InitAlloc.cpp in Sources */,
+				5D9E84AC1A860D320057C9A8 /* PyrFileUtils.cpp in Sources */,
+				5D9E84AD1A860D320057C9A8 /* PyrInterpreter3.cpp in Sources */,
+				5D9E84AE1A860D320057C9A8 /* PyrLexer.cpp in Sources */,
+				5D9E84AF1A860D320057C9A8 /* PyrMathOps.cpp in Sources */,
+				5D9E84B01A860D320057C9A8 /* PyrMathSupport.cpp in Sources */,
+				5D9E84B11A860D320057C9A8 /* PyrMessage.cpp in Sources */,
+				5D9E84B21A860D320057C9A8 /* PyrObject.cpp in Sources */,
+				5D9E84B31A860D320057C9A8 /* PyrParseNode.cpp in Sources */,
+				5D9E84B41A860D320057C9A8 /* PyrSignal.cpp in Sources */,
+				5D9E84B51A860D320057C9A8 /* PyrSymbolTable.cpp in Sources */,
+				5D9E84B61A860D320057C9A8 /* SC_LibraryConfig.cpp in Sources */,
+				5D9E84B71A860D320057C9A8 /* SimpleStack.cpp in Sources */,
+				5D9E84B81A860D320057C9A8 /* VMGlobals.cpp in Sources */,
+				5D9E84A61A860D320057C9A8 /* lang11d_tab.cpp in Sources */,
+				5D9E84B91A860D6B0057C9A8 /* lex_scdoc.cpp in Sources */,
+				5D9E84BA1A860D6B0057C9A8 /* SCDoc.cpp in Sources */,
+				5D9E84BB1A860D6B0057C9A8 /* SCDoc.tab.cpp in Sources */,
+				5D9E84BC1A860D6B0057C9A8 /* SCDocPrim.cpp in Sources */,
+				5D9E84BD1A860DE70057C9A8 /* aliasmanager.cpp in Sources */,
+				5D9E84BE1A860DE70057C9A8 /* binary.cpp in Sources */,
+				5D9E84C11A860DE70057C9A8 /* conversion.cpp in Sources */,
+				5D9E84C21A860DE70057C9A8 /* directives.cpp in Sources */,
+				5D9E84C31A860DE70057C9A8 /* emitfromevents.cpp in Sources */,
+				5D9E84C41A860DE70057C9A8 /* emitter.cpp in Sources */,
+				5D9E84C51A860DE70057C9A8 /* emitterstate.cpp in Sources */,
+				5D9E84C61A860DE70057C9A8 /* emitterutils.cpp in Sources */,
+				5D9E84C71A860DE70057C9A8 /* exp.cpp in Sources */,
+				5D9E84C81A860DE70057C9A8 /* iterator.cpp in Sources */,
+				5D9E84C91A860DE70057C9A8 /* node.cpp in Sources */,
+				5D9E84CA1A860DE70057C9A8 /* nodebuilder.cpp in Sources */,
+				5D9E84CB1A860DE70057C9A8 /* nodeownership.cpp in Sources */,
+				5D9E84CC1A860DE70057C9A8 /* null.cpp in Sources */,
+				5D9E84CD1A860DE70057C9A8 /* ostream.cpp in Sources */,
+				5D9E84CE1A860DE70057C9A8 /* parser.cpp in Sources */,
+				5D9E84CF1A860DE70057C9A8 /* regex.cpp in Sources */,
+				5D9E84D01A860DE70057C9A8 /* scanner.cpp in Sources */,
+				5D9E84D11A860DE70057C9A8 /* scanscalar.cpp in Sources */,
+				5D9E84D21A860DE70057C9A8 /* scantag.cpp in Sources */,
+				5D9E84D31A860DE70057C9A8 /* scantoken.cpp in Sources */,
+				5D9E84D41A860DE70057C9A8 /* simplekey.cpp in Sources */,
+				5D9E84D51A860DE70057C9A8 /* singledocparser.cpp in Sources */,
+				5D9E84D61A860DE70057C9A8 /* stream.cpp in Sources */,
+				5D9E84D71A860DE70057C9A8 /* tag.cpp in Sources */,
+				5D9E84BF1A860DE70057C9A8 /* graphbuilder.cpp in Sources */,
+				5D9E84C01A860DE70057C9A8 /* graphbuilderadapter.cpp in Sources */,
+				5D9E84D81A860E110057C9A8 /* tlsf.c in Sources */,
+				5D9E84D91A860E680057C9A8 /* lockpool.cpp in Sources */,
+				5D9E84DA1A860EAB0057C9A8 /* codecvt_error_category.cpp in Sources */,
+				5D9E84DB1A860EAB0057C9A8 /* operations.cpp in Sources */,
+				5D9E84DC1A860EAB0057C9A8 /* path_traits.cpp in Sources */,
+				5D9E84DD1A860EAB0057C9A8 /* path.cpp in Sources */,
+				5D9E84DE1A860EAB0057C9A8 /* portability.cpp in Sources */,
+				5D9E84DF1A860EAB0057C9A8 /* unique_path.cpp in Sources */,
+				5D9E84E01A860EAB0057C9A8 /* utf8_codecvt_facet.cpp in Sources */,
+				5D9E84E11A860EAB0057C9A8 /* windows_file_codecvt.cpp in Sources */,
+				5D9E84E41A860ED80057C9A8 /* tss_null.cpp in Sources */,
+				5D9E84E21A860ED80057C9A8 /* once.cpp in Sources */,
+				5D9E84E31A860ED80057C9A8 /* thread.cpp in Sources */,
+				5D9E84E61A860F2B0057C9A8 /* c_regex_traits.cpp in Sources */,
+				5D9E84E71A860F2B0057C9A8 /* cpp_regex_traits.cpp in Sources */,
+				5D9E84E81A860F2B0057C9A8 /* cregex.cpp in Sources */,
+				5D9E84E91A860F2B0057C9A8 /* fileiter.cpp in Sources */,
+				5D9E84EA1A860F2B0057C9A8 /* icu.cpp in Sources */,
+				5D9E84EB1A860F2B0057C9A8 /* instances.cpp in Sources */,
+				5D9E84EC1A860F2B0057C9A8 /* posix_api.cpp in Sources */,
+				5D9E84ED1A860F2B0057C9A8 /* regex.cpp in Sources */,
+				5D9E84EE1A860F2B0057C9A8 /* regex_debug.cpp in Sources */,
+				5D9E84EF1A860F2B0057C9A8 /* regex_raw_buffer.cpp in Sources */,
+				5D9E84F01A860F2B0057C9A8 /* regex_traits_defaults.cpp in Sources */,
+				5D9E84F11A860F2B0057C9A8 /* static_mutex.cpp in Sources */,
+				5D9E84F21A860F2B0057C9A8 /* usinstances.cpp in Sources */,
+				5D9E84F31A860F2B0057C9A8 /* w32_regex_traits.cpp in Sources */,
+				5D9E84F41A860F2B0057C9A8 /* wc_regex_traits.cpp in Sources */,
+				5D9E84F51A860F2B0057C9A8 /* wide_posix_api.cpp in Sources */,
+				5D9E84F61A860F2B0057C9A8 /* winstances.cpp in Sources */,
+				5D9E84E51A860F2B0057C9A8 /* error_code.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1479,8 +1707,8 @@
 				7713C6660F422BE400B0055E /* PyrStringPrim.cpp in Sources */,
 				7713C6670F422BE400B0055E /* PyrSymbolPrim.cpp in Sources */,
 				7713C6690F422BE400B0055E /* PyrUnixPrim.cpp in Sources */,
-				7713C6800F422BE400B0055E /* SC_ComPort.cpp in Sources */,
 				39D745D514D4FFB1002A4E59 /* SC_CoreMIDI.cpp in Sources */,
+				7713C6800F422BE400B0055E /* SC_ComPort.cpp in Sources */,
 				7713C6720F422BE400B0055E /* AdvancingAllocPool.cpp in Sources */,
 				7713C6740F422BE400B0055E /* ByteCodeArray.cpp in Sources */,
 				7713C6750F422BE400B0055E /* dumpByteCodes.cpp in Sources */,
