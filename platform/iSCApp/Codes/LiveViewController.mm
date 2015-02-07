@@ -1,9 +1,9 @@
 //
 //  LiveViewController.m
-//  isclang
+//  iSCApp
 //
-//  Created by Axel Balley on 30/10/08.
-//  Copyright 2008 __MyCompanyName__. All rights reserved.
+//  Created by Kengo Watanabe on 07/02/2015.
+//  Copyright Watanabe-DENKI Inc. All rights reserved.
 //
 
 #import "LiveViewController.h"

@@ -11,11 +11,12 @@
 		5D051F631A85E7B300A042FF /* SCClassLibrary in Resources */ = {isa = PBXBuildFile; fileRef = 5D051F621A85E7B300A042FF /* SCClassLibrary */; };
 		5D560F4A199E879E007CDE26 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D560F49199E879E007CDE26 /* AVFoundation.framework */; };
 		5D9E850D1A8614560057C9A8 /* iSCAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D9E85051A8614560057C9A8 /* iSCAppDelegate.m */; };
-		5D9E850E1A8614560057C9A8 /* iSCmain.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D9E85061A8614560057C9A8 /* iSCmain.m */; };
+		5D9E850E1A8614560057C9A8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D9E85061A8614560057C9A8 /* main.m */; };
 		5D9E850F1A8614560057C9A8 /* LiveViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5D9E85081A8614560057C9A8 /* LiveViewController.mm */; };
 		5D9E85111A8614560057C9A8 /* TouchView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D9E850C1A8614560057C9A8 /* TouchView.m */; };
 		5D9E85131A86167E0057C9A8 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D9E85121A86167E0057C9A8 /* Default-568h@2x.png */; };
 		5D9E851A1A8618670057C9A8 /* LoggingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D9E85191A8618670057C9A8 /* LoggingViewController.m */; };
+		5DA1918F1A863BC30088702C /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 5DA1918E1A863BC30088702C /* icon.png */; };
 		772C0F3312DA126F009C0126 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77BA5239129C374C00CE89DD /* MediaPlayer.framework */; };
 		7759955312FDE20A00603187 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7759955212FDE20A00603187 /* Accelerate.framework */; };
 		77BA5223129C371F00CE89DD /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77BA5222129C371F00CE89DD /* CFNetwork.framework */; };
@@ -45,7 +46,7 @@
 		5D9E85021A8613800057C9A8 /* iSCApp.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = iSCApp.plist; path = Resources/iSCApp.plist; sourceTree = "<group>"; };
 		5D9E85041A8614560057C9A8 /* iSCAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iSCAppDelegate.h; sourceTree = "<group>"; };
 		5D9E85051A8614560057C9A8 /* iSCAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iSCAppDelegate.m; sourceTree = "<group>"; };
-		5D9E85061A8614560057C9A8 /* iSCmain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iSCmain.m; sourceTree = "<group>"; };
+		5D9E85061A8614560057C9A8 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		5D9E85071A8614560057C9A8 /* LiveViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LiveViewController.h; sourceTree = "<group>"; };
 		5D9E85081A8614560057C9A8 /* LiveViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = LiveViewController.mm; sourceTree = "<group>"; };
 		5D9E850B1A8614560057C9A8 /* TouchView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TouchView.h; sourceTree = "<group>"; };
@@ -53,6 +54,7 @@
 		5D9E85121A86167E0057C9A8 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		5D9E85181A8618670057C9A8 /* LoggingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoggingViewController.h; sourceTree = "<group>"; };
 		5D9E85191A8618670057C9A8 /* LoggingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoggingViewController.m; sourceTree = "<group>"; };
+		5DA1918E1A863BC30088702C /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon.png; path = Resources/icon.png; sourceTree = "<group>"; };
 		7713C6A90F422BE400B0055E /* iSCApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iSCApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7759955212FDE20A00603187 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		77BA5222129C371F00CE89DD /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
@@ -109,6 +111,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				5DA1918E1A863BC30088702C /* icon.png */,
 				5D9E85021A8613800057C9A8 /* iSCApp.plist */,
 			);
 			name = Resources;
@@ -117,9 +120,9 @@
 		5D9E85031A8614560057C9A8 /* Codes */ = {
 			isa = PBXGroup;
 			children = (
+				5D9E85061A8614560057C9A8 /* main.m */,
 				5D9E85041A8614560057C9A8 /* iSCAppDelegate.h */,
 				5D9E85051A8614560057C9A8 /* iSCAppDelegate.m */,
-				5D9E85061A8614560057C9A8 /* iSCmain.m */,
 				5D9E85181A8618670057C9A8 /* LoggingViewController.h */,
 				5D9E85191A8618670057C9A8 /* LoggingViewController.m */,
 				5D9E85071A8614560057C9A8 /* LiveViewController.h */,
@@ -199,6 +202,7 @@
 			files = (
 				5D051F631A85E7B300A042FF /* SCClassLibrary in Resources */,
 				5D9E85131A86167E0057C9A8 /* Default-568h@2x.png in Resources */,
+				5DA1918F1A863BC30088702C /* icon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -209,7 +213,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5D9E850E1A8614560057C9A8 /* iSCmain.m in Sources */,
+				5D9E850E1A8614560057C9A8 /* main.m in Sources */,
 				5D9E851A1A8618670057C9A8 /* LoggingViewController.m in Sources */,
 				5D9E85111A8614560057C9A8 /* TouchView.m in Sources */,
 				5D9E850F1A8614560057C9A8 /* LiveViewController.mm in Sources */,

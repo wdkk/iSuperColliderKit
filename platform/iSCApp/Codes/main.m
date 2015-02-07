@@ -1,9 +1,9 @@
 //
 //  main.m
-//  isclang
+//  iSCApp
 //
-//  Created by Axel Balley on 25/10/08.
-//  Copyright __MyCompanyName__ 2008. All rights reserved.
+//  Created by Kengo Watanabe on 07/02/2015.
+//  Copyright Watanabe-DENKI Inc. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>

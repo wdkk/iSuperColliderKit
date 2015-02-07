@@ -1,9 +1,9 @@
 //
-//  isclangAppDelegate.m
-//  isclang
+//  iSCAppDelegate.m
+//  iSCApp
 //
-//  Created by Axel Balley on 25/10/08.
-//  Copyright __MyCompanyName__ 2008. All rights reserved.
+//  Created by Kengo Watanabe on 07/02/2015.
+//  Copyright Watanabe-DENKI Inc. All rights reserved.
 //
 
 #import "iSCAppDelegate.h"
@@ -12,14 +12,9 @@
 
 @synthesize window;
 
-+(iSCAppDelegate*) sharedInstance
-{
-    return [UIApplication sharedApplication].delegate;
-}
-
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    // ウィンドウの作成
+    // Generate Window and ViewControllers
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
     self.log_vc = [[LoggingViewController alloc] initWithNibName:nil bundle:nil];
@@ -32,17 +27,21 @@
                                                             image:[[UIImage imageNamed:@"tab_login"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]
                                                     selectedImage:[[UIImage imageNamed:@"tab_login_selected"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
     
-    // タブバーコントローラの作成
+    // Generate Tab bar controller.
     self.tab_bar_controller = [[UITabBarController alloc] initWithNibName:nil bundle:nil];
     [self.tab_bar_controller setViewControllers:@[self.log_vc, self.live_vc] animated:YES];
     [self.tab_bar_controller setCustomizableViewControllers:nil];
     
+    // Boot iSCKit Controller
     iSCController *scc = [iSCController sharedInstance];
     [scc setup];    
     
     // Override point for customization after application launch
     self.window.rootViewController = self.tab_bar_controller;
     [self.window makeKeyAndVisible];
+    
+    // boot SuperCollider
+    [scc interpret:@"s.boot"];
     
     return YES;
 }

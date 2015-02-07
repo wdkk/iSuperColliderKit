@@ -1,8 +1,9 @@
 //
 //  TouchView.m
+//  iSCApp
 //
-//  Created by Kengo Watanabe on 2014/06/20.
-//  Copyright (c) 2014 Watanabe-DENKI Inc. All rights reserved.
+//  Created by Kengo Watanabe on 06/02/2015.
+//  Copyright (c) 2015 Watanabe-DENKI Inc. All rights reserved.
 //
 
 #import "TouchView.h"
