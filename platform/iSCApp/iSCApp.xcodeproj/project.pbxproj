@@ -13,7 +13,6 @@
 		5D9E850D1A8614560057C9A8 /* iSCAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D9E85051A8614560057C9A8 /* iSCAppDelegate.m */; };
 		5D9E850E1A8614560057C9A8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D9E85061A8614560057C9A8 /* main.m */; };
 		5D9E850F1A8614560057C9A8 /* LiveViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5D9E85081A8614560057C9A8 /* LiveViewController.mm */; };
-		5D9E85111A8614560057C9A8 /* TouchView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D9E850C1A8614560057C9A8 /* TouchView.m */; };
 		5D9E85131A86167E0057C9A8 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D9E85121A86167E0057C9A8 /* Default-568h@2x.png */; };
 		5D9E851A1A8618670057C9A8 /* LoggingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D9E85191A8618670057C9A8 /* LoggingViewController.m */; };
 		5DA1918F1A863BC30088702C /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 5DA1918E1A863BC30088702C /* icon.png */; };
@@ -49,8 +48,6 @@
 		5D9E85061A8614560057C9A8 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		5D9E85071A8614560057C9A8 /* LiveViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LiveViewController.h; sourceTree = "<group>"; };
 		5D9E85081A8614560057C9A8 /* LiveViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = LiveViewController.mm; sourceTree = "<group>"; };
-		5D9E850B1A8614560057C9A8 /* TouchView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TouchView.h; sourceTree = "<group>"; };
-		5D9E850C1A8614560057C9A8 /* TouchView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TouchView.m; sourceTree = "<group>"; };
 		5D9E85121A86167E0057C9A8 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		5D9E85181A8618670057C9A8 /* LoggingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoggingViewController.h; sourceTree = "<group>"; };
 		5D9E85191A8618670057C9A8 /* LoggingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoggingViewController.m; sourceTree = "<group>"; };
@@ -127,8 +124,6 @@
 				5D9E85191A8618670057C9A8 /* LoggingViewController.m */,
 				5D9E85071A8614560057C9A8 /* LiveViewController.h */,
 				5D9E85081A8614560057C9A8 /* LiveViewController.mm */,
-				5D9E850B1A8614560057C9A8 /* TouchView.h */,
-				5D9E850C1A8614560057C9A8 /* TouchView.m */,
 			);
 			path = Codes;
 			sourceTree = "<group>";
@@ -215,7 +210,6 @@
 			files = (
 				5D9E850E1A8614560057C9A8 /* main.m in Sources */,
 				5D9E851A1A8618670057C9A8 /* LoggingViewController.m in Sources */,
-				5D9E85111A8614560057C9A8 /* TouchView.m in Sources */,
 				5D9E850F1A8614560057C9A8 /* LiveViewController.mm in Sources */,
 				5D9E850D1A8614560057C9A8 /* iSCAppDelegate.m in Sources */,
 			);
@@ -236,10 +230,6 @@
 				GCC_THUMB_SUPPORT = NO;
 				INFOPLIST_FILE = Resources/iSCApp.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/../iSCKit/lib",
-				);
 				OTHER_LDFLAGS = (
 					"-lsndfile",
 					"-lscsynth",
@@ -270,10 +260,6 @@
 				GCC_UNROLL_LOOPS = YES;
 				INFOPLIST_FILE = Resources/iSCApp.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/../iSCKit/lib",
-				);
 				OTHER_LDFLAGS = (
 					"-lsndfile",
 					"-lscsynth",
@@ -296,15 +282,12 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = (
-					../../external_libraries/libsndfile,
-					../../external_libraries/threadpool,
-					../../external_libraries/boost,
-					"../../external_libraries/boost-lockfree",
-					"../../external_libraries/yaml-cpp-0.3.0/include",
-					../../editors/scapp/iphone,
+				HEADER_SEARCH_PATHS = ../../editors/scapp/iphone;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/../iSCKit/lib",
 				);
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				PREBINDING = NO;
 				SDKROOT = iphoneos;
 				SYMROOT = "$(PROJECT_DIR)/build";
@@ -329,10 +312,6 @@
 				GCC_THUMB_SUPPORT = NO;
 				GCC_UNROLL_LOOPS = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/../iSCKit/lib",
-				);
 				OTHER_LDFLAGS = (
 					"-lsndfile",
 					"-lscsynth",
@@ -354,15 +333,12 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = (
-					../../external_libraries/libsndfile,
-					../../external_libraries/threadpool,
-					../../external_libraries/boost,
-					"../../external_libraries/boost-lockfree",
-					"../../external_libraries/yaml-cpp-0.3.0/include",
-					../../editors/scapp/iphone,
+				HEADER_SEARCH_PATHS = ../../editors/scapp/iphone;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/../iSCKit/lib",
 				);
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				ONLY_ACTIVE_ARCH = YES;
 				PREBINDING = NO;
 				SDKROOT = iphoneos;
@@ -379,15 +355,12 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = (
-					../../external_libraries/libsndfile,
-					../../external_libraries/threadpool,
-					../../external_libraries/boost,
-					"../../external_libraries/boost-lockfree",
-					"../../external_libraries/yaml-cpp-0.3.0/include",
-					../../editors/scapp/iphone,
+				HEADER_SEARCH_PATHS = ../../editors/scapp/iphone;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/../iSCKit/lib",
 				);
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				PREBINDING = NO;
 				SDKROOT = iphoneos;
 				SYMROOT = "$(PROJECT_DIR)/build";

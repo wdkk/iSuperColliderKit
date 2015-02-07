@@ -17,6 +17,7 @@
 
 - (void) viewDidLoad
 {
+    // use iSCKit Log View. it's controlled iSCController.
     [self.view addSubview:[iSCController logView]];
 }
 
