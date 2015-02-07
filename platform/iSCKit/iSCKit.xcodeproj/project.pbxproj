@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		39D745D514D4FFB1002A4E59 /* SC_CoreMIDI.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7751A9860EB36D500051CF38 /* SC_CoreMIDI.cpp */; };
 		39D745D714D5004F002A4E59 /* CoreMIDI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39D745D614D5004F002A4E59 /* CoreMIDI.framework */; };
+		5D051F631A85E7B300A042FF /* SCClassLibrary in Resources */ = {isa = PBXBuildFile; fileRef = 5D051F621A85E7B300A042FF /* SCClassLibrary */; };
 		5D1090AD1A7F81AF00C653FF /* libscsynth.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D1090AC1A7F81AF00C653FF /* libscsynth.a */; };
 		5D560F4A199E879E007CDE26 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D560F49199E879E007CDE26 /* AVFoundation.framework */; };
 		5D5C0F3D199F03A700397E51 /* lex_scdoc.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5D5C0F3C199F03A700397E51 /* lex_scdoc.cpp */; };
@@ -121,15 +122,7 @@
 		775E78EE1475DE26008CD702 /* timeconv.inl in Resources */ = {isa = PBXBuildFile; fileRef = 775E789C1475DE26008CD702 /* timeconv.inl */; };
 		775E78EF1475DE26008CD702 /* tss_null.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 775E789D1475DE26008CD702 /* tss_null.cpp */; };
 		775E78F91475DE6D008CD702 /* error_code.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 775E78F71475DE6D008CD702 /* error_code.cpp */; };
-		775E79701475E1CF008CD702 /* SCDoc in CopyFiles */ = {isa = PBXBuildFile; fileRef = 775E796F1475E1CF008CD702 /* SCDoc */; };
-		776B2A97119075EF001F253D /* JITLib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 776B2A70119075EC001F253D /* JITLib */; };
-		778F12C10F50A92100CB6629 /* sounds in CopyFiles */ = {isa = PBXBuildFile; fileRef = 778F129F0F50A92100CB6629 /* sounds */; };
-		778F12C30F50A92100CB6629 /* patches in CopyFiles */ = {isa = PBXBuildFile; fileRef = 778F12AD0F50A92100CB6629 /* patches */; };
 		778F12CA0F50A94600CB6629 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 778F12C90F50A94600CB6629 /* icon.png */; };
-		778F18480F50B1D000CB6629 /* backwards_compatibility in CopyFiles */ = {isa = PBXBuildFile; fileRef = 778F18440F50B1D000CB6629 /* backwards_compatibility */; };
-		778F18490F50B1D000CB6629 /* Common in CopyFiles */ = {isa = PBXBuildFile; fileRef = 778F18450F50B1D000CB6629 /* Common */; };
-		778F184A0F50B1D000CB6629 /* DefaultLibrary in CopyFiles */ = {isa = PBXBuildFile; fileRef = 778F18460F50B1D000CB6629 /* DefaultLibrary */; };
-		778F184B0F50B1D000CB6629 /* Platform in CopyFiles */ = {isa = PBXBuildFile; fileRef = 778F18470F50B1D000CB6629 /* Platform */; };
 		7796FFA4148D8DF5003E89BB /* tlsf.c in Sources */ = {isa = PBXBuildFile; fileRef = 7796FF95148D8DF5003E89BB /* tlsf.c */; };
 		7796FFBA148D8E42003E89BB /* c_regex_traits.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7796FFA8148D8E42003E89BB /* c_regex_traits.cpp */; };
 		7796FFBB148D8E42003E89BB /* cpp_regex_traits.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7796FFA9148D8E42003E89BB /* cpp_regex_traits.cpp */; };
@@ -180,14 +173,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 7;
 			files = (
-				775E79701475E1CF008CD702 /* SCDoc in CopyFiles */,
-				776B2A97119075EF001F253D /* JITLib in CopyFiles */,
-				778F18480F50B1D000CB6629 /* backwards_compatibility in CopyFiles */,
-				778F18490F50B1D000CB6629 /* Common in CopyFiles */,
-				778F184A0F50B1D000CB6629 /* DefaultLibrary in CopyFiles */,
-				778F184B0F50B1D000CB6629 /* Platform in CopyFiles */,
-				778F12C10F50A92100CB6629 /* sounds in CopyFiles */,
-				778F12C30F50A92100CB6629 /* patches in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -198,6 +183,7 @@
 		0B1F3B2214C9C3B700DCE518 /* SC_WorldOptions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SC_WorldOptions.h; path = server/SC_WorldOptions.h; sourceTree = "<group>"; };
 		0B57438114D6DC5100EB191B /* SC_Errors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SC_Errors.h; path = server/SC_Errors.h; sourceTree = "<group>"; };
 		39D745D614D5004F002A4E59 /* CoreMIDI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMIDI.framework; path = System/Library/Frameworks/CoreMIDI.framework; sourceTree = SDKROOT; };
+		5D051F621A85E7B300A042FF /* SCClassLibrary */ = {isa = PBXFileReference; lastKnownFileType = folder; name = SCClassLibrary; path = ../../SCClassLibrary; sourceTree = "<group>"; };
 		5D1090AC1A7F81AF00C653FF /* libscsynth.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libscsynth.a; path = lib/libscsynth.a; sourceTree = "<group>"; };
 		5D560F49199E879E007CDE26 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		5D5C0F3C199F03A700397E51 /* lex_scdoc.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = lex_scdoc.cpp; sourceTree = "<group>"; };
@@ -516,16 +502,8 @@
 		775E789D1475DE26008CD702 /* tss_null.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = tss_null.cpp; sourceTree = "<group>"; };
 		775E78F71475DE6D008CD702 /* error_code.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = error_code.cpp; sourceTree = "<group>"; };
 		775E78F81475DE6D008CD702 /* local_free_on_destruction.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = local_free_on_destruction.hpp; sourceTree = "<group>"; };
-		775E796F1475E1CF008CD702 /* SCDoc */ = {isa = PBXFileReference; lastKnownFileType = folder; name = SCDoc; path = ../../SCClassLibrary/SCDoc; sourceTree = "<group>"; };
-		776B2A70119075EC001F253D /* JITLib */ = {isa = PBXFileReference; lastKnownFileType = folder; name = JITLib; path = ../../SCClassLibrary/JITLib; sourceTree = SOURCE_ROOT; };
-		778F129F0F50A92100CB6629 /* sounds */ = {isa = PBXFileReference; lastKnownFileType = folder; name = sounds; path = "iPhone Resources/sounds"; sourceTree = "<group>"; };
-		778F12AD0F50A92100CB6629 /* patches */ = {isa = PBXFileReference; lastKnownFileType = folder; name = patches; path = "iPhone Resources/patches"; sourceTree = "<group>"; };
 		778F12C90F50A94600CB6629 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon.png; path = "iPhone Resources/icon.png"; sourceTree = "<group>"; };
 		778F17E50F50AE1100CB6629 /* SuperCollider.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = SuperCollider.plist; path = "iPhone Resources/SuperCollider.plist"; sourceTree = "<group>"; };
-		778F18440F50B1D000CB6629 /* backwards_compatibility */ = {isa = PBXFileReference; lastKnownFileType = folder; name = backwards_compatibility; path = ../../SCClassLibrary/backwards_compatibility; sourceTree = "<group>"; };
-		778F18450F50B1D000CB6629 /* Common */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Common; path = ../../SCClassLibrary/Common; sourceTree = "<group>"; };
-		778F18460F50B1D000CB6629 /* DefaultLibrary */ = {isa = PBXFileReference; lastKnownFileType = folder; name = DefaultLibrary; path = ../../SCClassLibrary/DefaultLibrary; sourceTree = "<group>"; };
-		778F18470F50B1D000CB6629 /* Platform */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Platform; path = ../../SCClassLibrary/Platform; sourceTree = "<group>"; };
 		7796FF93148D8DF5003E89BB /* Makefile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
 		7796FF94148D8DF5003E89BB /* target.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = target.h; sourceTree = "<group>"; };
 		7796FF95148D8DF5003E89BB /* tlsf.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = tlsf.c; sourceTree = "<group>"; };
@@ -611,6 +589,7 @@
 				5D8EA41B199A0DC00026877D /* SCDoc */,
 				77597AF11123325400D2A968 /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
+				5D051F621A85E7B300A042FF /* SCClassLibrary */,
 			);
 			name = CustomTemplate;
 			sourceTree = "<group>";
@@ -618,7 +597,6 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				7725B4AF1191DFA20056CA2F /* Bundled */,
 				778F12C90F50A94600CB6629 /* icon.png */,
 				778F17E50F50AE1100CB6629 /* SuperCollider.plist */,
 			);
@@ -839,21 +817,6 @@
 				7709038B0F509FAA005C05DC /* LiveCodingViewController.mm */,
 			);
 			path = iPhone;
-			sourceTree = "<group>";
-		};
-		7725B4AF1191DFA20056CA2F /* Bundled */ = {
-			isa = PBXGroup;
-			children = (
-				775E796F1475E1CF008CD702 /* SCDoc */,
-				778F129F0F50A92100CB6629 /* sounds */,
-				778F12AD0F50A92100CB6629 /* patches */,
-				778F18440F50B1D000CB6629 /* backwards_compatibility */,
-				778F18450F50B1D000CB6629 /* Common */,
-				778F18460F50B1D000CB6629 /* DefaultLibrary */,
-				778F18470F50B1D000CB6629 /* Platform */,
-				776B2A70119075EC001F253D /* JITLib */,
-			);
-			name = Bundled;
 			sourceTree = "<group>";
 		};
 		7751A9330EB36D500051CF38 /* scapp */ = {
@@ -1395,6 +1358,7 @@
 				778F12CA0F50A94600CB6629 /* icon.png in Resources */,
 				5D8EA415199A023D0026877D /* Default-568h@2x.png in Resources */,
 				775E78EE1475DE26008CD702 /* timeconv.inl in Resources */,
+				5D051F631A85E7B300A042FF /* SCClassLibrary in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

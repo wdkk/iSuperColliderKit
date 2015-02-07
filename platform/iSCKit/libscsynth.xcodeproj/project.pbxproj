@@ -134,7 +134,6 @@
 		5D990FAE199A661B00974FE2 /* lockpool.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = lockpool.cpp; sourceTree = "<group>"; };
 		5D990FB4199A667200974FE2 /* error_code.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = error_code.cpp; sourceTree = "<group>"; };
 		5D990FB5199A667200974FE2 /* local_free_on_destruction.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = local_free_on_destruction.hpp; sourceTree = "<group>"; };
-		5DB12157199A53F2000D2100 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		770903C10F50A468005C05DC /* iscsynthAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iscsynthAppDelegate.h; sourceTree = "<group>"; };
 		770903C20F50A468005C05DC /* iscsynthAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iscsynthAppDelegate.m; sourceTree = "<group>"; };
 		770903C30F50A468005C05DC /* iSCSynthController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iSCSynthController.h; sourceTree = "<group>"; };
@@ -286,7 +285,6 @@
 		7752331012F5926C005AE5FE /* vec_sse2.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = vec_sse2.hpp; sourceTree = "<group>"; };
 		7752331112F5926C005AE5FE /* wrap_arguments.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = wrap_arguments.hpp; sourceTree = "<group>"; };
 		7759953812FDE0C900603187 /* SC_fftlib.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SC_fftlib.cpp; sourceTree = "<group>"; };
-		775995A512FDE51C00603187 /* SuperCollider_BrowserPage.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = SuperCollider_BrowserPage.xib; path = "iPhone Resources/SuperCollider_BrowserPage.xib"; sourceTree = "<group>"; };
 		775995B312FDE5B000603187 /* libsndfile_iphone.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libsndfile_iphone.a; path = lib/libsndfile_iphone.a; sourceTree = "<group>"; };
 		7767CEB7132D29C90045D5E9 /* SC_Alloca.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SC_Alloca.h; sourceTree = "<group>"; };
 		7772497F0EABE96E00732A1C /* fftlib.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = fftlib.c; sourceTree = "<group>"; };
@@ -323,13 +321,11 @@
 		77724C6A0EABF92400732A1C /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		77724C6C0EABF92400732A1C /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
 		778F12440F50A70400CB6629 /* iscsynth.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = iscsynth.plist; path = "iPhone Resources/iscsynth.plist"; sourceTree = "<group>"; };
-		778F12450F50A70400CB6629 /* iscsynth_MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = iscsynth_MainWindow.xib; path = "iPhone Resources/iscsynth_MainWindow.xib"; sourceTree = "<group>"; };
 		7796FF6D148D8D12003E89BB /* target.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = target.h; sourceTree = "<group>"; };
 		7796FF6E148D8D12003E89BB /* tlsf.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = tlsf.c; sourceTree = "<group>"; };
 		7796FF6F148D8D12003E89BB /* tlsf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tlsf.h; sourceTree = "<group>"; };
 		7796FF7F148D8D5C003E89BB /* scope_buffer.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = scope_buffer.hpp; sourceTree = "<group>"; };
 		7796FF80148D8D5C003E89BB /* server_shm.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = server_shm.hpp; sourceTree = "<group>"; };
-		77A489370FBFA8DA00E909E1 /* SuperCollider_FileTransfer.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = SuperCollider_FileTransfer.xib; path = "iPhone Resources/SuperCollider_FileTransfer.xib"; sourceTree = "<group>"; };
 		77AA93920EB3685400DC0BCB /* libscsynth.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libscsynth.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		77AB4FC112FB38AC00810BCF /* vec_base.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = vec_base.hpp; sourceTree = "<group>"; };
 		77AB4FC212FB38AC00810BCF /* vec_int_altivec.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = vec_int_altivec.hpp; sourceTree = "<group>"; };
@@ -367,7 +363,6 @@
 			isa = PBXGroup;
 			children = (
 				5D990F73199A5E2300974FE2 /* libsndfile.xcodeproj */,
-				5DB12157199A53F2000D2100 /* Default-568h@2x.png */,
 				7752329F12F5924A005AE5FE /* external_libraries */,
 				77724A490EABEA3B00732A1C /* include */,
 				7772497D0EABE96E00732A1C /* common */,
@@ -384,10 +379,7 @@
 			isa = PBXGroup;
 			children = (
 				5D89584819A1D34F002DAB7A /* synthdefs */,
-				775995A512FDE51C00603187 /* SuperCollider_BrowserPage.xib */,
 				778F12440F50A70400CB6629 /* iscsynth.plist */,
-				778F12450F50A70400CB6629 /* iscsynth_MainWindow.xib */,
-				77A489370FBFA8DA00E909E1 /* SuperCollider_FileTransfer.xib */,
 			);
 			name = Resources;
 			sourceTree = "<group>";

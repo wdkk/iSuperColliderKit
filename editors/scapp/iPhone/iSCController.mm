@@ -275,7 +275,8 @@ void setCmdLine(const char *buf)
 	CFBundleRef bundle = CFBundleGetMainBundle();
 	CFURLRef url = CFBundleCopyBundleURL(bundle);
 	NSString *s = (NSString *) CFBridgingRelease(CFURLCopyFileSystemPath(url, kCFURLPOSIXPathStyle));
-	CFRelease(url);
+    s = [s stringByAppendingString:@"/SCClassLibrary"];
+    CFRelease(url);
     
 	NSError *error;
 	char supportpath[256];
@@ -287,8 +288,7 @@ void setCmdLine(const char *buf)
         [manager createDirectoryAtPath:support withIntermediateDirectories:YES attributes:nil error:&error];
     }
     
-	NSString *dir;
-	dir = [support stringByAppendingString:@"/SCClassLibrary"];
+	NSString *dir = [support stringByAppendingString:@"/SCClassLibrary"];
 	if (![manager fileExistsAtPath:dir])
 	{
         [manager createDirectoryAtPath:dir withIntermediateDirectories:YES attributes:nil error:&error];
@@ -345,13 +345,13 @@ void setCmdLine(const char *buf)
 			[manager copyItemAtPath:from toPath:dir error:&error];
 		}
 	}
-	dir = [support stringByAppendingString:@"/patches"];
+	dir = [support stringByAppendingString:@"/patches_ios"];
     if(![manager fileExistsAtPath:dir])
     {
         [manager createDirectoryAtPath:dir withIntermediateDirectories:YES attributes:nil error:&error];
     }
     
-    NSString *patches_dir = [s stringByAppendingString:@"/patches"];
+    NSString *patches_dir = [s stringByAppendingString:@"/patches_ios"];
 	NSArray *patches = [manager contentsOfDirectoryAtPath:patches_dir error:nil];
 	for (NSString *patch in patches)
 	{

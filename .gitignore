@@ -15,5 +15,11 @@ common/Packager/SuperCollider*.dmg
 platform/iphone/build
 platform/iphone/lib
 
+platform/iSCKit/build
+platform/iSCKit/lib
+
+platform/iSCApp/build
+platform/iSCApp/lib
+
 *~
 *.orig
