@@ -230,11 +230,7 @@
 				GCC_THUMB_SUPPORT = NO;
 				INFOPLIST_FILE = Resources/iSCApp.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
-				OTHER_LDFLAGS = (
-					"-lsndfile",
-					"-lscsynth",
-					"-liSCKit",
-				);
+				OTHER_LDFLAGS = AC;
 				PRODUCT_NAME = iSCApp;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SKIP_INSTALL = NO;
@@ -260,11 +256,7 @@
 				GCC_UNROLL_LOOPS = YES;
 				INFOPLIST_FILE = Resources/iSCApp.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
-				OTHER_LDFLAGS = (
-					"-lsndfile",
-					"-lscsynth",
-					"-liSCKit",
-				);
+				OTHER_LDFLAGS = AC;
 				PRODUCT_NAME = iSCApp;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SEPARATE_STRIP = NO;
@@ -312,11 +304,7 @@
 				GCC_THUMB_SUPPORT = NO;
 				GCC_UNROLL_LOOPS = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
-				OTHER_LDFLAGS = (
-					"-lsndfile",
-					"-lscsynth",
-					"-liSCKit",
-				);
+				OTHER_LDFLAGS = AC;
 				PRODUCT_NAME = iSCApp;
 				SEPARATE_STRIP = NO;
 				SKIP_INSTALL = YES;
