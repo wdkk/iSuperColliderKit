@@ -166,7 +166,8 @@ inline void thread_yield()
 
 inline void thread_sleep(unsigned int ms)
 {
-   const struct timespec rqt = { ms/1000u, (ms%1000u)*1000000u  };
+    // kengo:add 2015/02/07
+   const struct timespec rqt = { static_cast<__darwin_time_t>(ms/1000u), static_cast<long>((ms%1000u)*1000000u)  };
    ::nanosleep(&rqt, 0);
 }
 

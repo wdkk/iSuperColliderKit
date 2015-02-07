@@ -598,11 +598,11 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				OBJROOT = "$(PROJECT_DIR)/../build";
-				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-ObjC";
 				PREBINDING = NO;
 				SDKROOT = iphoneos;
 				SYMROOT = "$(PROJECT_DIR)/../lib";
+				VALID_ARCHS = "arm64 armv7 armv7s i386 x86_64";
 			};
 			name = Debug;
 		};
@@ -619,6 +619,7 @@
 				PREBINDING = NO;
 				SDKROOT = iphoneos;
 				SYMROOT = "$(PROJECT_DIR)/../lib";
+				VALID_ARCHS = "arm64 armv7 armv7s i386 x86_64";
 			};
 			name = Release;
 		};

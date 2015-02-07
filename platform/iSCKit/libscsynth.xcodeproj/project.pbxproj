@@ -1075,10 +1075,10 @@
 					"../../external_libraries/boost-lockfree",
 				);
 				OBJROOT = "$(PROJECT_DIR)/build";
-				ONLY_ACTIVE_ARCH = YES;
 				PREBINDING = NO;
 				SDKROOT = iphoneos;
 				SYMROOT = "$(PROJECT_DIR)/lib";
+				VALID_ARCHS = "arm64 armv7 armv7s i386 x86_64";
 			};
 			name = Debug;
 		};
@@ -1099,6 +1099,7 @@
 				PREBINDING = NO;
 				SDKROOT = iphoneos;
 				SYMROOT = "$(PROJECT_DIR)/lib";
+				VALID_ARCHS = "arm64 armv7 armv7s i386 x86_64";
 			};
 			name = Release;
 		};
