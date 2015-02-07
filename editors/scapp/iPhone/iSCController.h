@@ -8,8 +8,6 @@
 
 #import <UIKit/UIKit.h>
 #import <MediaPlayer/MediaPlayer.h>
-#import "FileBrowserNaviController.h"
-#import "LiveCodingViewController.h"
 #import "iSCWindow.h"
 
 @class iSCLogView;

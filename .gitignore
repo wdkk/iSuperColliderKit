@@ -12,14 +12,8 @@ common/Packager/SuperCollider*.tar.gz
 common/Packager/SuperCollider*.dmg
 
 #build directories
-platform/iphone/build
-platform/iphone/lib
-
-platform/iSCKit/build
-platform/iSCKit/lib
-
-platform/iSCApp/build
-platform/iSCApp/lib
+platform/*/build
+platform/*/lib
 
 *~
 *.orig

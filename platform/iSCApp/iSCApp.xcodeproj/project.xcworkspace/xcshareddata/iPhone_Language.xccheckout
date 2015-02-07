@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>BEC01E81-8228-4E8D-B882-5FFE836DD90E</string>
+	<key>IDESourceControlProjectName</key>
+	<string>iPhone_Language</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>46F35570-3C06-4B51-87CA-203F6D287835</key>
+		<string>git://supercollider.git.sourceforge.net/gitroot/supercollider/supercollider</string>
+		<key>B6EDB7E1-5A02-4FED-88B6-3FB8958F17C2</key>
+		<string>git://supercollider.git.sourceforge.net/gitroot/supercollider/nova-simd</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>platform/iphone/iPhone_Language.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>46F35570-3C06-4B51-87CA-203F6D287835</key>
+		<string>../../../..</string>
+		<key>B6EDB7E1-5A02-4FED-88B6-3FB8958F17C2</key>
+		<string>../../../../external_libraries/nova-simd</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>git://supercollider.git.sourceforge.net/gitroot/supercollider/supercollider</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>46F35570-3C06-4B51-87CA-203F6D287835</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>B6EDB7E1-5A02-4FED-88B6-3FB8958F17C2</string>
+			<key>IDESourceControlWCCName</key>
+			<string>nova-simd</string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>46F35570-3C06-4B51-87CA-203F6D287835</string>
+			<key>IDESourceControlWCCName</key>
+			<string>supercollider</string>
+		</dict>
+	</array>
+</dict>
+</plist>

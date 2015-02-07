@@ -1918,6 +1918,7 @@
 				5D9E84721A8605BE0057C9A8 /* Cydia */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		7713C6A60F422BE400B0055E /* Build configuration list for PBXNativeTarget "iSCApp" */ = {
 			isa = XCConfigurationList;

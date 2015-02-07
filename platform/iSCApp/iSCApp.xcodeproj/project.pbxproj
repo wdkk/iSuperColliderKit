@@ -1,0 +1,419 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		39D745D714D5004F002A4E59 /* CoreMIDI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39D745D614D5004F002A4E59 /* CoreMIDI.framework */; };
+		5D051F631A85E7B300A042FF /* SCClassLibrary in Resources */ = {isa = PBXBuildFile; fileRef = 5D051F621A85E7B300A042FF /* SCClassLibrary */; };
+		5D560F4A199E879E007CDE26 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D560F49199E879E007CDE26 /* AVFoundation.framework */; };
+		5D9E850D1A8614560057C9A8 /* iSCAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D9E85051A8614560057C9A8 /* iSCAppDelegate.m */; };
+		5D9E850E1A8614560057C9A8 /* iSCmain.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D9E85061A8614560057C9A8 /* iSCmain.m */; };
+		5D9E850F1A8614560057C9A8 /* LiveViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5D9E85081A8614560057C9A8 /* LiveViewController.mm */; };
+		5D9E85111A8614560057C9A8 /* TouchView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D9E850C1A8614560057C9A8 /* TouchView.m */; };
+		5D9E85131A86167E0057C9A8 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D9E85121A86167E0057C9A8 /* Default-568h@2x.png */; };
+		5D9E851A1A8618670057C9A8 /* LoggingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D9E85191A8618670057C9A8 /* LoggingViewController.m */; };
+		772C0F3312DA126F009C0126 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77BA5239129C374C00CE89DD /* MediaPlayer.framework */; };
+		7759955312FDE20A00603187 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7759955212FDE20A00603187 /* Accelerate.framework */; };
+		77BA5223129C371F00CE89DD /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77BA5222129C371F00CE89DD /* CFNetwork.framework */; };
+		77BA5234129C373400CE89DD /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77BA5233129C373400CE89DD /* CoreFoundation.framework */; };
+		77BA5236129C373B00CE89DD /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77BA5235129C373B00CE89DD /* CoreGraphics.framework */; };
+		77BA5238129C374100CE89DD /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77BA5237129C374100CE89DD /* AudioToolbox.framework */; };
+		77BA523C129C375700CE89DD /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77BA523B129C375700CE89DD /* UIKit.framework */; };
+		77BA523E129C376000CE89DD /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77BA523D129C376000CE89DD /* Foundation.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		7713C6A00F422BE400B0055E /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 7;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		39D745D614D5004F002A4E59 /* CoreMIDI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMIDI.framework; path = System/Library/Frameworks/CoreMIDI.framework; sourceTree = SDKROOT; };
+		5D051F621A85E7B300A042FF /* SCClassLibrary */ = {isa = PBXFileReference; lastKnownFileType = folder; name = SCClassLibrary; path = ../../SCClassLibrary; sourceTree = "<group>"; };
+		5D560F49199E879E007CDE26 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		5D9E85021A8613800057C9A8 /* iSCApp.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = iSCApp.plist; path = Resources/iSCApp.plist; sourceTree = "<group>"; };
+		5D9E85041A8614560057C9A8 /* iSCAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iSCAppDelegate.h; sourceTree = "<group>"; };
+		5D9E85051A8614560057C9A8 /* iSCAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iSCAppDelegate.m; sourceTree = "<group>"; };
+		5D9E85061A8614560057C9A8 /* iSCmain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iSCmain.m; sourceTree = "<group>"; };
+		5D9E85071A8614560057C9A8 /* LiveViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LiveViewController.h; sourceTree = "<group>"; };
+		5D9E85081A8614560057C9A8 /* LiveViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = LiveViewController.mm; sourceTree = "<group>"; };
+		5D9E850B1A8614560057C9A8 /* TouchView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TouchView.h; sourceTree = "<group>"; };
+		5D9E850C1A8614560057C9A8 /* TouchView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TouchView.m; sourceTree = "<group>"; };
+		5D9E85121A86167E0057C9A8 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		5D9E85181A8618670057C9A8 /* LoggingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoggingViewController.h; sourceTree = "<group>"; };
+		5D9E85191A8618670057C9A8 /* LoggingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoggingViewController.m; sourceTree = "<group>"; };
+		7713C6A90F422BE400B0055E /* iSCApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iSCApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		7759955212FDE20A00603187 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
+		77BA5222129C371F00CE89DD /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		77BA5233129C373400CE89DD /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
+		77BA5235129C373B00CE89DD /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		77BA5237129C374100CE89DD /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		77BA5239129C374C00CE89DD /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		77BA523B129C375700CE89DD /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		77BA523D129C376000CE89DD /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		7713C6990F422BE400B0055E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				77BA5223129C371F00CE89DD /* CFNetwork.framework in Frameworks */,
+				77BA5234129C373400CE89DD /* CoreFoundation.framework in Frameworks */,
+				77BA5236129C373B00CE89DD /* CoreGraphics.framework in Frameworks */,
+				5D560F4A199E879E007CDE26 /* AVFoundation.framework in Frameworks */,
+				77BA5238129C374100CE89DD /* AudioToolbox.framework in Frameworks */,
+				77BA523C129C375700CE89DD /* UIKit.framework in Frameworks */,
+				77BA523E129C376000CE89DD /* Foundation.framework in Frameworks */,
+				772C0F3312DA126F009C0126 /* MediaPlayer.framework in Frameworks */,
+				7759955312FDE20A00603187 /* Accelerate.framework in Frameworks */,
+				39D745D714D5004F002A4E59 /* CoreMIDI.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		19C28FACFE9D520D11CA2CBB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				7713C6A90F422BE400B0055E /* iSCApp.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
+			isa = PBXGroup;
+			children = (
+				5D9E85121A86167E0057C9A8 /* Default-568h@2x.png */,
+				5D9E85031A8614560057C9A8 /* Codes */,
+				29B97317FDCFA39411CA2CEA /* Resources */,
+				77597AF11123325400D2A968 /* Frameworks */,
+				19C28FACFE9D520D11CA2CBB /* Products */,
+				5D051F621A85E7B300A042FF /* SCClassLibrary */,
+			);
+			name = CustomTemplate;
+			sourceTree = "<group>";
+		};
+		29B97317FDCFA39411CA2CEA /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				5D9E85021A8613800057C9A8 /* iSCApp.plist */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		5D9E85031A8614560057C9A8 /* Codes */ = {
+			isa = PBXGroup;
+			children = (
+				5D9E85041A8614560057C9A8 /* iSCAppDelegate.h */,
+				5D9E85051A8614560057C9A8 /* iSCAppDelegate.m */,
+				5D9E85061A8614560057C9A8 /* iSCmain.m */,
+				5D9E85181A8618670057C9A8 /* LoggingViewController.h */,
+				5D9E85191A8618670057C9A8 /* LoggingViewController.m */,
+				5D9E85071A8614560057C9A8 /* LiveViewController.h */,
+				5D9E85081A8614560057C9A8 /* LiveViewController.mm */,
+				5D9E850B1A8614560057C9A8 /* TouchView.h */,
+				5D9E850C1A8614560057C9A8 /* TouchView.m */,
+			);
+			path = Codes;
+			sourceTree = "<group>";
+		};
+		77597AF11123325400D2A968 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				5D560F49199E879E007CDE26 /* AVFoundation.framework */,
+				39D745D614D5004F002A4E59 /* CoreMIDI.framework */,
+				7759955212FDE20A00603187 /* Accelerate.framework */,
+				77BA5222129C371F00CE89DD /* CFNetwork.framework */,
+				77BA5233129C373400CE89DD /* CoreFoundation.framework */,
+				77BA5235129C373B00CE89DD /* CoreGraphics.framework */,
+				77BA5237129C374100CE89DD /* AudioToolbox.framework */,
+				77BA5239129C374C00CE89DD /* MediaPlayer.framework */,
+				77BA523B129C375700CE89DD /* UIKit.framework */,
+				77BA523D129C376000CE89DD /* Foundation.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		7713C5EB0F422BE400B0055E /* iSCApp */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7713C6A60F422BE400B0055E /* Build configuration list for PBXNativeTarget "iSCApp" */;
+			buildPhases = (
+				7713C5EC0F422BE400B0055E /* Resources */,
+				7713C5EF0F422BE400B0055E /* Sources */,
+				7713C6990F422BE400B0055E /* Frameworks */,
+				7713C6A00F422BE400B0055E /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = iSCApp;
+			productName = isclang;
+			productReference = 7713C6A90F422BE400B0055E /* iSCApp.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		29B97313FDCFA39411CA2CEA /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0510;
+			};
+			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "iSCApp" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 1;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 29B97314FDCFA39411CA2CEA /* CustomTemplate */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				7713C5EB0F422BE400B0055E /* iSCApp */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		7713C5EC0F422BE400B0055E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5D051F631A85E7B300A042FF /* SCClassLibrary in Resources */,
+				5D9E85131A86167E0057C9A8 /* Default-568h@2x.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		7713C5EF0F422BE400B0055E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5D9E850E1A8614560057C9A8 /* iSCmain.m in Sources */,
+				5D9E851A1A8618670057C9A8 /* LoggingViewController.m in Sources */,
+				5D9E85111A8614560057C9A8 /* TouchView.m in Sources */,
+				5D9E850F1A8614560057C9A8 /* LiveViewController.mm in Sources */,
+				5D9E850D1A8614560057C9A8 /* iSCAppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		7713C6A70F422BE400B0055E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_PREFIX_HEADER = "";
+				GCC_PREPROCESSOR_DEFINITIONS = SC_IPHONE;
+				GCC_THUMB_SUPPORT = NO;
+				INFOPLIST_FILE = Resources/iSCApp.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/../iSCKit/lib",
+				);
+				OTHER_LDFLAGS = (
+					"-lsndfile",
+					"-lscsynth",
+					"-liSCKit",
+				);
+				PRODUCT_NAME = iSCApp;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				SKIP_INSTALL = NO;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		7713C6A80F422BE400B0055E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				GCC_AUTO_VECTORIZATION = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_OPTIMIZATION_LEVEL = 3;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_PREFIX_HEADER = "";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					SC_IPHONE,
+					NDEBUG,
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
+				GCC_THUMB_SUPPORT = NO;
+				GCC_UNROLL_LOOPS = YES;
+				INFOPLIST_FILE = Resources/iSCApp.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/../iSCKit/lib",
+				);
+				OTHER_LDFLAGS = (
+					"-lsndfile",
+					"-lscsynth",
+					"-liSCKit",
+				);
+				PRODUCT_NAME = iSCApp;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				SEPARATE_STRIP = NO;
+				SKIP_INSTALL = NO;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+		7795B82310D6D01E0053700A /* Cydia */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					../../external_libraries/libsndfile,
+					../../external_libraries/threadpool,
+					../../external_libraries/boost,
+					"../../external_libraries/boost-lockfree",
+					"../../external_libraries/yaml-cpp-0.3.0/include",
+					../../editors/scapp/iphone,
+				);
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				PREBINDING = NO;
+				SDKROOT = iphoneos;
+				SYMROOT = "$(PROJECT_DIR)/build";
+			};
+			name = Cydia;
+		};
+		7795B82410D6D01E0053700A /* Cydia */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				GCC_AUTO_VECTORIZATION = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_OPTIMIZATION_LEVEL = 3;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_PREFIX_HEADER = "";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					SC_IPHONE,
+					NDEBUG,
+					SC_FFT_GREEN,
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
+				GCC_THUMB_SUPPORT = NO;
+				GCC_UNROLL_LOOPS = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/../iSCKit/lib",
+				);
+				OTHER_LDFLAGS = (
+					"-lsndfile",
+					"-lscsynth",
+					"-liSCKit",
+				);
+				PRODUCT_NAME = iSCApp;
+				SEPARATE_STRIP = NO;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Cydia;
+		};
+		C01FCF4F08A954540054247B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					../../external_libraries/libsndfile,
+					../../external_libraries/threadpool,
+					../../external_libraries/boost,
+					"../../external_libraries/boost-lockfree",
+					"../../external_libraries/yaml-cpp-0.3.0/include",
+					../../editors/scapp/iphone,
+				);
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				ONLY_ACTIVE_ARCH = YES;
+				PREBINDING = NO;
+				SDKROOT = iphoneos;
+				SYMROOT = "$(PROJECT_DIR)/build";
+			};
+			name = Debug;
+		};
+		C01FCF5008A954540054247B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					../../external_libraries/libsndfile,
+					../../external_libraries/threadpool,
+					../../external_libraries/boost,
+					"../../external_libraries/boost-lockfree",
+					"../../external_libraries/yaml-cpp-0.3.0/include",
+					../../editors/scapp/iphone,
+				);
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				PREBINDING = NO;
+				SDKROOT = iphoneos;
+				SYMROOT = "$(PROJECT_DIR)/build";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		7713C6A60F422BE400B0055E /* Build configuration list for PBXNativeTarget "iSCApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7713C6A70F422BE400B0055E /* Debug */,
+				7713C6A80F422BE400B0055E /* Release */,
+				7795B82410D6D01E0053700A /* Cydia */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C01FCF4E08A954540054247B /* Build configuration list for PBXProject "iSCApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C01FCF4F08A954540054247B /* Debug */,
+				C01FCF5008A954540054247B /* Release */,
+				7795B82310D6D01E0053700A /* Cydia */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 29B97313FDCFA39411CA2CEA /* Project object */;
+}
