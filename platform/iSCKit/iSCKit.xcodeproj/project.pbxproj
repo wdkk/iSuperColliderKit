@@ -146,10 +146,10 @@
 		5D9E84FB1A860FDA0057C9A8 /* iSCGraphView.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7709037F0F509FAA005C05DC /* iSCGraphView.mm */; };
 		5D9E84FC1A860FDA0057C9A8 /* DrawBackground.M in Sources */ = {isa = PBXBuildFile; fileRef = 7751A9360EB36D500051CF38 /* DrawBackground.M */; };
 		5D9E85001A8610360057C9A8 /* libiSCKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D9E84FF1A8610360057C9A8 /* libiSCKit.a */; };
-		5DFDC27919F21CB3009546FC /* iSCmain.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DFDC27819F21CB3009546FC /* iSCmain.m */; };
-		5DFDC28719F25637009546FC /* LogViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DFDC28619F25637009546FC /* LogViewController.m */; };
-		770903930F509FAA005C05DC /* iSCAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 770903870F509FAA005C05DC /* iSCAppDelegate.m */; };
-		770903950F509FAA005C05DC /* LiveCodingViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7709038B0F509FAA005C05DC /* LiveCodingViewController.mm */; };
+		5DA1918A1A8638450088702C /* iSCmain.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DA191831A8638450088702C /* iSCmain.m */; };
+		5DA1918B1A8638450088702C /* iSCTestAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DA191851A8638450088702C /* iSCTestAppDelegate.m */; };
+		5DA1918C1A8638450088702C /* LiveCodingViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5DA191871A8638450088702C /* LiveCodingViewController.mm */; };
+		5DA1918D1A8638450088702C /* LogViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DA191891A8638450088702C /* LogViewController.m */; };
 		772C0F3312DA126F009C0126 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77BA5239129C374C00CE89DD /* MediaPlayer.framework */; };
 		7759955312FDE20A00603187 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7759955212FDE20A00603187 /* Accelerate.framework */; };
 		778F12CA0F50A94600CB6629 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 778F12C90F50A94600CB6629 /* icon.png */; };
@@ -332,6 +332,13 @@
 		5D990FDE199A66CA00974FE2 /* lockpool.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = lockpool.cpp; sourceTree = "<group>"; };
 		5D9E845E1A8605BE0057C9A8 /* libiSCKit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libiSCKit.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		5D9E84FF1A8610360057C9A8 /* libiSCKit.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libiSCKit.a; path = lib/libiSCKit.a; sourceTree = "<group>"; };
+		5DA191831A8638450088702C /* iSCmain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iSCmain.m; sourceTree = "<group>"; };
+		5DA191841A8638450088702C /* iSCTestAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iSCTestAppDelegate.h; sourceTree = "<group>"; };
+		5DA191851A8638450088702C /* iSCTestAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iSCTestAppDelegate.m; sourceTree = "<group>"; };
+		5DA191861A8638450088702C /* LiveCodingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LiveCodingViewController.h; sourceTree = "<group>"; };
+		5DA191871A8638450088702C /* LiveCodingViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = LiveCodingViewController.mm; sourceTree = "<group>"; };
+		5DA191881A8638450088702C /* LogViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogViewController.h; sourceTree = "<group>"; };
+		5DA191891A8638450088702C /* LogViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogViewController.m; sourceTree = "<group>"; };
 		5DB12146199A4DB1000D2100 /* codecvt_error_category.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = codecvt_error_category.cpp; path = src/codecvt_error_category.cpp; sourceTree = "<group>"; };
 		5DB12147199A4DB1000D2100 /* operations.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = operations.cpp; path = src/operations.cpp; sourceTree = "<group>"; };
 		5DB12148199A4DB1000D2100 /* path_traits.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = path_traits.cpp; path = src/path_traits.cpp; sourceTree = "<group>"; };
@@ -341,22 +348,15 @@
 		5DB1214C199A4DB1000D2100 /* utf8_codecvt_facet.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = utf8_codecvt_facet.cpp; path = src/utf8_codecvt_facet.cpp; sourceTree = "<group>"; };
 		5DB1214D199A4DB1000D2100 /* windows_file_codecvt.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = windows_file_codecvt.cpp; path = src/windows_file_codecvt.cpp; sourceTree = "<group>"; };
 		5DB1214E199A4DB1000D2100 /* windows_file_codecvt.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = windows_file_codecvt.hpp; path = src/windows_file_codecvt.hpp; sourceTree = "<group>"; };
-		5DFDC27819F21CB3009546FC /* iSCmain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iSCmain.m; sourceTree = "<group>"; };
 		5DFDC27A19F21CBC009546FC /* iSCController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iSCController.h; sourceTree = "<group>"; };
 		5DFDC27B19F21CBC009546FC /* iSCController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = iSCController.mm; sourceTree = "<group>"; };
 		5DFDC28319F2424E009546FC /* iSCGraphView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iSCGraphView.h; sourceTree = "<group>"; };
 		5DFDC28419F2424E009546FC /* iSCView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iSCView.h; sourceTree = "<group>"; };
-		5DFDC28519F25637009546FC /* LogViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogViewController.h; sourceTree = "<group>"; };
-		5DFDC28619F25637009546FC /* LogViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogViewController.m; sourceTree = "<group>"; };
 		7709037E0F509FAA005C05DC /* iSCGUIPrimitives.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = iSCGUIPrimitives.mm; sourceTree = "<group>"; };
 		7709037F0F509FAA005C05DC /* iSCGraphView.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = iSCGraphView.mm; sourceTree = "<group>"; };
 		770903810F509FAA005C05DC /* iSCWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iSCWindow.h; sourceTree = "<group>"; };
 		770903820F509FAA005C05DC /* iSCWindow.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = iSCWindow.mm; sourceTree = "<group>"; };
 		770903840F509FAA005C05DC /* iSCView.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = iSCView.mm; sourceTree = "<group>"; };
-		770903860F509FAA005C05DC /* iSCAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iSCAppDelegate.h; sourceTree = "<group>"; };
-		770903870F509FAA005C05DC /* iSCAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iSCAppDelegate.m; sourceTree = "<group>"; };
-		7709038A0F509FAA005C05DC /* LiveCodingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LiveCodingViewController.h; sourceTree = "<group>"; };
-		7709038B0F509FAA005C05DC /* LiveCodingViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = LiveCodingViewController.mm; sourceTree = "<group>"; };
 		7713C6A90F422BE400B0055E /* iSCApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iSCApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		772C0E2E12DA0C69009C0126 /* clz.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = clz.h; sourceTree = "<group>"; };
 		772C0E2F12DA0C69009C0126 /* dfftlib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dfftlib.h; sourceTree = "<group>"; };
@@ -645,6 +645,7 @@
 				775E791C1475DEAF008CD702 /* externals */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
 				5D8EA41B199A0DC00026877D /* SCDoc */,
+				5DA191821A8638450088702C /* iSCTestApp */,
 				77597AF11123325400D2A968 /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
 				5D051F621A85E7B300A042FF /* SCClassLibrary */,
@@ -846,6 +847,20 @@
 			path = src;
 			sourceTree = "<group>";
 		};
+		5DA191821A8638450088702C /* iSCTestApp */ = {
+			isa = PBXGroup;
+			children = (
+				5DA191831A8638450088702C /* iSCmain.m */,
+				5DA191841A8638450088702C /* iSCTestAppDelegate.h */,
+				5DA191851A8638450088702C /* iSCTestAppDelegate.m */,
+				5DA191861A8638450088702C /* LiveCodingViewController.h */,
+				5DA191871A8638450088702C /* LiveCodingViewController.mm */,
+				5DA191881A8638450088702C /* LogViewController.h */,
+				5DA191891A8638450088702C /* LogViewController.m */,
+			);
+			path = iSCTestApp;
+			sourceTree = "<group>";
+		};
 		5DD2C1931A7F7EF800FF9517 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -857,13 +872,6 @@
 		770903780F509F56005C05DC /* iPhone */ = {
 			isa = PBXGroup;
 			children = (
-				5DFDC27819F21CB3009546FC /* iSCmain.m */,
-				770903860F509FAA005C05DC /* iSCAppDelegate.h */,
-				770903870F509FAA005C05DC /* iSCAppDelegate.m */,
-				5DFDC28519F25637009546FC /* LogViewController.h */,
-				5DFDC28619F25637009546FC /* LogViewController.m */,
-				7709038A0F509FAA005C05DC /* LiveCodingViewController.h */,
-				7709038B0F509FAA005C05DC /* LiveCodingViewController.mm */,
 				5DFDC27A19F21CBC009546FC /* iSCController.h */,
 				5DFDC27B19F21CBC009546FC /* iSCController.mm */,
 				7709037E0F509FAA005C05DC /* iSCGUIPrimitives.mm */,
@@ -1579,10 +1587,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5DFDC27919F21CB3009546FC /* iSCmain.m in Sources */,
-				770903930F509FAA005C05DC /* iSCAppDelegate.m in Sources */,
-				770903950F509FAA005C05DC /* LiveCodingViewController.mm in Sources */,
-				5DFDC28719F25637009546FC /* LogViewController.m in Sources */,
+				5DA1918B1A8638450088702C /* iSCTestAppDelegate.m in Sources */,
+				5DA1918A1A8638450088702C /* iSCmain.m in Sources */,
+				5DA1918C1A8638450088702C /* LiveCodingViewController.mm in Sources */,
+				5DA1918D1A8638450088702C /* LogViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

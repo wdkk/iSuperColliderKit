@@ -403,9 +403,6 @@ void setCmdLine(const char *buf)
 
 	s_stop = getsym("stop");
 	s_interpretPrintCmdLine = getsym("interpretPrintCmdLine");
-    
-    // これでサーバ起動する
-    [self interpret:@"s.boot"];
 }
 
 - (void) interpret:(NSString *)string

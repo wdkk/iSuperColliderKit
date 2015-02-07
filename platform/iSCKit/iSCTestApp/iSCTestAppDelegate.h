@@ -1,10 +1,11 @@
 //
-//  isclangAppDelegate.h
-//  isclang
+//  iSCTestAppDelegate.h
+//  iSCTestApp
 //
-//  Created by Axel Balley on 25/10/08.
-//  Copyright __MyCompanyName__ 2008. All rights reserved.
+//  Created by Kengo Watanabe on 07/02/2015.
+//  Copyright Watanabe-DENKI Inc. All rights reserved.
 //
+
 
 #import <UIKit/UIKit.h>
 #import "LogViewController.h"
@@ -12,7 +13,7 @@
 #import "iSCController.h"
 #import "iSCWindow.h"
 
-@interface iSCAppDelegate : NSObject <UIApplicationDelegate>
+@interface iSCTestAppDelegate : NSObject <UIApplicationDelegate>
 
 @property (nonatomic, strong) UIWindow *window;
 @property (nonatomic, strong) UITabBarController *tab_bar_controller;
@@ -20,7 +21,7 @@
 @property (nonatomic, strong) LogViewController *log_vc;
 @property (nonatomic, strong) LiveCodingViewController *live_vc;
 
-+(iSCAppDelegate*) sharedInstance;
++(iSCTestAppDelegate*) sharedInstance;
 
 @end
 

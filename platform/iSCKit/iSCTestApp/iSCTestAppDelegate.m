@@ -1,19 +1,19 @@
 //
-//  isclangAppDelegate.m
-//  isclang
+//  iSCTestAppDelegate.m
+//  iSCTestApp
 //
-//  Created by Axel Balley on 25/10/08.
-//  Copyright __MyCompanyName__ 2008. All rights reserved.
+//  Created by Kengo Watanabe on 07/02/2015.
+//  Copyright Watanabe-DENKI Inc. All rights reserved.
 //
 
-#import "iSCAppDelegate.h"
+#import "iSCTestAppDelegate.h"
 #import "iSCWindow.h"
 
-@implementation iSCAppDelegate
+@implementation iSCTestAppDelegate
 
 @synthesize window;
 
-+(iSCAppDelegate*) sharedInstance
++(iSCTestAppDelegate*) sharedInstance
 {
     return [UIApplication sharedApplication].delegate;
 }
@@ -38,12 +38,16 @@
     [self.tab_bar_controller setViewControllers:@[self.log_vc, self.live_vc] animated:YES];
     [self.tab_bar_controller setCustomizableViewControllers:nil];
     
+    // SuperColliderのコントローラを起動
     iSCController *scc = [iSCController sharedInstance];
     [scc setup];    
     
     // Override point for customization after application launch
     self.window.rootViewController = self.tab_bar_controller;
     [self.window makeKeyAndVisible];
+    
+    // これでサーバ起動する
+    [scc interpret:@"s.boot"];
     
     return YES;
 }
