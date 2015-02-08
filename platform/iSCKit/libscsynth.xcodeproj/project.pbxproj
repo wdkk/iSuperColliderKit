@@ -194,7 +194,6 @@
 		772C0C0E12DA0A03009C0126 /* Rendezvous.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Rendezvous.h; sourceTree = "<group>"; };
 		772C0C0F12DA0A03009C0126 /* SC_AU.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SC_AU.h; sourceTree = "<group>"; };
 		772C0C1012DA0A03009C0126 /* SC_Complex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SC_Complex.h; sourceTree = "<group>"; };
-		772C0C1112DA0A03009C0126 /* SC_ComPort.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SC_ComPort.h; sourceTree = "<group>"; };
 		772C0C1212DA0A03009C0126 /* SC_CoreAudio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SC_CoreAudio.h; sourceTree = "<group>"; };
 		772C0C1312DA0A03009C0126 /* SC_Errors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SC_Errors.h; sourceTree = "<group>"; };
 		772C0C1412DA0A03009C0126 /* SC_GraphDef.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SC_GraphDef.h; sourceTree = "<group>"; };
@@ -210,7 +209,6 @@
 		772C0C1E12DA0A03009C0126 /* SC_UnitDef.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SC_UnitDef.h; sourceTree = "<group>"; };
 		772C0C1F12DA0A03009C0126 /* SC_UnitSpec.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SC_UnitSpec.h; sourceTree = "<group>"; };
 		772C0C2012DA0A03009C0126 /* SC_WireSpec.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SC_WireSpec.h; sourceTree = "<group>"; };
-		77476E9312FDE5FB007449B3 /* scUBlibsndfile.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = scUBlibsndfile.a; path = ../mac/lib/scUBlibsndfile.a; sourceTree = SOURCE_ROOT; };
 		77476E9612FDE60E007449B3 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		7751B8350F43603A0044CAC0 /* BeatTrack.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BeatTrack.cpp; sourceTree = "<group>"; };
 		7751B8360F43603A0044CAC0 /* BeatTrack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeatTrack.h; sourceTree = "<group>"; };
@@ -232,7 +230,6 @@
 		7751B8480F43603A0044CAC0 /* GrainUGens.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GrainUGens.cpp; sourceTree = "<group>"; };
 		7751B8490F43603A0044CAC0 /* IOUGens.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = IOUGens.cpp; sourceTree = "<group>"; };
 		7751B84A0F43603A0044CAC0 /* iPhoneUGens.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = iPhoneUGens.mm; sourceTree = "<group>"; };
-		7751B84B0F43603A0044CAC0 /* KeyboardUGens.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = KeyboardUGens.cpp; sourceTree = "<group>"; };
 		7751B84C0F43603A0044CAC0 /* KeyTrack.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = KeyTrack.cpp; sourceTree = "<group>"; };
 		7751B84D0F43603A0044CAC0 /* LFUGens.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LFUGens.cpp; sourceTree = "<group>"; };
 		7751B84E0F43603A0044CAC0 /* Loudness.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Loudness.cpp; sourceTree = "<group>"; };
@@ -240,7 +237,6 @@
 		7751B8500F43603A0044CAC0 /* ML.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ML.cpp; sourceTree = "<group>"; };
 		7751B8510F43603A0044CAC0 /* ML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ML.h; sourceTree = "<group>"; };
 		7751B8520F43603A0044CAC0 /* ML_SpecStats.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ML_SpecStats.cpp; sourceTree = "<group>"; };
-		7751B8530F43603A0044CAC0 /* MouseUGens.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MouseUGens.cpp; sourceTree = "<group>"; };
 		7751B8540F43603A0044CAC0 /* MulAddUGens.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MulAddUGens.cpp; sourceTree = "<group>"; };
 		7751B8550F43603A0044CAC0 /* NoiseUGens.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NoiseUGens.cpp; sourceTree = "<group>"; };
 		7751B8560F43603A0044CAC0 /* Onsets.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Onsets.cpp; sourceTree = "<group>"; };
@@ -285,7 +281,6 @@
 		7752331012F5926C005AE5FE /* vec_sse2.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = vec_sse2.hpp; sourceTree = "<group>"; };
 		7752331112F5926C005AE5FE /* wrap_arguments.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = wrap_arguments.hpp; sourceTree = "<group>"; };
 		7759953812FDE0C900603187 /* SC_fftlib.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SC_fftlib.cpp; sourceTree = "<group>"; };
-		775995B312FDE5B000603187 /* libsndfile_iphone.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libsndfile_iphone.a; path = lib/libsndfile_iphone.a; sourceTree = "<group>"; };
 		7767CEB7132D29C90045D5E9 /* SC_Alloca.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SC_Alloca.h; sourceTree = "<group>"; };
 		7772497F0EABE96E00732A1C /* fftlib.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = fftlib.c; sourceTree = "<group>"; };
 		777249810EABE96E00732A1C /* SC_AllocPool.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SC_AllocPool.cpp; sourceTree = "<group>"; };
@@ -394,8 +389,6 @@
 				288765FC0DF74451002DB57D /* CoreGraphics.framework */,
 				77724C6A0EABF92400732A1C /* AudioToolbox.framework */,
 				77724C6C0EABF92400732A1C /* CoreAudio.framework */,
-				77476E9312FDE5FB007449B3 /* scUBlibsndfile.a */,
-				775995B312FDE5B000603187 /* libsndfile_iphone.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -579,7 +572,6 @@
 				7751B8480F43603A0044CAC0 /* GrainUGens.cpp */,
 				7751B8490F43603A0044CAC0 /* IOUGens.cpp */,
 				7751B84A0F43603A0044CAC0 /* iPhoneUGens.mm */,
-				7751B84B0F43603A0044CAC0 /* KeyboardUGens.cpp */,
 				7751B84C0F43603A0044CAC0 /* KeyTrack.cpp */,
 				7751B84D0F43603A0044CAC0 /* LFUGens.cpp */,
 				7751B84E0F43603A0044CAC0 /* Loudness.cpp */,
@@ -587,7 +579,6 @@
 				7751B8500F43603A0044CAC0 /* ML.cpp */,
 				7751B8510F43603A0044CAC0 /* ML.h */,
 				7751B8520F43603A0044CAC0 /* ML_SpecStats.cpp */,
-				7751B8530F43603A0044CAC0 /* MouseUGens.cpp */,
 				7751B8540F43603A0044CAC0 /* MulAddUGens.cpp */,
 				7751B8550F43603A0044CAC0 /* NoiseUGens.cpp */,
 				7751B8560F43603A0044CAC0 /* Onsets.cpp */,
@@ -806,7 +797,6 @@
 				772C0C0E12DA0A03009C0126 /* Rendezvous.h */,
 				772C0C0F12DA0A03009C0126 /* SC_AU.h */,
 				772C0C1012DA0A03009C0126 /* SC_Complex.h */,
-				772C0C1112DA0A03009C0126 /* SC_ComPort.h */,
 				772C0C1212DA0A03009C0126 /* SC_CoreAudio.h */,
 				772C0C1312DA0A03009C0126 /* SC_Errors.h */,
 				772C0C1412DA0A03009C0126 /* SC_GraphDef.h */,

@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "7713C5EB0F422BE400B0055E"
-               BuildableName = "iSCApp.app"
+               BuildableName = "iSCTestApp.app"
                BlueprintName = "iSCTestApp"
                ReferencedContainer = "container:iSCKit.xcodeproj">
             </BuildableReference>
@@ -33,7 +33,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "7713C5EB0F422BE400B0055E"
-            BuildableName = "iSCApp.app"
+            BuildableName = "iSCTestApp.app"
             BlueprintName = "iSCTestApp"
             ReferencedContainer = "container:iSCKit.xcodeproj">
          </BuildableReference>
@@ -52,7 +52,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "7713C5EB0F422BE400B0055E"
-            BuildableName = "iSCApp.app"
+            BuildableName = "iSCTestApp.app"
             BlueprintName = "iSCTestApp"
             ReferencedContainer = "container:iSCKit.xcodeproj">
          </BuildableReference>
@@ -70,7 +70,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "7713C5EB0F422BE400B0055E"
-            BuildableName = "iSCApp.app"
+            BuildableName = "iSCTestApp.app"
             BlueprintName = "iSCTestApp"
             ReferencedContainer = "container:iSCKit.xcodeproj">
          </BuildableReference>
