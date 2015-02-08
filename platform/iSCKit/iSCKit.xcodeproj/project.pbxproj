@@ -357,7 +357,7 @@
 		770903810F509FAA005C05DC /* iSCWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iSCWindow.h; sourceTree = "<group>"; };
 		770903820F509FAA005C05DC /* iSCWindow.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = iSCWindow.mm; sourceTree = "<group>"; };
 		770903840F509FAA005C05DC /* iSCView.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = iSCView.mm; sourceTree = "<group>"; };
-		7713C6A90F422BE400B0055E /* iSCApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iSCApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		7713C6A90F422BE400B0055E /* iSCTestApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iSCTestApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		772C0E2E12DA0C69009C0126 /* clz.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = clz.h; sourceTree = "<group>"; };
 		772C0E2F12DA0C69009C0126 /* dfftlib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dfftlib.h; sourceTree = "<group>"; };
 		772C0E3012DA0C69009C0126 /* fftlib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fftlib.h; sourceTree = "<group>"; };
@@ -627,7 +627,7 @@
 		19C28FACFE9D520D11CA2CBB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				7713C6A90F422BE400B0055E /* iSCApp.app */,
+				7713C6A90F422BE400B0055E /* iSCTestApp.app */,
 				5D9E845E1A8605BE0057C9A8 /* libiSCKit.a */,
 			);
 			name = Products;
@@ -1376,9 +1376,9 @@
 			productReference = 5D9E845E1A8605BE0057C9A8 /* libiSCKit.a */;
 			productType = "com.apple.product-type.library.static";
 		};
-		7713C5EB0F422BE400B0055E /* iSCApp */ = {
+		7713C5EB0F422BE400B0055E /* iSCTestApp */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 7713C6A60F422BE400B0055E /* Build configuration list for PBXNativeTarget "iSCApp" */;
+			buildConfigurationList = 7713C6A60F422BE400B0055E /* Build configuration list for PBXNativeTarget "iSCTestApp" */;
 			buildPhases = (
 				7713C5EC0F422BE400B0055E /* Resources */,
 				7713C5EF0F422BE400B0055E /* Sources */,
@@ -1391,9 +1391,9 @@
 				5D9E84FE1A8610280057C9A8 /* PBXTargetDependency */,
 				5D1090A91A7F812100C653FF /* PBXTargetDependency */,
 			);
-			name = iSCApp;
+			name = iSCTestApp;
 			productName = isclang;
-			productReference = 7713C6A90F422BE400B0055E /* iSCApp.app */;
+			productReference = 7713C6A90F422BE400B0055E /* iSCTestApp.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -1427,7 +1427,7 @@
 			projectRoot = "";
 			targets = (
 				5D9E845D1A8605BE0057C9A8 /* iSCKit */,
-				7713C5EB0F422BE400B0055E /* iSCApp */,
+				7713C5EB0F422BE400B0055E /* iSCTestApp */,
 			);
 		};
 /* End PBXProject section */
@@ -1763,7 +1763,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/lib",
 				);
-				PRODUCT_NAME = iSCApp;
+				PRODUCT_NAME = iSCTestApp;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SKIP_INSTALL = NO;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -1792,7 +1792,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/lib",
 				);
-				PRODUCT_NAME = iSCApp;
+				PRODUCT_NAME = iSCTestApp;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SEPARATE_STRIP = NO;
 				SKIP_INSTALL = NO;
@@ -1851,7 +1851,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/lib",
 				);
-				PRODUCT_NAME = iSCApp;
+				PRODUCT_NAME = iSCTestApp;
 				SEPARATE_STRIP = NO;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -1928,7 +1928,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		7713C6A60F422BE400B0055E /* Build configuration list for PBXNativeTarget "iSCApp" */ = {
+		7713C6A60F422BE400B0055E /* Build configuration list for PBXNativeTarget "iSCTestApp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				7713C6A70F422BE400B0055E /* Debug */,
