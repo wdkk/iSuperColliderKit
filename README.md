@@ -7,22 +7,22 @@ Broken English.
 "iSCKit" is SuperCollider on iOS7 later, it forked "supercollider iOS" project.
 
 ## Install
-1. Download or Pull the project
+1. Download or Clone the project.
 
 
 ### iSCKit (static libraries)
 
-1. Launch iSCKit.xcodeproj using XCode
+1. Launch *iSCKit.xcodeproj* using XCode
 Location : [project root] > [platform] > [iSCKit] > iSCKit.xcodeproj
 
 
 2. Select 'iSCKit' scheme
-XCode launching, please select target 'iSCKit' scheme.
+XCode launching, please select target *'iSCKit' scheme*.
 
 
 3. Run
-It generate 'libsndfile', 'libscsynth' and 'libiSCKit' on [lib] direcotry.
-Please make sure that generate 3 static library files above.
+It generate *'libsndfile'*, *'libscsynth'* and *'libiSCKit'* on [lib] direcotry.  
+Please make sure that generate 3 static library files above.  
 Location : [project root] > [platform] > [iSCKit] > [lib]
 
 
@@ -31,22 +31,21 @@ This project is sample app using iSCKit. It is done getting ready to use iSCKit.
 
 
 1. Launch iSCApp.xcodeproj using XCode
-It need to already generate 'libsndfile', 'libscsynth' and 'libiSCKit'.
+It need to already generate 'libsndfile', 'libscsynth' and 'libiSCKit'.  
 Location :  [project root] > [platform] > [iSCApp] > iSCApp.xcodeproj
 
 
 2. Run
-iSCKit must use iOS devices (cannot use simulator).
+**iSCKit must use iOS devices (cannot use simulator).**  
 If this process succeed, iSCKit is available. 
 
 
 3. Check Supercollider Log
-Please make sure suppercollider log message on this app,
-then select 'live' tab, iSCApp sound sine wave ( {SinOsc.ar()}.play ).
+Please make sure suppercollider log message on this app, then select 'live' tab, iSCApp sound sine wave ( {SinOsc.ar()}.play ).
 
 
 
-##  Setting Detail
+##  Setting Details
 
 1. Project Location
 Project directory must be located same position of iSCKit directory like to iSCApp directory.
@@ -59,8 +58,7 @@ ex. ../../editors/scapp/iphone
 
 
 3. 'Library Search Path' (Build Setting)
-Add [project root] > [platform] > [iSCKit] > [lib] path.
-
+Add [project root] > [platform] > [iSCKit] > [lib] path.  
 ex. $(PROJECT_DIR)/../iSCKit/lib
 
 
