@@ -1,6 +1,5 @@
 iSuperColliderKit (iSCKit)
 =================
-
 Broken English.
 
 ## OverView
@@ -13,7 +12,7 @@ Broken English.
 ### iSCKit (static libraries)
 
 1. Launch *iSCKit.xcodeproj* using XCode
-Location : [project root] > [platform] > [iSCKit] > iSCKit.xcodeproj
+Location : [project root] > [projects] > [iSCKit] > iSCKit.xcodeproj
 
 
 2. Select 'iSCKit' scheme
@@ -23,7 +22,7 @@ XCode launching, please select target *'iSCKit' scheme*.
 3. Run
 It generate *'libsndfile'*, *'libscsynth'* and *'libiSCKit'* on [lib] direcotry.  
 Please make sure that generate 3 static library files above.  
-Location : [project root] > [platform] > [iSCKit] > [lib]
+Location : [project root] > [lib]
 
 
 ### iSCApp (iOS app)
@@ -32,7 +31,7 @@ This project is sample app using iSCKit. It is done getting ready to use iSCKit.
 
 1. Launch iSCApp.xcodeproj using XCode
 It need to already generate 'libsndfile', 'libscsynth' and 'libiSCKit'.  
-Location :  [project root] > [platform] > [iSCApp] > iSCApp.xcodeproj
+Location :  [project root] > [projects] > [iSCApp] > iSCApp.xcodeproj
 
 
 2. Run
@@ -51,34 +50,33 @@ Please make sure suppercollider log message on this app, then select 'live' tab,
 Project directory must be located same position of iSCKit directory like to iSCApp directory.
 
 
-2. 'Header Search Path' (Build Setting)
-Add [project root] > [editors] > [scapp] > [iphone] path.
+2. 'Header Search Path' (Build Settings)
+Add [project root] > [iSCKit] path.
+ex. *$(PROJECT_DIR)/../../iSCKit*
 
-ex. ../../editors/scapp/iphone
 
-
-3. 'Library Search Path' (Build Setting)
-Add [project root] > [platform] > [iSCKit] > [lib] path.  
-ex. $(PROJECT_DIR)/../iSCKit/lib
+3. 'Library Search Path' (Build Settings)
+Add [project root] > [lib] path.  
+ex. *$(PROJECT_DIR)/../../lib*
 
 
 4. 'Objective-C Automatic Reference Counting' (Build Setting)
-Set 'YES'.
+Set *'YES'*.
 
 
 5. 'PreProcessor Macros' (Build Setting)
-Set 'SC_IPHONE' on 'Debug', and 'SC_IPHONE NDEBUG' on 'Release'.
+Set *'SC_IPHONE'* on 'Debug', and *'SC_IPHONE NDEBUG'* on 'Release'.
 
 
 6. 'Other Linker Flags' (Build Setting)
-Add '-lsndfile -lscsynth -liSCKit'.
+Add *'-lsndfile -lscsynth -liSCKit'*.
 
 
-7. Copy and add 'SCClassLibrary directory' in iSCApp directory.
-When you add this directory on xcode, please select 'Create folder reference'.
+7. Copy and add *'SCClassLibrary'* directory in iSCApp directory.
+When you add this directory on xcode, please select *'Create folder reference'*.
 
 
-8. Add Frameworks.
+8. Add Frameworks below.
 AVFoundation.framework  
 CoreMIDI.framework  
 Accelerate.framework  
