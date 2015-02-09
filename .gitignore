@@ -15,5 +15,10 @@ common/Packager/SuperCollider*.dmg
 platform/*/build
 platform/*/lib
 
+projects/*/build
+projects/*/lib
+
+lib/*
+
 *~
 *.orig
