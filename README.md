@@ -1,9 +1,8 @@
 iSuperColliderKit (iSCKit)
 =================
-Broken English.
-
 ## OverView
 "iSCKit" is SuperCollider on iOS7 later, it forked "supercollider iOS" project.
+
 
 ## Install
 1. Download or Clone the project.
