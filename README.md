@@ -3,7 +3,6 @@ iSuperColliderKit (iSCKit)
 ## OverView
 "iSCKit" is SuperCollider on iOS7 later, it forked "supercollider iOS" project.
 
-
 ## Install
 1. Download or Clone the project.
 
@@ -15,8 +14,8 @@ Location : [project root] > [projects] > [iSCKit] > iSCKit.xcodeproj
 
 
 2. Select 'iSCKit' scheme
-XCode launching, please select target *'iSCKit' scheme*.
-
+XCode launching, please select target *'iSCKit' scheme* and select *'iOS Device'* (not Simulators).
+(iSCKit can use on iOS devices only, cannot use on iOS Simulators).
 
 3. Run
 It generate *'libsndfile'*, *'libscsynth'* and *'libiSCKit'* on [lib] direcotry.  
@@ -34,7 +33,7 @@ Location :  [project root] > [projects] > [iSCApp] > iSCApp.xcodeproj
 
 
 2. Run
-**iSCKit must use iOS devices (cannot use simulator).**  
+**iSCKit must use iOS devices.**  
 If this process succeed, iSCKit is available. 
 
 
@@ -87,3 +86,4 @@ MediaPlayer.framework
 UIKit.framework  
 Foundation.framework  
 
+If you use Swift language, please add *libstdc++.dylib*.
