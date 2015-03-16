@@ -35,6 +35,7 @@ typedef UITextView iSCLogView;
 + (void) setup;
 + (void) interpretC:(const char*)sc_code_char;
 + (void) interpret:(NSString *)sc_code;
++ (void) interpretFile:(NSString*)path;
 + (iSCLogView *) sharedLogView;
 
 + (iSCController *)sharedInstance;

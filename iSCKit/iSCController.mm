@@ -268,6 +268,15 @@ void setCmdLine(const char *buf)
     [internal_sc_controller interpretSCMessage:sc_code];
 }
 
++ (void) interpretFile:(NSString*)path_arg
+{
+    NSError *error;
+    NSString *file_str = [NSString stringWithContentsOfFile:path_arg encoding:NSUTF8StringEncoding error:&error];
+    if(error != nil) { NSLog(@"%@", error.description); return; }
+    
+    [internal_sc_controller interpretSCMessage:file_str];
+}
+
 + (iSCLogView *)sharedLogView
 {
     return internal_log_view;
