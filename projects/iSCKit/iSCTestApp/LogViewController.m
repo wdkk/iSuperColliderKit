@@ -28,7 +28,7 @@
 
 - (void) viewDidLoad
 {
-    [self.view addSubview:[iSCController logView]];
+    [self.view addSubview:[iSC sharedLogView]];
 }
 
 

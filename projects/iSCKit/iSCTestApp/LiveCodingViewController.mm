@@ -34,9 +34,7 @@
 - (void) viewDidLoad
 {
     self.view.backgroundColor = [UIColor lightGrayColor];
-    
-    iSCController *scc = [iSCController sharedInstance];
-    [scc interpret:@"a = {SinOsc.ar()}.play"];
+    [iSC interpret:@"a = {SinOsc.ar()}.play"];
 }
 
 @end

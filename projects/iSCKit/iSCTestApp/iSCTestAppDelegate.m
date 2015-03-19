@@ -34,6 +34,9 @@
     // ウィンドウの作成
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
+    // Boot iSCKit Controller before using iSC log view.
+    [iSC setup];
+    
     self.log_vc = [[LogViewController alloc] initWithNibName:nil bundle:nil];
     self.log_vc.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Log"
                                                             image:[[UIImage imageNamed:@"tab_login"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]
@@ -49,16 +52,12 @@
     [self.tab_bar_controller setViewControllers:@[self.log_vc, self.live_vc] animated:YES];
     [self.tab_bar_controller setCustomizableViewControllers:nil];
     
-    // SuperColliderのコントローラを起動
-    iSCController *scc = [iSCController sharedInstance];
-    [scc setup];    
-    
     // Override point for customization after application launch
     self.window.rootViewController = self.tab_bar_controller;
     [self.window makeKeyAndVisible];
     
     // これでサーバ起動する
-    [scc interpret:@"s.boot"];
+    [iSC interpret:@"s.boot"];
     
     return YES;
 }

@@ -17,7 +17,7 @@
     // Generate Window and ViewControllers
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
-    // Boot iSCKit Controller
+    // Boot iSCKit Controller before using iSC log view.
     [iSC setup];
     
     self.log_vc = [[LoggingViewController alloc] initWithNibName:nil bundle:nil];

@@ -1762,10 +1762,6 @@
 				GCC_THUMB_SUPPORT = NO;
 				INFOPLIST_FILE = "iPhone Resources/SuperCollider.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/lib",
-				);
 				PRODUCT_NAME = iSCTestApp;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SKIP_INSTALL = NO;
@@ -1791,10 +1787,6 @@
 				GCC_UNROLL_LOOPS = YES;
 				INFOPLIST_FILE = "iPhone Resources/SuperCollider.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/lib",
-				);
 				PRODUCT_NAME = iSCTestApp;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SEPARATE_STRIP = NO;
@@ -1822,7 +1814,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					lib,
+					"$(PROJECT_DIR)/../../lib",
 				);
 				PREBINDING = NO;
 				SDKROOT = iphoneos;
@@ -1849,10 +1841,6 @@
 				GCC_UNROLL_LOOPS = YES;
 				INFOPLIST_FILE = "iPhone Resources/SuperCollider_Cydia.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/lib",
-				);
 				PRODUCT_NAME = iSCTestApp;
 				SEPARATE_STRIP = NO;
 				SKIP_INSTALL = YES;
@@ -1879,7 +1867,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					lib,
+					"$(PROJECT_DIR)/../../lib",
 				);
 				ONLY_ACTIVE_ARCH = YES;
 				PREBINDING = NO;
@@ -1907,7 +1895,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					lib,
+					"$(PROJECT_DIR)/../../lib",
 				);
 				PREBINDING = NO;
 				SDKROOT = iphoneos;
