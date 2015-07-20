@@ -20,7 +20,7 @@
 #import <UIKit/UIKit.h>
 #import "LogViewController.h"
 #import "LiveCodingViewController.h"
-#import "iSCController.h"
+#import "iSC.h"
 #import "iSCWindow.h"
 
 @interface iSCTestAppDelegate : NSObject <UIApplicationDelegate>

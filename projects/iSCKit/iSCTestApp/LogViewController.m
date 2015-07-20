@@ -18,7 +18,7 @@
  ************************************************************************/
 
 #import "LogViewController.h"
-#import "iSCController.h"
+#import "iSC.h"
 
 @interface LogViewController ()
 

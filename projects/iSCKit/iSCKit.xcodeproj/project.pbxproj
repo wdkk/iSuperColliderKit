@@ -145,7 +145,7 @@
 		5DA1918B1A8638450088702C /* iSCTestAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DA191851A8638450088702C /* iSCTestAppDelegate.m */; };
 		5DA1918C1A8638450088702C /* LiveCodingViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5DA191871A8638450088702C /* LiveCodingViewController.mm */; };
 		5DA1918D1A8638450088702C /* LogViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DA191891A8638450088702C /* LogViewController.m */; };
-		5DAE398A1A88A14A00C059F3 /* iSCController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5DAE39821A88A14A00C059F3 /* iSCController.mm */; };
+		5DAE398A1A88A14A00C059F3 /* iSC.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5DAE39821A88A14A00C059F3 /* iSC.mm */; };
 		5DAE398B1A88A14A00C059F3 /* iSCGraphView.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5DAE39841A88A14A00C059F3 /* iSCGraphView.mm */; };
 		5DAE398C1A88A14A00C059F3 /* iSCGUIPrimitives.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5DAE39851A88A14A00C059F3 /* iSCGUIPrimitives.mm */; };
 		5DAE398D1A88A14A00C059F3 /* iSCView.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5DAE39871A88A14A00C059F3 /* iSCView.mm */; };
@@ -339,8 +339,8 @@
 		5DA191871A8638450088702C /* LiveCodingViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = LiveCodingViewController.mm; sourceTree = "<group>"; };
 		5DA191881A8638450088702C /* LogViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogViewController.h; sourceTree = "<group>"; };
 		5DA191891A8638450088702C /* LogViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogViewController.m; sourceTree = "<group>"; };
-		5DAE39811A88A14A00C059F3 /* iSCController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iSCController.h; sourceTree = "<group>"; };
-		5DAE39821A88A14A00C059F3 /* iSCController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = iSCController.mm; sourceTree = "<group>"; };
+		5DAE39811A88A14A00C059F3 /* iSC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iSC.h; sourceTree = "<group>"; };
+		5DAE39821A88A14A00C059F3 /* iSC.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = iSC.mm; sourceTree = "<group>"; };
 		5DAE39831A88A14A00C059F3 /* iSCGraphView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iSCGraphView.h; sourceTree = "<group>"; };
 		5DAE39841A88A14A00C059F3 /* iSCGraphView.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = iSCGraphView.mm; sourceTree = "<group>"; };
 		5DAE39851A88A14A00C059F3 /* iSCGUIPrimitives.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = iSCGUIPrimitives.mm; sourceTree = "<group>"; };
@@ -867,8 +867,8 @@
 			isa = PBXGroup;
 			children = (
 				5DAE39911A88AC4300C059F3 /* iSCKit.h */,
-				5DAE39811A88A14A00C059F3 /* iSCController.h */,
-				5DAE39821A88A14A00C059F3 /* iSCController.mm */,
+				5DAE39811A88A14A00C059F3 /* iSC.h */,
+				5DAE39821A88A14A00C059F3 /* iSC.mm */,
 				5DAE39831A88A14A00C059F3 /* iSCGraphView.h */,
 				5DAE39841A88A14A00C059F3 /* iSCGraphView.mm */,
 				5DAE39851A88A14A00C059F3 /* iSCGUIPrimitives.mm */,
@@ -1560,7 +1560,7 @@
 				5D9E84E21A860ED80057C9A8 /* once.cpp in Sources */,
 				5D9E84E31A860ED80057C9A8 /* thread.cpp in Sources */,
 				5D9E84E61A860F2B0057C9A8 /* c_regex_traits.cpp in Sources */,
-				5DAE398A1A88A14A00C059F3 /* iSCController.mm in Sources */,
+				5DAE398A1A88A14A00C059F3 /* iSC.mm in Sources */,
 				5D9E84E71A860F2B0057C9A8 /* cpp_regex_traits.cpp in Sources */,
 				5D9E84E81A860F2B0057C9A8 /* cregex.cpp in Sources */,
 				5D9E84E91A860F2B0057C9A8 /* fileiter.cpp in Sources */,

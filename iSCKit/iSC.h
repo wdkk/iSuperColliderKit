@@ -24,7 +24,7 @@
 typedef UITextView iSCLogView;
 
 
-@interface iSCController : NSObject
+@interface iSC : NSObject
 {
 	NSTimer         *appClockTimer;
 	NSTimer         *deferredTaskTimer;
@@ -38,7 +38,7 @@ typedef UITextView iSCLogView;
 + (void) interpretFile:(NSString*)path;
 + (iSCLogView *) sharedLogView;
 
-+ (iSCController *)sharedInstance;
++ (iSC *)sharedInstance;
 
 // instance methods
 - (void) interpretSCMessage:(NSString *)string;
@@ -47,6 +47,3 @@ typedef UITextView iSCLogView;
 - (void) removeDeferredOperationsFor:(id)object;
 
 @end
-
-
-typedef iSCController iSC;

@@ -19,7 +19,7 @@
 */
 
 #import "iSCGraphView.h"
-#import "iSCController.h"
+#import "iSC.h"
 #include "PyrInterpreter.h"
 #include "PyrKernel.h"
 #include "PyrMessage.h"
@@ -200,15 +200,15 @@ void dragFunc(SCPoint where, PyrSlot *inSlot, NSString* inString, NSString* labe
 
 - (void)removeFromSuperview
 {
-	[[iSCController sharedInstance] removeDeferredOperationsFor: self];
+	[[iSC sharedInstance] removeDeferredOperationsFor: self];
 	[[NSNotificationCenter defaultCenter] removeObserver:self];
 	[super removeFromSuperview];
 }
 
 - (void)willClose
 {    
-	[[iSCController sharedInstance] removeDeferredOperationsFor: self];
-	[[iSCController sharedInstance] removeDeferredOperationsFor: [self window]];
+	[[iSC sharedInstance] removeDeferredOperationsFor: self];
+	[[iSC sharedInstance] removeDeferredOperationsFor: [self window]];
 	[[NSNotificationCenter defaultCenter] removeObserver:self];
 	
     pthread_mutex_lock (&gLangMutex);

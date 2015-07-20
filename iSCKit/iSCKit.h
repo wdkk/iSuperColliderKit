@@ -18,5 +18,5 @@
  ************************************************************************/
 
 #import <Foundation/Foundation.h>
-#import "iSCController.h"
+#import "iSC.h"
 

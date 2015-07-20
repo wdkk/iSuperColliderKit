@@ -26,7 +26,7 @@
 #import "MyHTTPConnection.h"
 */
 
-#import "iSCController.h"
+#import "iSC.h"
 #include <pthread.h>
 #include "PyrObject.h"
 #include "PyrKernel.h"
@@ -46,7 +46,7 @@ extern PyrSymbol* s_tick;
 PyrSymbol* s_stop;
 PyrSymbol* s_interpretPrintCmdLine;
 
-static iSCController* internal_sc_controller = 0;
+static iSC* internal_sc_controller = 0;
 static iSCLogView   * internal_log_view = 0;
 
 void closeAllGUIScreens()
@@ -215,7 +215,7 @@ void flushPostBuf()
 {
     if(internal_sc_controller)
     {
-        mainPostBuf.Flush([iSCController sharedLogView]);
+        mainPostBuf.Flush([iSC sharedLogView]);
     }
 }
 
@@ -250,12 +250,12 @@ void setCmdLine(const char *buf)
 	}
 }
 
-@implementation iSCController
+@implementation iSC
 
 // public class methods.
 + (void) setup
 {
-    [iSCController sharedInstance];
+    [iSC sharedInstance];
 }
 
 + (void) interpretC:(const char*)sc_code_char
@@ -284,11 +284,11 @@ void setCmdLine(const char *buf)
 
 
 // local class methods.
-+ (iSCController *)sharedInstance
++ (iSC *)sharedInstance
 {
     if(!internal_sc_controller)
     {
-        internal_sc_controller = [[iSCController alloc] init];
+        internal_sc_controller = [[iSC alloc] init];
         [internal_sc_controller setupController];
     }
     return internal_sc_controller;

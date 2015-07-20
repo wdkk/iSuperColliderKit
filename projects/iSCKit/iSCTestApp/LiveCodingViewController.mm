@@ -18,7 +18,7 @@
  ************************************************************************/
 
 #import "LiveCodingViewController.h"
-#import "iSCController.h"
+#import "iSC.h"
 
 @implementation LiveCodingViewController
 

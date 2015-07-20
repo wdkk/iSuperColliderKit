@@ -32,7 +32,7 @@
 #import "ChangeCounter.h"
 #import "GC.h"
 #import "iSCWindow.h"
-#import "iSCController.h"
+#import "iSC.h"
 
 static iSCWindow *internal_sc_window = nil;
 
