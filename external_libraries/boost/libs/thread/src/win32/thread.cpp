@@ -15,7 +15,7 @@
 #include <boost/thread/thread.hpp>
 #include <algorithm>
 #ifndef UNDER_CE
-#include <process.h>
+#include <stdlib.h>
 #endif
 #include <stdio.h>
 #include <boost/thread/once.hpp>
