@@ -28,18 +28,13 @@ Thus it is very fast.
 #ifndef _AdvancingAllocPool_
 #define _AdvancingAllocPool_
 
-#include <stdexcept>
 #include <stdlib.h>
 
 class AllocPool;
 
-struct AdvancingAllocPoolChunk;
-
 typedef int int32;
 
-inline void FailNil(void *ptr) {
-	if (!ptr) throw std::runtime_error("alloc failed");
-}
+struct AdvancingAllocPoolChunk;
 
 struct AdvancingAllocPoolChunkHdr {
 	AdvancingAllocPoolChunk *mNext;

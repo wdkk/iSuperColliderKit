@@ -12,7 +12,6 @@
 + (NSAttributedString *)attributedStringWithURL:(NSURL *)url {
 	HTMLRenderer *htmlRenderer = [[HTMLRenderer alloc] init];
 	NSAttributedString *attributedString = [htmlRenderer attributedStringWithURL:url];
-	[htmlRenderer release];
 	return attributedString;
 }
 
@@ -40,8 +39,6 @@
 }
 
 - (void)renderHTMLFragment:(NSURL *)url {
-	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
-
 	[NSThread setThreadPriority:1.0];
 	[renderLock lock];
 	
@@ -51,13 +48,10 @@
 		[[NSRunLoop currentRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:0.05]];
 	
 	[renderLock unlockWithCondition:1];
-	[pool release];
 }
 
 - (void)dealloc {
-	[renderLock release];
-	[renderWebView release];
-	[super dealloc];
+
 }
 
 - (void)webView:(WebView *)sender didFailLoadWithError:(NSError *)error forFrame:(WebFrame *)frame {

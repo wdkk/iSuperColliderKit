@@ -28,14 +28,13 @@ static id sharedGetStringObject = nil;
 
 + (id)sharedInstance {
     if (!sharedGetStringObject) {
-        [[self allocWithZone:[[NSApplication sharedApplication] zone]] init];
+        sharedGetStringObject = [[self alloc] init];
     }
     return sharedGetStringObject;
 }
 
 - (id)init {
     if (sharedGetStringObject) {
-        [super dealloc];
         return sharedGetStringObject;
     }
 
@@ -73,8 +72,7 @@ static id sharedGetStringObject = nil;
 - (void)setString:(NSString *)newString
 {
     if ([newString isEqualToString:string]) return;
-    [string autorelease];
-    string = [newString copyWithZone:[self zone]];
+    string = [newString copy];
     if (textField) {
         [textField setStringValue: string];
         [textField selectText: nil];

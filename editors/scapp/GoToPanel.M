@@ -40,7 +40,7 @@ static id sharedSelectLineObject = nil;
 + (id)sharedInstance 
 {
     if (!sharedSelectLineObject) {
-        [[self allocWithZone:[[NSApplication sharedApplication] zone]] init];
+        sharedSelectLineObject = [[self alloc] init];
     }
     return sharedSelectLineObject;
 }
@@ -48,7 +48,6 @@ static id sharedSelectLineObject = nil;
 - (id)init 
 {
     if (sharedSelectLineObject) {
-        [super dealloc];
         return sharedSelectLineObject;
     }
 
@@ -84,7 +83,6 @@ if (![NSBundle loadNibNamed:@"GoToLinePanel" owner:self]) {
 {
     if (self != sharedSelectLineObject) {
         [[NSNotificationCenter defaultCenter] removeObserver:self];
-        [super dealloc];
     }
 }
 

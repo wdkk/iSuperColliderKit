@@ -105,12 +105,12 @@ CFPropertyListRef Resources::getPropertyList(const char* filename)
             myCFPropertyListRef = CFPropertyListCreateFromXMLData(kCFAllocatorDefault, xmlCFDataRef, kCFPropertyListImmutable, &error);
             if (error != NULL){
                 CFStringGetCString(error, cerror, sizeof(cerror), kCFStringEncodingUTF8);
-                scprintf("getPropertyList error: %s\n", cerror);
+                sprintf("getPropertyList error: %s\n", cerror);
             }
             CFRelease(xmlCFDataRef);
         }
         else{
-            scprintf("Couldn't read Plist File %s\n", filePathBuf);
+            sprintf("Couldn't read Plist File %s\n", filePathBuf);
         }
     }
     return myCFPropertyListRef;

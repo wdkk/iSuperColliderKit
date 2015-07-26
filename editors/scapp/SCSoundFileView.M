@@ -40,7 +40,6 @@
 #include "SC_InlineBinaryOp.h"
 #include "SC_Prototypes.h"
 
-
 #include "SCSoundFileView.h"
 
 int slotColorVal(PyrSlot *slot, SCColor *sccolor);
@@ -52,6 +51,19 @@ void QDDrawBevelRect(CGContextRef cgc, CGRect bounds, float width, bool inout);
 int allocSlotStrVal(PyrSlot *slot, char **str);
 int slotGetSCRect(PyrSlot* a, SCRect *r);
 
+// kengo:modified on Language Project.
+void *zalloc(size_t n, size_t size)
+{
+    size *= n;
+    if (size) {
+        void* ptr = malloc(size);
+        if (ptr) {
+            memset(ptr, 0, size);
+            return ptr;
+        }
+    }
+    return 0;
+}
 
 inline int32 BUFMASK(int32 x)
 {

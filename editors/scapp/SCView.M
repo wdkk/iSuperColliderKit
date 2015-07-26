@@ -248,7 +248,7 @@ int slotBackgroundImageVal(PyrSlot *slot, DrawBackground **ioPtr)
 		int err;
 		SCImage *scImage;
 		PyrObject *obj = slotRawObject(slots + 0);
-		scImage = (SCImage *)slotRawPtr(obj->slots + 0); // Instance of Cocoa SCImage
+		scImage = (__bridge SCImage *)slotRawPtr(obj->slots + 0); // Instance of Cocoa SCImage
 		
 		int tileMode;
 		err = slotIntVal(slots+1, &tileMode);
@@ -947,11 +947,11 @@ int SCView::setProperty(PyrSymbol *symbol, PyrSlot *slot)
 		if(isKindOfSlot(slot, class_string)) {
 			PyrString* pstring = slotRawString(slot);
 			if(!pstring) return errNone;
-			if(mDragLabel) [mDragLabel release];
+            if(mDragLabel) mDragLabel = nil;
 			mDragLabel = [[[NSString alloc] initWithCString: pstring->s encoding:[NSString defaultCStringEncoding] ] substringToIndex: pstring->size];
 			return errNone;
 		} else if (IsNil(slot)) {
-			if(mDragLabel) [mDragLabel release];
+            if(mDragLabel) mDragLabel = nil;
 			mDragLabel = 0;
 			return errNone;
 		} else return errWrongType;
@@ -2054,7 +2054,6 @@ void SCScrollView::setVisibleFromParent()
 SCScrollView::~SCScrollView()
 {
 	[mNSScrollView removeFromSuperview];
-	[mNSScrollView release];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////
@@ -3316,7 +3315,7 @@ SCPopUpMenu::SCPopUpMenu(SCContainerView *inParent, PyrObject* inObj, SCRect inB
 
 SCPopUpMenu::~SCPopUpMenu()
 {
-    if (mMenu) [mMenu release];
+    if (mMenu) mMenu = nil;
 }
 
 void SCPopUpMenu::draw(SCRect inDamage)
@@ -3440,7 +3439,7 @@ int SCPopUpMenu::setProperty(PyrSymbol *symbol, PyrSlot *slot)
             if (!isKindOfSlot(slot, class_array)) return errWrongType;
 
             // wipe out old
-            if (mMenu) [mMenu release];
+            if (mMenu) mMenu = nil;
 
             PyrObject *array = slotRawObject(slot);
             int numItems = array->size;
@@ -4100,7 +4099,7 @@ SCUserView::SCUserView(SCContainerView *inParent, PyrObject* inObj, SCRect inBou
 SCUserView::~SCUserView()
 {
 	if( mNSImageForLayering ) 
-		[ mNSImageForLayering release ];
+        mNSImageForLayering = nil;
 }
 
 
@@ -4152,7 +4151,7 @@ void SCUserView::draw(SCRect inDamage)
 		) 
 		{
 			if( mNSImageForLayering )
-				[ mNSImageForLayering release ];
+				mNSImageForLayering = nil;
 			
 			mNSImageForLayering = [[NSImage alloc]initWithSize: *(NSSize*)&cgBounds.size];
 			[mNSImageForLayering setFlipped:YES]; // important to provide compatibility with SC flipped view

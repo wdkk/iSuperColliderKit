@@ -87,7 +87,7 @@ enum{
 
 typedef struct _WiiRemoteRec
 {
-	IOBluetoothDeviceInquiryRef	inquiry;
+	IOBluetoothDeviceRef	inquiry;
 	IOBluetoothDeviceRef		device;
 	IOBluetoothL2CAPChannelRef	ichan;
 	IOBluetoothL2CAPChannelRef	cchan;

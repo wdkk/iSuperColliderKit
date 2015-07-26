@@ -21,11 +21,12 @@
 #ifndef _SC_BoundsMacros_
 #define _SC_BoundsMacros_
 
-#include <cstdlib>              /* std::abs */
+//#include <stdlib>               /* std::abs */
 #include <cmath>                /* std::abs */
 #include <algorithm>
 
-#define sc_abs(a) std::abs(a)
+//#define sc_abs(a) std::abs(a)
+#define sc_abs(a) ((a) >= 0 ? (a) : -(a))
 #define sc_max(a,b) (((a) > (b)) ? (a) : (b))
 #define sc_min(a,b) (((a) < (b)) ? (a) : (b))
 

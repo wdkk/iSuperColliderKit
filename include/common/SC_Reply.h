@@ -46,9 +46,7 @@ struct ReplyAddress
 	void *mReplyData;
 };
 
-#if defined(__cplusplus)
-bool operator==(const ReplyAddress& a, const ReplyAddress& b);
-#endif // __cplusplus
+bool operator ==(const ReplyAddress& a, const ReplyAddress& b);
 
 inline void SendReply(struct ReplyAddress *inReplyAddr, char* inBuf, int inSize)
 {

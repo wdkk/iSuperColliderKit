@@ -1,0 +1,5 @@
+g723_40.lo g723_40.o: g723_40.c g72x.h g72x_priv.h
+
+g72x.h:
+
+g72x_priv.h:

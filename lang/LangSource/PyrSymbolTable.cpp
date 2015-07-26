@@ -51,6 +51,11 @@ SC_DLLEXPORT_C PyrSymbol* findsym(const char *name)
 	return symbol;
 }
 
+
+
+
+
+
 SymbolSpace::SymbolSpace(AllocPool *inPool)
 {
 	mPool = inPool;

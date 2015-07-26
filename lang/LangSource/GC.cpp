@@ -798,7 +798,8 @@ bool PyrGC::SanityCheck2()
 }
 
 #ifdef SC_DARWIN
-	#include <CoreServices/../Frameworks/CarbonCore.framework/Headers/MacTypes.h>
+    // kengo:
+	//#include <CoreServices/Frameworks/CarbonCore.framework/Headers/MacTypes.h>
 #endif
 
 bool PyrGC::SanityCheck()

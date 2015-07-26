@@ -31,13 +31,7 @@
 #include <stdio.h>
 #include <math.h>
 
-#if (MAC_OS_X_VERSION_MIN_REQUIRED <= MAC_OS_X_VERSION_10_4)
-#define class_getSuperclass(a)	((a)->super_class)
-#define class_getName(a)		((a)->name)
-typedef float ColorData;
-#else
 typedef CGFloat ColorData;
-#endif
 
 extern int slotGetPoint(PyrSlot* a, NSPoint *p);
 extern int slotGetNSRect(PyrSlot* a, NSRect *r);
@@ -59,11 +53,10 @@ CGRect OutsetRect(CGRect r, const float dx, const float dy);
 int FinalizeSCImageObject(struct VMGlobals* g, struct PyrObject* object)
 {
 	if( !IsNil(object->slots+0) ) {
-		SCImage * scimage = (SCImage*)slotRawPtr(object->slots);
+		SCImage * scimage = (__bridge SCImage*)slotRawPtr(object->slots);
 		#if SCIMAGE_DEBUG
 		post("finalize scimage (%p), dataptr (%p)\n", object, scimage);
 		#endif
-		[scimage release];
 		SetNil(object->slots+0);
 	}
 	return errNone;
@@ -75,11 +68,10 @@ int FinalizeSCImageObject(struct VMGlobals* g, struct PyrObject* object)
 int			FinalizeSCImageKernelObject(struct VMGlobals* g, struct PyrObject* object)
 {
 	if( !IsNil(object->slots+4) ) {
-		CIKernel * kernel = (CIKernel*)slotRawPtr(&object->slots[4]);
+		CIKernel * kernel = (__bridge CIKernel*)slotRawPtr(&object->slots[4]);
 		#if SCIMAGE_DEBUG
 		post("finalize scimagekernel (%p), dataptr (%p)\n", object, kernel);
 		#endif
-		[kernel release];
 		SetNil(object->slots+4);
 	}
 	return errNone;
@@ -109,7 +101,7 @@ inline NSString*		nsStringFromSlot(PyrSlot *slot)
 
 	nsString = [[NSString alloc]initWithBytes:IsSym(slot) ? (void*)slotRawSymbol(slot)->name : (void*)slotRawString(slot)->s length:len encoding:NSASCIIStringEncoding];
 
-	return [nsString autorelease];
+	return nsString;
 }
 
 //==================================================================================================
@@ -220,7 +212,6 @@ NSBitmapImageRep* BitmapContextRGBAWithImage(const int width, const int height, 
 
 			if(!nsCtx) {
 				NSLog(@"Error: CreateBitmapContextRGBAWithImage Failed creating valid NSGraphicsContext with RGBA Bitmap Attributes");
-				[bitmap release];
 				return nil;
 			}
 
@@ -228,7 +219,7 @@ NSBitmapImageRep* BitmapContextRGBAWithImage(const int width, const int height, 
 
 			if([image isKindOfClass:[NSImage class]]) {
 				if([image isValid]) {
-					[image drawAtPoint:NSZeroPoint fromRect:NSZeroRect operation:NSCompositeCopy fraction:1.0]; // draw inside of it
+					//[image drawAtPoint:NSZeroPoint fromRect:NSZeroRect operation:NSCompositeCopy fraction:1.0]; // draw inside of it
 				}
 				else {
 					NSLog(@"Error: invalid image supplied as input to the bitmap context");
@@ -252,10 +243,9 @@ NSBitmapImageRep* BitmapContextRGBAWithImage(const int width, const int height, 
 		memset([bitmap bitmapData], 0, [bitmap bytesPerRow]*[bitmap pixelsHigh]); // better to clear everything
 	}
 
-	return [bitmap autorelease];
+	return bitmap;
 
 failure:
-	[bitmap release];
 	if(nsPrevCtx) [NSGraphicsContext setCurrentContext:nsPrevCtx]; // restore previous ctx
 	return nil;
 }
@@ -280,7 +270,7 @@ failure:
 		[_ciimageStore setImage:image];
 #else
 		// extent and format cannot be choosen
-		_ciimage = [image retain];
+		_ciimage = image;
 #endif
 		_accelerated = true;
 		[self setShouldSyncBitmap:YES];
@@ -290,7 +280,6 @@ failure:
 #if SCIMAGE_MAC_OS_10_5
 failure:
 #endif
-	[super dealloc];
 	return nil;
 }
 
@@ -326,7 +315,6 @@ failure:
 		_bitmap = BitmapContextRGBAWithImage([image size].width, [image size].height, image);
 		if(!_bitmap)
 			goto failure;
-		[_bitmap retain];
 		[self rebuildNSImageFromBitmapRep];
 
 		_accelerated = NO;
@@ -337,7 +325,6 @@ failure:
 	}
 
 failure:
-	[super dealloc];
 	return nil;
 }
 
@@ -348,7 +335,6 @@ failure:
 		_bitmap = BitmapContextRGBAWithImage((int)size.width, (int)size.height, nil);
 		if(!_bitmap)
 			goto failure;
-		[_bitmap retain];
 		[self rebuildNSImageFromBitmapRep];
 
 		if(yorn) {
@@ -365,7 +351,6 @@ failure:
 	}
 
 failure:
-	[super dealloc];
 	return nil;
 }
 
@@ -391,7 +376,6 @@ failure:
 			}
 			[_ciimageStore setImage:ciimage];
 #else
-			_ciimage = [ciimage retain];
 #endif
 		}
 		else
@@ -427,11 +411,8 @@ failure:
 
 			_bitmap = BitmapContextRGBAWithImage( (int)size.width, (int)size.height, nsimage );
 			if(!_bitmap) {
-				[nsimage release];
 				goto failure;
 			}
-			[_bitmap retain];
-			[nsimage release];
 		}
 
 		_accelerated = yorn;
@@ -445,7 +426,6 @@ failure:
 	}
 
 failure:
-	[super dealloc];
 	return nil;
 }
 
@@ -523,8 +503,7 @@ failure:
 	//	[NSGraphicsContext setCurrentContext:prevctx];
 		[NSGraphicsContext restoreGraphicsState];
 
-		[_bitmap release];
-		_bitmap = [new_bitmap retain];
+		_bitmap = new_bitmap;
 
 		[self rebuildNSImageFromBitmapRep];
 
@@ -590,7 +569,6 @@ failure:
 	}
 
 	if(_nsimage) {
-		[_nsimage release];
 		_nsimage = nil;
 	}
 	_nsimage = [[NSImage alloc]initWithSize:NSMakeSize([_bitmap pixelsWide], [_bitmap pixelsHigh])]; // simple store
@@ -620,7 +598,6 @@ failure:
 	else
 		NSLog(@"Error: SCImage (%p) Failed Creating valid CIImageAccumulator");
 #else
-	[_ciimage release];
 	_ciimage = [[CIImage alloc]initWithBitmapImageRep:[self bitmapRepresentation]];
 #endif
 
@@ -635,13 +612,11 @@ failure:
 	// only if	- user wants to manipulate pixels after using filter
 	//			- user wants to save data in file
 	if(_bitmap) {
-		[_bitmap release];
 		_bitmap = nil;
 	}
 	CIImage *ciimage = [self ciimage];
 	CGRect extent = [ciimage extent];
 	_bitmap = BitmapContextRGBAWithImage((int)extent.size.width, (int)extent.size.height, ciimage); // create a context from CIImage
-	[_bitmap retain]; // retain it since it is an autoreleased one
 	#if SCIMAGE_DEBUG
 		NSLog(@"SCImage (%p) Recaching NSBitmapImageRep (%p) from CIImage (%p)", self, _bitmap, ciimage);
 	#endif
@@ -1010,9 +985,8 @@ failure:
 		CGContextRef lcg = CGLayerGetContext(cgLayer);
 		CGContextTranslateCTM(lcg, 0.f, srcRect.size.height);
 		CGContextScaleCTM(lcg, 1, -1.0f);
-		CIContext *cictx = [[CIContext contextWithCGContext:lcg options:nil]retain];
+		CIContext *cictx = [CIContext contextWithCGContext:lcg options:nil];
 		[cictx drawImage:[self ciimage] inRect:CGRectMake(0.f, 0.f, srcRect.size.width, srcRect.size.height) fromRect:*(CGRect*)&srcRect];
-		[cictx release];
 	}
 	else
 	{
@@ -1074,8 +1048,6 @@ failure:
 #if SCIMAGE_MAC_OS_10_5
 	[_ciimageStore setImage:result];
 #else
-	[result retain];
-	[_ciimage release];
 	_ciimage = result;
 #endif
 
@@ -1101,7 +1073,7 @@ failure:
 	SCImage *newSCImage = [[SCImage alloc]initWithCIImage:result extent:[_ciimage extent] format:_ciFormat];
 	#endif
 
-	return [newSCImage autorelease];
+	return newSCImage;
 }
 
 -(CIFormat)format
@@ -1121,15 +1093,11 @@ failure:
 	NSLog(@"SCImage (%p) Dealloc", self);
 #endif
 
-	[_wLock release];
 #if SCIMAGE_MAC_OS_10_5
 	if(_ciimageStore) [_ciimageStore release];
 #else
-	if(_ciimage) [_ciimage release];
+
 #endif
-	if(_bitmap) [_bitmap release];
-	if(_nsimage) [_nsimage release];
-	[super dealloc];
 }
 @end
 
@@ -1160,7 +1128,7 @@ int prSCImage_New(struct VMGlobals *g, int numArgsPushed)
 		return errFailed;
 	}
 
-	SetPtr(slotRawObject(receiver)->slots + 0, image);
+	SetPtr(slotRawObject(receiver)->slots + 0, (__bridge void*)image);
 	SetFloat(slotRawObject(receiver)->slots + 1, width);
 	SetFloat(slotRawObject(receiver)->slots + 2, height);
 	InstallFinalizer(g, slotRawObject(receiver), 9, FinalizeSCImageObject);
@@ -1181,11 +1149,8 @@ int prSCImage_NewFromURL(struct VMGlobals *g, int numArgsPushed)
 	err = allocSlotStrVal(a, &urlpath);
 	if (err) return err;
 
-#if MAC_OS_X_VERSION_MAX_ALLOWED < MAC_OS_X_VERSION_10_4
-	NSString *ns_urlpath = [[[NSString alloc] initWithCString:urlpath length:strlen(urlpath)]autorelease]; // Deprecated >= 10.4
-#else
 	NSString *ns_urlpath = [NSString stringWithCString:urlpath encoding:NSASCIIStringEncoding];
-#endif
+
 	if(!ns_urlpath) {
 		NSLog(@"Failed Creating valid NSURL from string: %s", urlpath);
 		return errFailed;
@@ -1198,7 +1163,7 @@ int prSCImage_NewFromURL(struct VMGlobals *g, int numArgsPushed)
 		return errFailed;
 	}
 
-	SetPtr(slotRawObject(receiver)->slots + 0, image);
+	SetPtr(slotRawObject(receiver)->slots + 0, (__bridge void*)image);
 	SetFloat(slotRawObject(receiver)->slots + 1, (float)[image width]); // using size.width / size.height can return non integral number (ex: 499.996 instead of 499)
 	SetFloat(slotRawObject(receiver)->slots + 2, (float)[image height]); // better to stick with bitmap properties to have true pixel size
 	InstallFinalizer(g, slotRawObject(receiver), 9, FinalizeSCImageObject);
@@ -1227,7 +1192,7 @@ int prSCImage_WriteToFile(struct VMGlobals *g, int numArgsPushed)
 	NSString *StringPath = [NSString stringWithCString:path encoding:[NSString defaultCStringEncoding]];
 	delete [] path;
 
-	SCImage *image = (SCImage *)slotRawPtr(slotRawObject(receiver)->slots);
+	SCImage *image = (__bridge SCImage *)slotRawPtr(slotRawObject(receiver)->slots);
 
 	if([image isAccelerated]) {
 		[image syncBitmap]; // force sync of the bitmap
@@ -1246,7 +1211,7 @@ int prSCImage_interpolation(struct VMGlobals *g, int numArgsPushed)
 	if (!g->canCallOS) return errCantCallOS;
 
 	PyrSlot *receiver = g->sp;		// instance of SCImage
-	SCImage *image = (SCImage *)slotRawPtr(&slotRawObject(receiver)->slots[0]);
+	SCImage *image = (__bridge SCImage *)slotRawPtr(&slotRawObject(receiver)->slots[0]);
 	if(!image)
 		return errNone;
 
@@ -1264,7 +1229,7 @@ int prSCImage_setInterpolation(struct VMGlobals *g, int numArgsPushed)
 
 	int interp = NSImageInterpolationDefault;
 
-	SCImage *image = (SCImage *)slotRawPtr(slotRawObject(receiver)->slots);
+	SCImage *image = (__bridge SCImage *)slotRawPtr(slotRawObject(receiver)->slots);
 	if(!image)
 		return errNone;
 
@@ -1282,15 +1247,14 @@ int prSCImage_Free(struct VMGlobals *g, int numArgsPushed)
 	if (!g->canCallOS) return errCantCallOS;
 
 	PyrSlot *receiver = g->sp;		// instance of SCImage
-	SCImage *image = (SCImage *)slotRawPtr(slotRawObject(receiver)->slots);
+	SCImage *image = (__bridge SCImage *)slotRawPtr(slotRawObject(receiver)->slots);
 	if(!image)
 		return errNone;
 
 	#if SCIMAGE_DEBUG
 		NSLog(@"Releasing SCImage (%p)", image);
 	#endif
-	[image release];
-
+    
 	SetNil(slotRawObject(receiver)->slots + 0); // ensure slot is NIL
 	SetNil(slotRawObject(receiver)->slots + 1); // not only the pointer
 	SetNil(slotRawObject(receiver)->slots + 2);
@@ -1304,7 +1268,7 @@ int prSCImage_sync(struct VMGlobals *g, int numArgsPushed)
 	if (!g->canCallOS) return errCantCallOS;
 
 	PyrSlot *receiver = g->sp;	// instance of SCImage
-	SCImage *image = (SCImage *)slotRawPtr(slotRawObject(receiver)->slots);
+	SCImage *image = (__bridge SCImage *)slotRawPtr(slotRawObject(receiver)->slots);
 	[image syncRepresentations]; // force sync
 
 #if SCIMAGE_DEBUG
@@ -1331,7 +1295,7 @@ int prSCImage_setSize(struct VMGlobals *g, int numArgsPushed)
 	err = slotFloatVal(b, &height);
 	if (err) return err;
 
-	SCImage *image = (SCImage *)slotRawPtr(slotRawObject(receiver)->slots);
+	SCImage *image = (__bridge SCImage *)slotRawPtr(slotRawObject(receiver)->slots);
 	[image setSize: NSMakeSize(width, height)];
 
 	SetFloat(slotRawObject(receiver)->slots + 1, width);
@@ -1349,7 +1313,7 @@ int prSCImage_setScalesWhenResized(struct VMGlobals *g, int numArgsPushed)
 	PyrSlot *a = g->sp;				// bool flag
 
 	BOOL flag = IsTrue(a);
-	SCImage *image = (SCImage *)slotRawPtr(slotRawObject(receiver)->slots);
+	SCImage *image = (__bridge SCImage *)slotRawPtr(slotRawObject(receiver)->slots);
 	[image setScalesWhenResized: flag];
 
 	return errNone;
@@ -1362,7 +1326,7 @@ int prSCImage_scalesWhenResized(struct VMGlobals *g, int numArgsPushed)
 
 	PyrSlot *receiver = g->sp;		// instance of SCImage
 
-	SCImage *image = (SCImage *)slotRawPtr(slotRawObject(receiver)->slots);
+	SCImage *image = (__bridge SCImage *)slotRawPtr(slotRawObject(receiver)->slots);
 	SetBool(receiver, [image scalesWhenResized]);
 	return errNone;
 }
@@ -1381,7 +1345,7 @@ int prSCImage_DrawAtPoint(struct VMGlobals *g, int numArgsPushed)
 	int err;
     NSPoint nsPoint;
 
-	SCImage *image = (SCImage *)slotRawPtr(slotRawObject(receiver)->slots);
+	SCImage *image = (__bridge SCImage *)slotRawPtr(slotRawObject(receiver)->slots);
 	if(!image)
 		return errNone; // just do nothing
 
@@ -1430,7 +1394,7 @@ int prSCImage_DrawInRect(struct VMGlobals *g, int numArgsPushed)
 	int err;
 	NSRect rect, fromRect;
 
-	SCImage *image = (SCImage *)slotRawPtr(slotRawObject(receiver)->slots);
+	SCImage *image = (__bridge SCImage *)slotRawPtr(slotRawObject(receiver)->slots);
 	if(!image) {
 		return errNone;
 	}
@@ -1477,7 +1441,7 @@ int prSCImage_TileInRect(struct VMGlobals *g, int numArgsPushed)
 	if(IsNil(slotRawObject(receiver)->slots+0))
 		return errNone;
 
-	image = (SCImage *)slotRawPtr(slotRawObject(receiver)->slots);
+	image = (__bridge SCImage *)slotRawPtr(slotRawObject(receiver)->slots);
 	if(!image) {
 		return errNone;
 	}
@@ -1504,7 +1468,7 @@ int prSCImage_lockFocus(struct VMGlobals *g, int numArgsPushed)
 	if (!g->canCallOS) return errCantCallOS;
 
 	PyrSlot *receiver = g->sp;		// instance of SCImage
-	SCImage *image = (SCImage *)slotRawPtr(slotRawObject(receiver)->slots);
+	SCImage *image = (__bridge SCImage *)slotRawPtr(slotRawObject(receiver)->slots);
 	// here we do not use the set flipped because it will create problem
 	// if we draw on top of an already image loaded with URL and write it after
 	// better to S(T(ctx)) directly so everything is fine now
@@ -1524,7 +1488,7 @@ int prSCImage_unlockFocus(struct VMGlobals *g, int numArgsPushed)
 	if (!g->canCallOS) return errCantCallOS;
 
 	PyrSlot *receiver = g->sp;		// instance of SCImage
-	SCImage *image = (SCImage *)slotRawPtr(slotRawObject(receiver)->slots);
+	SCImage *image = (__bridge SCImage *)slotRawPtr(slotRawObject(receiver)->slots);
 	// revert the coordinate system
 	CGContextRef ctx = (CGContextRef)[[NSGraphicsContext currentContext]graphicsPort];
 	CGContextRestoreGState(ctx);
@@ -1541,7 +1505,7 @@ int prSCImage_recache(struct VMGlobals *g, int numArgsPushed)
 
 	PyrSlot *receiver = g->sp;		// instance of SCImage
 
-	SCImage *image = (SCImage *)slotRawPtr(slotRawObject(receiver)->slots);
+	SCImage *image = (__bridge SCImage *)slotRawPtr(slotRawObject(receiver)->slots);
 	[image recache];
 	return errNone;
 }
@@ -1562,7 +1526,7 @@ int prSCImage_pixelAt(struct VMGlobals *g, int numArgsPushed)
 
 	err = errNone;
 
-	image = (SCImage *)slotRawPtr(slotRawObject(receiver)->slots);
+	image = (__bridge SCImage *)slotRawPtr(slotRawObject(receiver)->slots);
 	if(!image) return errNone;
 
 	err = slotIntVal(xSlot, &x);
@@ -1601,7 +1565,7 @@ int prSCImage_setPixelAt(struct VMGlobals *g, int numArgsPushed)
 	PyrSlot *xSlot = g->sp - 1;
 	PyrSlot *ySlot = g->sp;
 
-	SCImage *image = (SCImage *)slotRawPtr(slotRawObject(receiver)->slots);
+	SCImage *image = (__bridge SCImage *)slotRawPtr(slotRawObject(receiver)->slots);
 	if(!image)
 		return errNone;
 
@@ -1640,7 +1604,7 @@ int prSCImage_setColorAt(struct VMGlobals *g, int numArgsPushed)
 	PyrSlot *xSlot = g->sp - 1;
 	PyrSlot *ySlot = g->sp;
 
-	SCImage *image = (SCImage *)slotRawPtr(slotRawObject(receiver)->slots);
+	SCImage *image = (__bridge SCImage *)slotRawPtr(slotRawObject(receiver)->slots);
 	if(!image)
 		return errNone;
 
@@ -1677,7 +1641,7 @@ int prSCImage_getColorAt(struct VMGlobals *g, int numArgsPushed)
 	PyrSlot *ySlot = g->sp;
 
 	NSColor *nsColor;
-	SCImage *image = (SCImage *)slotRawPtr(slotRawObject(receiver)->slots);
+	SCImage *image = (__bridge SCImage *)slotRawPtr(slotRawObject(receiver)->slots);
 	if(!image)
 		return errNone;
 
@@ -1729,7 +1693,7 @@ int prSCImage_loadPixels(struct VMGlobals *g, int numArgsPushed)
 	NSSize				size;
 	NSRect				region;
 
-	image = (SCImage *)slotRawPtr(slotRawObject(receiver)->slots);
+	image = (__bridge SCImage *)slotRawPtr(slotRawObject(receiver)->slots);
 	if(!image){
 		SetNil(receiver);
 		return errNone;
@@ -1825,7 +1789,7 @@ int prSCImage_updatePixels(struct VMGlobals *g, int numArgsPushed)
 	if(startIndex < 0)
 		return errIndexOutOfRange;
 
-	image = (SCImage *)slotRawPtr(slotRawObject(receiver)->slots);
+	image = (__bridge SCImage *)slotRawPtr(slotRawObject(receiver)->slots);
 	if(!image){
 		SetNil(receiver);
 		return errNone;
@@ -1903,7 +1867,7 @@ int prSCImage_updatePixelsInRect(struct VMGlobals *g, int numArgsPushed)
 	if(startIndex < 0)
 		return errIndexOutOfRange;
 
-	image = (SCImage *)slotRawPtr(slotRawObject(receiver)->slots);
+	image = (__bridge SCImage *)slotRawPtr(slotRawObject(receiver)->slots);
 	if(!image){
 		SetNil(receiver);
 		return errNone;
@@ -1983,7 +1947,7 @@ int prSCImage_isAccelerated(struct VMGlobals *g, int numArgsPushed)
 
 	PyrSlot  *receiver	= g->sp;
 
-	SCImage *image = (SCImage *)slotRawPtr(slotRawObject(receiver)->slots);
+	SCImage *image = (__bridge SCImage *)slotRawPtr(slotRawObject(receiver)->slots);
 	if(!image){
 		SetNil(receiver);
 		return errNone;
@@ -2002,7 +1966,7 @@ int prSCImage_setAccelerated(struct VMGlobals *g, int numArgsPushed)
 	PyrSlot  *receiver	= g->sp - 1;
 	PyrSlot  *yornSlot	= g->sp;
 
-	SCImage *image = (SCImage *)slotRawPtr(slotRawObject(receiver)->slots);
+	SCImage *image = (__bridge SCImage *)slotRawPtr(slotRawObject(receiver)->slots);
 	if(!image){
 		SetNil(receiver);
 		return errNone;
@@ -2015,6 +1979,9 @@ int prSCImage_setAccelerated(struct VMGlobals *g, int numArgsPushed)
 
 
 @class SCGraphView;
+
+#import "SCGraphView.h"
+
 // Currently it grabs a portion from the scgraphview
 // user should here pass the ABSOLUTE view bounds or a specific rect
 int prSCImage_imageFromSCWindowRect(struct VMGlobals *g, int numArgsPushed);
@@ -2037,7 +2004,7 @@ int prSCImage_imageFromSCWindowRect(struct VMGlobals *g, int numArgsPushed)
 		return errFailed;
 	}
 
-	nsview	= (SCGraphView*)slotRawPtr(&slotRawObject(a)->slots[0]); // get SCGraphView instance
+	nsview	= (__bridge SCGraphView*)slotRawPtr(&slotRawObject(a)->slots[0]); // get SCGraphView instance
 	err		= slotGetNSRect(b, &rect);
 	if (err)
 		return err;
@@ -2076,20 +2043,19 @@ int prSCImage_imageFromSCWindowRect(struct VMGlobals *g, int numArgsPushed)
 		object = newPyrSCImage(g);
 		if(!object) {
 			post("Error: Failed creating valid SCImage class !");
-			[scimage release];
 			SetNil(receiver);
 			goto Bail;
 		}
 
-		SetPtr(object->slots + 0, scimage);
+		SetPtr(object->slots + 0, (__bridge void*)scimage);
 		SetFloat(object->slots + 1, (float)[nsbitmap pixelsWide]);
 		SetFloat(object->slots + 2, (float)[nsbitmap pixelsHigh]);
 		SetObject(receiver, object);
 	}
 
 	Bail:
-		if(nsimage) [nsimage release];
-		if(nsbitmap) [nsbitmap release];
+		if(nsimage) nsimage = nil;
+		if(nsbitmap)nsbitmap = nil;
 
 	return errNone;
 }
@@ -2234,12 +2200,12 @@ id		nsciObjectFromSlot(PyrSlot *slot, Class attributeClass, NSString *attributeT
 	int err;
 	if(attributeClass == [CIImage class] || attributeType == kCIAttributeTypeGradient)
 	{
-		SCImage *image = (SCImage *)slotRawPtr(slotRawObject(slot)->slots);
+		SCImage *image = (__bridge SCImage *)slotRawPtr(slotRawObject(slot)->slots);
 		return [image ciimage];
 	}
 	else if(isKindOfSlot(slot, s_scimage->u.classobj) && (attributeClass == NULL) && (attributeType == NULL))  // here returns the CISampler by default
 	{
-		SCImage *image = (SCImage *)slotRawPtr(slotRawObject(slot)->slots);
+		SCImage *image = (__bridge SCImage *)slotRawPtr(slotRawObject(slot)->slots);
 		return [CISampler samplerWithImage:[image ciimage]];
 	}
 //	else if(isKindOfSlot(slot, s_vector->u.classobj)) {
@@ -2368,7 +2334,7 @@ int prSCImageFilter_ApplyMultiple(struct VMGlobals *g, int numArgsPushed)
 	PyrSlot		*cropRegionSlot		= g->sp;
 	int			err = errNone;
 
-	SCImage *scimage = (SCImage *)slotRawPtr(slotRawObject(receiver)->slots);
+	SCImage *scimage = (__bridge SCImage *)slotRawPtr(slotRawObject(receiver)->slots);
 	if(!scimage){
 		SetNil(receiver);
 		return errNone;
@@ -2506,8 +2472,6 @@ int prSCImageFilter_ApplyMultiple(struct VMGlobals *g, int numArgsPushed)
 					[[scimage accumulator] setImage:ciimage];
 				}
 #else
-				[ciimage retain];
-				[scimage->_ciimage release];
 				scimage->_ciimage = ciimage;
 #endif
 				[scimage setShouldSyncBitmap:YES]; // keep the sync info
@@ -2547,12 +2511,12 @@ int prSCImageFilter_ApplyMultiple(struct VMGlobals *g, int numArgsPushed)
 	}
 
 	value = receiverObj->slots;
-	SetPtr(value + 0, newSCImage);
+	SetPtr(value + 0, (__bridge void*)newSCImage);
 	SetFloat(value + 1, destExtent.size.width);
 	SetFloat(value + 2, destExtent.size.height);
 
 	if(receiverObj == slotRawObject(receiver))
-		[scimage release];
+		scimage = nil;
 	else
 		SetObject(receiver, receiverObj);
 	return errNone;
@@ -2567,7 +2531,7 @@ int prSCImageFilter_Apply(struct VMGlobals *g, int numArgsPushed)
 	PyrSlot		*argumentsSlot		= g->sp - 1;
 	PyrSlot		*inPlace			= g->sp;
 
-	SCImage *scimage = (SCImage *)slotRawPtr(slotRawObject(receiver)->slots);
+	SCImage *scimage = (__bridge SCImage *)slotRawPtr(slotRawObject(receiver)->slots);
 	if(!scimage){
 		SetNil(receiver);
 		return errNone;
@@ -2615,7 +2579,7 @@ int prSCImageFilter_Apply(struct VMGlobals *g, int numArgsPushed)
 		scimage = [scimage imageFilteredWith:ciFilter];  // filtered copy
 		PyrObject* object = newPyrSCImage(g);
 		PyrSlot *slots = object->slots;
-		SetPtr(slots + 0, scimage);
+		SetPtr(slots + 0, (__bridge void*)scimage);
 		SetFloat(slots + 1, (float)[scimage width]);
 		SetFloat(slots + 2, (float)[scimage height]);
 		SetObject(receiver, object);
@@ -2648,15 +2612,13 @@ int cachePyrKernel(VMGlobals *g, PyrObject* kernelObject)
 		post("Error: Failed retrieving valid CIKernel !");
 		return errFailed;
 	}
-	[kernel retain];
 
 	if( !IsNil(kernelObject->slots+4) ) {
-		id current = (id)slotRawPtr(&kernelObject->slots[4]);
-		if(current)
-			[current release];
+		id current = (__bridge id)slotRawPtr(&kernelObject->slots[4]);
+        if(current) current = nil;
 	}
 
-	SetPtr(kernelObject->slots+4, kernel);
+	SetPtr(kernelObject->slots+4, (__bridge void*)kernel);
 
 	if( IsNil(kernelObject->slots+5) ) {
 		#if SCIMAGE_DEBUG
@@ -2701,14 +2663,14 @@ int prSCImageFilter_ApplyKernel(struct VMGlobals *g, int numArgsPushed)
 
 
 	err = errNone;
-	scimage = (SCImage *)slotRawPtr(slotRawObject(receiver)->slots);
+	scimage = (__bridge SCImage *)slotRawPtr(slotRawObject(receiver)->slots);
 	if(!scimage){
 		SetNil(receiver);
 		return errNone;
 	}
 
 	[scimage setAccelerated:YES];
-	CIFilter*	ciFilter = [[CIFilter new]autorelease];
+	CIFilter*	ciFilter = [CIFilter new];
 
 	///// Setting and caching the Kernel Object
 	kernelObject = slotRawObject(kernelSlot);
@@ -2717,7 +2679,7 @@ int prSCImageFilter_ApplyKernel(struct VMGlobals *g, int numArgsPushed)
 		if(err) return err;
 	}
 	argumentSlot = kernelObject->slots+1;
-	kernel = (CIKernel*)(slotRawPtr(&kernelObject->slots[4]));
+	kernel = (__bridge CIKernel*)(slotRawPtr(&kernelObject->slots[4]));
 	if(!kernel)
 		return errFailed;
 
@@ -2768,7 +2730,7 @@ int prSCImageFilter_ApplyKernel(struct VMGlobals *g, int numArgsPushed)
 	// Create the Option Dictionary that contains additional info about final rendering
 	// kCIApplyOptionDefinition : DOD of image
 	// kCIApplyOptionExtent : size of the resulting image
-	NSMutableDictionary * dictionary = [[[NSDictionary dictionary] mutableCopy] autorelease];
+	NSMutableDictionary * dictionary = [[NSDictionary dictionary] mutableCopy];
 
 	[dictionary
 		setValue:[[scimage ciimage] definition] // better to pass directly the filterShape
@@ -2829,8 +2791,7 @@ int prSCImageFilter_ApplyKernel(struct VMGlobals *g, int numArgsPushed)
 			#if SCIMAGE_MAC_OS_10_5
 				[[scimage accumulator] setImage:ciimage];
 			#else
-				[scimage->_ciimage release];
-				scimage->_ciimage = [ciimage retain];
+				scimage->_ciimage = ciimage;
 			#endif
 				[scimage setShouldSyncBitmap:YES]; // invalidates bitmap
 				return errNone;
@@ -2851,9 +2812,8 @@ int prSCImageFilter_ApplyKernel(struct VMGlobals *g, int numArgsPushed)
 		newSCImage = [[SCImage alloc]initWithCIImage:ciimage extent:destExtent format:[scimage format]];
 
 		PyrSlot *slots = receiverObj->slots;
-		[(id)slotRawPtr(slots) release];
 
-		SetPtr(slots + 0, newSCImage);
+		SetPtr(slots + 0, (__bridge void*)newSCImage);
 		SetFloat(slots + 1, destExtent.size.width);
 		SetFloat(slots + 2, destExtent.size.height);
 

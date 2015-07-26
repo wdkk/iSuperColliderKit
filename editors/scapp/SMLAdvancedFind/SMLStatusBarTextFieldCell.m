@@ -36,7 +36,8 @@ Unless required by applicable law or agreed to in writing, software distributed 
 
 - (void)drawWithFrame:(NSRect)inFrame inView:(NSView *)inView
 {
-    [statusBarGradient fillRect:inFrame angle:90];
+    // kengo:comment out
+    //[statusBarGradient fillRect:inFrame angle:90];
 	
     NSRect centeredRect = inFrame;
     centeredRect.size = [[self stringValue] sizeWithAttributes:attributes];
@@ -49,10 +50,6 @@ Unless required by applicable law or agreed to in writing, software distributed 
 
 - (void)dealloc
 {
-	[attributes release];
-	
-	attributes = nil;
-	
-	[super dealloc];
+    attributes = nil;
 }
 @end

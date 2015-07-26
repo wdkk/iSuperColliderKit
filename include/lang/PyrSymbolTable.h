@@ -28,55 +28,55 @@
 #define STRINGCHUNK 32000
 #define SYMBOLCHUNK 32000
 
-SC_DLLEXPORT_C PyrSymbol* getsym(const char *name);
-SC_DLLEXPORT_C PyrSymbol* findsym(const char *name);
+SC_DLLEXPORT_C struct PyrSymbol* getsym(const char *name);
+SC_DLLEXPORT_C struct PyrSymbol* findsym(const char *name);
 
 class SymbolSpace
 {
 public:
-	SymbolSpace(AllocPool *inPool);
-	PyrSymbol* NewSymbol(const char *inName, int inHash, int inLength);
-
+    SymbolSpace(AllocPool *inPool);
+    PyrSymbol* NewSymbol(const char *inName, int inHash, int inLength);
+    
 private:
-	AllocPool *mPool;
-	AdvancingAllocPool mStringPool;
-	AdvancingAllocPool mSymbolPool;
+    AllocPool *mPool;
+    AdvancingAllocPool mStringPool;
+    AdvancingAllocPool mSymbolPool;
 };
 
 class SymbolTable
 {
 public:
-
-	SymbolTable(AllocPool *inPool, int inSize);
-
-	void CopyFrom(SymbolTable& inTable);
-
-	int NumItems() { return mNumItems; }
-	int TableSize() { return mMaxItems; }
-	PyrSymbol* Get(int inIndex) { return mTable[inIndex]; }
-
-	void CheckSymbols();
-
+    
+    SymbolTable(AllocPool *inPool, int inSize);
+    
+    void CopyFrom(SymbolTable& inTable);
+    
+    int NumItems() { return mNumItems; }
+    int TableSize() { return mMaxItems; }
+    PyrSymbol* Get(int inIndex) { return mTable[inIndex]; }
+    
+    void CheckSymbols();
+    
 private:
-	friend PyrSymbol* getsym(const char *name);
-	friend PyrSymbol* findsym(const char *name);
-
-	PyrSymbol* Find(const char *inName);
-	PyrSymbol* Make(const char *inName);
-	PyrSymbol* MakeNew(const char *inName, int inHash, int inLength);
-
-	int StrHash(const char *inName, size_t *outLength);
-	void AllocTable();
-	void Grow();
-	PyrSymbol* Find(const char *inName, int inHash);
-	void Add(PyrSymbol* inSymbol);
-	void Rehash(PyrSymbol** inTable, int inSize);
-	void MakeEmpty();
-
-	AllocPool *mPool;
-	SymbolSpace mSpace;
-	PyrSymbol **mTable;
-	int mNumItems, mMaxItems, mMask;
+    friend PyrSymbol* getsym(const char *name);
+    friend PyrSymbol* findsym(const char *name);
+    
+    PyrSymbol* Find(const char *inName);
+    PyrSymbol* Make(const char *inName);
+    PyrSymbol* MakeNew(const char *inName, int inHash, int inLength);
+    
+    int StrHash(const char *inName, size_t *outLength);
+    void AllocTable();
+    void Grow();
+    PyrSymbol* Find(const char *inName, int inHash);
+    void Add(PyrSymbol* inSymbol);
+    void Rehash(PyrSymbol** inTable, int inSize);
+    void MakeEmpty();
+    
+    AllocPool *mPool;
+    SymbolSpace mSpace;
+    PyrSymbol **mTable;
+    int mNumItems, mMaxItems, mMask;
 };
 
 #endif

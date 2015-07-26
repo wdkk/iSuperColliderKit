@@ -4,30 +4,10 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>All.xcscheme</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>4</integer>
-		</dict>
-		<key>AllExceptAU.xcscheme</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>8</integer>
-		</dict>
-		<key>SuperColliderAU.xcscheme</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>7</integer>
-		</dict>
 		<key>libscsynth.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>6</integer>
-		</dict>
-		<key>scsynth.xcscheme</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>5</integer>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>

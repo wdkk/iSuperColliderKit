@@ -18,11 +18,11 @@
     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301  USA
 */
 
-// #ifdef SC_DARWIN
-// # define USE_SC_TERMINAL_CLIENT 0
-// #else
-// # define USE_SC_TERMINAL_CLIENT 1
-// #endif
+#ifdef SC_DARWIN
+# define USE_SC_TERMINAL_CLIENT 0
+#else
+# define USE_SC_TERMINAL_CLIENT 1
+#endif
 
 #if USE_SC_TERMINAL_CLIENT
 
@@ -173,13 +173,13 @@ void initRendezvousPrimitives()
 int main();
 int main()
 {
-
 	pyr_init_mem_pools(2*1024*1024, 256*1024);
 	init_OSC(57120);
 	schedInit();
 
 	compileLibrary();
-	runLibrary(s_run); fflush(postfile);
+	runLibrary(s_run);
+    fflush(postfile);
 
 	cleanup_OSC();
 

@@ -294,7 +294,6 @@ extern PyrSymbol *s_scview;
 	}
 
 	[text endEditing];
-	[url release];
 }
 
 // for compatibility with Document
@@ -579,8 +578,6 @@ const int circDiam = 20;
 
     NSImage *image = [[NSImage alloc] initWithSize: size];
     if (!image) return 0;
-
-    [image autorelease];
 
     float alpha = 0.6;
     NSColor *colorClear = [NSColor colorWithCalibratedRed: 0
@@ -872,20 +869,15 @@ void QDDrawBevelRect(CGContextRef cgc, CGRect bounds, float width, bool inout);
 
 	CGContextRef cgc = (CGContextRef)[[NSGraphicsContext currentContext] graphicsPort];
 	CGContextSaveGState(cgc);
-#if (MAC_OS_X_VERSION_MIN_REQUIRED <= MAC_OS_X_VERSION_10_4)
-	QDDrawBevelRect(cgc, (*(CGRect *)&([self bounds])), 1, true);
-#else
 	QDDrawBevelRect(cgc, NSRectToCGRect([self bounds]), 1, true);
-#endif
 	CGContextRestoreGState(cgc);
-
 }
 
 // doing this here keeps C++ classes much simpler
 - (void) addNumberFormatter
 {
 	[NSNumberFormatter setDefaultFormatterBehavior:NSNumberFormatterBehavior10_4];
-	mFormatter = [[[NSNumberFormatter alloc] init] autorelease];
+	mFormatter = [[NSNumberFormatter alloc] init];
 	[mFormatter setNumberStyle: NSNumberFormatterDecimalStyle];
 	[mFormatter setAlwaysShowsDecimalSeparator:NO];
 	[mFormatter setExponentSymbol:@"e"];
@@ -1203,7 +1195,7 @@ void QDDrawBevelRect(CGContextRef cgc, CGRect bounds, float width, bool inout);
 		} else {
 			//NSLog(@"fire action");
 			[listener ignore];
-			NSString *urlString = [[[request URL] absoluteString] retain];
+			NSString *urlString = [[request URL] absoluteString];
 
 			SEL selector = @selector(doLinkAction:);
 			NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:
@@ -1233,7 +1225,6 @@ void QDDrawBevelRect(CGContextRef cgc, CGRect bounds, float width, bool inout);
 	const char * cstr = [urlString UTF8String];
 	PyrString *string = newPyrString(g->gc, cstr, 0, true);
 	mSCWebView->doLinkClickedAction(string);
-	[urlString release];
 }
 
 - (BOOL)webView:(WebView *)webView shouldInsertText:(NSString *)insertText replacingDOMRange:(DOMRange *)range givenAction:(WebViewInsertAction)action
@@ -1349,7 +1340,6 @@ void QDDrawBevelRect(CGContextRef cgc, CGRect bounds, float width, bool inout);
 		NSDictionary *options = [NSDictionary dictionaryWithObject:n forKey: NSCharacterEncodingDocumentOption];
 		NSAttributedString *as = [[NSAttributedString alloc] initWithHTML:data options:options documentAttributes: NULL];
 		NSString *selectedString = [as string];
-		[as autorelease];
 		
 		NSPasteboard *pasteboard = [NSPasteboard generalPasteboard];
 		[pasteboard clearContents];
@@ -1413,10 +1403,6 @@ SCCocoaTextView::SCCocoaTextView(SCContainerView *inParent, PyrObject* inObj, SC
 SCCocoaTextView::~SCCocoaTextView()
 {
 	[mScrollView removeFromSuperview];
-	[mCocoaToLangAction release];
-	[mTextView release];
-	[mScrollView release];
-	[mLastURL release];
 }
 
 void SCCocoaTextView::tabPrevFocus()
@@ -1816,7 +1802,6 @@ int SCCocoaTextView::open(NSString *path)
 		if(!success) {
 			NSLog(@"Error opening file: %@", error);
 			[text endEditing];
-			[url release];
 			return errFailed;
 		}
 	}
@@ -1827,7 +1812,6 @@ int SCCocoaTextView::open(NSString *path)
 	}
 	[mTextView scrollPoint:NSMakePoint(0, 0)];
 	[text endEditing];
-	[mLastURL release];
 	mLastURL = url;
 	return errNone;
 }
@@ -1893,7 +1877,6 @@ SCMovieView::SCMovieView(SCContainerView *inParent, PyrObject* inObj, SCRect inB
 SCMovieView::~SCMovieView()
 {
 	[mMovieView removeFromSuperview];
-	[mMovieView release];
 }
 
 void SCMovieView::setBounds(SCRect screct)
@@ -1976,10 +1959,8 @@ int SCMovieView::setProperty(PyrSymbol *symbol, PyrSlot *slot)
 		//check for current movie:
 		QTMovie *old_movie = [mMovieView movie];
 		[mMovieView setMovie: movie];
-		if(old_movie){
-			[old_movie release];
-		}
-		[url release];
+        if(old_movie){ old_movie = nil; }
+
 		/* QT: */
 		mMovie = movie;
 		mTime = [movie currentTime];
@@ -2147,7 +2128,6 @@ SCQuartzComposerView::SCQuartzComposerView(SCContainerView *inParent, PyrObject*
 SCQuartzComposerView::~SCQuartzComposerView()
 {
 	[mQCView removeFromSuperview];
-	[mQCView release];
 }
 
 
@@ -2255,15 +2235,13 @@ int SCQuartzComposerView::setProperty(PyrSymbol *symbol, PyrSlot *slot)
 
 		NSString *key = [[NSString alloc] initWithCString: keysymbol->name encoding: NSASCIIStringEncoding];
 		if(![[mQCView inputKeys] containsObject: key]) {
-			[key release];
 			//post("There is no port with key \"%s\".\n\n", [key cString]);
 			return errFailed;
 		}
 
 		id nsObject = getNSObjectForSCObject(slots + 1, &err);
-		if(!nsObject) {[key release]; return err;}
+		if(!nsObject) { return err;}
 		BOOL success = [mQCView setValue: nsObject forInputKey: key];
-		[key release];
 		if(!success) return errFailed;
 		return errNone;
 
@@ -2352,7 +2330,7 @@ id SCQuartzComposerView::getNSObjectForSCObject(PyrSlot *scobject, int *returnEr
 		returnErr = &err;
 		return structure;
 	} else if(isKindOfSlot(scobject, s_scimage->u.classobj)) { // it's an SCImage : )
-		SCImage *scimage = (SCImage *)slotRawPtr(slotRawObject(scobject)->slots);
+		SCImage *scimage = (__bridge SCImage *)slotRawPtr(slotRawObject(scobject)->slots);
 		if(scimage) {
 			if([scimage isAccelerated])
 				return [scimage ciimage];
@@ -2553,7 +2531,7 @@ int SCQuartzComposerView::getSCObjectForNSObject(PyrSlot *slot, id nsObject, NSS
 			if(object) {
 				PyrSlot		*slots	= object->slots;
 				SetObject(slot, object);
-				SetPtr(slots + 0, scimage);
+				SetPtr(slots + 0, (__bridge void*)scimage);
 				SetFloat(slots + 1, (float)[scimage width]);
 				SetFloat(slots + 2, (float)[scimage height]);
 				return errNone;
@@ -2597,13 +2575,12 @@ SCWebView::SCWebView(SCContainerView *inParent, PyrObject* inObj, SCRect inBound
 	flipView = [[view window] contentView];
 	if (![flipView isKindOfClass: [SCNSFlippedView class]] ) {
 		flipView = [[SCNSFlippedView alloc] initWithFrame:[view frame]]; // a wrapper view hack to get coords right
-		[view retain];
 		[view setAutoresizingMask: 63];
 		[flipView setAutoresizesSubviews:YES];
 		[[view window] setContentView:flipView];
 		[flipView addSubview:view];
 	} else {
-		[flipView retain]; // increment the retain count
+
 	}
 	[view addSubview:mWebView];
 	
@@ -2626,17 +2603,13 @@ SCWebView::~SCWebView()
 	[mWebView removeFromSuperview];
 	[mWebView close];
 	[[SCVirtualMachine sharedInstance] removeDeferredOperationsFor:mWebView];
-	[mWebView release];
-	if ([flipView retainCount] == 1) { // if nobody else needs this wrapperView, clean it up
+
+	if (flipView) { // if nobody else needs this wrapperView, clean it up
 		NSView *view = mTop->GetNSView();
 		[[view window] setContentView:view];
-		[view release];
 		[flipView removeFromSuperview];
-		[flipView release];
-	} else {
-		[flipView release]; // otherwise just decrement the retain count
+        flipView = nil;
 	}
-
 }
 
 void SCWebView::setBounds(SCRect screct)
@@ -2975,7 +2948,6 @@ SCTextField::SCTextField(SCContainerView *inParent, PyrObject* inObj, SCRect inB
 SCTextField::~SCTextField()
 {
 	[mTextField removeFromSuperview];
-	[mTextField release];
 }
 
 void SCTextField::setBounds(SCRect screct)
@@ -3197,7 +3169,6 @@ void SCTextField::keyDown(int character, int modifiers, unsigned short keycode)
 		NSString *charstring = [[NSString alloc] initWithCharacters: &charVal length: 1];
 		NSText *fieldEditor = [[mTextField window] fieldEditor:YES forObject:mTextField];
 		[fieldEditor setString:charstring];
-		[charstring release];
 		[mTextField setEditingInactive:NO];
 	}
 	SCView::keyDown(character, modifiers, keycode);
@@ -3375,7 +3346,7 @@ SCLevelIndicator::SCLevelIndicator(SCContainerView *inParent, PyrObject* inObj, 
 	mCritical = 0.0;
 	mTickHeight = 0.f;
 
-	mImage = [[NSImage imageNamed:@"NSApplicationIcon"] retain];
+	mImage = [NSImage imageNamed:@"NSApplicationIcon"];
 	setImage();
 
 	setVisibleFromParent();
@@ -3384,8 +3355,6 @@ SCLevelIndicator::SCLevelIndicator(SCContainerView *inParent, PyrObject* inObj, 
 SCLevelIndicator::~SCLevelIndicator()
 {
 	[mLevelIndicator removeFromSuperview];
-	[mLevelIndicator release];
-	[mImage release];
 }
 
 void SCLevelIndicator::setBounds(SCRect screct)
@@ -3510,8 +3479,6 @@ void SCLevelIndicator::setImage()
 	[newImage unlockFocus];
 
 	[[mLevelIndicator cell] setImage:newImage];
-
-	[newImage autorelease];
 }
 void SCLevelIndicator::resetParams()
 {
@@ -3647,12 +3614,11 @@ int SCLevelIndicator::setProperty(PyrSymbol *symbol, PyrSlot *slot)
 
 	if (strcmp(name, "image")==0) {
 		if(isKindOfSlot(slot, s_scimage->u.classobj)) { // it's an SCImage : )
-			SCImage *scimage = (SCImage *)slotRawPtr(slotRawObject(slot)->slots);
+			SCImage *scimage = (__bridge SCImage *)slotRawPtr(slotRawObject(slot)->slots);
 			if(scimage) {
 				NSImage *oldImage = mImage;
-				mImage = [[scimage nsimage] retain];
+				mImage = [scimage nsimage];
 				setImage();
-				[oldImage release];
 				return errNone;
 			}
 			else {

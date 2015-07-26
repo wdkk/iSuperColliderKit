@@ -18,6 +18,7 @@
 
 
 #include "OSCMessages.h"
+#include <stdlib.h>
 OSCMessages::OSCMessages(){ }
 
 size_t OSCMessages::parameterMessage(small_scpacket *packet, CFStringRef name, float value){

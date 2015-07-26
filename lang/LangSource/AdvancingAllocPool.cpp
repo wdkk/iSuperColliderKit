@@ -22,7 +22,11 @@
 #include "AdvancingAllocPool.h"
 #include "SC_AllocPool.h"
 //#include <assert.h>
+#include <stdexcept>
 
+static void FailNil(void *ptr) {
+    if (!ptr) throw std::runtime_error("alloc failed");
+}
 
 AdvancingAllocPool::AdvancingAllocPool()
 {

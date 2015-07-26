@@ -735,7 +735,7 @@ int sendallto(int socket, const void *msg, size_t len, struct sockaddr *toaddr, 
 #endif
 		//printf("numbytes %d  total %d  len %d\n", numbytes, total, len);
 		if (numbytes < 0) {
-			printf("******* errno %d %s\n", errno, strerror(errno));
+			//printf("******* errno %d %s\n", errno, strerror(errno));
 			return (int)total;
 		}
 		total += numbytes;

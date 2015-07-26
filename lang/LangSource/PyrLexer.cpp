@@ -124,6 +124,11 @@ std::set<std::string> compiledDirectories;
 #define CLOSCURLY '}'
 #define CLOSPAREN ')'
 
+// kengo: create empty method.
+int rtf2txt(char *txt) { return 1; }
+int html2txt(char *txt) { return 1; }
+
+
 int sc_strtoi(const char *str, int n, int base)
 {
 	int z = 0;

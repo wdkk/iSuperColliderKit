@@ -45,11 +45,11 @@ unsigned UnicodeWordBoundaries = UREGEX_UWORD;
 @implementation ICUPattern
 
 +(ICUPattern *)patternWithString:(NSString *)aPattern flags:(unsigned)flags {
-	return [[[self alloc] initWithString:aPattern flags:flags] autorelease];	
+	return [[self alloc] initWithString:aPattern flags:flags];
 }
 
 +(ICUPattern *)patternWithString:(NSString *)aPattern {
-	return [[[self alloc] initWithString:aPattern flags:0] autorelease];
+	return [[self alloc] initWithString:aPattern flags:0];
 }
 
 -(id)initWithString:(NSString *)aPattern flags:(unsigned)f {
@@ -83,9 +83,6 @@ unsigned UnicodeWordBoundaries = UREGEX_UWORD;
 
 	if(re != NULL)
 		free(re);
-
-	[stringToSearch release];
-	[super dealloc];
 }
 
 -(NSString *)stringToSearch {
@@ -94,9 +91,8 @@ unsigned UnicodeWordBoundaries = UREGEX_UWORD;
 
 -(void)setStringToSearch:(NSString *)aStringToSearchOver {
 	if(stringToSearch != nil)
-		[stringToSearch release];
 
-	stringToSearch = [aStringToSearchOver retain];
+	stringToSearch = aStringToSearchOver;
 
 	[self setTextToSearch:[aStringToSearchOver UTF16String]];
 }
@@ -178,7 +174,7 @@ unsigned UnicodeWordBoundaries = UREGEX_UWORD;
 						format:@"Could not get pattern text from pattern."];
 		}
 
-		return [[[NSString alloc] initWithBytes:p length:len encoding:[NSString nativeUTF16Encoding]] autorelease];
+		return [[NSString alloc] initWithBytes:p length:len encoding:[NSString nativeUTF16Encoding]];
 	}
 
 	return nil;

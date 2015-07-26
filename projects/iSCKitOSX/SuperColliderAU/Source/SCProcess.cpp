@@ -27,7 +27,7 @@ void* scThreadFunc(void* arg)
     return 0;
 }
 
-void null_reply_func(struct ReplyAddress* /*addr*/, char* /*msg*/, int /*size*/);
+void null_reply_func(struct ReplyAddress* /*addr*/, char* /*msg*/, int /*size*/) { }
 
 SCProcess::SCProcess()
 {
@@ -120,12 +120,15 @@ void SCProcess::sendNote(int64 oscTime, int note, int velocity){
 }
 
 
-void SCProcess::run(const AudioBufferList* in, AudioBufferList* out,  UInt32 inFramesToProcess, AudioTimeStamp inTimeStamp, Float64 sampleRate, int64 oscTime){
+void SCProcess::run(const AudioBufferList* in, AudioBufferList* out,  UInt32 inFramesToProcess, AudioTimeStamp inTimeStamp,
+    Float64 sampleRate, int64 oscTime){
+#if SC_AUDIO_API == SC_AUDIO_API_AUDIOUNITS
     if (world->mRunning){
     	SC_AUAudioDriver* driver = (SC_AUAudioDriver*)this->world->hw->mAudioDriver;
 		//AUCallback(driver,(AudioBufferList*)in, out, &inTimeStamp, inFramesToProcess, sampleRate, oscTime );
         driver->Callback(in, out, &inTimeStamp, inFramesToProcess, sampleRate, oscTime );
     }
+#endif
 }
 
 void SCProcess::quit(){

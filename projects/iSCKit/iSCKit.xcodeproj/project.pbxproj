@@ -358,6 +358,7 @@
 		5DB1214C199A4DB1000D2100 /* utf8_codecvt_facet.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = utf8_codecvt_facet.cpp; path = src/utf8_codecvt_facet.cpp; sourceTree = "<group>"; };
 		5DB1214D199A4DB1000D2100 /* windows_file_codecvt.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = windows_file_codecvt.cpp; path = src/windows_file_codecvt.cpp; sourceTree = "<group>"; };
 		5DB1214E199A4DB1000D2100 /* windows_file_codecvt.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = windows_file_codecvt.hpp; path = src/windows_file_codecvt.hpp; sourceTree = "<group>"; };
+		5DDFDE3A1B6331B5000246E0 /* libstdc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.dylib"; path = "usr/lib/libstdc++.dylib"; sourceTree = SDKROOT; };
 		7713C6A90F422BE400B0055E /* iSCTestApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iSCTestApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		772C0E2E12DA0C69009C0126 /* clz.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = clz.h; sourceTree = "<group>"; };
 		772C0E2F12DA0C69009C0126 /* dfftlib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dfftlib.h; sourceTree = "<group>"; };
@@ -1189,6 +1190,7 @@
 		77597AF11123325400D2A968 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				5DDFDE3A1B6331B5000246E0 /* libstdc++.dylib */,
 				5D9E84FF1A8610360057C9A8 /* libiSCKit.a */,
 				5D95289E1A7F865000758498 /* libsndfile.a */,
 				5D1090AC1A7F81AF00C653FF /* libscsynth.a */,

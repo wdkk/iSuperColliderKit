@@ -22,7 +22,8 @@
 #include "SC_Reply.h"
 
 void null_reply_func(struct ReplyAddress *addr, char* msg, int size)
-{}
+{
+}
 
 bool operator==(const ReplyAddress& a, const ReplyAddress& b)
 {

@@ -30,10 +30,6 @@
 #include "VMGlobals.h"
 #include <pthread.h>
 
-#if (MAC_OS_X_VERSION_MIN_REQUIRED <= MAC_OS_X_VERSION_10_4)
-#define class_getName(a)	((a)->name)
-#endif
-
 NSMutableArray *gUserPanels = nil;
 extern PyrSymbol *s_doaction;
 extern PyrSymbol *s_closed;
@@ -47,16 +43,14 @@ extern pthread_mutex_t gLangMutex;
         NSMutableArray *copy = [gUserPanels copy];
         [gUserPanels removeAllObjects];
         [copy makeObjectsPerformSelector: @selector(close)];
-        [copy release];
     }
 }
 
 - (id)init
 {
-    [super init];
+    self = [super init];
     if (!gUserPanels) {
         gUserPanels = [NSMutableArray arrayWithCapacity: 8];
-        [gUserPanels retain];
     }
     [gUserPanels addObject: self];
     return self;
