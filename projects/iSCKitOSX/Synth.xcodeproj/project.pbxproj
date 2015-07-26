@@ -3,13 +3,26 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 47;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		5D4A1B771B5F684F00855CB7 /* libsndfile.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D4A1B741B5F668C00855CB7 /* libsndfile.a */; };
 		5D4A1B781B5F685400855CB7 /* libsndfile.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D4A1B741B5F668C00855CB7 /* libsndfile.a */; };
 		5D4A1B791B5F685A00855CB7 /* libsndfile.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D4A1B741B5F668C00855CB7 /* libsndfile.a */; };
+		5DD5FF191B64BE8B00AF0FFC /* SC_WorldOptions.h in Headers */ = {isa = PBXBuildFile; fileRef = 5DD5FF181B64BE8800AF0FFC /* SC_WorldOptions.h */; };
+		5DD5FF1A1B64BE8C00AF0FFC /* SC_WorldOptions.h in Headers */ = {isa = PBXBuildFile; fileRef = 5DD5FF181B64BE8800AF0FFC /* SC_WorldOptions.h */; };
+		5DD5FF1E1B64BF0400AF0FFC /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DD5FF1D1B64BF0400AF0FFC /* Accelerate.framework */; };
+		5DD5FF1F1B64BF5C00AF0FFC /* SC_DirUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = F33F34CF12C2922600621B91 /* SC_DirUtils.h */; };
+		5DD5FF201B64BF8300AF0FFC /* SC_DirUtils.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5DDFDEF01B6347E6000246E0 /* SC_DirUtils.mm */; };
+		5DD5FF211B64BF9A00AF0FFC /* SC_fftlib.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5DDFDEF11B6347E6000246E0 /* SC_fftlib.cpp */; };
+		5DD5FF221B64BFCE00AF0FFC /* SC_Reply.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5DDFDEF31B6347E6000246E0 /* SC_Reply.cpp */; };
+		5DD5FF231B64BFDE00AF0FFC /* SC_Sem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5DDFDEF41B6347E6000246E0 /* SC_Sem.cpp */; };
+		5DD5FF241B64BFE800AF0FFC /* SC_AllocPool.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5DDFDEEF1B6347E6000246E0 /* SC_AllocPool.cpp */; };
+		5DD5FF251B64BFF200AF0FFC /* SC_StringParser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5DDFDEF81B6347E6000246E0 /* SC_StringParser.cpp */; };
+		5DD5FF261B64BFFF00AF0FFC /* SC_StandAloneInfo_Darwin.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5DDFDEF61B6347E6000246E0 /* SC_StandAloneInfo_Darwin.cpp */; };
+		5DD5FF271B64C02900AF0FFC /* tlsf.c in Sources */ = {isa = PBXBuildFile; fileRef = 5DE8EDB01B5EA42000B79E8E /* tlsf.c */; };
+		5DD5FF281B64C06200AF0FFC /* SC_WorldOptions.h in Headers */ = {isa = PBXBuildFile; fileRef = F33F352F12C2922600621B91 /* SC_WorldOptions.h */; };
 		5DDFDE361B633062000246E0 /* libstdc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DDFDE351B633062000246E0 /* libstdc++.dylib */; };
 		5DDFDF011B6347E6000246E0 /* fftlib.c in Sources */ = {isa = PBXBuildFile; fileRef = 5DDFDEEE1B6347E6000246E0 /* fftlib.c */; };
 		5DDFDF031B6347E6000246E0 /* SC_AllocPool.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5DDFDEEF1B6347E6000246E0 /* SC_AllocPool.cpp */; };
@@ -5943,13 +5956,9 @@
 		5DE8ED9A1B5EA28000B79E8E /* stack.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 5DE8ED5A1B5EA28000B79E8E /* stack.hpp */; };
 		5DE8ED9B1B5EA28000B79E8E /* lockpool.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5DE8ED5E1B5EA28000B79E8E /* lockpool.cpp */; };
 		5DE8ED9C1B5EA28000B79E8E /* lockpool.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5DE8ED5E1B5EA28000B79E8E /* lockpool.cpp */; };
-		5DE8ED9E1B5EA38E00B79E8E /* SC_WorldOptions.h in Headers */ = {isa = PBXBuildFile; fileRef = 5DE8ED9D1B5EA38E00B79E8E /* SC_WorldOptions.h */; };
-		5DE8ED9F1B5EA38E00B79E8E /* SC_WorldOptions.h in Headers */ = {isa = PBXBuildFile; fileRef = 5DE8ED9D1B5EA38E00B79E8E /* SC_WorldOptions.h */; };
-		5DE8EDCA1B5EA42000B79E8E /* Makefile in Sources */ = {isa = PBXBuildFile; fileRef = 5DE8EDAE1B5EA42000B79E8E /* Makefile */; };
 		5DE8EDCC1B5EA42000B79E8E /* Makefile in Sources */ = {isa = PBXBuildFile; fileRef = 5DE8EDAE1B5EA42000B79E8E /* Makefile */; };
 		5DE8EDCD1B5EA42000B79E8E /* target.h in Headers */ = {isa = PBXBuildFile; fileRef = 5DE8EDAF1B5EA42000B79E8E /* target.h */; };
 		5DE8EDCE1B5EA42000B79E8E /* target.h in Headers */ = {isa = PBXBuildFile; fileRef = 5DE8EDAF1B5EA42000B79E8E /* target.h */; };
-		5DE8EDCF1B5EA42000B79E8E /* tlsf.c in Sources */ = {isa = PBXBuildFile; fileRef = 5DE8EDB01B5EA42000B79E8E /* tlsf.c */; };
 		5DE8EDD01B5EA42000B79E8E /* tlsf.c in Sources */ = {isa = PBXBuildFile; fileRef = 5DE8EDB01B5EA42000B79E8E /* tlsf.c */; };
 		5DE8EDD11B5EA42000B79E8E /* tlsf.c in Sources */ = {isa = PBXBuildFile; fileRef = 5DE8EDB01B5EA42000B79E8E /* tlsf.c */; };
 		5DE8EDD21B5EA42000B79E8E /* tlsf.h in Headers */ = {isa = PBXBuildFile; fileRef = 5DE8EDB11B5EA42000B79E8E /* tlsf.h */; };
@@ -6015,7 +6024,6 @@
 		5DE8EEB61B5EA74400B79E8E /* function_attributes.h in Headers */ = {isa = PBXBuildFile; fileRef = 5DE8EEB51B5EA74400B79E8E /* function_attributes.h */; };
 		5DE8EEB71B5EA74400B79E8E /* function_attributes.h in Headers */ = {isa = PBXBuildFile; fileRef = 5DE8EEB51B5EA74400B79E8E /* function_attributes.h */; };
 		77210B0112ABDA0E00735709 /* vecLib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77FA30FF12ABAF94008A1880 /* vecLib.framework */; };
-		77FA310012ABAF94008A1880 /* vecLib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77FA30FF12ABAF94008A1880 /* vecLib.framework */; };
 		942F96F10B03380700E00399 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94B6B0C30AF5390900E478BB /* CoreAudio.framework */; };
 		942F96F20B03380700E00399 /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F53F78F503B2842D011C068F /* CoreServices.framework */; };
 		94F5FBD80C1E6C16005CDF9F /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94B6B0C30AF5390900E478BB /* CoreAudio.framework */; };
@@ -6118,10 +6126,19 @@
 			remoteGlobalIDString = D2AAC07E0554694100DB518D;
 			remoteInfo = libsndfile;
 		};
+		5DD5FF291B64C07D00AF0FFC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F50D04F702E68E8201CA2799 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 942F96530B0337D600E00399;
+			remoteInfo = scsynth;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		5D4A1B6F1B5F668C00855CB7 /* libsndfile.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = libsndfile.xcodeproj; path = libsndfile/libsndfile.xcodeproj; sourceTree = "<group>"; };
+		5DD5FF181B64BE8800AF0FFC /* SC_WorldOptions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SC_WorldOptions.h; sourceTree = "<group>"; };
+		5DD5FF1D1B64BF0400AF0FFC /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		5DDFDE351B633062000246E0 /* libstdc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.dylib"; path = "usr/lib/libstdc++.dylib"; sourceTree = SDKROOT; };
 		5DDFDEEE1B6347E6000246E0 /* fftlib.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = fftlib.c; sourceTree = "<group>"; };
 		5DDFDEEF1B6347E6000246E0 /* SC_AllocPool.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SC_AllocPool.cpp; sourceTree = "<group>"; };
@@ -9114,7 +9131,6 @@
 		5DE8ED591B5EA28000B79E8E /* spsc_queue.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = spsc_queue.hpp; sourceTree = "<group>"; };
 		5DE8ED5A1B5EA28000B79E8E /* stack.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = stack.hpp; sourceTree = "<group>"; };
 		5DE8ED5E1B5EA28000B79E8E /* lockpool.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = lockpool.cpp; sourceTree = "<group>"; };
-		5DE8ED9D1B5EA38E00B79E8E /* SC_WorldOptions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SC_WorldOptions.h; sourceTree = "<group>"; };
 		5DE8EDAE1B5EA42000B79E8E /* Makefile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
 		5DE8EDAF1B5EA42000B79E8E /* target.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = target.h; sourceTree = "<group>"; };
 		5DE8EDB01B5EA42000B79E8E /* tlsf.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = tlsf.c; sourceTree = "<group>"; };
@@ -9270,10 +9286,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5DD5FF1E1B64BF0400AF0FFC /* Accelerate.framework in Frameworks */,
 				5D4A1B771B5F684F00855CB7 /* libsndfile.a in Frameworks */,
 				942F96F10B03380700E00399 /* CoreAudio.framework in Frameworks */,
 				942F96F20B03380700E00399 /* CoreServices.framework in Frameworks */,
-				77FA310012ABAF94008A1880 /* vecLib.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -14731,7 +14747,7 @@
 		F33F353212C2922600621B91 /* server */ = {
 			isa = PBXGroup;
 			children = (
-				5DE8ED9D1B5EA38E00B79E8E /* SC_WorldOptions.h */,
+				5DD5FF181B64BE8800AF0FFC /* SC_WorldOptions.h */,
 				F33F353312C2922600621B91 /* HashTable.h */,
 				F33F353412C2922600621B91 /* OSC_Packet.h */,
 				F33F353512C2922600621B91 /* PriorityQueue.h */,
@@ -14861,6 +14877,7 @@
 		F50D069402E6A1C601CA2799 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				5DD5FF1D1B64BF0400AF0FFC /* Accelerate.framework */,
 				5DDFDE351B633062000246E0 /* libstdc++.dylib */,
 				F3B0031D1051CF9B00929F44 /* scUBlibsndfile.a */,
 				77FA30FF12ABAF94008A1880 /* vecLib.framework */,
@@ -14874,6 +14891,15 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
+		5DD5FF1B1B64BED000AF0FFC /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5DD5FF281B64C06200AF0FFC /* SC_WorldOptions.h in Headers */,
+				5DD5FF1F1B64BF5C00AF0FFC /* SC_DirUtils.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		94F5FACD0C1E6B95005CDF9F /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -14981,6 +15007,7 @@
 				5DE8D8321B5EA26D00B79E8E /* formatters.hpp in Headers */,
 				5DE8EC821B5EA26F00B79E8E /* in_place_factory_suffix.hpp in Headers */,
 				5DE8E4CF1B5EA26E00B79E8E /* insert_impl.hpp in Headers */,
+				5DD5FF191B64BE8B00AF0FFC /* SC_WorldOptions.h in Headers */,
 				5DE8D71C1B5EA26D00B79E8E /* system_clocks.hpp in Headers */,
 				5DE8E7D11B5EA26E00B79E8E /* seq.hpp in Headers */,
 				5DE8E6CF1B5EA26E00B79E8E /* inc.hpp in Headers */,
@@ -17587,7 +17614,6 @@
 				5DE8E8971B5EA26E00B79E8E /* rational_c_tag.hpp in Headers */,
 				5DE8D9891B5EA26D00B79E8E /* function7.hpp in Headers */,
 				5DE8D9BB1B5EA26D00B79E8E /* at_impl.hpp in Headers */,
-				5DE8ED9E1B5EA38E00B79E8E /* SC_WorldOptions.h in Headers */,
 				5DE8E2731B5EA26E00B79E8E /* not_equal_to.hpp in Headers */,
 				5DE8E2C11B5EA26E00B79E8E /* lambda_no_ctps.hpp in Headers */,
 				5DE8E6C51B5EA26E00B79E8E /* pointer_cast.hpp in Headers */,
@@ -18306,6 +18332,7 @@
 				5DE8E5DC1B5EA26E00B79E8E /* size.hpp in Headers */,
 				5DE8EC3D1B5EA26F00B79E8E /* register_functions_iterate.hpp in Headers */,
 				5DE8D7D31B5EA26D00B79E8E /* iterators.hpp in Headers */,
+				5DD5FF1A1B64BE8C00AF0FFC /* SC_WorldOptions.h in Headers */,
 				5DE8EA731B5EA26F00B79E8E /* condition.hpp in Headers */,
 				5DE8DFD81B5EA26D00B79E8E /* list.hpp in Headers */,
 				5DE8D79D1B5EA26D00B79E8E /* posix_features.hpp in Headers */,
@@ -19312,7 +19339,6 @@
 				5DE8E1A41B5EA26E00B79E8E /* iter_fold_if_impl.hpp in Headers */,
 				5DE8E7DA1B5EA26E00B79E8E /* counter.hpp in Headers */,
 				5DE8EA971B5EA26F00B79E8E /* condition_variable.hpp in Headers */,
-				5DE8ED9F1B5EA38E00B79E8E /* SC_WorldOptions.h in Headers */,
 				5DE8DA4C1B5EA26D00B79E8E /* value_at_impl.hpp in Headers */,
 				5DE8DC9A1B5EA26D00B79E8E /* bool_trait_def.hpp in Headers */,
 				5DE8DA7C1B5EA26D00B79E8E /* deref_data.hpp in Headers */,
@@ -20738,6 +20764,7 @@
 			buildPhases = (
 				942F96510B0337D600E00399 /* Sources */,
 				942F96520B0337D600E00399 /* Frameworks */,
+				5DD5FF1B1B64BED000AF0FFC /* Headers */,
 			);
 			buildRules = (
 			);
@@ -20759,6 +20786,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				5DD5FF2A1B64C07D00AF0FFC /* PBXTargetDependency */,
 			);
 			name = libscsynth;
 			productName = libscsynth2;
@@ -20794,7 +20822,7 @@
 				LastUpgradeCheck = 0640;
 			};
 			buildConfigurationList = 88331E2A090AB77300A4A7E4 /* Build configuration list for PBXProject "Synth" */;
-			compatibilityVersion = "Xcode 3.2";
+			compatibilityVersion = "Xcode 6.3";
 			developmentRegion = English;
 			hasScannedForEncodings = 1;
 			knownRegions = (
@@ -20922,19 +20950,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5DE8EDCA1B5EA42000B79E8E /* Makefile in Sources */,
-				5DE8EDCF1B5EA42000B79E8E /* tlsf.c in Sources */,
+				5DD5FF211B64BF9A00AF0FFC /* SC_fftlib.cpp in Sources */,
+				5DD5FF201B64BF8300AF0FFC /* SC_DirUtils.mm in Sources */,
 				F33F442512C294AE00621B91 /* Rendezvous.cpp in Sources */,
 				F33F442612C294AE00621B91 /* Samp.cpp in Sources */,
 				F33F442712C294AE00621B91 /* SC_BufGen.cpp in Sources */,
+				5DD5FF231B64BFDE00AF0FFC /* SC_Sem.cpp in Sources */,
 				F33F442812C294AE00621B91 /* SC_Carbon.cpp in Sources */,
 				F33F442912C294AE00621B91 /* SC_ComPort.cpp in Sources */,
 				F33F442A12C294AE00621B91 /* SC_CoreAudio.mm in Sources */,
 				F33F442B12C294AE00621B91 /* SC_Errors.cpp in Sources */,
+				5DD5FF251B64BFF200AF0FFC /* SC_StringParser.cpp in Sources */,
 				F33F442C12C294AE00621B91 /* SC_Graph.cpp in Sources */,
 				F33F442D12C294AE00621B91 /* SC_GraphDef.cpp in Sources */,
 				F33F442E12C294AE00621B91 /* SC_Group.cpp in Sources */,
 				F33F442F12C294AE00621B91 /* SC_Lib.cpp in Sources */,
+				5DD5FF261B64BFFF00AF0FFC /* SC_StandAloneInfo_Darwin.cpp in Sources */,
 				F33F443012C294AE00621B91 /* SC_Lib_Cintf.cpp in Sources */,
 				F33F443112C294AE00621B91 /* SC_MiscCmds.cpp in Sources */,
 				F33F443212C294AE00621B91 /* SC_Node.cpp in Sources */,
@@ -20944,7 +20975,10 @@
 				F33F443612C294AE00621B91 /* SC_Unit.cpp in Sources */,
 				F33F443712C294AE00621B91 /* SC_UnitDef.cpp in Sources */,
 				F33F443812C294AE00621B91 /* SC_World.cpp in Sources */,
+				5DD5FF221B64BFCE00AF0FFC /* SC_Reply.cpp in Sources */,
+				5DD5FF271B64C02900AF0FFC /* tlsf.c in Sources */,
 				F33F443912C294AE00621B91 /* scsynth_main.cpp in Sources */,
+				5DD5FF241B64BFE800AF0FFC /* SC_AllocPool.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -21138,6 +21172,14 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		5DD5FF2A1B64C07D00AF0FFC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 942F96530B0337D600E00399 /* scsynth */;
+			targetProxy = 5DD5FF291B64C07D00AF0FFC /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
 		88331E2B090AB77300A4A7E4 /* Deployment */ = {
 			isa = XCBuildConfiguration;
@@ -21154,10 +21196,7 @@
 					"../../external_libraries/boost-lockfree/",
 				);
 				OBJROOT = "$(PROJECT_DIR)/build";
-				OTHER_CFLAGS = (
-					"-DSC_DARWIN",
-					"-DUSE_RENDEZVOUS",
-				);
+				OTHER_CFLAGS = "-DUSE_RENDEZVOUS";
 				PREBINDING = NO;
 				SDKROOT = macosx;
 				SYMROOT = "$(PROJECT_DIR)/../../libOSX";
@@ -21169,10 +21208,7 @@
 			buildSettings = {
 				LIBRARY_SEARCH_PATHS_QUOTED_1 = "\"$(SRCROOT)/mac/lib\"";
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/mac/lib\"";
-				OTHER_CFLAGS = (
-					"$(inherited)",
-					"-faltivec",
-				);
+				OTHER_CFLAGS = "$(inherited)";
 				PRODUCT_NAME = scsynth;
 			};
 			name = Deployment;

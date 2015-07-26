@@ -19,6 +19,7 @@ projects/*/build
 projects/*/lib
 
 lib/*
+libOSX/*
 
 *~
 *.orig

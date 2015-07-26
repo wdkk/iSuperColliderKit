@@ -1739,28 +1739,34 @@ void findDiscrepancy();
 
 void traverseFullDepTree2()
 {
-
 	// assign a class index to all classes
 	if (!parseFailed && !compileErrors) {
 		buildClassTree();
-		gNumClasses = 0;
+        
+        gNumClasses = 0;
 
 		// now I index them during pass one
 		indexClassTree(class_object, 0);
 		setSelectorFlags();
-		if (2*numClassDeps != gNumClasses) {
-			error("There is a discrepancy.\n");
-                    /* not always correct
-                    if(2*numClassDeps < gNumClasses) {
-                        post("Duplicate files may exist in the directory structure.\n");
-                    } else {
-                        post("Some class files may be missing.\n");
-                    }
-                    */
-                    post("numClassDeps %d   gNumClasses %d\n", numClassDeps, gNumClasses);
+        
+        printf("numClassDeps=%d, gNumClasses=%d\n", numClassDeps, gNumClasses);
+        
+		if (2*numClassDeps != gNumClasses)
+        {
+            error("There is a discrepancy.\n");
+            /* not always correct
+            if(2*numClassDeps < gNumClasses) {
+                post("Duplicate files may exist in the directory structure.\n");
+            } else {
+                post("Some class files may be missing.\n");
+            }
+            */
+            post("numClassDeps %d gNumClasses %d\n", numClassDeps, gNumClasses);
 			findDiscrepancy();
-			compileErrors++;
-		} else {
+           
+            compileErrors++;
+		}
+        else {
 			double elapsed;
 			buildBigMethodMatrix();
 			SymbolTable* symbolTable = gMainVMGlobals->symbolTable;
@@ -2038,6 +2044,8 @@ void schedRun();
 void compileSucceeded();
 void compileSucceeded()
 {
+    printf("start compileSucceeded() %d, %d\n", parseFailed, compileErrors);
+    
 	compiledOK = !(parseFailed || compileErrors);
 	if (compiledOK) {
 		compiledOK = true;
@@ -2135,23 +2143,21 @@ SC_DLLEXPORT_C bool compileLibrary()
 
 	totalByteCodes = 0;
 
-#ifdef NDEBUG
+    printf("compiling class library...\n");
 	postfl("compiling class library...\n");
-#else
-	postfl("compiling class library (debug build)...\n");
-#endif
 
 	bool res = passOne();
 	if (res) {
 
 		postfl("\tpass 1 done\n");
-
-		if (!compileErrors) {
-			buildDepTree();
-			traverseFullDepTree();
+        
+		if (!compileErrors)
+        {
+            buildDepTree();
+            traverseFullDepTree();
 			traverseFullDepTree2();
 			flushPostBuf();
-
+        
 			if (!compileErrors && gShowWarnings)
             {
 				SymbolTable* symbolTable = gMainVMGlobals->symbolTable;
@@ -2159,7 +2165,9 @@ SC_DLLEXPORT_C bool compileLibrary()
 			}
 		}
 		pyr_pool_compile->FreeAll();
-		flushPostBuf();
+
+        flushPostBuf();
+        
         // kengo:(3)
 		compileSucceeded();
 	} else {
@@ -2177,17 +2185,18 @@ void dumpByteCodes(PyrBlock *theBlock);
 
 SC_DLLEXPORT_C void runLibrary(PyrSymbol* selector)
 {
-        VMGlobals *g = gMainVMGlobals;
-        g->canCallOS = true;
+    VMGlobals *g = gMainVMGlobals;
+    g->canCallOS = true;
 	try {
 		if (compiledOK) {
-                        ++g->sp; SetObject(g->sp, g->process);
-			runInterpreter(g, selector, 1);
+            ++g->sp; SetObject(g->sp, g->process);
+            runInterpreter(g, selector, 1);
 		} else {
+            printf("Library has not been compiled successfully.\n");
 			postfl("Library has not been compiled successfully.\n");
 		}
 	} catch (std::exception &ex) {
-		PyrMethod *meth = g->method;
+        PyrMethod *meth = g->method;
 		if (meth) {
 			int ip = slotRawInt8Array(&meth->code) ? g->ip - slotRawInt8Array(&meth->code)->b : -1;
 			post("caught exception in runLibrary %s:%s %3d\n",
