@@ -9721,7 +9721,7 @@
 		F50D04F702E68E8201CA2799 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0640;
+				LastUpgradeCheck = 0700;
 			};
 			buildConfigurationList = 88332483090AC12E00A4A7E4 /* Build configuration list for PBXProject "Language" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -10180,6 +10180,7 @@
 					"$(inherited)",
 					"-Wstrict-aliasing",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = "jp.co.wdkk.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = SuperCollider;
 				WRAPPER_EXTENSION = app;
 			};

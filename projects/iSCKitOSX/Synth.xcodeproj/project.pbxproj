@@ -20819,7 +20819,7 @@
 		F50D04F702E68E8201CA2799 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0640;
+				LastUpgradeCheck = 0700;
 			};
 			buildConfigurationList = 88331E2A090AB77300A4A7E4 /* Build configuration list for PBXProject "Synth" */;
 			compatibilityVersion = "Xcode 6.3";
@@ -21266,6 +21266,7 @@
 				OTHER_LDFLAGS = "-bundle";
 				OTHER_REZFLAGS = "-d ppc_$ppc -d i386_$i386 -I /System/Library/Frameworks/CoreServices.framework/Frameworks/CarbonCore.framework/Versions/A/Headers -I /Developer/Examples/CoreAudio/AudioUnits/AUPublic/AUBase";
 				PREBINDING = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = net.sourceforge.SuperCollider;
 				PRODUCT_NAME = SuperColliderAU;
 				REZ_SEARCH_PATHS = (
 					/System/Library/Frameworks/CoreServices.framework/Versions/CarbonCore.framework/Versions/A/Headers,
