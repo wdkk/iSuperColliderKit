@@ -87,7 +87,7 @@ StartUp : AbstractSystemAction {
 
 	*run {
 		done = true;
-		objects.copy.do({ arg item; item.doOnStartUp });
+        objects.copy.do({ arg item; item.doOnStartUp });
         "StartUp done.".postln;
 	}
 

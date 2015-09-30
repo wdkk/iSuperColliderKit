@@ -1407,7 +1407,7 @@
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0510;
+				LastUpgradeCheck = 0700;
 				TargetAttributes = {
 					5D9E845D1A8605BE0057C9A8 = {
 						CreatedOnToolsVersion = 6.1;
@@ -1764,6 +1764,7 @@
 				GCC_THUMB_SUPPORT = NO;
 				INFOPLIST_FILE = "iPhone Resources/SuperCollider.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "jp.ac.wdkk.$(PRODUCT_NAME:identifier)";
 				PRODUCT_NAME = iSCTestApp;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SKIP_INSTALL = NO;
@@ -1789,6 +1790,7 @@
 				GCC_UNROLL_LOOPS = YES;
 				INFOPLIST_FILE = "iPhone Resources/SuperCollider.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "jp.ac.wdkk.$(PRODUCT_NAME:identifier)";
 				PRODUCT_NAME = iSCTestApp;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SEPARATE_STRIP = NO;
@@ -1843,6 +1845,7 @@
 				GCC_UNROLL_LOOPS = YES;
 				INFOPLIST_FILE = "iPhone Resources/SuperCollider_Cydia.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "jp.ac.wdkk.$(PRODUCT_NAME:identifier)";
 				PRODUCT_NAME = iSCTestApp;
 				SEPARATE_STRIP = NO;
 				SKIP_INSTALL = YES;
@@ -1857,6 +1860,7 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				ENABLE_TESTABILITY = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = (

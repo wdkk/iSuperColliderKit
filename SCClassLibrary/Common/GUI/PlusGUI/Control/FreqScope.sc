@@ -14,7 +14,7 @@ PlusFreqScope {
 	*initClass {
 		StartUp.add {
             // kengo: debug "defaultServer" error.
-            server = GUI.current.stethoscope.defaultServer;
+            server = GUI.current.stethoscope.defaultServer; // iOS
 
 			this.initSynthDefs;
 		}

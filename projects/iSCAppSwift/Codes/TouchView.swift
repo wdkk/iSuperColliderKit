@@ -13,7 +13,7 @@ class TouchView : UIView
 {
     var touches_began: ()->Void = {}
     
-    override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent)
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?)
     {
         touches_began()
     }

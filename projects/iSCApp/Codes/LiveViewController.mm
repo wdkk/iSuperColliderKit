@@ -7,7 +7,7 @@
 //
 
 #import "LiveViewController.h"
-#import <iSCKit.h>
+#import <iSCKit/iSCKit.h>
 
 @implementation LiveViewController
 

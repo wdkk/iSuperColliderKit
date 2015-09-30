@@ -32,5 +32,6 @@ class ViewController: UIViewController {
     {
         iSC.interpret("a = {SinOsc.ar()}.play");
     }
+    
 }
 
