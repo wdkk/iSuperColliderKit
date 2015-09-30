@@ -39,7 +39,6 @@ static id sharedInstance = nil;
 - (id)init 
 {
     if (sharedInstance != nil) {
-        [self dealloc];
     } else {
         sharedInstance = [super init];
 		mContents = [[NSMutableArray alloc] init]; 
@@ -55,8 +54,7 @@ static id sharedInstance = nil;
 - (void) setContents: (NSArray *)newContents 
 {
 if (mContents != newContents) 
-    { 
-        [mContents autorelease]; 
+    {
         mContents = [[NSMutableArray alloc] initWithArray:newContents]; 
     } 
 } 
@@ -72,11 +70,10 @@ if (mContents != newContents)
 	
 	[findResultsTreeController setContent:nil];
 	[findResultsTreeController setContent:[NSArray array]];
-	[mContents autorelease];
 	mContents = [[NSMutableArray alloc] init]; 
 	
 	
-	NSMutableArray *recentSearches = [[[NSMutableArray alloc] initWithArray:[findSearchField recentSearches]] autorelease];
+	NSMutableArray *recentSearches = [[NSMutableArray alloc] initWithArray:[findSearchField recentSearches]];
 	if ([recentSearches indexOfObject:searchString] != NSNotFound) {
 		[recentSearches removeObject:searchString];
 	}
@@ -118,7 +115,7 @@ if (mContents != newContents)
 
 		[node setValue:[NSNumber numberWithBool:NO] forKey:@"isLeaf"];
 		
-		folderIndexPath = [[[NSIndexPath alloc] initWithIndex:documentIndex] autorelease];
+		folderIndexPath = [[NSIndexPath alloc] initWithIndex:documentIndex];
 		[findResultsTreeController insertObject:node atArrangedObjectIndexPath:folderIndexPath];
 		documentIndex++;
 
@@ -151,9 +148,9 @@ if (mContents != newContents)
 			if ([completeString length] > 0) { // Otherwise ICU throws an exception
 				ICUMatcher *matcher;
 				if (onlyInSelectionAdvancedFind == NO || searchRange.length == 0) {
-					matcher = [[[ICUMatcher alloc] initWithPattern:pattern overString:completeString] autorelease];
+					matcher = [[ICUMatcher alloc] initWithPattern:pattern overString:completeString];
 				} else {
-					matcher = [[[ICUMatcher alloc] initWithPattern:pattern overString:[completeString substringWithRange:searchRange]] autorelease];
+					matcher = [[ICUMatcher alloc] initWithPattern:pattern overString:[completeString substringWithRange:searchRange]];
 				}
 				
 				NSInteger indexTemp;
@@ -167,10 +164,8 @@ if (mContents != newContents)
 						}
 					}
 					
-					NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 					NSRange rangeMatch = NSMakeRange([matcher rangeOfMatch].location + searchRange.location, [matcher rangeOfMatch].length);
 					[findResultsTreeController insertObject:[self preparedResultDictionaryFromString:completeString searchStringLength:searchStringLength range:rangeMatch lineNumber:lineNumber document:document] atArrangedObjectIndexPath:[folderIndexPath indexPathByAddingIndex:resultsInThisDocument]];
-					[pool release];
 					
 					resultsInThisDocument++;
 				}
@@ -191,13 +186,10 @@ if (mContents != newContents)
 					index = NSMaxRange([completeString lineRangeForRange:NSMakeRange(index, 0)]);	
 				}
 			
-				NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
-//				NSLog(@"found range: %i, lineNumber: %i", foundRange.length, lineNumber); 
+            
+                //				NSLog(@"found range: %i, lineNumber: %i", foundRange.length, lineNumber);
 				[findResultsTreeController insertObject:[self preparedResultDictionaryFromString:completeString searchStringLength:searchStringLength range:foundRange lineNumber:lineNumber document:document] atArrangedObjectIndexPath:[folderIndexPath indexPathByAddingIndex:resultsInThisDocument]];
 
-
-				[pool release];
-				
 				resultsInThisDocument++;
 				startLocation = NSMaxRange(foundRange);
 			}
@@ -234,7 +226,7 @@ if (mContents != newContents)
 	BOOL ignoreCaseAdvancedFind = (BOOL) [setIgnoreCaseButton state]; 	
 	BOOL onlyInSelectionAdvancedFind = (BOOL) [setSearchInSelectionButton state]; 
 	
-	NSMutableArray *recentSearches = [[[NSMutableArray alloc] initWithArray:[findSearchField recentSearches]] autorelease];
+	NSMutableArray *recentSearches = [[NSMutableArray alloc] initWithArray:[findSearchField recentSearches]];
 	if ([recentSearches indexOfObject:searchString] != NSNotFound) {
 		[recentSearches removeObject:searchString];
 	}
@@ -244,7 +236,7 @@ if (mContents != newContents)
 	}
 	[findSearchField setRecentSearches:recentSearches];
 	
-	NSMutableArray *recentReplaces = [[[NSMutableArray alloc] initWithArray:[replaceSearchField recentSearches]] autorelease];
+	NSMutableArray *recentReplaces = [[NSMutableArray alloc] initWithArray:[replaceSearchField recentSearches]];
 	if ([recentReplaces indexOfObject:replaceString] != NSNotFound) {
 		[recentReplaces removeObject:replaceString];
 	}
@@ -287,9 +279,9 @@ if (mContents != newContents)
 			ICUPattern *pattern;
 			@try { 
 				if (ignoreCaseAdvancedFind) {
-					pattern = [[[ICUPattern alloc] initWithString:searchString flags:(CaseInsensitiveMatching | Multiline)] autorelease];
+                    pattern = [[ICUPattern alloc] initWithString:searchString flags:(CaseInsensitiveMatching | Multiline)];
 				} else {
-					pattern = [[[ICUPattern alloc] initWithString:searchString flags:Multiline] autorelease];
+					pattern = [[ICUPattern alloc] initWithString:searchString flags:Multiline];
 				}
 			}
 			@catch (NSException *exception) {
@@ -301,9 +293,9 @@ if (mContents != newContents)
 			
 			ICUMatcher *matcher;
 			if (onlyInSelectionAdvancedFind == NO || searchRange.length == 0) {
-				matcher = [[[ICUMatcher alloc] initWithPattern:pattern overString:completeString] autorelease];
+				matcher = [[ICUMatcher alloc] initWithPattern:pattern overString:completeString];
 			} else {
-				matcher = [[[ICUMatcher alloc] initWithPattern:pattern overString:[completeString substringWithRange:searchRange]] autorelease];
+				matcher = [[ICUMatcher alloc] initWithPattern:pattern overString:[completeString substringWithRange:searchRange]];
 			}
 			
 
@@ -437,9 +429,9 @@ if (mContents != newContents)
 			}
 			ICUMatcher *matcher;
 			if (onlyInSelectionAdvancedFind== NO) {
-				matcher = [[[ICUMatcher alloc] initWithPattern:pattern overString:completeString] autorelease];
+				matcher = [[ICUMatcher alloc] initWithPattern:pattern overString:completeString];
 			} else {
-				matcher = [[[ICUMatcher alloc] initWithPattern:pattern overString:[completeString substringWithRange:searchRange]] autorelease];
+				matcher = [[ICUMatcher alloc] initWithPattern:pattern overString:[completeString substringWithRange:searchRange]];
 			}
 
 			NSMutableString *regularExpressionReplaceString = [NSMutableString stringWithString:replaceString];
@@ -483,7 +475,6 @@ if (mContents != newContents)
 	}
 	[findResultsTreeController setContent:nil];
 	[findResultsTreeController setContent:[NSArray array]];
-	[mContents autorelease]; 
 	mContents = [[NSMutableArray alloc] init]; 
 	
 	[self removeCurrentlyDisplayedDocumentInAdvancedFind];
@@ -620,20 +611,21 @@ if (mContents != newContents)
 		[mTextView setImportsGraphics: YES];
 		[mTextView setFont: [NSFont fontWithName: @"Monaco" size: 9]];
 
-		[mTextView setLangClassToCall:@"Document" 
-				withKeyDownActionIndex:4 withKeyUpActionIndex:5];
-		[mTextView setObjectKeyDownActionIndex:2 setObjectKeyUpActionIndex:1];
+        // kengo:comment out
+		//[mTextView setLangClassToCall:@"Document" withKeyDownActionIndex:4 withKeyUpActionIndex:5];
+		//[mTextView setObjectKeyDownActionIndex:2 setObjectKeyUpActionIndex:1];
 	#if 1 //in order to have an SCTextView running a few methods would need to be moved from MyDocument to SCTextView
 		[mTextView setDelegate: document];
-		[mTextView setAcceptsFirstResponder:YES];
+        
+        // kengo:comment out
+		//[mTextView setAcceptsFirstResponder:YES];
 //		[mTextView setEditable:YES];
 	#endif
 		[document addWindowController: myWindowController];
 		[[mTextView layoutManager] replaceTextStorage: [[document textView] textStorage]];
 
 		[mScrollView setDocumentView: mTextView];
-		[mTextView release];
-		mCurrentDocument = document;
+				mCurrentDocument = document;
 	}
 	[mTextView setSelectedRange: selectRange];
     [mTextView scrollRangeToVisible: selectRange];
@@ -712,8 +704,8 @@ if (mContents != newContents)
 
 - (NSMutableDictionary *)preparedResultDictionaryFromString:(NSString *)completeString searchStringLength:(NSInteger)searchStringLength range:(NSRange)foundRange lineNumber:(NSInteger)lineNumber document:(id)document
 {
-	NSMutableString *displayString = [[[NSMutableString alloc] init] autorelease];
-	NSString *lineNumberString = [NSString stringWithFormat:@"%d\t", lineNumber];
+	NSMutableString *displayString = [[NSMutableString alloc] init];
+	NSString *lineNumberString = [NSString stringWithFormat:@"%ld\t", (long)lineNumber];
 	[displayString appendString:lineNumberString];
 	NSRange linesRange = [completeString lineRangeForRange:foundRange];
 	#if 0
@@ -740,8 +732,8 @@ if (mContents != newContents)
 //	}
 
 
-	NSMutableAttributedString *attributedString = [[[NSMutableAttributedString alloc] initWithString:displayString attributes:[NSDictionary dictionaryWithObject:[NSFont systemFontOfSize:fontSize] forKey:NSFontAttributeName]] autorelease];
-	NSMutableParagraphStyle *style = [[[NSMutableParagraphStyle alloc] init] autorelease];
+	NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:displayString attributes:[NSDictionary dictionaryWithObject:[NSFont systemFontOfSize:fontSize] forKey:NSFontAttributeName]];
+	NSMutableParagraphStyle *style = [[NSMutableParagraphStyle alloc] init];
 		
 	[style setLineBreakMode:NSLineBreakByTruncatingMiddle];
 	[attributedString addAttribute:NSParagraphStyleAttributeName value:style range:NSMakeRange(0, [displayString length])];

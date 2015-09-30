@@ -39,10 +39,6 @@
 
 #include <pthread.h>
 
-#if (MAC_OS_X_VERSION_MIN_REQUIRED <= MAC_OS_X_VERSION_10_4)
-#define class_getName(a)	((a)->name)
-#endif
-
 ChangeCounter gUIChangeCounter;
 
 extern bool compiledOK;
@@ -65,7 +61,7 @@ static id sharedSCVM = nil;
 
 + (id)sharedInstance {
     if (!sharedSCVM) {
-        [[self allocWithZone:[NSApp zone]] init];
+        sharedSCVM = [[self alloc] init];
     }
     return sharedSCVM;
 }
@@ -73,24 +69,21 @@ static id sharedSCVM = nil;
 - (id)init
 {
     if (sharedSCVM) {
-        [super dealloc];
         return sharedSCVM;
     }
 
     if (!(self = [super init])) return nil;
 
     deferredOperations = [NSMutableArray arrayWithCapacity: 8];
-    [deferredOperations retain];
     deferredTaskInterval = 1.f/60;
 
     guiWindows = [NSMutableArray arrayWithCapacity: 8];
-    [guiWindows retain];
     [NSApp setDelegate: self]; //just to get a notification when sc quits. jan.t
     sharedSCVM = self;
     return self;
 }
 
-- (void)start
+- (void)startMachine
 {
 	gIdeName = "scapp"; // declare that code specific to SC.app IDE will be compiled in
 	deferredTaskTimer =
@@ -100,9 +93,6 @@ static id sharedSCVM = nil;
 	appClockTimer =
 			[NSTimer scheduledTimerWithTimeInterval: 0.020 target: self selector:
 				@selector(doClockTask:) userInfo: nil repeats: YES];
-
-	[deferredTaskTimer retain];
-	[appClockTimer retain];
 
 	[[NSRunLoop currentRunLoop] addTimer: deferredTaskTimer
 		forMode: NSModalPanelRunLoopMode];
@@ -142,13 +132,11 @@ static id sharedSCVM = nil;
 {
 
 	[deferredTaskTimer invalidate];
-	[deferredTaskTimer release];
+
 	deferredTaskInterval = sc_max(interval, 1.f/600);
 	deferredTaskTimer =
 	[NSTimer scheduledTimerWithTimeInterval: deferredTaskInterval target: self selector:
 	 @selector(doPeriodicTask:) userInfo: nil repeats: YES];
-
-	[deferredTaskTimer retain];
 
 	[[NSRunLoop currentRunLoop] addTimer: deferredTaskTimer
 								 forMode: NSModalPanelRunLoopMode];
@@ -278,14 +266,12 @@ extern NSTextView *gPostView;
 - (void)removeDeferredOperationsFor:(id) object
 {
 	NSMutableArray *newArray = [NSMutableArray arrayWithCapacity: 8];
-	[newArray retain];
 	for (unsigned int i=0; i<[deferredOperations count]; ++i) {
 		NSInvocation* action = (NSInvocation*)[deferredOperations objectAtIndex: i];
 		if ([action target] != object) {
 			[newArray addObject: action];
 		}
 	}
-	[deferredOperations release];
 	deferredOperations = newArray;
 }
 
@@ -293,11 +279,9 @@ extern NSTextView *gPostView;
 {
 	while ([deferredOperations count]) {
 		NSInvocation* action = (NSInvocation*)[deferredOperations objectAtIndex: 0];
-		[action retain];
 		[deferredOperations removeObjectAtIndex: 0];
 		///NSLog(@"%d %@ %08X\n", [deferredOperations count], action, [action target]);
 		[action invoke];
-		[action release];
 	}
 }
 
@@ -319,7 +303,6 @@ extern NSTextView *gPostView;
 		NSMutableArray *copy = [guiWindows copy];
 		[guiWindows removeAllObjects];
 		[copy makeObjectsPerformSelector: @selector(close)];
-		[copy release];
 	}
 
 	[deferredOperations removeAllObjects];
@@ -338,7 +321,7 @@ void setupUserPaneViews(id target, id view, int tagsum)
 		int thisTag = [view tag];
 		if (thisTag > 0) newTagSum += thisTag;
 	}
-	post("  view '%s' %d %d\n", class_getName(object_getClass(view)), tagsum, newTagSum);
+	post("view '%s' %d %d\n", NSStringFromClass([view class]), tagsum, newTagSum);
 
 	if ([view respondsToSelector: @selector(setTarget:)]) {
 		[view setTarget: target];
@@ -373,10 +356,8 @@ void setupUserPaneViews(id target, id view, int tagsum)
 - (void)loadUserPanel:(NSString*)filename SCObject: (void*)scobj
 {
 	UserPanel* panel = [[UserPanel alloc] init];
-	[panel retain];
 
 	NSURL *url = [NSURL fileURLWithPath: filename];
-	[filename release];
 	NSString *nspath = [url path];
 	NSMutableDictionary *dict = [NSMutableDictionary dictionary];
 	[dict setObject: panel forKey: @"NSOwner"];

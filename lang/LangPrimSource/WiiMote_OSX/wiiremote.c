@@ -18,7 +18,7 @@ typedef unsigned char darr[];
 
 
 Boolean	requestUpdates(WiiRemoteRef wiiremote);
-void myEventListener(IOBluetoothL2CAPChannelRef channel, void *refCon, IOBluetoothL2CAPChannelEvent *event);
+void myEventListener(IOBluetoothL2CAPChannelRef channel, void *refCon, IOBluetoothL2CAPChannelRef *event);
 
 
 //--------------------------------------------------------------------------------------------
@@ -232,17 +232,17 @@ void checkDevice(WiiRemoteRef wiiremote, IOBluetoothDeviceRef device)
 	}
 }
 
-void myFoundFunc(void *refCon, IOBluetoothDeviceInquiryRef inquiry, IOBluetoothDeviceRef device)
+void myFoundFunc(void *refCon, IOBluetoothDeviceRef inquiry, IOBluetoothDeviceRef device)
 {
 	checkDevice((WiiRemoteRef)refCon, device);
 }
 
-void myUpdatedFunc(void *refCon, IOBluetoothDeviceInquiryRef inquiry, IOBluetoothDeviceRef device, uint32_t devicesRemaining)
+void myUpdatedFunc(void *refCon, IOBluetoothDeviceRef inquiry, IOBluetoothDeviceRef device, uint32_t devicesRemaining)
 {
 	checkDevice((WiiRemoteRef)refCon, device);
 }
 
-void myCompleteFunc(void *refCon, IOBluetoothDeviceInquiryRef inquiry, IOReturn error, Boolean aborted)
+void myCompleteFunc(void *refCon, IOBluetoothDeviceRef inquiry, IOReturn error, Boolean aborted)
 {
 
 	if (aborted) return; // called by stop ;)

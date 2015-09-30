@@ -36,7 +36,7 @@ extern PyrSymbol *s_closed;
 #endif
 
 {
-    IBOutlet SCTextView* initTextView;
+    IBOutlet SCTextView* firstTextView;
     IBOutlet SCTextView* textView;
     IBOutlet NSScrollView* scrollView;
 	IBOutlet NSSplitView *mySplitView;
@@ -114,7 +114,7 @@ extern PyrSymbol *s_closed;
 - (void)setBackgroundColor:(NSColor *)color;
 - (void)setSelectedBackgroundColor:(NSColor *)color;
 - (NSScrollView*) scrollView;
-- (SCTextView*) initTextView;
+- (SCTextView*) firstTextView;
 - (SCTextView*) activeTextView;
 - (void)initialiseTextViewParams: (SCTextView*)aTextView;
 - (void)selectLine:(int)linenum;

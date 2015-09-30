@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <iSCKit.h>
+#import <iSCKit/iSCKit.h>
 
 #import "LoggingViewController.h"
 #import "LiveViewController.h"

@@ -150,8 +150,6 @@ inline void ScaleRectInRect( NSRect *bounds, NSSize *origSize, NSRect *destRect 
 SCImageBackground::SCImageBackground(SCImage* inSCImage, NSRect inFromRect, int inTileMode, float inFraction)
     : mSCImage(inSCImage), mFromRect(inFromRect), mTileMode(inTileMode), mFraction(inFraction)
 {
-	[mSCImage retain]; // in case
-	
 	// convert sc rect to image coordinates + clipping
 	float w, h;
 	
@@ -326,7 +324,6 @@ SCImageBackground::~SCImageBackground()
 	#if SCIMAGE_BACKGROUND_DEBUG
 		NSLog(@"SCImageBackground (%p) release SCImage (%p)", this, mSCImage);
 	#endif
-	[mSCImage release];
 }
 #endif
 

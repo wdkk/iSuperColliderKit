@@ -40,7 +40,6 @@ extern bool compiledOK;
 	langClassToCall = stringin;
 	keyDownActionIndex = downIndex;
 	keyUpActionIndex = upIndex;
-	[langClassToCall autorelease];
 }
 
 - (void) setObjectKeyDownActionIndex:(int) upindex setObjectKeyUpActionIndex:(int) downindex
@@ -62,7 +61,8 @@ extern bool compiledOK;
 - (BOOL)becomeFirstResponder
 {
 	BOOL accept = [super becomeFirstResponder];
-	if(accept) [[self delegate] setActiveTextView: self];
+    // kengo:comment out
+	//if(accept) [[self delegate] setActiveTextView: self];
 	return accept;
 }
 
@@ -162,7 +162,7 @@ extern bool compiledOK;
 			character = [characters characterAtIndex: 0];
 		}
 		unsigned int keycode = [event keyCode];
-		PyrObject * pobj = (PyrObject*)[[self delegate] getSCObject];
+		PyrObject * pobj = (__bridge PyrObject*)[[self delegate] performSelector:@selector(getSCObject)];
 		if (pobj) {
 			pthread_mutex_lock (&gLangMutex);
 			PyrSymbol *documentclass = getsym([langClassToCall cStringUsingEncoding:[NSString defaultCStringEncoding]]);
@@ -203,7 +203,7 @@ extern bool compiledOK;
 		}
 		unsigned int keycode = [event keyCode];
 			
-		PyrObject * pobj = (PyrObject*)[[self delegate] getSCObject];
+		PyrObject * pobj = (__bridge PyrObject*)[[self delegate] performSelector:@selector(getSCObject)];
 
 		if (pobj) {
 			pthread_mutex_lock (&gLangMutex);
@@ -230,12 +230,14 @@ extern bool compiledOK;
     if ([characters isEqual: @"\03"] ||
 			(([characters isEqual: @"\n"] || [characters isEqual: @"\r"])
 				&& ([event modifierFlags] & (NSControlKeyMask | NSShiftKeyMask)))) {
-        [[self delegate] executeSelection: self];
+        // kengo:comment out
+        //[[self delegate] executeSelection: self];
     } else if (([characters isEqual: @"\n"] || [characters isEqual: @"\r"]) && !([event modifierFlags] & NSAlternateKeyMask)) {
         [self autoIndent: event];
 	} else { 
         //call lang
-		if([[self delegate] handleKeyDown: event]) return;
+		// kengo:comment out
+        //if([[self delegate] handleKeyDown: event]) return;
 		if(ignoreControlKeys && ([event modifierFlags] & NSCommandKeyMask)) return;
 		[super keyDown: event];
 		
@@ -306,7 +308,8 @@ extern bool compiledOK;
 }
 
 - (IBAction) executeSelection: (id) sender {
-	[[self delegate] executeSelection: sender];
+    // kengo:comment out
+	//[[self delegate] executeSelection: sender];
 }
 
 bool matchBraks(unsigned int *startpos, unsigned int *endpos, unichar *text, int length, unichar rightBrak, bool ignoreImmediateParens);
@@ -315,7 +318,8 @@ bool matchBraks(unsigned int *startpos, unsigned int *endpos, unichar *text, int
 //-(void) mouseDragged:(NSEvent*)theEvent {[[self delegate] mouseDown:theEvent]; [super mouseDragged: theEvent]; }
 -(BOOL) dragSelectionWithEvent:(NSEvent *)event offset:(NSSize)mouseOffset slideBack:(BOOL)slideBack
 {
-[[self delegate] mouseDown:event];
+    // kengo:comment out
+    //[[self delegate] mouseDown:event];
 	[super dragSelectionWithEvent:event offset:mouseOffset slideBack:slideBack];
 }
 - (void) mouseDown: (NSEvent*) event
@@ -356,7 +360,9 @@ below:
 
         [super mouseDown: event];
         [self mouseUpAction: event index: index];
-		[[self delegate] mouseDown: event];
+		
+        // kengo:comment out
+        //[[self delegate] mouseDown: event];
 
     }
 }
@@ -374,7 +380,7 @@ extern PyrSymbol * s_mouseUp;
 	int clickCount = [theEvent clickCount];
 	int buttonNum = [theEvent buttonNumber];	
 	pthread_mutex_lock (&gLangMutex);
-	PyrObject * pobj = (PyrObject*)[[self delegate] getSCObject];
+	PyrObject * pobj = (__bridge PyrObject*)[[self delegate] performSelector:@selector(getSCObject)];
 	if (pobj) {
 		VMGlobals *g = gMainVMGlobals;
 		g->canCallOS = true;
@@ -399,7 +405,6 @@ extern PyrSymbol * s_mouseUp;
 		if(style) {
 			[style setDefaultTabInterval: value];
 			[text addAttribute: NSParagraphStyleAttributeName value: style range: range];
-			[style release];
 		}
 		i = i + range.length;
 	}
@@ -437,7 +442,6 @@ extern PyrSymbol * s_mouseUp;
 		} else {
 			res = NO;
 		}
-		[selectedText release];
 	} else {
 		res = [super writeSelectionToPasteboard:pboard type:type];
 	}
@@ -784,31 +788,36 @@ bool blankUnparsedChars(unichar* buffer, int length, bool process)
 
 - (IBAction)openCode:(id)sender
 {
-    [[self delegate] sendSelection: "openCodeFile"];
+    // kengo:comment out
+    //[[self delegate]  sendSelection: "openCodeFile"];
 }
 
 - (IBAction) showHelpFor: (id) sender
 {
-	[[self delegate] sendSelection: "showHelp"];
+    // kengo:comment out
+	//[[self delegate] sendSelection: "showHelp"];
 }
 
 - (IBAction)showHelpSearch:(id)sender {
-	[[self delegate] sendSelection: "showHelpSearch"];
+    // kengo:comment out
+    //[[self delegate] sendSelection: "showHelpSearch"];
 }
 
 - (IBAction)methodTemplates: (id)sender
 {
-    [[self delegate] sendSelection: "methodTemplates"];
+    // kengo:comment out
+    //[[self delegate] sendSelection: "methodTemplates"];
 }
 
 - (IBAction)methodReferences: (id)sender
 {
-    [[self delegate] sendSelection: "methodReferences"];
+    // kengo:comment out
+    //[[self delegate] sendSelection: "methodReferences"];
 }
 
 - (void)print:(id)sender
 {
-	NSPrintInfo *printInfo = [[[NSPrintInfo sharedPrintInfo] copy] autorelease];
+	NSPrintInfo *printInfo = [[NSPrintInfo sharedPrintInfo] copy];
 	if( ! printInfo)
 		return;
 	

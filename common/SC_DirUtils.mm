@@ -86,19 +86,11 @@ char *sc_StandardizePath(const char *path, char *newpath2)
 		char home[PATH_MAX];
 		sc_GetUserHomeDirectory(home, PATH_MAX);
 
-		if (home != 0) {
-			if ((pathLen - 1 + strlen(home)) >= MAXPATHLEN) {
-				return 0;
-			}
-			strcpy(newpath1, home);
-			strcat(newpath1, path + 1);
-		} else {
-			if (pathLen >= MAXPATHLEN) {
-				return 0;
-			}
-			strcpy(newpath1, path);
-			newpath1[0] = '.';
-		}
+        if ((pathLen - 1 + strlen(home)) >= MAXPATHLEN) {
+            return 0;
+        }
+        strcpy(newpath1, home);
+        strcat(newpath1, path + 1);
 	} else {
 		if (pathLen >= MAXPATHLEN) {
 			return 0;

@@ -55,29 +55,6 @@
 #include "PyrSched.h"
 #include "GC.h"
 
-// Backward compatibility for the older (10.4) way of doing things:
-#if (MAC_OS_X_VERSION_MIN_REQUIRED <= MAC_OS_X_VERSION_10_4)
-	#define SC_MAC_HIDSTYLE_10_4 1
-	#define IOHIDDeviceRef pRecDevice
-	#define IOHIDElementRef pRecElement
-	#define IOHIDDevice_GetLocationID(x) (x->locID)
-	#define IOHIDElementGetType(x) ((IOHIDElementType) x->type)
-	#define IOHIDElementGetCookie(x) (x->cookie)
-	#define IOHIDElementGetLogicalMin(x) (x->min)
-	#define IOHIDElementGetLogicalMax(x) (x->max)
-	#define IOHIDElementGetUsagePage(x) (x->usagePage)
-	#define IOHIDElementGetUsage(x) (x->usage)
-	#define IOHIDDevice_GetManufacturer(x) (x->manufacturer)
-	#define IOHIDDevice_GetProduct(x) (x->product)
-	#define IOHIDDevice_GetUsagePage(x) (x->usagePage)
-	#define IOHIDDevice_GetUsage(x) (x->usage)
-	#define IOHIDDevice_GetVendorID(x) (x->vendorID)
-	#define IOHIDDevice_GetProductID(x) (x->productID)
-	#define IOHIDDevice_GetLocationID(x) (x->locID)
-	#define IOHIDDevice_GetVersionNumber(x) (x->version)
-	#define IOHIDDevice_GetSerialNumber(x) (x->serial)
-#endif
-
 PyrSymbol * s_readError;
 PyrSymbol * s_hidAction;
 PyrSymbol * s_hid;

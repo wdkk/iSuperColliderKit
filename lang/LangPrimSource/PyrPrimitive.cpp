@@ -4194,8 +4194,8 @@ void initCocoaBridgePrimitives();
 void initSerialPrimitives();
 	initSerialPrimitives();
 
-void initWiiPrimitives();
-	initWiiPrimitives();
+//void initWiiPrimitives();
+//	initWiiPrimitives();
 
 #endif
 #ifdef SC_DARWIN

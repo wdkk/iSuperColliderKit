@@ -1,9 +1,7 @@
 GuiRedirect { // Abstract
 	classvar <>redirectQueries = false;
 
-	*implScheme{
-		^GUI.scheme
-	}
+	*implScheme { ^GUI.scheme }
 
 	*implClass {
 		var scheme, key, target;
@@ -138,6 +136,9 @@ Font : GuiRedirect  {
 	*new { arg name, size, bold = false, italic = false, isPointSize = false;
 		^super.new(name, size, bold, italic, isPointSize)
 	}
+    *defaultSansFace {
+        ^"Helvetica";
+    }
 }
 
 Knob : ViewRedirect  { *key { ^\knob }}

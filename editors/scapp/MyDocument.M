@@ -62,10 +62,9 @@ NSFont *defaultFont = nil;
 {
 	if(!defaultFont) {
 		defaultFont = [NSFont fontWithName: @"Monaco" size: 9];
-		[defaultFont retain];
 	}
 	mWindowObj = nil;
-    initTextView = nil;
+    firstTextView = nil;
     textView = nil;
     scrollView = nil;
     isRichText = YES;
@@ -114,8 +113,8 @@ NSFont *defaultFont = nil;
 
     NSSize contentSize;
     contentSize = [scrollView contentSize];
-    if (initTextView) {
-        textView = initTextView;
+    if (firstTextView) {
+        textView = firstTextView;
     } else {
         textView = [self makeTextView];
     }
@@ -128,12 +127,11 @@ NSFont *defaultFont = nil;
 	[mySplitView addSubview:scrollView];
 
     [scrollView setDocumentView: textView];
-    [textView release];
 
     [textView setSelectedRange: NSMakeRange(0,0)];
 
     if (firstWindow) {
-        if (initTextView) {
+        if (firstTextView) {
             if (needBlankWindow) {
                 [[NSDocumentController sharedDocumentController] newDocument: nil];
                 needBlankWindow = false;
@@ -143,7 +141,7 @@ NSFont *defaultFont = nil;
             needBlankWindow = false;
             gPostView = textView;
 
-            [[SCVirtualMachine sharedInstance] start];
+            [[SCVirtualMachine sharedInstance] startMachine];
         }
     }
 
@@ -263,7 +261,6 @@ void SyntaxColorize(NSTextView* textView);
     NSRange selectedRange = [activeTextView selectedRange];
     NSAttributedString *originalSelection = [textStorage attributedSubstringFromRange: selectedRange];
     NSMutableAttributedString *newString = [[NSMutableAttributedString alloc] initWithAttributedString: originalSelection];
-	[newString autorelease];
 
 	[newString replaceCharactersInRange: NSMakeRange([newString length],0) withString: endStr];
 	[newString replaceCharactersInRange: NSMakeRange(0,0) withString: begStr];
@@ -312,7 +309,6 @@ void SyntaxColorize(NSTextView* textView);
     NSAttributedString *originalSelection = [textStorage attributedSubstringFromRange: selectedRange];
 
     NSMutableAttributedString *newString = [[NSMutableAttributedString alloc] initWithAttributedString: originalSelection];
-    [newString autorelease];
 
     NSString *string = [originalSelection string];
 
@@ -352,10 +348,8 @@ void SyntaxColorize(NSTextView* textView);
     NSAttributedString *originalSelection = [textStorage attributedSubstringFromRange: selectedRange];
 
     NSString *tabStr = [[NSString alloc] initWithString: @"\t"];
-    [tabStr autorelease];
 
     NSMutableAttributedString *newString = [[NSMutableAttributedString alloc] initWithAttributedString: originalSelection];
-    [newString autorelease];
 
     NSString *string = [originalSelection string];
 
@@ -390,10 +384,8 @@ void SyntaxColorize(NSTextView* textView);
     NSAttributedString *originalSelection = [textStorage attributedSubstringFromRange: selectedRange];
 
     NSString *commentChars = [[NSString alloc] initWithString: @"//"];
-    [commentChars autorelease];
 
     NSMutableAttributedString *newString = [[NSMutableAttributedString alloc] initWithAttributedString: originalSelection];
-    [newString autorelease];
 
     NSString *string = [originalSelection string];
 
@@ -430,7 +422,6 @@ void SyntaxColorize(NSTextView* textView);
     NSAttributedString *originalSelection = [textStorage attributedSubstringFromRange: selectedRange];
 
     NSMutableAttributedString *newString = [[NSMutableAttributedString alloc] initWithAttributedString: originalSelection];
-    [newString autorelease];
 
     NSString *string = [originalSelection string];
 
@@ -775,7 +766,8 @@ NSString* helpFileWithName(NSFileManager* fileManager, NSString* desiredHelpFile
 
 	link = pathOfHelpFileFor([activeTextView currentlySelectedTextOrLine: NULL]);
 	if(!link) {
-		NSRunAlertPanel (@"Link to Help file", [NSString stringWithFormat: @"No help named %@ exists.", [activeTextView currentlySelectedTextOrLine: NULL]], nil, nil, nil);
+        // kengo:modified.
+		NSRunAlertPanel (@"Link to Help file", @"No help named %@ exists.", @"OK", @"Alert", [activeTextView currentlySelectedTextOrLine: NULL]);
 		return;
 	}
 	BOOL targetInMainHelp = [[[self fileURL] path] rangeOfString: [NSString stringWithFormat: @"%@/Help/", [[NSFileManager defaultManager] currentDirectoryPath]]].location != NSNotFound;
@@ -783,8 +775,10 @@ NSString* helpFileWithName(NSFileManager* fileManager, NSString* desiredHelpFile
 	// if both are in main help, or both are not, produce a relative link, otherwise an SC:// URL, which will call the search system.
 	if((targetInMainHelp && linkInMainHelp) || (!targetInMainHelp && !linkInMainHelp)) {
 		link = pathOfFileRelativeToBaseDir(link, [[[self fileURL] path] stringByDeletingLastPathComponent]);
-	} else link = [NSURL URLWithString: [@"SC://" stringByAppendingString: [activeTextView currentlySelectedTextOrLine: NULL]]];
-
+	} else
+    {
+        link = [@"SC://" stringByAppendingString:[activeTextView currentlySelectedTextOrLine: NULL]];
+    }
     //	Start to build attributes
     linkAttributes = [NSMutableDictionary dictionaryWithObject: link forKey: NSLinkAttributeName];
 
@@ -835,8 +829,6 @@ NSString* helpFileWithName(NSFileManager* fileManager, NSString* desiredHelpFile
 }
 
 - (void)setpathToSaveAttachments:(NSString *)newPathToSaveAttachments {
-	[newPathToSaveAttachments retain];
-	[pathToSaveAttachments release];
 	pathToSaveAttachments = newPathToSaveAttachments;
 }
 
@@ -883,7 +875,6 @@ NSString* helpFileWithName(NSFileManager* fileManager, NSString* desiredHelpFile
 
 			// now get the html component so we can clean it up and save it under the requested name
 			NSFileWrapper *indexWrapper = [[wrapper fileWrappers] objectForKey: @"index.html"];
-			[indexWrapper retain];
 			[wrapper removeFileWrapper: indexWrapper];
 			NSMutableString *html = [[NSMutableString alloc] initWithData: [indexWrapper regularFileContents] encoding: NSUTF8StringEncoding]; // maybe should check here?
 			// strip out "file:" so as to have nice portable relative urls
@@ -961,9 +952,6 @@ NSString* helpFileWithName(NSFileManager* fileManager, NSString* desiredHelpFile
 			if(!htmlWrapper) { NSLog(@"HTML Wrapper init failed."); }
 			success = success && [htmlWrapper writeToFile: path atomically:YES updateFilenames: YES];
 			if(!success) return success;
-			[indexWrapper release];
-			[htmlWrapper release];
-			[html release];
 		} else {
 			// html with no attachments, way more simpler
 			NSData *data = [textStorage dataFromRange:range documentAttributes:attributes error:NULL];
@@ -978,7 +966,6 @@ NSString* helpFileWithName(NSFileManager* fileManager, NSString* desiredHelpFile
 			}
 			data = [html dataUsingEncoding: NSUTF8StringEncoding];
 			success = data ? [data writeToFile: path atomically: YES] : NO;
-			[html release];
 		};
 
 	} else {
@@ -1016,8 +1003,8 @@ NSString* helpFileWithName(NSFileManager* fileManager, NSString* desiredHelpFile
 {
 	if (!url) return;
 
-	if (!initTextView) initTextView = [self makeTextView];
-	NSTextStorage* text = [initTextView textStorage];
+	if (!firstTextView) firstTextView = [self makeTextView];
+	NSTextStorage* text = [firstTextView textStorage];
 
 	[text beginEditing];	// Bracket with begin/end editing for efficiency
 	[[text mutableString] setString:@""];	// Empty the document
@@ -1027,12 +1014,10 @@ NSString* helpFileWithName(NSFileManager* fileManager, NSString* desiredHelpFile
 	if(htmlAttributedString)
 	{
 		[text setAttributedString:htmlAttributedString];
-		[initTextView setDefaultTabsTo: 28.0f];
+		[firstTextView setDefaultTabsTo: 28.0f];
 	}
 
 	[text endEditing];
-
-	[url release];
 }
 
 - (BOOL)readFromFile:(NSString *)path ofType:(NSString *)aType
@@ -1042,12 +1027,11 @@ NSString* helpFileWithName(NSFileManager* fileManager, NSString* desiredHelpFile
 
 	NSString* extension = [path pathExtension];
 
-	if (!initTextView) initTextView = [self makeTextView];
-	NSTextStorage* text = [initTextView textStorage];
+	if (!firstTextView) firstTextView = [self makeTextView];
+	NSTextStorage* text = [firstTextView textStorage];
 
 	if ([extension isEqualToString: @"html"] || [extension isEqualToString: @"htm"])
 	{
-		[url retain];
 		if (docCreatedFromLang)
 		{
 			SEL sel = @selector(loadHTML:);
@@ -1078,8 +1062,8 @@ NSString* helpFileWithName(NSFileManager* fileManager, NSString* desiredHelpFile
 	if(!success) NSLog(@"Error opening file: %@", error);
 
 	if ([extension isEqualToString: @"sc"] || [extension isEqualToString: @"scd"]) {
-		[initTextView setFont: defaultFont];
-		SyntaxColorize(initTextView);
+		[firstTextView setFont: defaultFont];
+		SyntaxColorize(firstTextView);
 	}
 	[text endEditing];
 
@@ -1130,7 +1114,7 @@ extern PyrSymbol * s_didResignKey;
 	if(compiledOK) {
 		struct PyrObject *scobj = [self getSCObject];
 		if (scobj) {
-			SetPtr(scobj->slots + 0, self);
+			SetPtr(scobj->slots + 0, (__bridge void*)self);
 			VMGlobals *g = gMainVMGlobals;
 			g->canCallOS = true;
 			++g->sp;  SetObject(g->sp, scobj); // push window obj
@@ -1150,8 +1134,6 @@ extern PyrSymbol * s_didResignKey;
 - (void)dealloc{
 	//for some reason some Documents created with open do not call windowWillClose
 	//so that its action is called here: jan.t
-	[pathToSaveAttachments release];
-	[super dealloc];
 }
 - (IBAction) becomePostWindow: (id) sender
 {
@@ -1281,9 +1263,9 @@ static void validateToggleItem(NSMenuItem *aCell, BOOL useFirst, NSString *first
 {
     return scrollView;
 }
-- (SCTextView*) initTextView;
+- (SCTextView*) firstTextView;
 {
-    return initTextView;
+    return firstTextView;
 }
 
 - (SCTextView*) activeTextView
@@ -1302,7 +1284,7 @@ static void validateToggleItem(NSMenuItem *aCell, BOOL useFirst, NSString *first
 	}
 
 	[textView setBackgroundColor: color];
-	[[self initTextView] setBackgroundColor: color];
+	[[self firstTextView] setBackgroundColor: color];
 	[textView2 setBackgroundColor: color];
 	[[self scrollView] setBackgroundColor: color];
 	[scrollView2 setBackgroundColor: color];
@@ -1441,9 +1423,6 @@ static void validateToggleItem(NSMenuItem *aCell, BOOL useFirst, NSString *first
 		[scrollView2 setDocumentView: textView2];
 
 		[[textView2 layoutManager] replaceTextStorage:[textView textStorage]];
-
-		[textView2 release];
-		[scrollView2 release];
 
 		[mySplitView adjustSubviews];
 		split = YES;

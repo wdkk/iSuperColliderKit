@@ -37,7 +37,7 @@ typedef struct URegularExpression URegularExpression;
 @implementation ICUMatcher
 
 +(ICUMatcher *)matcherWithPattern:(ICUPattern *)p overString:(NSString *)stringToSearchOver {
-	return [[[[ICUMatcher class] alloc] initWithPattern:p overString:stringToSearchOver] autorelease];
+	return [[[ICUMatcher class] alloc] initWithPattern:p overString:stringToSearchOver];
 }
 
 -(ICUMatcher *)initWithPattern:(ICUPattern *)p overString:(NSString *)aStringToSearch; {
@@ -51,16 +51,12 @@ typedef struct URegularExpression URegularExpression;
 }
 
 -(void)dealloc {
-	[[self pattern] release];
-
-	[super dealloc];
+    self.pattern = nil;
 }
 
 -(void)setPattern:(ICUPattern *)p {
 	if([self pattern] != nil)
-		[[self pattern] release];
-
-	pattern = [p retain];
+        self.pattern = nil;
 }
 
 -(BOOL)matches {
@@ -120,7 +116,7 @@ typedef struct URegularExpression URegularExpression;
 		CheckStatus(status);
 
 		groupSize = InitialGroupSize; // reset to default
-		NSString *result = [[[NSString alloc] initWithBytes:dest length:buffSize*sizeof(UChar) encoding:[NSString nativeUTF16Encoding]] autorelease];
+		NSString *result = [[NSString alloc] initWithBytes:dest length:buffSize*sizeof(UChar) encoding:[NSString nativeUTF16Encoding]];
 		free(dest);
 		return result;
 	}
@@ -179,9 +175,9 @@ typedef struct URegularExpression URegularExpression;
 		}
 	}
 	
-	NSString *result = [[[NSString alloc] initWithBytes:destString
+	NSString *result = [[NSString alloc] initWithBytes:destString
 												 length:resultLength * sizeof(UChar)
-											   encoding:[NSString nativeUTF16Encoding]] autorelease];
+											   encoding:[NSString nativeUTF16Encoding]];
 	free(destString);
 	return result;	
 }

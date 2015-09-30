@@ -7,7 +7,7 @@
 //
 
 #import "LoggingViewController.h"
-#import "iSCController.h"
+#import <iSCKit/iSCKit.h>
 
 @interface LoggingViewController ()
 

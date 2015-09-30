@@ -184,7 +184,7 @@ static NSString *sSCObjType = @"SuperCollider object address";
 
 - (id)initWithFrame: (NSRect) frame
 {
-    [super initWithFrame: frame];
+    self = [super initWithFrame: frame];
     [self registerForDraggedTypes: [NSArray arrayWithObjects: sSCObjType, NSStringPboardType, NSFilenamesPboardType, nil]];
 	mDragStarted = NO;
 	mMenuView = 0;
@@ -343,14 +343,14 @@ static NSString *sSCObjType = @"SuperCollider object address";
 
 void damageFunc(SCRect inRect, void* inData)
 {
-    SCGraphView *view = (SCGraphView*)inData;
+    SCGraphView *view = (__bridge SCGraphView*)inData;
 
     [view setNeedsDisplayInRect: SCtoNSRect(inRect)];
 }
 
 void dragFunc(SCPoint where, PyrSlot *inSlot, NSString* inString, NSString* label, void* inData)
 {
-    SCGraphView *view = (SCGraphView*)inData;
+    SCGraphView *view = (__bridge SCGraphView*)inData;
     NSPoint point = NSMakePoint(where.x, where.y);
     [view beginDragFrom: point of: inSlot string: inString label: label];
 }
@@ -363,7 +363,7 @@ void dragFunc(SCPoint where, PyrSlot *inSlot, NSString* inString, NSString* labe
 - (void)setSCTopView: (SCTopView*)inView
 {
     mTopView = inView;
-    mTopView->setDamageCallback(damageFunc, (void*)self);
+    mTopView->setDamageCallback(damageFunc, (__bridge void*)self);
     mTopView->setDragCallback(dragFunc);
 	mTopView->SetNSView(self);
 	oldBounds = NSMakeRect(0, 0, 0, 0);
@@ -374,7 +374,6 @@ void dragFunc(SCPoint where, PyrSlot *inSlot, NSString* inString, NSString* labe
 	//printf("dealloc %08X mTopView %08X\n", self, mTopView);
     delete mTopView;
 	mTopView = 0;
-	[super dealloc];
 }
 
 
@@ -398,7 +397,7 @@ void dragFunc(SCPoint where, PyrSlot *inSlot, NSString* inString, NSString* labe
 
     pthread_mutex_lock (&gLangMutex);
     if (mWindowObj) {
-        SetPtr(mWindowObj->slots + 0, self);
+        SetPtr(mWindowObj->slots + 0, (__bridge void*)self);
         VMGlobals *g = gMainVMGlobals;
         g->canCallOS = true;
         ++g->sp;  SetObject(g->sp, mWindowObj); // push window obj
@@ -417,7 +416,7 @@ extern PyrSymbol * s_didResignKey;
 	if (mWindowObj) {
 		if(NotNil(mWindowObj->slots + 11)){ // check whether endFrontAction is nil
 			pthread_mutex_lock (&gLangMutex);
-			SetPtr(mWindowObj->slots + 0, self);
+			SetPtr(mWindowObj->slots + 0, (__bridge void*)self);
 			VMGlobals *g = gMainVMGlobals;
 			g->canCallOS = true;
 
@@ -434,7 +433,7 @@ extern PyrSymbol * s_didResignKey;
 		if(NotNil(mWindowObj->slots + 10)){
 
 			pthread_mutex_lock (&gLangMutex);
-			SetPtr(mWindowObj->slots + 0, self);
+			SetPtr(mWindowObj->slots + 0, (__bridge void*)self);
 			VMGlobals *g = gMainVMGlobals;
 			g->canCallOS = true;
 			++g->sp;  SetObject(g->sp, mWindowObj); // push window obj
@@ -485,8 +484,6 @@ const int circDiam = 20;
 
     NSImage *image = [[NSImage alloc] initWithSize: size];
     if (!image) return 0;
-
-    [image autorelease];
 
     float alpha = 0.6;
     NSColor *colorClear = [NSColor colorWithCalibratedRed: 0

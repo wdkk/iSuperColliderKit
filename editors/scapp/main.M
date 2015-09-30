@@ -1,24 +1,21 @@
 #import <Cocoa/Cocoa.h>
-
-#ifdef SC_QT
-# include <QtCollider.h>
-#endif
-
-#ifdef SC_QT
-
-int main(int argc, char *argv[])
-{
-
-	[NSApplication sharedApplication];
-	[NSBundle loadNibNamed:@"MainMenu" owner:NSApp];
-	return QtCollider::exec( argc, argv );
-}
-
-#else
+#import "OSXAppDelegate.h"
 
 int main(int argc, const char *argv[])
 {
-	return NSApplicationMain(argc, argv);
+    @autoreleasepool
+    {        
+        // create NSApplication Singleton.
+        NSApplication* app = [NSApplication sharedApplication];
+        
+        // setup osx app delegate.
+        OSXAppDelegate* apdl  = [[OSXAppDelegate alloc] init];
+        [apdl run];
+        
+        // Go to run loop.
+        [app run];
+        
+        return 0;
+        //return NSApplicationMain(argc, argv);
+    }
 }
-
-#endif

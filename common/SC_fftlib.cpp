@@ -41,7 +41,7 @@ For speed we keep this global, although this makes the code non-thread-safe.
 
 // We include vDSP even if not using for FFT, since we want to use some vectorised add/mul tricks
 #if defined(__APPLE__) && !defined(SC_IPHONE)
-	#include "vecLib/vDSP.h"
+	#include <Accelerate/Accelerate.h>
 #elif defined(SC_IPHONE)
 	#include <Accelerate/Accelerate.h>
 #endif

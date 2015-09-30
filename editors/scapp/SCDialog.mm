@@ -55,7 +55,6 @@
 {
     if (!openPanel) {
 		openPanel = [NSOpenPanel openPanel];
-		[openPanel retain];
 	}
 	[openPanel setAllowsMultipleSelection: allowsMultiple];
     if(NSOKButton == [openPanel runModal]) {

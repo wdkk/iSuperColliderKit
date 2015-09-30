@@ -131,6 +131,7 @@ int vpost(const char *fmt, va_list vargs)
 	return 0;
 }
 
+/*
 void postfl(const char *fmt, ...);
 void postfl(const char *fmt, ...)
 {
@@ -141,7 +142,7 @@ void postfl(const char *fmt, ...)
 		vpost(fmt, vargs);
 	}
 }
-
+ 
 void post(const char *fmt, ...);
 void post(const char *fmt, ...)
 {
@@ -152,6 +153,27 @@ void post(const char *fmt, ...)
 		vpost(fmt, vargs);
 	}
 }
+*/
+
+void postfl(const char *fmt, ...);
+void postfl(const char *fmt, ...)
+{
+    va_list vargs;
+    va_start(vargs, fmt);
+    vprintf(fmt, vargs);
+    va_end(vargs);
+}
+
+
+void post(const char *fmt, ...);
+void post(const char *fmt, ...)
+{
+    va_list vargs;
+    va_start(vargs, fmt);
+    vprintf(fmt, vargs);
+    va_end(vargs);
+}
+
 
 void error(const char *fmt, ...);
 void error(const char *fmt, ...)

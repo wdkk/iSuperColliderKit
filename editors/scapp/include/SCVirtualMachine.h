@@ -32,7 +32,7 @@
 + (id)sharedInstance;
 
 - (id)init;
-- (void)start;
+- (void)startMachine;
 - (void)setDeferredTaskInterval: (float) interval;
 - (void)doPeriodicTask: (NSTimer*) timer;
 - (void)doClockTask: (NSTimer*) timer;

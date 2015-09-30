@@ -107,7 +107,7 @@ static unsigned indexOfServiceBeingResolved = 0;		// which service am I currentl
 
 - (id)init
 {
-	[super init];
+	self = [super init];
 	
 	for (int serviceType = 0; serviceType < kNumOSCServiceTypes; serviceType++) {
 		browsers[serviceType] = [[NSNetServiceBrowser alloc] init];
@@ -209,9 +209,8 @@ static unsigned indexOfServiceBeingResolved = 0;		// which service am I currentl
 	
 	// allocate an OSCService object for this NSService
 	// (autorelease it because we are going to put it into an array)
-	OSCService* service = [[[OSCService alloc] init] autorelease];
+	OSCService* service = [[OSCService alloc] init];
 	service->netService = aNetService;
-	[service->netService retain];
 	service->refCount++;
 	service->isResolved = NO;
 	
@@ -304,7 +303,7 @@ static unsigned indexOfServiceBeingResolved = 0;		// which service am I currentl
 		{
 			service->refCount--;
 			if (service->refCount < 1) {
-				[service->hostName release];
+                service->hostName = nil;
 				// removing it from the array will release the service object
 				// too
 				[oscServices removeObjectAtIndex: i];

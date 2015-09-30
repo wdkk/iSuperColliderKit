@@ -57,7 +57,7 @@ typedef int socklen_t;
 # endif
 #endif
 
-#include "../../../common/server_shm.hpp"
+#include "../../common/server_shm.hpp"
 
 struct InternalSynthServerGlobals
 {
