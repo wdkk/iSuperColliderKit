@@ -1,6 +1,5 @@
 /*
  *  iSCWindow.h
- *  xSC3lang
  *
  *  Created by jan truetzschler on 4/12/06.
  *  Copyright (c) 2006 jan truetzschler. All rights reserved.
