@@ -20,20 +20,8 @@
  */
 
 
-#import "LoggingViewController.h"
-#import <iSCKit/iSCKit.h>
+#import <UIKit/UIKit.h>
 
-@interface LoggingViewController ()
-
-@end
-
-@implementation LoggingViewController
-
-- (void) viewDidLoad
-{
-    // use iSCKit Log View. it's controlled iSC Class.
-    [self.view addSubview:[iSC sharedLogView]];
-}
-
+@interface ViewController : UIViewController<UITextViewDelegate>
 
 @end

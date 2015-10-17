@@ -460,7 +460,7 @@ void setCmdLine(const char *buf)
 
 	if (pthread_mutex_trylock(&gLangMutex) == 0)
 	{
-        NSLog(@"%d,%s, interpret: runLibary()", __LINE__, __FUNCTION__);
+        //NSLog(@"%d,%s, interpret: runLibary()", __LINE__, __FUNCTION__);
 		runLibrary(s_interpretPrintCmdLine);
 		pthread_mutex_unlock(&gLangMutex);
 	}

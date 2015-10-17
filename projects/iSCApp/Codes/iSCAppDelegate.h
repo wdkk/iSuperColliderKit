@@ -22,16 +22,13 @@
 #import <UIKit/UIKit.h>
 #import <iSCKit/iSCKit.h>
 
-#import "LoggingViewController.h"
-#import "LiveViewController.h"
+#import "ViewController.h"
 
 @interface iSCAppDelegate : NSObject <UIApplicationDelegate>
 
 @property (nonatomic, strong) UIWindow *window;
-@property (nonatomic, strong) UITabBarController *tab_bar_controller;
+@property (nonatomic, strong) ViewController *vc;
 
-@property (nonatomic, strong) LoggingViewController *log_vc;
-@property (nonatomic, strong) LiveViewController *live_vc;
 
 @end
 

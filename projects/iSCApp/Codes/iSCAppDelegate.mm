@@ -19,25 +19,31 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  */
 
-#import "LiveViewController.h"
-#import <iSCKit/iSCKit.h>
+#import "iSCAppDelegate.h"
 
-@implementation LiveViewController
+@implementation iSCAppDelegate
 
-- (id) initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+@synthesize window;
+
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])
-	{
-
-	}
-	return self;
-}
-
-- (void) viewDidLoad
-{
-    self.view.backgroundColor = [UIColor lightGrayColor];
+    // Generate Window and ViewControllers
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    self.window.backgroundColor = [UIColor whiteColor];
     
-    [iSC interpret:@"a = {SinOsc.ar()}.play"];
+    // Boot iSCKit Controller before using iSC log view.
+    [iSC setup];
+    
+    self.vc = [[ViewController alloc] initWithNibName:nil bundle:nil];
+    
+    // Override point for customization after application launch
+    self.window.rootViewController = self.vc;
+    [self.window makeKeyAndVisible];
+    
+    // boot SuperCollider
+    [iSC interpret:@"s.boot"];
+    
+    return YES;
 }
 
 @end

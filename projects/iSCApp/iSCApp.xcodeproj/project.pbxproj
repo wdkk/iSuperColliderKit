@@ -9,12 +9,12 @@
 /* Begin PBXBuildFile section */
 		39D745D714D5004F002A4E59 /* CoreMIDI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39D745D614D5004F002A4E59 /* CoreMIDI.framework */; };
 		5D051F631A85E7B300A042FF /* SCClassLibrary in Resources */ = {isa = PBXBuildFile; fileRef = 5D051F621A85E7B300A042FF /* SCClassLibrary */; };
+		5D2D6E8C1BD2005F0009BA2C /* TouchView.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5D2D6E8B1BD2005F0009BA2C /* TouchView.mm */; settings = {ASSET_TAGS = (); }; };
 		5D560F4A199E879E007CDE26 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D560F49199E879E007CDE26 /* AVFoundation.framework */; };
-		5D9E850D1A8614560057C9A8 /* iSCAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D9E85051A8614560057C9A8 /* iSCAppDelegate.m */; };
+		5D9E850D1A8614560057C9A8 /* iSCAppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5D9E85051A8614560057C9A8 /* iSCAppDelegate.mm */; };
 		5D9E850E1A8614560057C9A8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D9E85061A8614560057C9A8 /* main.m */; };
-		5D9E850F1A8614560057C9A8 /* LiveViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5D9E85081A8614560057C9A8 /* LiveViewController.mm */; };
 		5D9E85131A86167E0057C9A8 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D9E85121A86167E0057C9A8 /* Default-568h@2x.png */; };
-		5D9E851A1A8618670057C9A8 /* LoggingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D9E85191A8618670057C9A8 /* LoggingViewController.m */; };
+		5D9E851A1A8618670057C9A8 /* ViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5D9E85191A8618670057C9A8 /* ViewController.mm */; };
 		5DA1918F1A863BC30088702C /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 5DA1918E1A863BC30088702C /* icon.png */; };
 		772C0F3312DA126F009C0126 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77BA5239129C374C00CE89DD /* MediaPlayer.framework */; };
 		7759955312FDE20A00603187 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7759955212FDE20A00603187 /* Accelerate.framework */; };
@@ -41,16 +41,16 @@
 /* Begin PBXFileReference section */
 		39D745D614D5004F002A4E59 /* CoreMIDI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMIDI.framework; path = System/Library/Frameworks/CoreMIDI.framework; sourceTree = SDKROOT; };
 		5D051F621A85E7B300A042FF /* SCClassLibrary */ = {isa = PBXFileReference; lastKnownFileType = folder; name = SCClassLibrary; path = ../../SCClassLibrary; sourceTree = "<group>"; };
+		5D2D6E8A1BD2005F0009BA2C /* TouchView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TouchView.h; sourceTree = "<group>"; };
+		5D2D6E8B1BD2005F0009BA2C /* TouchView.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TouchView.mm; sourceTree = "<group>"; };
 		5D560F49199E879E007CDE26 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		5D9E85021A8613800057C9A8 /* iSCApp.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = iSCApp.plist; path = Resources/iSCApp.plist; sourceTree = "<group>"; };
 		5D9E85041A8614560057C9A8 /* iSCAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iSCAppDelegate.h; sourceTree = "<group>"; };
-		5D9E85051A8614560057C9A8 /* iSCAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iSCAppDelegate.m; sourceTree = "<group>"; };
+		5D9E85051A8614560057C9A8 /* iSCAppDelegate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = iSCAppDelegate.mm; sourceTree = "<group>"; };
 		5D9E85061A8614560057C9A8 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		5D9E85071A8614560057C9A8 /* LiveViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LiveViewController.h; sourceTree = "<group>"; };
-		5D9E85081A8614560057C9A8 /* LiveViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = LiveViewController.mm; sourceTree = "<group>"; };
 		5D9E85121A86167E0057C9A8 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
-		5D9E85181A8618670057C9A8 /* LoggingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoggingViewController.h; sourceTree = "<group>"; };
-		5D9E85191A8618670057C9A8 /* LoggingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoggingViewController.m; sourceTree = "<group>"; };
+		5D9E85181A8618670057C9A8 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		5D9E85191A8618670057C9A8 /* ViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ViewController.mm; sourceTree = "<group>"; };
 		5DA1918E1A863BC30088702C /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon.png; path = Resources/icon.png; sourceTree = "<group>"; };
 		7713C6A90F422BE400B0055E /* iSCApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iSCApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7759955212FDE20A00603187 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
@@ -119,11 +119,11 @@
 			children = (
 				5D9E85061A8614560057C9A8 /* main.m */,
 				5D9E85041A8614560057C9A8 /* iSCAppDelegate.h */,
-				5D9E85051A8614560057C9A8 /* iSCAppDelegate.m */,
-				5D9E85181A8618670057C9A8 /* LoggingViewController.h */,
-				5D9E85191A8618670057C9A8 /* LoggingViewController.m */,
-				5D9E85071A8614560057C9A8 /* LiveViewController.h */,
-				5D9E85081A8614560057C9A8 /* LiveViewController.mm */,
+				5D9E85051A8614560057C9A8 /* iSCAppDelegate.mm */,
+				5D9E85181A8618670057C9A8 /* ViewController.h */,
+				5D9E85191A8618670057C9A8 /* ViewController.mm */,
+				5D2D6E8A1BD2005F0009BA2C /* TouchView.h */,
+				5D2D6E8B1BD2005F0009BA2C /* TouchView.mm */,
 			);
 			path = Codes;
 			sourceTree = "<group>";
@@ -208,10 +208,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5D2D6E8C1BD2005F0009BA2C /* TouchView.mm in Sources */,
 				5D9E850E1A8614560057C9A8 /* main.m in Sources */,
-				5D9E851A1A8618670057C9A8 /* LoggingViewController.m in Sources */,
-				5D9E850F1A8614560057C9A8 /* LiveViewController.mm in Sources */,
-				5D9E850D1A8614560057C9A8 /* iSCAppDelegate.m in Sources */,
+				5D9E851A1A8618670057C9A8 /* ViewController.mm in Sources */,
+				5D9E850D1A8614560057C9A8 /* iSCAppDelegate.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

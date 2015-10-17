@@ -25,26 +25,40 @@ import UIKit
 class ViewController: UIViewController {
 
     var tv_blue:TouchView?
+    var tv_red:TouchView?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.whiteColor()
         
-        //self.view.addSubview(iSC.sharedLogView())
+        let log_view = iSC.sharedLogView()
+        log_view.frame = CGRectMake(0, 50, log_view.frame.size.width, log_view.frame.size.height-50)
+        self.view.addSubview(log_view)
         
-        tv_blue = TouchView(frame:CGRectMake(40, 100, 80, 80))
+        tv_blue = TouchView(frame:CGRectMake(5, 5, 40, 40))
         tv_blue?.backgroundColor = UIColor.blueColor()
         tv_blue?.touches_began = touchesBlue
         self.view.addSubview(tv_blue!);
+        
+        tv_red = TouchView(frame:CGRectMake(50, 5, 40, 40))
+        tv_red?.backgroundColor = UIColor.redColor()
+        tv_red?.touches_began = touchesRed
+        self.view.addSubview(tv_red!);
     }
 
-    override func didReceiveMemoryWarning() {
+    override func didReceiveMemoryWarning()
+    {
         super.didReceiveMemoryWarning()
     }
 
-    func touchesBlue()
+    func touchesBlue(touches: Set<UITouch>, withEvent event: UIEvent?)
     {
         iSC.interpret("a = {SinOsc.ar()}.play");
+    }
+    
+    func touchesRed(touches: Set<UITouch>, withEvent event: UIEvent?)
+    {
+        iSC.interpret("a.free");
     }
     
 }

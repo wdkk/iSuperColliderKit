@@ -49,13 +49,13 @@ Project directory must be located same position of iSCKit directory like to iSCA
 
 
 2. 'Header Search Path' (Build Settings)
-Add [project root] > [iSCKit] path.
-ex. *$(PROJECT_DIR)/../../iSCKit*
+Add [project root] > [iSupercolliderKit] path.
+ex. *$(PROJECT_DIR)/../../*
 
 
 3. 'Library Search Path' (Build Settings)
 Add [project root] > [lib] path.  
-ex. *$(PROJECT_DIR)/../../lib*
+ex. *$(PROJECT_DIR)/../../iSupercolliderKit/lib*
 
 
 4. 'Objective-C Automatic Reference Counting' (Build Setting)

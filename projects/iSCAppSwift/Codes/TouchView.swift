@@ -24,10 +24,10 @@ import UIKit
 
 class TouchView : UIView
 {
-    var touches_began: ()->Void = {}
+    var touches_began: (Set<UITouch>, UIEvent?)->Void = {(touches: Set<UITouch>, event: UIEvent?) in }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?)
     {
-        touches_began()
+        touches_began(touches, event)
     }
 }
