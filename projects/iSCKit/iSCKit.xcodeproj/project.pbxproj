@@ -1815,7 +1815,7 @@
 					"../../external_libraries/boost-lockfree",
 					"../../external_libraries/yaml-cpp-0.3.0/include",
 				);
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/../../lib",
@@ -1870,7 +1870,7 @@
 					"../../external_libraries/boost-lockfree",
 					"../../external_libraries/yaml-cpp-0.3.0/include",
 				);
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/../../lib",
@@ -1898,7 +1898,7 @@
 					"../../external_libraries/boost-lockfree",
 					"../../external_libraries/yaml-cpp-0.3.0/include",
 				);
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/../../lib",

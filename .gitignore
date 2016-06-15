@@ -11,13 +11,18 @@ common/Packager/LinuxExclusions.txt
 common/Packager/SuperCollider*.tar.gz
 common/Packager/SuperCollider*.dmg
 
-#build directories
+# build directories
 platform/*/build
 platform/*/lib
-
 projects/*/build
 projects/*/lib
 
+# local iSCKit projects
+projects/iSCAppCAIM
+projects/iSCPinBall
+
+
+# be generated library files
 lib/*
 libOSX/*
 
