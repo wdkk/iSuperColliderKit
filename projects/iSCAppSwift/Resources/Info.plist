@@ -30,5 +30,7 @@
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
 	</array>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>using Supercollider.</string>
 </dict>
 </plist>

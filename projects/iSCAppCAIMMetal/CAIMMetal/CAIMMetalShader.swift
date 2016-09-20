@@ -25,17 +25,17 @@ class CAIMMetalShader
         shader_name = sh
     }
     
-    func attach(enc:MTLRenderCommandEncoder) {}
+    func attach(_ enc:MTLRenderCommandEncoder) {}
 }
 
 // 頂点シェーダ
 class CAIMMetalVertexShader : CAIMMetalShader
 {
-    override func attach(enc:MTLRenderCommandEncoder)
+    override func attach(_ enc:MTLRenderCommandEncoder)
     {
         for (_, cmb) in buf
         {
-            enc.setVertexBuffer(cmb.buf, offset: 0, atIndex: cmb.idx)
+            enc.setVertexBuffer(cmb.buf, offset: 0, at: cmb.idx)
         }
     }
 }
@@ -43,11 +43,11 @@ class CAIMMetalVertexShader : CAIMMetalShader
 // フラグメントシェーダ
 class CAIMMetalFragmentShader : CAIMMetalShader
 {
-    override func attach(enc:MTLRenderCommandEncoder)
+    override func attach(_ enc:MTLRenderCommandEncoder)
     {
         for (_, cmb) in buf
         {
-            enc.setFragmentBuffer(cmb.buf, offset: 0, atIndex: cmb.idx)
+            enc.setFragmentBuffer(cmb.buf, offset: 0, at: cmb.idx)
         }
     }
 }
@@ -55,13 +55,13 @@ class CAIMMetalFragmentShader : CAIMMetalShader
 // コンピュートシェーダ
 class CAIMMetalComputeShader : CAIMMetalShader
 {
-    internal override func attach(enc: MTLRenderCommandEncoder) { /* プライベートでclose */ }
+    internal override func attach(_ enc: MTLRenderCommandEncoder) { /* プライベートでclose */ }
     
-    func attach(enc:MTLComputeCommandEncoder)
+    func attach(_ enc:MTLComputeCommandEncoder)
     {
         for (_, cmb) in buf
         {
-            enc.setBuffer(cmb.buf, offset: 0, atIndex: cmb.idx)
+            enc.setBuffer(cmb.buf, offset: 0, at: cmb.idx)
         }
     }
 }

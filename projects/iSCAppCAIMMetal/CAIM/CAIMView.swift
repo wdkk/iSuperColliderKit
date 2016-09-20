@@ -29,7 +29,7 @@ class CAIMView : UIView
     }
 
     // ピクセル表示命令用の変数
-    private var buf:CAIMColor8Ptr! = nil
+    private var buf:UnsafeMutableRawPointer? = nil
     private var bufwid:Int = 0
     private var bufhgt:Int = 0
     
@@ -78,16 +78,16 @@ class CAIMView : UIView
     // 初期化関数
     init()
     {
-        super.init(frame: CGRectZero)
-        self.backgroundColor = .clearColor()
-        self.multipleTouchEnabled = true
+        super.init(frame: CGRect.zero)
+        self.backgroundColor = .clear
+        self.isMultipleTouchEnabled = true
     }
     
     // 初期化関数フレームあり
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.backgroundColor = .clearColor()
-        self.multipleTouchEnabled = true
+        self.backgroundColor = .clear
+        self.isMultipleTouchEnabled = true
     }
     
     // 初期化関数(requiredされて入れたもの)
@@ -99,80 +99,64 @@ class CAIMView : UIView
     // 解放時関数
     deinit
     {
-        if(buf != nil) { free(buf) }
+        if(buf != nil) { free(buf!) }
     }
     
     // タッチ開始関数
-    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?)
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?)
     {
-        super.touchesBegan(touches, withEvent:event)    // 親のメソッドをコール(必須)
+        super.touchesBegan(touches, with:event)    // 親のメソッドをコール(必須)
         self.touch_count += touches.count
-        self.touches.appendContentsOf(touches)
-        self.recognizeTouchInfo(event!)                 // 指の情報を取得
+        self.recognizeTouchInfo(touches, event:event!)   // 指の情報を取得
         ev_touches_began(self)                          // タッチイベント関数のコール
     }
     
     // タッチなぞり関数
-    override func touchesMoved(touches: Set<UITouch>, withEvent event: UIEvent?)
+    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?)
     {
-        super.touchesMoved(touches, withEvent:event)    // 親のメソッドをコール(必須)
-        self.recognizeTouchInfo(event!)                 // 指の情報を取得
+        super.touchesMoved(touches, with:event)    // 親のメソッドをコール(必須)
+        self.recognizeTouchInfo(touches, event:event!)   // 指の情報を取得
         ev_touches_moved(self)                          // タッチイベント関数のコール
     }
     
     // タッチ終了関数
-    override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?)
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?)
     {
-        super.touchesEnded(touches, withEvent:event)    // 親のメソッドをコール(必須)
+        super.touchesEnded(touches, with:event)    // 親のメソッドをコール(必須)
         self.touch_count -= touches.count
-        
-        for t:UITouch in touches
-        {
-            var mind:CGFloat = 999999.0
-            var minidx:Int = 0
-            var i:Int = 0
-            for touch:UITouch in self.touches
-            {
-                let pt1:CGPoint = t.locationInView(self)
-                let pt2:CGPoint = touch.locationInView(self)
-                
-                let d:CGFloat = sqrt((pt1.x-pt2.x)*(pt1.x-pt2.x) + (pt1.y-pt2.y)*(pt1.y-pt2.y))
-                if(d < mind) { mind = d; minidx = i }
-                i += 1
-            }
-            self.touches.removeAtIndex(minidx)
-        }
-        
-        self.recognizeTouchInfo(event!)                 // 指の情報を取得
+        self.recognizeTouchInfo(touches, event:event!)   // 指の情報を取得
         ev_touches_ended(self)                          // タッチイベント関数のコール
     }
     
     // タッチ中の中断関数
-    override func touchesCancelled(touches: Set<UITouch>?, withEvent event: UIEvent?)
+    override func touchesCancelled(_ touches: Set<UITouch>?, with event: UIEvent?)
     {
-        super.touchesCancelled(touches, withEvent:event)// 親のメソッドをコール(必須)
+        super.touchesCancelled(touches!, with:event)// 親のメソッドをコール(必須)
         self.touch_count = 0
-        self.touches.removeAll()
-        self.recognizeTouchInfo(event!)                 // 指の情報を取得
+        self.recognizeTouchInfo(touches!, event:event!) // 指の情報を取得
         ev_touches_cancelled(self)                      // タッチイベント関数のコール
     }
     
     // 指の座標を取得してtouchesの情報を詰める
     // ただしtouch.locationInViewで取得できる(x,y)座標はpixelではなく、point（Retinaディスプレイ関連。Appleのリファレンス参照のこと)
     // このため、Retinaスケールを考慮してpointをpixelに置き換える
-    private func recognizeTouchInfo(event: UIEvent)
+    private func recognizeTouchInfo(_ touches: Set<NSObject>, event: UIEvent)
     {
         // タッチ情報の配列をリセット
-        self.touch_pos.removeAll(keepCapacity: false)
+        self.touch_pos.removeAll(keepingCapacity: false)
+        self.touches.removeAll(keepingCapacity: false)
         // retinaスケールの取得
-        let sc:CGFloat = UIScreen.mainScreen().scale
+        let sc:CGFloat = UIScreen.main.scale
         // タッチ数分のループ
-        for touch:UITouch in self.touches
+        for touch in touches as! Set<UITouch>
         {
             // (x,y)point座標系を取得
-            let pos:CGPoint = touch.locationInView(self)
+            let pos:CGPoint = touch.location(in: self)
             // pixel座標系に置き直し、touch_posに追加していく
             self.touch_pos.append(CGPoint(x: pos.x * sc, y: pos.y * sc))
+            
+            // touchesにはそのままUITouchの情報を格納する
+            self.touches.append(touch)
         }
         
         self.is_touch = (self.touch_count > 0)
@@ -220,16 +204,17 @@ class CAIMView : UIView
         // 画像データがない場合、サイズが変更された場合のみメモリを確保する(高速化テク)
         if(buf == nil || wid != bufwid || hgt != bufhgt)
         {
-            if(buf != nil) { free(buf) }
-            buf = CAIMColor8Ptr(malloc(wid * hgt * sizeof(CAIMColor8)))
+            if(buf != nil) { free(buf!) }
+    
+            buf = malloc(wid * hgt * MemoryLayout<CAIMColor8>.size)
             bufwid = wid
             bufhgt = hgt
         }
         
-        // ready Accelerate Process
+        // setup Accelerate Process
         // AccelerateのvImageを用いて高速に画像処理を行っている
         var src:vImage_Buffer = vImage_Buffer(data: mem, height: UInt(hgt), width: UInt(wid), rowBytes: Int(wid * 4 * 4) )
-        var dst:vImage_Buffer = vImage_Buffer(data: buf, height: UInt(hgt), width: UInt(wid), rowBytes: Int(wid * 4) )
+        var dst:vImage_Buffer = vImage_Buffer(data: buf!, height: UInt(hgt), width: UInt(wid), rowBytes: Int(wid * 4) )
         let max_float:[Float] = [ 1.0, 1.0, 1.0, 1.0 ]
         let min_float:[Float] = [ 0.0, 0.0, 0.0, 0.0 ]
         let map:Int32 = 0
@@ -240,20 +225,23 @@ class CAIMView : UIView
         let bytes_per_row:Int = 4 * wid
         let bytes_size:CFIndex = CFIndex(bytes_per_row) * hgt
         let color_space:CGColorSpace? = CGColorSpaceCreateDeviceRGB()
-        let data_prov:CGDataProviderRef? = CGDataProviderCreateWithData(nil, UnsafePointer<UInt8>(buf), bytes_size, nil)
-    
-        let cg_image = CGImageCreate(
-                wid,
-                hgt,
-                8,
-                32,
-                4 * wid,
-                color_space,
-                .ByteOrderDefault,
-                data_prov,
-                nil,
-                true,
-                .RenderingIntentDefault)
+        let data_prov:CGDataProvider? = CGDataProvider(dataInfo: nil, data: buf!, size: bytes_size, releaseData:
+                                                        {(a:UnsafeMutableRawPointer?, b:UnsafeRawPointer, c:Int) -> () in })
+        
+        let cg_image = CGImage(
+            width: wid,
+            height: hgt,
+            bitsPerComponent: 8,
+            bitsPerPixel: 32,
+            bytesPerRow: 4 * wid,
+            space: color_space!,
+            bitmapInfo: .byteOrder32Little,
+            provider: data_prov!,
+            decode: nil,
+            shouldInterpolate: true,
+            intent: .defaultIntent)
+        
+        
         
         // viewのlayer(CALayer)にCGImageを渡す（画面に表示される)
         self.layer.contents = cg_image

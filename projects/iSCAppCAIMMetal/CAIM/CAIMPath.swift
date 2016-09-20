@@ -15,6 +15,6 @@ import Foundation
 
 func CAIMBundle(file_path:String) -> String?
 {
-    let path:String! = NSBundle.mainBundle().resourcePath
+    let path:String! = Bundle.main.resourcePath
     return path! + "/" + file_path
 }

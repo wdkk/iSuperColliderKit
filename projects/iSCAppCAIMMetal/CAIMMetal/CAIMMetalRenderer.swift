@@ -28,8 +28,8 @@ class CAIMMetalRenderer
         render_pass_desc = MTLRenderPassDescriptor()
         render_pass_desc.colorAttachments[0].texture = drawable!.texture
         render_pass_desc.colorAttachments[0].clearColor = color
-        render_pass_desc.colorAttachments[0].loadAction = clear ? .Clear : .Load
-        render_pass_desc.colorAttachments[0].storeAction = .Store
+        render_pass_desc.colorAttachments[0].loadAction = clear ? .clear : .load
+        render_pass_desc.colorAttachments[0].storeAction = .store
         
         return true
     }
@@ -41,10 +41,10 @@ class CAIMMetalRenderer
         if(drawable == nil)  { print("cannot get Metal drawable."); return }
         
         // 描画コマンドの入力
-        let cmd_buf:MTLCommandBuffer = CAIMMetal.command_queue.commandBuffer()
-        let cmd_enc:MTLRenderCommandEncoder = cmd_buf.renderCommandEncoderWithDescriptor(self.render_pass_desc)
-        cmd_enc.setFrontFacingWinding(MTLWinding.CounterClockwise)
-        cmd_enc.setCullMode(MTLCullMode.None)
+        let cmd_buf:MTLCommandBuffer = CAIMMetal.command_queue.makeCommandBuffer()
+        let cmd_enc:MTLRenderCommandEncoder = cmd_buf.makeRenderCommandEncoder(descriptor: self.render_pass_desc)
+        cmd_enc.setFrontFacing(MTLWinding.counterClockwise)
+        cmd_enc.setCullMode(MTLCullMode.none)
         cmd_enc.setRenderPipelineState(pl.pipeline)
 
         // シェーダバッファのアタッチ
@@ -55,7 +55,7 @@ class CAIMMetalRenderer
         draw(cmd_enc)
         
         cmd_enc.endEncoding()
-        cmd_buf.presentDrawable(drawable!)
+        cmd_buf.present(drawable!)
         cmd_buf.commit()
     }
 }

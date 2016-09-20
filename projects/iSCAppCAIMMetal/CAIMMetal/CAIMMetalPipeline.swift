@@ -24,29 +24,29 @@ class CAIMMetalPipeline
         
         let device:MTLDevice! = CAIMMetal.device
         let library:MTLLibrary? = device.newDefaultLibrary()
-        let vertex_func:MTLFunction? = library!.newFunctionWithName(vsh.shader_name!)
-        let fragment_func:MTLFunction? = library!.newFunctionWithName(fsh.shader_name!)
+        let vertex_func:MTLFunction? = library!.makeFunction(name: vsh.shader_name!)
+        let fragment_func:MTLFunction? = library!.makeFunction(name: fsh.shader_name!)
         
         let render_pipeline_desc:MTLRenderPipelineDescriptor = MTLRenderPipelineDescriptor()
         render_pipeline_desc.vertexFunction = vertex_func
         render_pipeline_desc.fragmentFunction = fragment_func
         
         let color_attachment:MTLRenderPipelineColorAttachmentDescriptor = render_pipeline_desc.colorAttachments[0]
-        color_attachment.pixelFormat = .BGRA8Unorm
+        color_attachment.pixelFormat = .bgra8Unorm
         // アルファブレンディングの設定
-        color_attachment.blendingEnabled = true
+        color_attachment.isBlendingEnabled = true
         // 2値の加算方法
-        color_attachment.rgbBlendOperation           = MTLBlendOperation.Add
-        color_attachment.alphaBlendOperation         = MTLBlendOperation.Add
+        color_attachment.rgbBlendOperation           = MTLBlendOperation.add
+        color_attachment.alphaBlendOperation         = MTLBlendOperation.add
         // 入力データ = α
-        color_attachment.sourceRGBBlendFactor        = MTLBlendFactor.SourceAlpha
-        color_attachment.sourceAlphaBlendFactor      = MTLBlendFactor.SourceAlpha
+        color_attachment.sourceRGBBlendFactor        = MTLBlendFactor.sourceAlpha
+        color_attachment.sourceAlphaBlendFactor      = MTLBlendFactor.sourceAlpha
         // 合成先データ = 1-α
-        color_attachment.destinationRGBBlendFactor   = MTLBlendFactor.OneMinusSourceAlpha
-        color_attachment.destinationAlphaBlendFactor = MTLBlendFactor.OneMinusSourceAlpha
+        color_attachment.destinationRGBBlendFactor   = MTLBlendFactor.oneMinusSourceAlpha
+        color_attachment.destinationAlphaBlendFactor = MTLBlendFactor.oneMinusSourceAlpha
         do
         {
-            self.pipeline = try device.newRenderPipelineStateWithDescriptor(render_pipeline_desc)
+            self.pipeline = try device.makeRenderPipelineState(descriptor: render_pipeline_desc)
         }
         catch
         {

@@ -19,19 +19,23 @@
 
 // CAIMImage struct
 struct CAIMImageC;
-typedef struct CAIMImageC* CAIMImageCPtr;
+typedef struct CAIMImageC* _Nullable CAIMImageCPtr;
 
 typedef struct CAIMColor
 {
     float R, G, B, A;
 }
-CAIMColor, **CAIMColorMatrix;
+CAIMColor;
+typedef CAIMColor * _Nonnull CAIMColorPtr;
+typedef CAIMColorPtr * _Nonnull CAIMColorMatrix;
 
 typedef struct CAIMColor8
 {
     unsigned char R, G, B, A;
 }
-CAIMColor8, *CAIMColor8Ptr, **CAIMColor8Matrix;
+CAIMColor8;
+typedef CAIMColor8 * _Nonnull CAIMColor8Ptr;
+typedef CAIMColor8Ptr * _Nonnull CAIMColor8Matrix;
 
 typedef NS_ENUM(unsigned char, CAIMDepth)
 {
@@ -39,13 +43,13 @@ typedef NS_ENUM(unsigned char, CAIMDepth)
     CAIMDepth_float= 32
 };
 
-typedef unsigned char* CAIMMemory;
+typedef unsigned char* _Nullable CAIMMemory;
 
 //// shared method ////
 
 // create & release functions.
 CAIMImageCPtr     CAIMImageCreate(long wid, long hgt, CAIMDepth depth);
-CAIMImageCPtr     CAIMImageCreateWithFile(NSString *file_path, CAIMDepth depth);
+CAIMImageCPtr     CAIMImageCreateWithFile(NSString * _Nullable file_path, CAIMDepth depth);
 void              CAIMImageRelease(CAIMImageCPtr img);
 CAIMImageCPtr     CAIMImageClone(const CAIMImageCPtr img_src);
 void              CAIMImageCopy(const CAIMImageCPtr img_src, CAIMImageCPtr img_dst);
@@ -53,7 +57,7 @@ void              CAIMImageCopy(const CAIMImageCPtr img_src, CAIMImageCPtr img_d
 void              CAIMImageResize(CAIMImageCPtr img, long wid, long hgt);
 
 // load & save file functions.
-int               CAIMImageLoadFile(CAIMImageCPtr img, NSString *file_path);
+int               CAIMImageLoadFile(CAIMImageCPtr img, NSString * _Nullable file_path);
 // load & save image file to Album.
 int               CAIMImageSaveFileToAlbum(CAIMImageCPtr img);
 // get matrix

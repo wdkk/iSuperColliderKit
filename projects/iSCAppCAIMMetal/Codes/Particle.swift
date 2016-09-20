@@ -19,7 +19,7 @@ struct Particle
     func genVertex() -> [VertexColor]
     {
         // 6頂点=三角形ポリゴンx2を準備
-        var vs:[VertexColor] = [VertexColor](count:6, repeatedValue: VertexColor())
+        var vs:[VertexColor] = [VertexColor](repeating: VertexColor(), count:6)
         
         // Particleのパラメータに合わせて計算
         let cx:Float32 = pos.x
@@ -63,7 +63,7 @@ class ParticleManager
     var metal_buf:CAIMMetalBuffer!
     
     var count:Int { return parts.count }
-    var memory:UnsafeMutablePointer<VertexColor> { return vertices.mem }
+    var memory:UnsafeMutablePointer<VertexColor> { return vertices.mem! }
     var mem_size:Int { return vertices.mem_size }
     
     // subscript [n] accessor
@@ -75,7 +75,7 @@ class ParticleManager
     init(metal_idx:Int, max_size: Int)
     {
         vertices = CMemory<VertexColor>(size: max_size * 6)
-        parts = [Particle](count:max_size, repeatedValue:Particle())
+        parts = [Particle](repeating:Particle(), count:max_size)
         metal_buf = CAIMMetalBuffer(metal_idx, length: mem_size)
     }
     
@@ -93,7 +93,7 @@ class ParticleManager
         {
             if(!p.enable) { continue }
             let vs:[VertexColor] = p.genVertex()
-            vertices.set(i, array: vs)
+            vertices.set(idx: i, array: vs)
             i += vs.count
         }
         
@@ -102,7 +102,7 @@ class ParticleManager
     
     func render(cmd:MTLRenderCommandEncoder)
     {
-        cmd.drawPrimitives(MTLPrimitiveType.Triangle, vertexStart: 0, vertexCount: active_count)
+        cmd.drawPrimitives(type: MTLPrimitiveType.triangle, vertexStart: 0, vertexCount: active_count)
     }
     
 }

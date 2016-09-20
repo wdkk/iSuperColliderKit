@@ -11,25 +11,25 @@ import Foundation
 // Cポインタでのメモリ確保クラス
 class CMemory<T>
 {
-    var mem:UnsafeMutablePointer<T> = nil
+    var mem:UnsafeMutablePointer<T>? = nil
     var count:Int = 0
-    var mem_size:Int { return count * sizeof(T) }
+    var mem_size:Int { return count * MemoryLayout<T>.size }
     
     init(size:Int)
     {
-        mem = UnsafeMutablePointer<T>.alloc(size)
+        mem = UnsafeMutablePointer<T>.allocate(capacity: size)
         self.count = size
     }
     
-    deinit { mem.dealloc(self.count) }
+    deinit { mem?.deallocate(capacity: self.count) }
     
     // subscript [n] accessor
     subscript(idx:Int) -> T {
-        get { return (mem + idx).memory }
-        set(new_value) { (mem + idx).memory = new_value }
+        get { return (mem! + idx).pointee }
+        set(new_value) { (mem! + idx).pointee = new_value }
     }
     
-    func offset(idx:Int) -> UnsafeMutablePointer<T> { return mem + idx }
+    func offset(idx:Int) -> UnsafeMutablePointer<T> { return mem! + idx }
     
     func set(idx:Int, array:[T])
     {

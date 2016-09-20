@@ -14,11 +14,11 @@ import Foundation
 
 class CAIMImage
 {
-    private var img:CAIMImageCPtr = nil
+    private var img:CAIMImageCPtr? = nil
  
     var width:Int { return CAIMImageWidth(img) }
     var height:Int { return CAIMImageHeight(img) }
-    var memory:CAIMMemory { return CAIMImageMemory(img) }
+    var memory:CAIMMemory { return CAIMImageMemory(img)! }
     var memory_size:Int { return CAIMImageMemorySize(img) }
     var matrix:CAIMColorMatrix { return CAIMImageMatrix(img) }
     var matrix8:CAIMColor8Matrix { return CAIMImageMatrix8(img) }
@@ -47,7 +47,7 @@ class CAIMImage
     
     func clone(img_src:CAIMImage) -> CAIMImage
     {
-        return CAIMImage(img_clone: img_src.img)
+        return CAIMImage(img_clone: img_src.img!)
     }
     
     func copy(img_src:CAIMImage)

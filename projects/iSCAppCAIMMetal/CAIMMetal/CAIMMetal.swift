@@ -26,7 +26,7 @@ class CAIMMetal
     
     static var command_queue:MTLCommandQueue! {
         get {
-            if(_command_queue == nil) { _command_queue = device.newCommandQueue() }
+            if(_command_queue == nil) { _command_queue = device.makeCommandQueue() }
             return _command_queue
         }
     }

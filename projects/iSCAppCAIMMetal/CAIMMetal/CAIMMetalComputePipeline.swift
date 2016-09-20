@@ -19,11 +19,11 @@ class CAIMMetalComputePipeline
         
         let device:MTLDevice! = CAIMMetal.device
         let library:MTLLibrary? = device.newDefaultLibrary()
-        let compute_func:MTLFunction? = library!.newFunctionWithName(csh.shader_name!)
+        let compute_func:MTLFunction? = library!.makeFunction(name: csh.shader_name!)
         
         do
         {
-            self.pipeline = try device.newComputePipelineStateWithFunction(compute_func!)
+            self.pipeline = try device.makeComputePipelineState(function: compute_func!)
         }
         catch
         {

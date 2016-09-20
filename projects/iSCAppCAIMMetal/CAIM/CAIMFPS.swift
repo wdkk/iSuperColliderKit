@@ -13,14 +13,14 @@
 import Foundation
 
 // 現在のシステム時間のmsを返す
-public func CAIMNow() -> UInt
+public func CAIMNow() -> UInt64
 {
     var now_time:timeval = timeval()
     var tzp:timezone = timezone()
     
     gettimeofday(&now_time, &tzp)
         
-    return (UInt(now_time.tv_sec) * 1000 + UInt(now_time.tv_usec) / 1000)
+    return (UInt64(now_time.tv_sec) * 1000 + UInt64(now_time.tv_usec) / 1000)
 }
 
 // 秒間のFPSを計測する（ループ内で使う）
@@ -29,8 +29,8 @@ public func CAIMFPS()
     struct variables
     {
         static var is_started:Bool = false
-        static var time_span:UInt = 0
-        static var fps:UInt32 = 0
+        static var time_span:UInt64 = 0
+        static var fps:UInt64 = 0
     }
     
     if (!variables.is_started)
@@ -40,7 +40,7 @@ public func CAIMFPS()
         variables.fps = 0
     }
         
-    if (CAIMNow() - variables.time_span >= 1000)
+    if (Int64(CAIMNow()) - Int64(variables.time_span) >= 1000)
     {
         print("CAIM: \(variables.fps)(fps)")
         variables.time_span = CAIMNow()

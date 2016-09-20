@@ -43,20 +43,20 @@ class MyMetalView: CAIMMetalView
         ///////////////////////////////////////////////////
 
         // 画像データ
-        let sc:CGFloat = UIScreen.mainScreen().scale
+        let sc:CGFloat = UIScreen.main.scale
         let wid:Int = Int(self.bounds.width * sc)
         let hgt:Int = Int(self.bounds.height * sc)
         
         for i in 0 ..< particles.count
         {
-            particles[i] = genParticle(randomFloat())
+            particles[i] = genParticle(life: randomFloat())
         }
         
         //// 頂点シェーダ用メモリのマップ ////
         // 頂点バッファの作成
         vsh["vertices"] = particles.metal_buf
         // ユニフォームバッファの作成
-        vsh["uniform"] = CAIMMetalBuffer(1, length: sizeof(Matrix4x4) )
+        vsh["uniform"] = CAIMMetalBuffer(1, length: MemoryLayout<Matrix4x4>.size )
       
         // 座標値の更新
         var mat:Matrix4x4 = Matrix4x4()
@@ -64,15 +64,15 @@ class MyMetalView: CAIMMetalView
         mat.Y.y = 2.0 / Float32(hgt)
         mat.W.x = -1.0
         mat.W.y = -1.0
-        vsh["uniform"].update([mat], length: sizeof(Matrix4x4) )
+        vsh["uniform"].update([mat], length: MemoryLayout<Matrix4x4>.size )
         
-        s_time = CAIMNow()
+        s_time = UInt(CAIMNow())
     }
     
     func genParticle(life:Float32=1.0) -> Particle
     {
         // 画像データ
-        let sc:CGFloat = UIScreen.mainScreen().scale
+        let sc:CGFloat = UIScreen.main.scale
         let wid:Int = Int(self.bounds.width * sc)
         let hgt:Int = Int(self.bounds.height * sc)
         
@@ -88,7 +88,7 @@ class MyMetalView: CAIMMetalView
     
     func updateParticles()
     {
-        let n_time:UInt = CAIMNow()
+        let n_time:UInt = UInt(CAIMNow())
         let dt:UInt = n_time - s_time
         for i:Int in 0 ..< particles.count
         {
@@ -106,7 +106,7 @@ class MyMetalView: CAIMMetalView
     override func draw()
     {
         // 描画先Viewを指定(=self)して、レンダラ準備
-        renderer.ready(self)
+        let _ = renderer.ready(view: self)
      
         updateParticles()
         
@@ -114,12 +114,12 @@ class MyMetalView: CAIMMetalView
         vsh["vertices"].update(particles.memory, length: particles.mem_size)
         
         // 指定したパイプラインで描画実行、描画の詳細な命令はdrawMesh関数で指定
-        renderer.render(pl, draw:drawMesh)
+        renderer.render(pl: pl, draw:drawMesh)
     }
     
     func drawMesh(cmd:MTLRenderCommandEncoder)
     {
-        particles.render(cmd)
+        particles.render(cmd: cmd)
     }
     
     func touchBegan(view:CAIMView)

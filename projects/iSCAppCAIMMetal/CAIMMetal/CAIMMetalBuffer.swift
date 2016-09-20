@@ -13,13 +13,13 @@ class CAIMMetalBuffer
     var idx:Int = 0
     var buf:MTLBuffer? = nil
     
-    init(_ idx:Int, buf:UnsafePointer<Void>, length:Int)
+    init(_ idx:Int, buf:UnsafeRawPointer, length:Int)
     {
         self.idx = idx
         self.buf = self.alloc(buf, length: length)
     }
 
-    init(_ idx:Int, nocopy:UnsafeMutablePointer<Void>, length:Int)
+    init(_ idx:Int, nocopy:UnsafeMutableRawPointer, length:Int)
     {
         self.idx = idx
         self.buf = self.alloc(nocopy, length: length)
@@ -31,24 +31,24 @@ class CAIMMetalBuffer
         self.buf = self.alloc(length)
     }
     
-    func update(mem:UnsafePointer<Void>, length:Int)
+    func update(_ mem:UnsafeRawPointer, length:Int)
     {
         memcpy( self.buf!.contents(), mem, length )
     }
     
-    private func alloc(buf:UnsafePointer<Void>, length:Int) -> MTLBuffer
+    private func alloc(_ buf:UnsafeRawPointer, length:Int) -> MTLBuffer
     {
-        return CAIMMetal.device.newBufferWithBytes(buf, length: length, options: .OptionCPUCacheModeDefault)
+        return CAIMMetal.device.makeBuffer(bytes: buf, length: length, options: .storageModeShared )
     }
     
-    private func alloc(length:Int) -> MTLBuffer
+    private func alloc(_ length:Int) -> MTLBuffer
     {
-        return CAIMMetal.device.newBufferWithLength(length, options: .OptionCPUCacheModeDefault)
+        return CAIMMetal.device.makeBuffer(length: length, options: .storageModeShared )
     }
     
-    private func nocopy(buf:UnsafeMutablePointer<Void>, length:Int) -> MTLBuffer
+    private func nocopy(_ buf:UnsafeMutableRawPointer, length:Int) -> MTLBuffer
     {
-        return CAIMMetal.device.newBufferWithBytesNoCopy(buf, length: length, options: .OptionCPUCacheModeDefault, deallocator: nil)
+        return CAIMMetal.device.makeBuffer(bytesNoCopy: buf, length: length, options: .storageModeShared, deallocator: nil)
     }
 }
 

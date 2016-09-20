@@ -33,10 +33,10 @@ class CAIMMetalView: CAIMView
         // layer's frame
         metal_layer = CAMetalLayer()
         metal_layer.device = CAIMMetal.device
-        metal_layer.pixelFormat = .BGRA8Unorm
+        metal_layer.pixelFormat = .bgra8Unorm
         metal_layer.framebufferOnly = true
         metal_layer.frame = self.bounds
-        metal_layer.contentsScale = UIScreen.mainScreen().scale
+        metal_layer.contentsScale = UIScreen.main.scale
         self.layer.addSublayer(metal_layer)
     }
     

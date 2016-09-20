@@ -50,13 +50,13 @@ class CAIMViewController: UIViewController
     {
         // 親のviewDidLoadを呼ぶ[必須]
         super.viewDidLoad()
-        self.view.backgroundColor = .whiteColor()
+        self.view.backgroundColor = .white
         
         // 登録した関数のコール
         ev_did_load(self)
     }
 
-    override func viewDidAppear(animated: Bool)
+    override func viewDidAppear(_ animated: Bool)
     {
         // 親のviewDidAppearを呼ぶ
         super.viewDidAppear(animated)
@@ -65,11 +65,11 @@ class CAIMViewController: UIViewController
         ev_did_appear(self)
         
         // updateのループ処理を開始
-        display_link = CADisplayLink(target: self, selector: #selector(CAIMViewController.polling(_:)))
-        display_link.addToRunLoop(NSRunLoop.currentRunLoop(), forMode: NSRunLoopCommonModes)
+        display_link = CADisplayLink(target: self, selector: #selector(polling))
+        display_link.add(to: RunLoop.current, forMode: RunLoopMode.commonModes)
     }
     
-    override func viewDidDisappear(animated: Bool)
+    override func viewDidDisappear(_ animated: Bool)
     {
         // 親のviewDidAppearを呼ぶ
         super.viewDidDisappear(animated)
@@ -78,7 +78,7 @@ class CAIMViewController: UIViewController
         ev_did_disappear(self)
         
         // updateのループ処理を終了
-        display_link.removeFromRunLoop(NSRunLoop.currentRunLoop(), forMode: NSRunLoopCommonModes)
+        display_link.remove(from: RunLoop.current, forMode: RunLoopMode.commonModes)
     }
     
     // CADisplayLinkで60fpsで呼ばれる関数
@@ -89,35 +89,35 @@ class CAIMViewController: UIViewController
     }
     
     // タッチ開始関数
-    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?)
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?)
     {
-        super.touchesBegan(touches, withEvent:event)    // 親のメソッドをコール(必須)
+        super.touchesBegan(touches, with:event)    // 親のメソッドをコール(必須)
         self.touch_count += touches.count
         self.recognizeTouchInfo(touches, event:event!)   // 指の情報を取得
         ev_touches_began(self)                          // タッチイベント関数のコール
     }
     
     // タッチなぞり関数
-    override func touchesMoved(touches: Set<UITouch>, withEvent event: UIEvent?)
+    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?)
     {
-        super.touchesMoved(touches, withEvent:event)    // 親のメソッドをコール(必須)
+        super.touchesMoved(touches, with:event)    // 親のメソッドをコール(必須)
         self.recognizeTouchInfo(touches, event:event!)   // 指の情報を取得
         ev_touches_moved(self)                          // タッチイベント関数のコール
     }
     
     // タッチ終了関数
-    override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?)
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?)
     {
-        super.touchesEnded(touches, withEvent:event)    // 親のメソッドをコール(必須)
+        super.touchesEnded(touches, with:event)    // 親のメソッドをコール(必須)
         self.touch_count -= touches.count
         self.recognizeTouchInfo(touches, event:event!)   // 指の情報を取得
         ev_touches_ended(self)                          // タッチイベント関数のコール
     }
     
     // タッチ中の中断関数
-    override func touchesCancelled(touches: Set<UITouch>?, withEvent event: UIEvent?)
+    override func touchesCancelled(_ touches: Set<UITouch>?, with event: UIEvent?)
     {
-        super.touchesCancelled(touches, withEvent:event)// 親のメソッドをコール(必須)
+        super.touchesCancelled(touches!, with:event)// 親のメソッドをコール(必須)
         self.touch_count = 0
         self.recognizeTouchInfo(touches!, event:event!) // 指の情報を取得
         ev_touches_cancelled(self)                      // タッチイベント関数のコール
@@ -126,18 +126,18 @@ class CAIMViewController: UIViewController
     // 指の座標を取得してtouchesの情報を詰める
     // ただしtouch.locationInViewで取得できる(x,y)座標はpixelではなく、point（Retinaディスプレイ関連。Appleのリファレンス参照のこと)
     // このため、Retinaスケールを考慮してpointをpixelに置き換える
-    private func recognizeTouchInfo(touches: Set<NSObject>, event: UIEvent)
+    private func recognizeTouchInfo(_ touches: Set<NSObject>, event: UIEvent)
     {
         // タッチ情報の配列をリセット
-        self.touch_pos.removeAll(keepCapacity: false)
-        self.touches.removeAll(keepCapacity: false)
+        self.touch_pos.removeAll(keepingCapacity: false)
+        self.touches.removeAll(keepingCapacity: false)
         // retinaスケールの取得
-        let sc:CGFloat = UIScreen.mainScreen().scale
+        let sc:CGFloat = UIScreen.main.scale
         // タッチ数分のループ
         for touch in touches as! Set<UITouch>
         {
             // (x,y)point座標系を取得
-            let pos:CGPoint = touch.locationInView(self.view)
+            let pos:CGPoint = touch.location(in: self.view)
             // pixel座標系に置き直し、touch_posに追加していく
             self.touch_pos.append(CGPoint(x: pos.x * sc, y: pos.y * sc))
             
