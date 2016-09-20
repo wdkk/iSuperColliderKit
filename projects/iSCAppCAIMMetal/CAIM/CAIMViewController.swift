@@ -93,7 +93,8 @@ class CAIMViewController: UIViewController
     {
         super.touchesBegan(touches, with:event)    // 親のメソッドをコール(必須)
         self.touch_count += touches.count
-        self.recognizeTouchInfo(touches, event:event!)   // 指の情報を取得
+        self.touches.append(contentsOf: touches)
+        self.recognizeTouchInfo(event!)                 // 指の情報を取得
         ev_touches_began(self)                          // タッチイベント関数のコール
     }
     
@@ -101,8 +102,8 @@ class CAIMViewController: UIViewController
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?)
     {
         super.touchesMoved(touches, with:event)    // 親のメソッドをコール(必須)
-        self.recognizeTouchInfo(touches, event:event!)   // 指の情報を取得
-        ev_touches_moved(self)                          // タッチイベント関数のコール
+        self.recognizeTouchInfo(event!)     // 指の情報を取得
+        ev_touches_moved(self)                     // タッチイベント関数のコール
     }
     
     // タッチ終了関数
@@ -110,7 +111,25 @@ class CAIMViewController: UIViewController
     {
         super.touchesEnded(touches, with:event)    // 親のメソッドをコール(必須)
         self.touch_count -= touches.count
-        self.recognizeTouchInfo(touches, event:event!)   // 指の情報を取得
+        
+        for t:UITouch in touches
+        {
+            var mind:CGFloat = 999999.0
+            var minidx:Int = 0
+            var i:Int = 0
+            for touch:UITouch in self.touches
+            {
+                let pt1:CGPoint = t.location(in: self.view)
+                let pt2:CGPoint = touch.location(in: self.view)
+                
+                let d:CGFloat = sqrt((pt1.x-pt2.x)*(pt1.x-pt2.x) + (pt1.y-pt2.y)*(pt1.y-pt2.y))
+                if(d < mind) { mind = d; minidx = i }
+                i += 1
+            }
+            self.touches.remove(at: minidx)
+        }
+        
+        self.recognizeTouchInfo(event!)                 // 指の情報を取得
         ev_touches_ended(self)                          // タッチイベント関数のコール
     }
     
@@ -119,32 +138,29 @@ class CAIMViewController: UIViewController
     {
         super.touchesCancelled(touches!, with:event)// 親のメソッドをコール(必須)
         self.touch_count = 0
-        self.recognizeTouchInfo(touches!, event:event!) // 指の情報を取得
+        self.touches.removeAll()
+        self.recognizeTouchInfo(event!)                 // 指の情報を取得
         ev_touches_cancelled(self)                      // タッチイベント関数のコール
     }
     
     // 指の座標を取得してtouchesの情報を詰める
     // ただしtouch.locationInViewで取得できる(x,y)座標はpixelではなく、point（Retinaディスプレイ関連。Appleのリファレンス参照のこと)
     // このため、Retinaスケールを考慮してpointをpixelに置き換える
-    private func recognizeTouchInfo(_ touches: Set<NSObject>, event: UIEvent)
+    private func recognizeTouchInfo(_ event: UIEvent)
     {
         // タッチ情報の配列をリセット
         self.touch_pos.removeAll(keepingCapacity: false)
-        self.touches.removeAll(keepingCapacity: false)
         // retinaスケールの取得
         let sc:CGFloat = UIScreen.main.scale
         // タッチ数分のループ
-        for touch in touches as! Set<UITouch>
+        for touch:UITouch in self.touches
         {
             // (x,y)point座標系を取得
             let pos:CGPoint = touch.location(in: self.view)
             // pixel座標系に置き直し、touch_posに追加していく
             self.touch_pos.append(CGPoint(x: pos.x * sc, y: pos.y * sc))
-            
-            // touchesにはそのままUITouchの情報を格納する
-            self.touches.append(touch)
         }
-    
+        
         self.is_touch = (self.touch_count > 0)
         self.event = event
     }
