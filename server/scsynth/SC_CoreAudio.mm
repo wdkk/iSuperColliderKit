@@ -2447,7 +2447,7 @@ bool SC_iCoreAudioDriver::DriverSetup(int* outNumSamplesPerCallback, double* out
 	//}
     if(av_session.inputAvailable)
     {
-        category = AVAudioSessionCategoryPlayback;  // kengo:as03 (playing only)
+        category = AVAudioSessionCategoryPlayAndRecord;  // kengo:as03 (playing only)
         //category = AVAudioSessionCategoryAmbient; // kengo:as03-2
     }
 #endif

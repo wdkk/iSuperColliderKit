@@ -34,6 +34,8 @@ added prRestartMIDI
 #include <CoreAudio/HostTime.h>
 #include <Carbon/Carbon.h>
 #endif
+
+#if !defined(SC_TVOS)
 #include <CoreMIDI/CoreMIDI.h>
 #include <vector>
 #include "SCBase.h"
@@ -809,3 +811,5 @@ void initMIDIPrimitives()
 	definePrimitive(base, index++, "_SendSysex", prSendSysex, 3, 0);
 	if(gMIDIClient) midiCleanUp();
 }
+#endif
+
