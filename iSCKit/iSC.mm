@@ -308,7 +308,9 @@ void setCmdLine(const char *buf)
         internal_log_view = [[iSCLogView alloc] initWithFrame:[UIScreen mainScreen].bounds];
         internal_log_view.textColor = [UIColor blueColor];
         internal_log_view.font = [UIFont systemFontOfSize:10.0];
+#if !defined(SC_TVOS)
         internal_log_view.editable = NO;
+#endif
         [internal_log_view setAutocapitalizationType:UITextAutocapitalizationTypeNone];
         [internal_log_view setAutocorrectionType:UITextAutocorrectionTypeNo];
 	}

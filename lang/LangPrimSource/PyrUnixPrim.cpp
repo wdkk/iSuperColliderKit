@@ -56,10 +56,13 @@ int prString_System(struct VMGlobals *g, int numArgsPushed)
 	char cmdline[1024];
 	int err = slotStrVal(a, cmdline, 1023);
 	if (err) return err;
-
+#if !defined(SC_TVOS)
 	int res = system(cmdline);
 	SetInt(a, res);
-
+#else
+    SetInt(a, 1);
+#endif
+    
 	return errNone;
 }
 

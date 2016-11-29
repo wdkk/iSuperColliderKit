@@ -20,7 +20,7 @@
 
 #include <TargetConditionals.h>
 
-#if defined(SC_IPHONE) && !TARGET_IPHONE_SIMULATOR
+#if defined(SC_IPHONE) && !TARGET_IPHONE_SIMULATOR && !defined(SC_TVOS)
 
 #import <UIKit/UIKit.h>
 #import <CoreMotion/CoreMotion.h>
@@ -35,7 +35,7 @@ const double pi = 3.14f;
 
 static InterfaceTable *ft;
 
-@interface AccelerometerDelegate : NSObject<UIAccelerometerDelegate>
+@interface AccelerometerDelegate : NSObject//<UIAccelerometerDelegate>
 {
 	UIAccelerationValue accel_x, accel_y, accel_z;
 }
@@ -183,18 +183,18 @@ void AccelerometerZ_Ctor(AccelerometerUGen *unit)
 	return self;
 }
 
+/*
 - (void) accelerometer:(UIAccelerometer *)accelerometer didAccelerate:(UIAcceleration *)acceleration
 {
 	accel_x = acceleration.x;
 	accel_y = acceleration.y;
 	accel_z = acceleration.z;
 	
-/*
 	accel_x += ([acceleration x] - accel_x)*0.8f;
 	accel_y += ([acceleration y] - accel_y)*0.8f;
 	accel_z += ([acceleration z] - accel_z)*0.8f;
-*/	
 }
+*/
 
 - (float) accel_x
 {

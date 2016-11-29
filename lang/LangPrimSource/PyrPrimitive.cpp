@@ -4173,7 +4173,7 @@ void initSCViewPrimitives();
 void initSchedPrimitives();
 	initSchedPrimitives();
 
-#if defined(__APPLE__) || defined(HAVE_ALSA) || defined(HAVE_PORTMIDI)
+#if (defined(__APPLE__) || defined(HAVE_ALSA) || defined(HAVE_PORTMIDI)) && !defined(SC_TVOS)
 void initMIDIPrimitives();
 	initMIDIPrimitives();
 #endif

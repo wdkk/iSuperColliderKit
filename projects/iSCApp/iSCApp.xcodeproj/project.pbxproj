@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		39D745D714D5004F002A4E59 /* CoreMIDI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39D745D614D5004F002A4E59 /* CoreMIDI.framework */; };
 		5D051F631A85E7B300A042FF /* SCClassLibrary in Resources */ = {isa = PBXBuildFile; fileRef = 5D051F621A85E7B300A042FF /* SCClassLibrary */; };
-		5D2D6E8C1BD2005F0009BA2C /* TouchView.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5D2D6E8B1BD2005F0009BA2C /* TouchView.mm */; settings = {ASSET_TAGS = (); }; };
+		5D2D6E8C1BD2005F0009BA2C /* TouchView.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5D2D6E8B1BD2005F0009BA2C /* TouchView.mm */; };
 		5D560F4A199E879E007CDE26 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D560F49199E879E007CDE26 /* AVFoundation.framework */; };
 		5D9E850D1A8614560057C9A8 /* iSCAppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5D9E85051A8614560057C9A8 /* iSCAppDelegate.mm */; };
 		5D9E850E1A8614560057C9A8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D9E85061A8614560057C9A8 /* main.m */; };
@@ -239,7 +239,7 @@
 				PRODUCT_NAME = iSCApp;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SKIP_INSTALL = NO;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -271,7 +271,7 @@
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SEPARATE_STRIP = NO;
 				SKIP_INSTALL = NO;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
@@ -323,7 +323,7 @@
 				PRODUCT_NAME = iSCApp;
 				SEPARATE_STRIP = NO;
 				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Cydia;
 		};

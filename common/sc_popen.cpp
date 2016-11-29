@@ -54,7 +54,11 @@ sc_popen(const char *command, pid_t *pidp, const char *type)
 	argv[1] = (char *)"-c";
 	argv[2] = (char *)command;
 	argv[3] = NULL;
-
+#if defined(SC_TVOS)
+    (void)close(pdes[0]);
+    (void)close(pdes[1]);
+    return (NULL);
+#else
 	switch (pid = fork()) {
 	case -1:			/* Error. */
 		(void)close(pdes[0]);
@@ -91,7 +95,8 @@ sc_popen(const char *command, pid_t *pidp, const char *type)
 		exit(127);
 		/* NOTREACHED */
 	}
-
+#endif
+    
 	/* Parent; assume fdopen can't fail. */
 	if (*type == 'r') {
 		iop = fdopen(pdes[0], type);
