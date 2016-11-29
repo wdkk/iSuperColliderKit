@@ -1,3 +1,0 @@
-table.lo table.o: table.c gsm610_priv.h
-
-gsm610_priv.h:

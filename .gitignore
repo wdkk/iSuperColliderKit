@@ -18,6 +18,8 @@ platform/*/lib
 projects/*/build
 projects/*/lib
 
+projects_local/*
+
 lib/*
 libOSX/*
 
