@@ -14,10 +14,24 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "7713C5EB0F422BE400B0055E"
-               BuildableName = "iSCTestApp.app"
-               BlueprintName = "iSCTestApp"
-               ReferencedContainer = "container:iSCKit.xcodeproj">
+               BlueprintIdentifier = "5DA191981A86499A0088702C"
+               BuildableName = "iSCAppCAIMMetal2017.app"
+               BlueprintName = "iSCAppCAIMMetal"
+               ReferencedContainer = "container:iSCAppCAIMMetal.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "5DA191AD1A86499A0088702C"
+               BuildableName = "iSCAppSwiftTests.xctest"
+               BlueprintName = "iSCAppSwiftTests"
+               ReferencedContainer = "container:iSCAppCAIMMetal.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -29,21 +43,31 @@
       language = ""
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "5DA191AD1A86499A0088702C"
+               BuildableName = "iSCAppSwiftTests.xctest"
+               BlueprintName = "iSCAppSwiftTests"
+               ReferencedContainer = "container:iSCAppCAIMMetal.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "7713C5EB0F422BE400B0055E"
-            BuildableName = "iSCTestApp.app"
-            BlueprintName = "iSCTestApp"
-            ReferencedContainer = "container:iSCKit.xcodeproj">
+            BlueprintIdentifier = "5DA191981A86499A0088702C"
+            BuildableName = "iSCAppCAIMMetal2017.app"
+            BlueprintName = "iSCAppCAIMMetal"
+            ReferencedContainer = "container:iSCAppCAIMMetal.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </TestAction>
    <LaunchAction
-      buildConfiguration = "Debug"
+      buildConfiguration = "Release"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       language = ""
@@ -57,10 +81,10 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "7713C5EB0F422BE400B0055E"
-            BuildableName = "iSCTestApp.app"
-            BlueprintName = "iSCTestApp"
-            ReferencedContainer = "container:iSCKit.xcodeproj">
+            BlueprintIdentifier = "5DA191981A86499A0088702C"
+            BuildableName = "iSCAppCAIMMetal2017.app"
+            BlueprintName = "iSCAppCAIMMetal"
+            ReferencedContainer = "container:iSCAppCAIMMetal.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -76,10 +100,10 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "7713C5EB0F422BE400B0055E"
-            BuildableName = "iSCTestApp.app"
-            BlueprintName = "iSCTestApp"
-            ReferencedContainer = "container:iSCKit.xcodeproj">
+            BlueprintIdentifier = "5DA191981A86499A0088702C"
+            BuildableName = "iSCAppCAIMMetal2017.app"
+            BlueprintName = "iSCAppCAIMMetal"
+            ReferencedContainer = "container:iSCAppCAIMMetal.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

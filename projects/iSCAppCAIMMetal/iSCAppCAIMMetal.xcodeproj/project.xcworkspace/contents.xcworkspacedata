@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:/wd_active/dev_ios/supercollider/iSuperColliderKit/projects/iSCAppCAIMMetal/iSCAppCAIMMetal.xcodeproj">
+      location = "self:/Volumes/Hyperion/wd/dev_ios/supercollider/iSuperColliderKit/projects/iSCAppCAIMMetal/iSCAppCAIMMetal.xcodeproj">
    </FileRef>
 </Workspace>

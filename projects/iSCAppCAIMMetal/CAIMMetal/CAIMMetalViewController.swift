@@ -1,5 +1,5 @@
 //
-// CAIMViewController.swift
+// CAIMMetalViewController.swift
 // CAIM Project
 //   http://kengolab.net/CreApp/wiki/
 //
@@ -12,26 +12,26 @@
 
 import UIKit
 
-class CAIMViewController: UIViewController
+class CAIMMetalViewController: UIViewController
 {
     // オーバーライド用関数群
     // DrawingViewControllerではこれらを「上書き」して処理を追加する
     func setup() {}
-    func update() {}
+    func update(renderer:CAIMMetalRenderer) {}
     func touchPressed() {}
     func touchMoved() {}
     func touchReleased() {}
     func touchCancelled() {}
-    
+
     // タッチ位置の座標変数
     var touch_pos:[CGPoint] = [CGPoint]()
     var release_pos:[CGPoint] = [CGPoint]()
-  
-    fileprivate var _display_link:CADisplayLink!    // ループ処理用ディスプレイリンク
     
-    fileprivate var _caim_view:CAIMView!            // このコントローラに埋め込むCAIMView
-    fileprivate var _image:CAIMImage!               // 画面全体を埋めるピクセル画像
-    var image:CAIMImage! { return _image }
+    fileprivate var _display_link:CADisplayLink?        // ループ処理用ディスプレイリンク
+    
+    fileprivate var _caim_metal_view:CAIMMetalView?     // MetalView
+    fileprivate var _renderer:CAIMMetalRenderer?
+    
     
     // ページがロード(生成)された時、処理される。主にUI部品などを作るときに利用
     override func viewDidLoad() {
@@ -40,19 +40,13 @@ class CAIMViewController: UIViewController
         self.view.backgroundColor = .white
         
         // 画像を表示するCAIMViewを内部でつくり、ViewControllerに貼り付ける
-        _caim_view = CAIMView(frame: self.view.bounds)
-        self.view.addSubview(_caim_view)
+        _caim_metal_view = CAIMMetalView(frame: self.view.bounds)
+        self.view.addSubview(_caim_metal_view!)
         
-        let wid:Int = Int(_caim_view.frame.size.width)
-        let hgt:Int = Int(_caim_view.frame.size.height)
-        // ベース画像(self.image)の作成(Ratinaを考慮して大きさを変える)
-        let sc:Int = Int(UIScreen.main.scale)   // retinaの倍率
-        _image = CAIMImage(wid: wid * sc, hgt:hgt * sc)
-        
-        // 表示画像をベース画像に設定する
-        _caim_view.image = _image
+        // レンダラの作成
+        self._renderer = CAIMMetalRenderer()
     }
-
+    
     override func viewDidAppear(_ animated: Bool) {
         // 親のviewDidAppearを呼ぶ
         super.viewDidAppear(animated)
@@ -61,8 +55,8 @@ class CAIMViewController: UIViewController
         setup()
         
         // updateのループ処理を開始
-        _display_link = CADisplayLink(target: self, selector: #selector(CAIMViewController.polling(_:)))
-        _display_link.add(to: RunLoop.current, forMode: RunLoopMode.commonModes)
+        _display_link = CADisplayLink(target: self, selector: #selector(CAIMMetalViewController.polling(_:)))
+        _display_link?.add(to: RunLoop.current, forMode: RunLoopMode.commonModes)
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -70,13 +64,19 @@ class CAIMViewController: UIViewController
         super.viewDidDisappear(animated)
         
         // updateのループ処理を終了
-        _display_link.remove(from: RunLoop.current, forMode: RunLoopMode.commonModes)
+        _display_link?.remove(from: RunLoop.current, forMode: RunLoopMode.commonModes)
     }
     
     // CADisplayLinkで60fpsで呼ばれる関数
     @objc func polling(_ display_link :CADisplayLink) {
+        // レンダラとビューの紐付け、および準備
+        _renderer?.ready(view: _caim_metal_view!)
+        
         // オーバーライド関数のコール
-        update()
+        update(renderer: CAIMMetalRenderer.current!)
+        
+        // レンダ処理を確定する
+        _renderer?.commit()
     }
     
     // タッチ開始関数
@@ -118,7 +118,6 @@ class CAIMViewController: UIViewController
         let sc:CGFloat = UIScreen.main.scale
         // タッチ数分のループ
         for touch:UITouch in event.allTouches! {
-
             // point座標系を取得
             let pos:CGPoint = touch.location(in: self.view)
             if(touch.phase == .ended || touch.phase == .cancelled) {
@@ -130,15 +129,5 @@ class CAIMViewController: UIViewController
                 self.touch_pos.append(CGPoint(x: pos.x * sc, y: pos.y * sc))
             }
         }
-    }
-    
-    // 画面のクリア
-    func clear() {
-        _image.fillColor(CAIMColor(R: 1.0, G: 1.0, B: 1.0, A: 1.0))
-    }
-    
-    // redrawを呼んだらcaim_viewのredrawを呼び出してあげる
-    func redraw() {
-        _caim_view.redraw()
     }
 }

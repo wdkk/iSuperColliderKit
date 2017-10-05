@@ -10,4 +10,5 @@
 //   http://opensource.org/licenses/mit-license.php
 //
 
-#import "CAIMImage.h"
+#import "CAIMImageC.h"
+#import "CAIMMemoryC.h"

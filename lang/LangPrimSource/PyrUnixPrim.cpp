@@ -27,6 +27,7 @@ Primitives for Unix.
 #include <errno.h>
 #include <pthread.h>
 #include <signal.h>
+#include <spawn.h>
 
 #include "PyrPrimitive.h"
 #include "PyrObject.h"
@@ -57,7 +58,19 @@ int prString_System(struct VMGlobals *g, int numArgsPushed)
 	int err = slotStrVal(a, cmdline, 1023);
 	if (err) return err;
 #if !defined(SC_TVOS)
-	int res = system(cmdline);
+	// ~ iOS10
+	//int res = system(cmdline);
+	int res;
+	posix_spawn_file_actions_t actions;
+	posix_spawnattr_t attrs;
+	//char *args[] = { NULL };
+	
+	posix_spawn_file_actions_init(&actions);
+	posix_spawnattr_init(&attrs);
+	
+	//posix_spawn(&res, cmdline, &actions, &attrs, args, NULL);
+	posix_spawn(&res, cmdline, &actions, &attrs, NULL, NULL);
+	
 	SetInt(a, res);
 #else
     SetInt(a, 1);

@@ -1,35 +1,45 @@
 //
-//  CAIMMetalComputePipeline.swift
-//  ios_caim_metal
+// CAIMMetalComputePipeline.swift
+// CAIM Project
+//   http://kengolab.net/CreApp/wiki/
 //
-//  Created by kengo on 2016/02/07.
-//  Copyright © 2016年 TUT Creative Application. All rights reserved.
+// Copyright (c) 2016 Watanabe-DENKI Inc.
+//   http://wdkk.co.jp/
 //
+// This software is released under the MIT License.
+//   http://opensource.org/licenses/mit-license.php
+//
+
 
 import Foundation
 import Metal
 
 class CAIMMetalComputePipeline
 {
-    var pipeline: MTLComputePipelineState!    // パイプライン
-    weak var csh:CAIMMetalComputeShader!
+    var pipeline: MTLComputePipelineState?    // パイプライン
+    fileprivate weak var _csh:CAIMMetalShader?
+    var csh:CAIMMetalShader? { return _csh }
     
-    init(csh:CAIMMetalComputeShader!)
-    {
-        self.csh = csh
+    init(compute csh:CAIMMetalShader?) {
+        self._csh = csh
         
-        let device:MTLDevice! = CAIMMetal.device
-        let library:MTLLibrary? = device.newDefaultLibrary()
-        let compute_func:MTLFunction? = library!.makeFunction(name: csh.shader_name!)
+        let device:MTLDevice = CAIMMetal.device
+        let library:MTLLibrary? = device.makeDefaultLibrary()
+        let compute_func:MTLFunction? = library!.makeFunction(name: csh!.name!)
         
-        do
-        {
+        do {
             self.pipeline = try device.makeComputePipelineState(function: compute_func!)
         }
-        catch
-        {
+        catch {
             print("Failed to create compute pipeline state, error")
             return
         }
     }
+    
+    /*
+    func attachBuffer(_ cmd:MTLComputeCommandEncoder) {
+        // シェーダバッファのアタッチ
+        csh?.attach(cmd)
+    }
+    */
 }

@@ -1,68 +1,39 @@
 //
-//  CAIMMetalShader.swift
-//  ios_caim_metal
+// CAIMMetalShader.swift
+// CAIM Project
+//   http://kengolab.net/CreApp/wiki/
 //
-//  Created by kengo on 2016/08/13.
-//  Copyright © 2016年 TUT Creative Application. All rights reserved.
+// Copyright (c) 2016 Watanabe-DENKI Inc.
+//   http://wdkk.co.jp/
+//
+// This software is released under the MIT License.
+//   http://opensource.org/licenses/mit-license.php
 //
 
 import Foundation
 import Metal
 
-// シェーダベースクラス
+enum CAIMMetalShaderType
+{
+    case vertex
+    case fragment
+    case compute
+}
+
+// シェーダクラス
 class CAIMMetalShader
 {
-    var shader_name:String?
-    var buf:[String:CAIMMetalBuffer] = [String:CAIMMetalBuffer]()
-    
-    // subscript ["event-key"] accessor
-    subscript(key:String) -> CAIMMetalBuffer {
-        get { return buf[key]! }
-        set(new_value) { buf[key] = new_value }
-    }
-    
-    init(_ sh:String)
-    {
-        shader_name = sh
-    }
-    
-    func attach(_ enc:MTLRenderCommandEncoder) {}
-}
+    // シェーダ名
+    fileprivate var _shader_name:String?
+    var name:String? { return _shader_name }
 
-// 頂点シェーダ
-class CAIMMetalVertexShader : CAIMMetalShader
-{
-    override func attach(_ enc:MTLRenderCommandEncoder)
-    {
-        for (_, cmb) in buf
-        {
-            enc.setVertexBuffer(cmb.buf, offset: 0, at: cmb.idx)
-        }
+    fileprivate var _function:MTLFunction?
+    var function:MTLFunction { return _function! }
+    
+    init(_ sh:String) {
+        _shader_name = sh
+        let library:MTLLibrary? = CAIMMetal.device.makeDefaultLibrary()
+        _function = library!.makeFunction(name: self.name!)
     }
 }
 
-// フラグメントシェーダ
-class CAIMMetalFragmentShader : CAIMMetalShader
-{
-    override func attach(_ enc:MTLRenderCommandEncoder)
-    {
-        for (_, cmb) in buf
-        {
-            enc.setFragmentBuffer(cmb.buf, offset: 0, at: cmb.idx)
-        }
-    }
-}
-
-// コンピュートシェーダ
-class CAIMMetalComputeShader : CAIMMetalShader
-{
-    internal override func attach(_ enc: MTLRenderCommandEncoder) { /* プライベートでclose */ }
-    
-    func attach(_ enc:MTLComputeCommandEncoder)
-    {
-        for (_, cmb) in buf
-        {
-            enc.setBuffer(cmb.buf, offset: 0, at: cmb.idx)
-        }
-    }
-}
