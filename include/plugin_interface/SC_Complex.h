@@ -209,14 +209,14 @@ inline Complex operator+(Complex a, Complex b) { return Complex(a.real + b.real,
 inline Complex operator+(Complex a, float b) { return Complex(a.real + b, a.imag); }
 inline Complex operator+(float a, Complex b) { return Complex(a + b.real, b.imag); }
 
-inline Complex& operator+=(Complex& a, const Complex& b) { a.real += b.real, a.imag += b.imag; return a; }
+inline Complex& operator+=(Complex& a, const Complex& b) { a.real += b.real; a.imag += b.imag; return a; }
 inline Complex& operator+=(Complex& a, float b) { a.real += b; return a; }
 
 inline Complex operator-(Complex a, Complex b) { return Complex(a.real - b.real, a.imag - b.imag); }
 inline Complex operator-(Complex a, float b) { return Complex(a.real - b, a.imag); }
 inline Complex operator-(float a, Complex b) { return Complex(a - b.real, b.imag); }
 
-inline Complex operator-=(Complex a, Complex b) { a.real -= b.real, a.imag -= b.imag; return a; }
+inline Complex operator-=(Complex a, Complex b) { a.real -= b.real; a.imag -= b.imag; return a; }
 inline Complex operator-=(Complex a, float b) { a.real -= b; return a; }
 
 inline Complex operator*(Complex a, Complex b)

@@ -1,45 +1,45 @@
-//
+﻿//
 // CAIMMetalComputePipeline.swift
 // CAIM Project
-//   http://kengolab.net/CreApp/wiki/
+//   https://kengolab.net/CreApp/wiki/
 //
-// Copyright (c) 2016 Watanabe-DENKI Inc.
-//   http://wdkk.co.jp/
+// Copyright (c) Watanabe-DENKI Inc.
+//   https://wdkk.co.jp/
 //
 // This software is released under the MIT License.
-//   http://opensource.org/licenses/mit-license.php
+//   https://opensource.org/licenses/mit-license.php
 //
 
+#if os(macOS) || (os(iOS) && !arch(x86_64))
 
-import Foundation
 import Metal
 
-class CAIMMetalComputePipeline
+public struct CAIMMetalComputeSetting
 {
-    var pipeline: MTLComputePipelineState?    // パイプライン
-    fileprivate weak var _csh:CAIMMetalShader?
-    var csh:CAIMMetalShader? { return _csh }
+   public var computeShader:CAIMMetalShader?
+}
+
+open class CAIMMetalComputePipeline
+{
+    public private(set) var state:MTLComputePipelineState?
     
-    init(compute csh:CAIMMetalShader?) {
-        self._csh = csh
-        
-        let device:MTLDevice = CAIMMetal.device
-        let library:MTLLibrary? = device.makeDefaultLibrary()
-        let compute_func:MTLFunction? = library!.makeFunction(name: csh!.name!)
-        
+    public init() { }
+    
+    public func make( _ f:( inout CAIMMetalComputeSetting )->() ) {
+        // 設定オブジェクトの作成
+        var setting = CAIMMetalComputeSetting()
+        f( &setting )
+        self.makePipeline( function: setting.computeShader!.function! )
+    }
+
+    public func makePipeline( function f:MTLFunction ) {
         do {
-            self.pipeline = try device.makeComputePipelineState(function: compute_func!)
+            self.state = try CAIMMetal.device?.makeComputePipelineState( function: f )
         }
         catch {
-            print("Failed to create compute pipeline state, error")
-            return
+            print( "Failed to create compute pipeline state, error" )
         }
     }
-    
-    /*
-    func attachBuffer(_ cmd:MTLComputeCommandEncoder) {
-        // シェーダバッファのアタッチ
-        csh?.attach(cmd)
-    }
-    */
 }
+
+#endif

@@ -1,156 +1,144 @@
 //
-// CAIMMetalBuffer.swift
+// CAIMMetalGeometrics.swift
 // CAIM Project
-//   http://kengolab.net/CreApp/wiki/
+//   https://kengolab.net/CreApp/wiki/
 //
-// Copyright (c) 2016 Watanabe-DENKI Inc.
-//   http://wdkk.co.jp/
+// Copyright (c) Watanabe-DENKI Inc.
+//   https://wdkk.co.jp/
 //
 // This software is released under the MIT License.
-//   http://opensource.org/licenses/mit-license.php
+//   https://opensource.org/licenses/mit-license.php
 //
 
+#if os(macOS) || (os(iOS) && !arch(x86_64))
 
 import Foundation
 import Metal
 
-
-enum CAIMMetalBufferType : Int
+public enum CAIMMetalBufferType : Int
 {
-    case normal
+    case alloc
     case shared
 }
 
-class CAIMMetalBufferBase
-{
-    fileprivate var _mtlbuf:MTLBuffer?
-    var mtlbuf:MTLBuffer? { return _mtlbuf }
-    
-    fileprivate var _length:Int = 0
-    
-    func update<T>(_ obj:T) {}
-    
-    func update<T>(elements:[T]) {}
-    
-    func update(_ buf:UnsafeRawPointer, length:Int) {}
-    
-    func update<T>(vertice:CAIMAlignedMemory<T>) {}
+// Metalバッファを出力できるようにするプロトコル
+public protocol CAIMMetalBufferAllocatable {
+    var metalBuffer:MTLBuffer? { get }
+}
+public extension CAIMMetalBufferAllocatable {
+    var metalBuffer:MTLBuffer? { return CAIMMetalAllocatedBuffer( self ).metalBuffer }
 }
 
-class CAIMMetalBuffer : CAIMMetalBufferBase
+public class CAIMMetalAllocatedBuffer : CAIMMetalBufferAllocatable
 {
-    //// 初期化
+    private var _length:Int
+    private var _mtlbuf:MTLBuffer?
+    public var metalBuffer:MTLBuffer? { return _mtlbuf }
+    
     // 指定したオブジェクトのサイズで確保＆初期化
-    init<T>(_ obj:T) {
-        super.init()
-        _length = MemoryLayout<T>.size
-        _mtlbuf = self.allocate([obj], length:_length)
+    public init<T>( _ obj:T ) {
+        _length = MemoryLayout<T>.stride
+        _mtlbuf = self.allocate( [obj], length:_length )
     }
     // 指定したオブジェクト配列で確保＆初期化
-    init<T>(elements:[T]) {
-        super.init()
-        _length = MemoryLayout<T>.size * elements.count
-        if(_length == 0) {
-            _mtlbuf = nil
-            return
-        }
-        _mtlbuf = self.allocate(UnsafeMutablePointer(mutating: elements), length:_length)
+    public init<T>( elements:[T] ) {
+        _length = MemoryLayout<T>.stride * elements.count
+        _mtlbuf = self.allocate( UnsafeMutablePointer( mutating: elements ), length:_length )
     }
     // 指定したバイト数を確保（初期化はなし）
-    init(length:Int) {
-        super.init()
+    public init( length:Int ) {
         _length = length
-        if(_length == 0) {
-            _mtlbuf = nil
-            return
-        }
-        _mtlbuf = self.allocate(_length)
+        _mtlbuf = self.allocate( _length )
     }
     // 指定したバイト数で確保＆ポインタ先からコピーして初期化
-    init(_ buf:UnsafeRawPointer, length:Int) {
-        super.init()
+    public init( _ buf:UnsafeRawPointer, length:Int ) {
         _length = length
-        if(_length == 0) {
-            _mtlbuf = nil
-            return
-        }
-        _mtlbuf = self.allocate(buf, length: _length)
+        _mtlbuf = self.allocate( buf, length: _length )
     }
     // 指定した頂点プールの内容とサイズで確保＆初期化
-    init<T>(vertice:CAIMAlignedMemory<T>) {
-        super.init()
-        _length = vertice.allocated_length
-        if(_length == 0) {
-            _mtlbuf = nil
-            return
-        }
-        _mtlbuf = self.allocate(vertice.pointer, length:_length)
+    public init<T>( vertice:LLAlignedMemory16<T> ) {
+        _length = vertice.allocatedLength
+        _mtlbuf = self.allocate( vertice.pointer, length:_length )
+    }
+    // 指定した頂点プールの内容とサイズで確保＆初期化(4Kアラインメントデータ)
+    public init<T>( vertice:LLAlignedMemory4K<T> ) {
+        _length = vertice.allocatedLength
+        _mtlbuf = self.allocate( vertice.pointer, length:_length )
     }
     
-    //// 更新
-    override func update<T>(_ obj:T) {
-        let sz:Int = MemoryLayout<T>.size
-        if(_length != sz) { _mtlbuf = self.allocate(sz) }
+    // 更新
+    public func update<T>( _ obj:T ) {
+        let sz:Int = MemoryLayout<T>.stride
+        if( _length != sz ) { _mtlbuf = self.allocate( sz ) }
         memcpy( _mtlbuf!.contents(), [obj], sz )
     }
     
-    override func update<T>(elements:[T]) {
-        let sz:Int = MemoryLayout<T>.size * elements.count
-        if(_length != sz) { _mtlbuf = self.allocate(sz) }
-        memcpy( _mtlbuf!.contents(), UnsafeMutablePointer(mutating: elements), sz)
+    public func update<T>( elements:[T] ) {
+        let sz:Int = MemoryLayout<T>.stride * elements.count
+        if _length != sz { _mtlbuf = self.allocate( sz ) }
+        if sz == 0 { return }
+        memcpy( _mtlbuf!.contents(), UnsafeMutablePointer( mutating: elements ), sz )
     }
     
-    override func update(_ buf:UnsafeRawPointer, length:Int) {
+    public func update( _ buf:UnsafeRawPointer?, length:Int ) {
         let sz:Int = length
-        if(_length != sz) { _mtlbuf = self.allocate(sz) }
+        if _length != sz { _mtlbuf = self.allocate( sz ) }
+        if buf == nil { return }
+        if sz == 0 { return }
         memcpy( _mtlbuf!.contents(), buf, sz )
     }
+
+    public func update<T>( vertice:LLAlignedMemory4K<T> ) {
+        let sz:Int = vertice.allocatedLength
+        if( _length != sz ) { _mtlbuf = self.allocate( sz ) }
+        memcpy( _mtlbuf!.contents(), vertice.pointer, sz )
+    }
     
-    override func update<T>(vertice:CAIMAlignedMemory<T>) {
-        let sz:Int = vertice.allocated_length
-        if(_length != sz) { _mtlbuf = self.allocate(sz) }
+    public func update<T>( vertice:LLAlignedMemory16<T> ) {
+        let sz:Int = vertice.allocatedLength
+        if( _length != sz ) { _mtlbuf = self.allocate( sz ) }
         memcpy( _mtlbuf!.contents(), vertice.pointer, sz )
     }
     
     //// メモリ確保
-    private func allocate(_ buf:UnsafeRawPointer, length:Int) -> MTLBuffer {
-        return CAIMMetal.device.makeBuffer(bytes: buf, length: length, options: .storageModeShared )!
+    private func allocate( _ buf:UnsafeRawPointer?, length:Int ) -> MTLBuffer? {
+        if length == 0 { return nil }
+        if buf == nil { return nil }
+        return CAIMMetal.device!.makeBuffer( bytes: buf!, length: length, options: .storageModeShared )
     }
     
-    private func allocate(_ length:Int) -> MTLBuffer {
-        return CAIMMetal.device.makeBuffer(length: length, options: .storageModeShared )!
+    private func allocate( _ length:Int ) -> MTLBuffer? {
+        if length == 0 { return nil }
+        return CAIMMetal.device!.makeBuffer( length: length, options: .storageModeShared )
     }
 }
 
-class CAIMMetalSharedBuffer : CAIMMetalBufferBase
+public class CAIMMetalSharedBuffer : CAIMMetalBufferAllocatable
 {
+    private var _length:Int
+    private var _mtlbuf:MTLBuffer?
+    public var metalBuffer:MTLBuffer? { return _mtlbuf }
+    
     // 指定したオブジェクト全体を共有して確保・初期化
-    init<T>(vertice:CAIMAlignedMemory<T>) {
-        super.init()
-        _length = vertice.allocated_length
-        if(_length == 0) {
-            _mtlbuf = nil
-            return
-        }
-        _mtlbuf = self.nocopy(vertice.pointer, length:_length)
+    public init<T>( vertice:LLAlignedMemory4K<T> ) {
+        _length = vertice.allocatedLength
+        if( _length == 0 ) { _mtlbuf = nil }
+        else { _mtlbuf = self.nocopy( vertice.pointer!, length:_length ) }
     }
     
-    // 更新関数は何もしない
-    override internal func update<T>(_ obj:T) {
+    // 指定したバイト数で確保＆ポインタ先からコピーして初期化
+    public init( _ buf:UnsafeRawPointer, length:Int ) {
+        _length = length
+        _mtlbuf = self.nocopy( UnsafeMutableRawPointer(mutating: buf), length: _length )
     }
     
-    override internal func update<T>(elements:[T]) {
+    public func update<T>( vertice:LLAlignedMemory4K<T> ) {
+        _mtlbuf = self.nocopy( vertice.pointer!, length: vertice.allocatedLength )
     }
     
-    override internal func update(_ buf:UnsafeRawPointer, length:Int) {
-    }
-    
-    override func update<T>(vertice:CAIMAlignedMemory<T>) {
-        _mtlbuf = self.nocopy(vertice.pointer, length: vertice.allocated_length)
-    }
-    
-    private func nocopy(_ buf:UnsafeMutableRawPointer, length:Int) -> MTLBuffer {
-        return CAIMMetal.device.makeBuffer(bytesNoCopy: buf, length: length, options: .storageModeShared, deallocator: nil)!
+    private func nocopy( _ buf:UnsafeMutableRawPointer, length:Int ) -> MTLBuffer {
+        return CAIMMetal.device!.makeBuffer( bytesNoCopy: buf, length: length, options: .storageModeShared, deallocator: nil )!
     }
 }
 
+#endif

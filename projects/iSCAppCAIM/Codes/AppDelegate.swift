@@ -21,7 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate
     var dvc:DrawingViewController!   // 描画ビューコントローラ
     
     // アプリが起動した時に最初に呼ばれる処理
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // ウィンドウを作成する
         window = UIWindow(frame: UIScreen.main.bounds)
         

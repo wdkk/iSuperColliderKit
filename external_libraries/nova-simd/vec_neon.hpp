@@ -47,7 +47,7 @@ private:
 
     static float32x4_t set_vector(float f0, float f1, float f2, float f3)
     {
-        float32x4_t ret;
+        float32x4_t ret = float32x4_t();
         ret = vsetq_lane_f32(f0, ret, 0);
         ret = vsetq_lane_f32(f1, ret, 1);
         ret = vsetq_lane_f32(f2, ret, 2);
