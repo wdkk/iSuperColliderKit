@@ -23,7 +23,7 @@ public class CAIMMetalTexture {
         let tex_loader:MTKTextureLoader = MTKTextureLoader(device: CAIMMetal.device! )
         
         let ext = URL(fileURLWithPath: path).pathExtension.isEmpty ? "png" : nil
-            
+        
         guard let url = Bundle.main.url( forResource: path, withExtension: ext) else {
             print( "Failed to load \(path)" )
             metalTexture = nil
@@ -66,7 +66,7 @@ public class CAIMMetalTexture {
     }
     #else
     // CAIM画像オブジェクトからの作成
-    init( caimImage img:CAIMImage ) {
+    public init( caimImage img:CAIMImage ) {
         let tex_desc = MTLTextureDescriptor.texture2DDescriptor(pixelFormat: .rgba8Unorm,
                                                                 width: img.width,
                                                                 height: img.height,

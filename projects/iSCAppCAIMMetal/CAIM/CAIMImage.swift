@@ -13,7 +13,7 @@
 import Foundation
 import UIKit
 
-enum CAIMDepth : Int
+public enum CAIMDepth : Int
 {
     case bit8  = 8
     case bit16 = 16
@@ -21,19 +21,19 @@ enum CAIMDepth : Int
 }
 
 // C言語実装のCAIMImageをSwiftで使いやすくしたクラス
-class CAIMImage
+open class CAIMImage
 {
-    var memory:CAIMBytePtr       // pixel memory first address
-    var matrix:CAIMColorMatrix   // 2d(need to cast CAIMColorMatrix series)
-    var width:Int
-    var height:Int
-    var depth:CAIMDepth
-    var channel:Int
-    var row_bytes:Int
-    var memory_size:Int
-    var scale:Float             // scaling(retina or non retina)
+    public private(set) var memory:CAIMBytePtr       // pixel memory first address
+    public private(set) var matrix:CAIMColorMatrix   // 2d(need to cast CAIMColorMatrix series)
+    public private(set) var width:Int
+    public private(set) var height:Int
+    public private(set) var depth:CAIMDepth
+    public private(set) var channel:Int
+    public private(set) var row_bytes:Int
+    public private(set) var memory_size:Int
+    public private(set) var scale:Float             // scaling(retina or non retina)
     
-    init( width:Int, height:Int, depth:CAIMDepth = .float ) {
+    public init( width:Int, height:Int, depth:CAIMDepth = .float ) {
         self.width   = width
         self.height  = height
         self.channel = 4
@@ -54,11 +54,11 @@ class CAIMImage
         treatArray()
     }
     
-    convenience init( size:CGSize, depth:CAIMDepth = .float ) {
+    public convenience init( size:CGSize, depth:CAIMDepth = .float ) {
         self.init( width: Int(size.width), height: Int(size.height), depth: depth )
     }
     
-    convenience init( path:String, depth:CAIMDepth = .float ) {
+    public convenience init( path:String, depth:CAIMDepth = .float ) {
         self.init( width: 1, height: 1, depth:depth )
         loadFile( path )
     }
@@ -73,13 +73,13 @@ class CAIMImage
         free( self.memory )
     }
     
-    func copy( _ img_src:CAIMImage ) {
+    public func copy( _ img_src:CAIMImage ) {
         resize( img_src.width, img_src.height )
         self.scale = img_src.scale
         memcpy( self.memory, img_src.memory, self.row_bytes * self.height )
     }
     
-    func resize( _ wid:Int, _ hgt:Int ) {
+    public func resize( _ wid:Int, _ hgt:Int ) {
         if( self.width == wid && self.height == hgt ) { return }
         
         free( self.memory )
@@ -105,7 +105,7 @@ class CAIMImage
     }
     
     @discardableResult
-    func loadFile( _ path:String ) -> Bool {
+    public func loadFile( _ path:String ) -> Bool {
         let ui_img = UIImage( contentsOfFile: path )
         if( ui_img == nil ) { return false }
             
@@ -139,7 +139,7 @@ class CAIMImage
         return true
     }
     
-    func fillColor( _ c:CAIMColor ) {
+    public func fillColor( _ c:CAIMColor ) {
         var color = c
         memsetex( self.memory, &color, MemoryLayout<CAIMColor>.stride, self.width * self.height )
     }

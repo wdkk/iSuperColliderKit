@@ -95,17 +95,17 @@ public class CAIM
     }
 }
 
-extension Float {
-    public var toRadian:Float { return self * Float.pi / 180.0 }
-    public var toDegree:Float { return self * 180.0 / Float.pi }
+public extension Float {
+    var toRadian:Float { return self * Float.pi / 180.0 }
+    var toDegree:Float { return self * 180.0 / Float.pi }
 }
 
-extension Double {
-    public var toRadian:Double { return self * Double.pi / 180.0 }
-    public var toDegree:Double { return self * 180.0 / Double.pi }
+public extension Double {
+    var toRadian:Double { return self * Double.pi / 180.0 }
+    var toDegree:Double { return self * 180.0 / Double.pi }
 }
 
-extension Int {
-    public var toRadian:Float { return Float(self) * Float.pi / 180.0 }
-    public var toDegree:Float { return Float(self) * 180.0 / Float.pi }
+public extension Int {
+    var toRadian:Float { return Float(self) * Float.pi / 180.0 }
+    var toDegree:Float { return Float(self) * 180.0 / Float.pi }
 }

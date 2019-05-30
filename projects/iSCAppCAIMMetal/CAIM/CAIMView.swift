@@ -17,7 +17,7 @@ import Accelerate
 public class CAIMView : CAIMBaseView
 {
     // 画像プロパティ
-    var image:CAIMImage! { didSet(new_image) { redraw() } }
+    public var image:CAIMImage! { didSet(new_image) { redraw() } }
 
     // ピクセル表示命令用の変数
     fileprivate var buf:CAIMColor8Ptr? = nil
