@@ -358,7 +358,7 @@
 		5DB1214C199A4DB1000D2100 /* utf8_codecvt_facet.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = utf8_codecvt_facet.cpp; path = src/utf8_codecvt_facet.cpp; sourceTree = "<group>"; };
 		5DB1214D199A4DB1000D2100 /* windows_file_codecvt.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = windows_file_codecvt.cpp; path = src/windows_file_codecvt.cpp; sourceTree = "<group>"; };
 		5DB1214E199A4DB1000D2100 /* windows_file_codecvt.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = windows_file_codecvt.hpp; path = src/windows_file_codecvt.hpp; sourceTree = "<group>"; };
-		5DDFDE3A1B6331B5000246E0 /* libstdc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.dylib"; path = "usr/lib/libstdc++.dylib"; sourceTree = SDKROOT; };
+		5DBDD2CE257AA6CC00D1A4A5 /* iSCTestApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = iSCTestApp.entitlements; sourceTree = "<group>"; };
 		7713C6A90F422BE400B0055E /* iSCTestApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iSCTestApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		772C0E2E12DA0C69009C0126 /* clz.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = clz.h; sourceTree = "<group>"; };
 		772C0E2F12DA0C69009C0126 /* dfftlib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dfftlib.h; sourceTree = "<group>"; };
@@ -853,6 +853,7 @@
 		5DA191821A8638450088702C /* iSCTestApp */ = {
 			isa = PBXGroup;
 			children = (
+				5DBDD2CE257AA6CC00D1A4A5 /* iSCTestApp.entitlements */,
 				5DA191831A8638450088702C /* iSCmain.m */,
 				5DA191841A8638450088702C /* iSCTestAppDelegate.h */,
 				5DA191851A8638450088702C /* iSCTestAppDelegate.m */,
@@ -1190,7 +1191,6 @@
 		77597AF11123325400D2A968 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				5DDFDE3A1B6331B5000246E0 /* libstdc++.dylib */,
 				5D9E84FF1A8610360057C9A8 /* libiSCKit.a */,
 				5D95289E1A7F865000758498 /* libsndfile.a */,
 				5D1090AC1A7F81AF00C653FF /* libscsynth.a */,
@@ -1407,7 +1407,7 @@
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 1020;
+				LastUpgradeCheck = 1220;
 				TargetAttributes = {
 					5D9E845D1A8605BE0057C9A8 = {
 						CreatedOnToolsVersion = 6.1;
@@ -1627,8 +1627,6 @@
 		5D9E84701A8605BE0057C9A8 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
@@ -1642,7 +1640,6 @@
 				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = SC_IPHONE;
@@ -1652,7 +1649,7 @@
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/lib",
@@ -1670,8 +1667,6 @@
 		5D9E84711A8605BE0057C9A8 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
@@ -1686,7 +1681,6 @@
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					SC_IPHONE,
 					NDEBUG,
@@ -1696,7 +1690,7 @@
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/lib",
@@ -1714,8 +1708,6 @@
 		5D9E84721A8605BE0057C9A8 /* Cydia */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
@@ -1730,7 +1722,6 @@
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					SC_IPHONE,
 					NDEBUG,
@@ -1741,7 +1732,7 @@
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/lib",
@@ -1759,6 +1750,7 @@
 		7713C6A70F422BE400B0055E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = iSCTestApp/iSCTestApp.entitlements;
 				COPY_PHASE_STRIP = YES;
 				DEVELOPMENT_TEAM = YC4UJA55P2;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -1768,8 +1760,8 @@
 				GCC_PREPROCESSOR_DEFINITIONS = SC_IPHONE;
 				GCC_THUMB_SUPPORT = NO;
 				INFOPLIST_FILE = "iPhone Resources/SuperCollider.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "jp.ac.wdkk.$(PRODUCT_NAME:identifier)";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				PRODUCT_BUNDLE_IDENTIFIER = jp.co.wdkk.iSCTestApp;
 				PRODUCT_NAME = iSCTestApp;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SKIP_INSTALL = NO;
@@ -1780,6 +1772,7 @@
 		7713C6A80F422BE400B0055E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = iSCTestApp/iSCTestApp.entitlements;
 				COPY_PHASE_STRIP = YES;
 				DEVELOPMENT_TEAM = YC4UJA55P2;
 				GCC_AUTO_VECTORIZATION = NO;
@@ -1795,8 +1788,8 @@
 				GCC_THUMB_SUPPORT = NO;
 				GCC_UNROLL_LOOPS = YES;
 				INFOPLIST_FILE = "iPhone Resources/SuperCollider.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "jp.ac.wdkk.$(PRODUCT_NAME:identifier)";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				PRODUCT_BUNDLE_IDENTIFIER = jp.co.wdkk.iSCTestApp;
 				PRODUCT_NAME = iSCTestApp;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SEPARATE_STRIP = NO;
@@ -1810,6 +1803,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_CXX_LIBRARY = "compiler-default";
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
@@ -1823,6 +1817,7 @@
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -1845,7 +1840,7 @@
 					"../../external_libraries/boost-lockfree",
 					"../../external_libraries/yaml-cpp-0.3.0/include",
 				);
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/../../lib",
@@ -1858,6 +1853,7 @@
 		7795B82410D6D01E0053700A /* Cydia */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = iSCTestApp/iSCTestApp.entitlements;
 				COPY_PHASE_STRIP = YES;
 				DEVELOPMENT_TEAM = YC4UJA55P2;
 				GCC_AUTO_VECTORIZATION = NO;
@@ -1874,8 +1870,8 @@
 				GCC_THUMB_SUPPORT = NO;
 				GCC_UNROLL_LOOPS = YES;
 				INFOPLIST_FILE = "iPhone Resources/SuperCollider_Cydia.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "jp.ac.wdkk.$(PRODUCT_NAME:identifier)";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				PRODUCT_BUNDLE_IDENTIFIER = jp.co.wdkk.iSCTestApp;
 				PRODUCT_NAME = iSCTestApp;
 				SEPARATE_STRIP = NO;
 				SKIP_INSTALL = YES;
@@ -1888,6 +1884,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_CXX_LIBRARY = "compiler-default";
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
@@ -1901,6 +1898,7 @@
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -1924,7 +1922,7 @@
 					"../../external_libraries/boost-lockfree",
 					"../../external_libraries/yaml-cpp-0.3.0/include",
 				);
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/../../lib",
@@ -1940,6 +1938,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_CXX_LIBRARY = "compiler-default";
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
@@ -1953,6 +1952,7 @@
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -1975,7 +1975,7 @@
 					"../../external_libraries/boost-lockfree",
 					"../../external_libraries/yaml-cpp-0.3.0/include",
 				);
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/../../lib",
