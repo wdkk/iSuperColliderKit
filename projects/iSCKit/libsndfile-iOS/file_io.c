@@ -371,7 +371,8 @@ psf_fwrite (const void *ptr, sf_count_t bytes, sf_count_t items, SF_PRIVATE *psf
 
 	while (items > 0)
 	{	/* Break the writes down to a sensible size. */
-		count = (items > SENSIBLE_SIZE) ? SENSIBLE_SIZE : items ;
+        // kengo: add cast
+		count = (items > SENSIBLE_SIZE) ? SENSIBLE_SIZE : (long)items;
 
 		count = write (psf->file.filedes, ((const char*) ptr) + total, count) ;
 

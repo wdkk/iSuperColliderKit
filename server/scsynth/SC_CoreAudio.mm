@@ -2445,16 +2445,24 @@ bool SC_iCoreAudioDriver::DriverSetup(int* outNumSamplesPerCallback, double* out
 	//	category = kAudioSessionCategory_MediaPlayback;
 	//	NSLog(@"SC_IPHONE: WARNING - no audio input available\n");
 	//}
+    
+    
     if(av_session.inputAvailable)
     {
+        NSLog(@"SC_IPHONE: audio input available.\n");
         category = AVAudioSessionCategoryPlayAndRecord;  // kengo:as03 (playing only)
         //category = AVAudioSessionCategoryAmbient; // kengo:as03-2
+    }
+    else {
+        NSLog(@"SC_IPHONE: WARNING - no audio input available.\n");
+        category = AVAudioSessionCategoryPlayback;  // kengo:as04
     }
 #endif
 	//AudioSessionSetProperty(kAudioSessionProperty_AudioCategory, sizeof(category), &category);
     [av_session setCategory:category error:&error];
-    if(error) { NSLog(@"audioSession: %@, %ld, %@", [error domain], (long)[error code], [[error userInfo] description]); }
-    
+    if(error) { 
+        NSLog(@"audioSession: %@, %ld, %@", [error domain], (long)[error code], [[error userInfo] description]);
+    }
     
 	if (mPreferredHardwareBufferFrameSize)
 	{
@@ -2533,14 +2541,14 @@ bool SC_iCoreAudioDriver::DriverSetup(int* outNumSamplesPerCallback, double* out
 /*
 	floatOutputList = (AudioBufferList *) malloc(sizeof(AudioBufferList)+sizeof(AudioBuffer));
 	floatOutputList->mNumberBuffers = 2;
-	floatOutputList->mBuffers[0].mDataByteSize = bufferSizeBytes;
+	floatOutputList->mBuffers[0].mDataByteSize = (unsigned int)bufferSizeBytes;
 	floatOutputList->mBuffers[0].mData = malloc(bufferSizeBytes);
 	floatOutputList->mBuffers[0].mNumberChannels = 1;
-	floatOutputList->mBuffers[1].mDataByteSize = bufferSizeBytes;
+	floatOutputList->mBuffers[1].mDataByteSize = (unsigned int)bufferSizeBytes;
 	floatOutputList->mBuffers[1].mData = malloc(bufferSizeBytes);
 	floatOutputList->mBuffers[1].mNumberChannels = 1;
 */
-
+    
 	AURenderCallbackStruct inputStruct;
 	inputStruct.inputProc = InputCallback;
 	inputStruct.inputProcRefCon = this;

@@ -350,7 +350,8 @@ nist_write_header (SF_PRIVATE *psf, int calc_length)
 	psf->dataoffset = NIST_HEADER_LENGTH ;
 
 	/* Fix this */
-	samples = psf->sf.frames ;
+    // kengo: add cast
+	samples = (long)psf->sf.frames;
 	psf_asciiheader_printf (psf, "sample_count -i %ld\n", samples) ;
 	psf_asciiheader_printf (psf, "end_head\n") ;
 

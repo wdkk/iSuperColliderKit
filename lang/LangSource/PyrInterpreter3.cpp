@@ -118,7 +118,9 @@ SC_DLLEXPORT_C void runInterpreter(VMGlobals *g, PyrSymbol *selector, int numArg
 //        if (strcmp(selector->name, "tick") != 0) post("%s %d  execMethod %d\n", selector->name, numArgsPushed, g->execMethod);
 	//post("->Interpret thread %p\n", g->thread);
         // kengo:(5)
-		if (g->execMethod) Interpret(g);
+        if (g->execMethod) {
+            Interpret(g);
+        }
 	//post("<-Interpret thread %p\n", g->thread);
 #ifdef GC_SANITYCHECK
 		g->gc->SanityCheck();

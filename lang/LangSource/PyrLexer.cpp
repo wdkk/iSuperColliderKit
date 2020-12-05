@@ -2189,7 +2189,8 @@ SC_DLLEXPORT_C void runLibrary(PyrSymbol* selector)
     g->canCallOS = true;
 	try {
 		if (compiledOK) {
-            ++g->sp; SetObject(g->sp, g->process);
+            ++g->sp; 
+            SetObject(g->sp, g->process);
             runInterpreter(g, selector, 1);
 		} else {
             printf("Library has not been compiled successfully.\n");
