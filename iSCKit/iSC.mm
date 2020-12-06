@@ -298,6 +298,23 @@ void setCmdLine(const char *buf)
     return internal_sc_controller;
 }
 
++ (void)outputSpeaker
+{
+    // kengo: add
+    NSError *error = nil;
+    AVAudioSession *av_session = [AVAudioSession sharedInstance];
+    
+    [av_session overrideOutputAudioPort:AVAudioSessionPortOverrideSpeaker error:&error];
+    if(error) { 
+        NSLog(@"audioSession: %@, %ld, %@", [error domain], (long)[error code], [[error userInfo] description]);
+    }
+    
+    [av_session setActive:YES error:&error];
+    if(error) { 
+        NSLog(@"audioSession: %@, %ld, %@", [error domain], (long)[error code], [[error userInfo] description]);
+    }
+}
+
 - (id) init
 {
 	if (self = [super init])

@@ -358,7 +358,7 @@
 					"-lscsynth",
 					"-liSCKit",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "jp.co.wdkk.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = jp.co.wdkk.iSCAppSwift;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = wdkk_Core_iOS;
 				SWIFT_OBJC_BRIDGING_HEADER = "$(PROJECT_DIR)/Codes/Bridging-Header.h";
@@ -384,7 +384,7 @@
 					"-lscsynth",
 					"-liSCKit",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "jp.co.wdkk.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = jp.co.wdkk.iSCAppSwift;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = wdkk_Core_iOS;
 				SWIFT_OBJC_BRIDGING_HEADER = "$(PROJECT_DIR)/Codes/Bridging-Header.h";

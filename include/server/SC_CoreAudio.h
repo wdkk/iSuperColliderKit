@@ -281,6 +281,7 @@ public:
 class SC_iCoreAudioDriver : public SC_AudioDriver
 {
 	AUGraph graph;
+    float sample_rate;
 
 	AudioStreamBasicDescription	inputStreamDesc;	// info about the default device
 	AudioStreamBasicDescription	outputStreamDesc;	// info about the default device

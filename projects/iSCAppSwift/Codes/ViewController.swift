@@ -26,6 +26,7 @@ class ViewController: UIViewController {
 
     var tv_blue:TouchView?
     var tv_red:TouchView?
+    var tv_green:TouchView?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,6 +45,11 @@ class ViewController: UIViewController {
         tv_red?.backgroundColor = .red
         tv_red?.touches_began = touchesRed
         self.view.addSubview(tv_red!)
+        
+        tv_green = TouchView(frame:CGRect(x:200, y:5, width:40, height:40))
+        tv_green?.backgroundColor = .green
+        tv_green?.touches_began = touchesGreen
+        self.view.addSubview(tv_green!)
     }
 
     override func didReceiveMemoryWarning()
@@ -61,5 +67,9 @@ class ViewController: UIViewController {
         iSC.interpret("a.free")
     }
     
+    func touchesGreen(touches: Set<UITouch>, with event: UIEvent?)
+    {
+        iSC.outputSpeaker()
+    }
 }
 

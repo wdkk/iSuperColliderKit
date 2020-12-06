@@ -43,6 +43,8 @@ typedef UITextView iSCLogView;
 
 + (iSC *)sharedInstance;
 
++ (void) outputSpeaker;
+
 // instance methods
 - (void) interpretSCMessage:(NSString *)string;
    

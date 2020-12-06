@@ -2152,6 +2152,7 @@ OSStatus InputCallback(void *inRefCon, AudioUnitRenderActionFlags *ioActionFlags
 	return noErr;
 }
 
+
 OSStatus RenderCallback(void *inRefCon, AudioUnitRenderActionFlags *ioActionFlags, const AudioTimeStamp *inTimeStamp, UInt32 inBusNumber, UInt32 inNumberFrames, AudioBufferList *ioData)
 {
 	SC_iCoreAudioDriver *driver = (SC_iCoreAudioDriver *) inRefCon;
@@ -2428,102 +2429,94 @@ void AudioSessionInterruptionCbk(void *inClientData, UInt32 inInterruptionState)
 
 bool SC_iCoreAudioDriver::DriverSetup(int* outNumSamplesPerCallback, double* outSampleRate)
 {
-    // kengo:AudioSession to AVAudioSession API.
-    // attention - AVAudioSession code building is not completed, please anybody rebuild it again.
+    // kengo:AudioSession converted to AVAudioSession API below.
     NSError *error = nil;
     
-	//AudioSessionInitialize(0, 0, AudioSessionInterruptionCbk, 0);
     AVAudioSession *av_session = [AVAudioSession sharedInstance]; // kengo:as02
 
-	//unsigned long category = kAudioSessionCategory_PlayAndRecord;
     NSString *category = AVAudioSessionCategoryPlayAndRecord;
-#ifdef SC_IPHONE
-	//UInt32 micInput, micInputSize = sizeof(&micInput);
-	//AudioSessionGetProperty(kAudioSessionProperty_AudioInputAvailable, &micInputSize, &micInput);
-	//if(!micInput)
-    //{
-	//	category = kAudioSessionCategory_MediaPlayback;
-	//	NSLog(@"SC_IPHONE: WARNING - no audio input available\n");
-	//}
-    
-    
-    if(av_session.inputAvailable)
-    {
+#ifdef SC_IPHONE    
+    if( av_session.inputAvailable ) {
         NSLog(@"SC_IPHONE: audio input available.\n");
         category = AVAudioSessionCategoryPlayAndRecord;  // kengo:as03 (playing only)
-        //category = AVAudioSessionCategoryAmbient; // kengo:as03-2
+        //category = AVAudioSessionCategoryAmbient;      // kengo:as03-2
     }
     else {
         NSLog(@"SC_IPHONE: WARNING - no audio input available.\n");
         category = AVAudioSessionCategoryPlayback;  // kengo:as04
     }
 #endif
-	//AudioSessionSetProperty(kAudioSessionProperty_AudioCategory, sizeof(category), &category);
+
     [av_session setCategory:category error:&error];
-    if(error) { 
+    if( error ) { 
+        NSLog(@"audioSession: %@, %ld, %@", [error domain], (long)[error code], [[error userInfo] description]);
+    }
+        
+    this->sample_rate = (float)av_session.sampleRate;  // kengo:
+    NSLog(@"audioSession - sampleRate: %f", this->sample_rate );
+    
+    // kengo: add to set preferred sample rate.
+    [av_session setPreferredSampleRate:this->sample_rate error:&error];
+    if( error ) { 
         NSLog(@"audioSession: %@, %ld, %@", [error domain], (long)[error code], [[error userInfo] description]);
     }
     
-	if (mPreferredHardwareBufferFrameSize)
-	{
-		Float32 preferredBufferSize = (float) mPreferredHardwareBufferFrameSize/44100.f;
-		//AudioSessionSetProperty(kAudioSessionProperty_PreferredHardwareIOBufferDuration, sizeof(preferredBufferSize), &preferredBufferSize);
+	if( mPreferredHardwareBufferFrameSize ) {        
+        Float32 preferredBufferSize = (float)mPreferredHardwareBufferFrameSize / this->sample_rate;
+                
         [av_session setPreferredIOBufferDuration:preferredBufferSize error:&error];
-        if(error) { NSLog(@"audioSession: %@, %ld, %@", [error domain], (long)[error code], [[error userInfo] description]); }
+        if( error ) { 
+            NSLog(@"audioSession: %@, %ld, %@", [error domain], (long)[error code], [[error userInfo] description]);
+        }
     }
 
-	//AudioSessionSetActive(true);
     [av_session setActive:YES error:&error];
-    if(error)
-    {
+    if( error ) {
         NSLog(@"audioSession: %@ %ld %@", [error domain], (long)[error code], [[error userInfo] description]);
     }
     
-	//float actualBufferDuration;
-	//UInt32 size = sizeof(actualBufferDuration);
-	//AudioSessionGetProperty(kAudioSessionProperty_CurrentHardwareIOBufferDuration, &size, &actualBufferDuration);
     float actualBufferDuration = av_session.IOBufferDuration;   // kengo:as04
-    
-	*outNumSamplesPerCallback = (int) (actualBufferDuration*44100.f+0.5f);
-	*outSampleRate = 44100;
+
+	//*outNumSamplesPerCallback = (int) (actualBufferDuration * 44100.f + 0.5f );
+    *outNumSamplesPerCallback = (int)( actualBufferDuration * this->sample_rate + 0.5f );
+	*outSampleRate = (int)sample_rate;
 
 	AudioComponentDescription desc;
 	desc.componentType = kAudioUnitType_Output;
 	desc.componentSubType = kAudioUnitSubType_RemoteIO;
 	desc.componentManufacturer = kAudioUnitManufacturer_Apple;
+    desc.componentFlags = 0;
+    desc.componentFlagsMask = 0;
 
-	NewAUGraph(&graph);
+	NewAUGraph( &graph );
 	AUNode node;
 	AudioUnit unit;
-	OSStatus ret = AUGraphAddNode(graph, &desc, &node);
-	AUGraphOpen(graph);
+	OSStatus ret = AUGraphAddNode( graph, &desc, &node );
+	AUGraphOpen( graph );
 
-	ret = AUGraphNodeInfo(graph, node, &desc, &unit);
+	ret = AUGraphNodeInfo( graph, node, &desc, &unit );
 
-	AudioComponent remoteIOComp = AudioComponentFindNext(0, &desc);
-	if (AudioComponentInstanceNew(remoteIOComp, &inputUnit)!=noErr)
+	AudioComponent remoteIOComp = AudioComponentFindNext( 0, &desc );
+	if( AudioComponentInstanceNew(remoteIOComp, &inputUnit) != noErr )
 	{
-		//printf("error instantiating RemoteIO\n");
+		printf("error instantiating RemoteIO\n");
 		return false;
 	}
-	//printf("instantiated : %d\n", inputUnit);
 
 	int enableIO = 1;
-	ret = AudioUnitSetProperty(inputUnit, kAudioOutputUnitProperty_EnableIO, kAudioUnitScope_Input, 1, &enableIO, sizeof(enableIO));
-	if (ret!=noErr)
-	{
-		//printf("can't set input : %d\n", ret);
+	ret = AudioUnitSetProperty( inputUnit, kAudioOutputUnitProperty_EnableIO, kAudioUnitScope_Input, 1, &enableIO, sizeof(enableIO));
+	if( ret != noErr ) {
+        printf("can't set input : %d\n", (int)ret);
 		return false;
 	}
 	enableIO = 0;
-	ret = AudioUnitSetProperty(inputUnit, kAudioOutputUnitProperty_EnableIO, kAudioUnitScope_Output, 0, &enableIO, sizeof(enableIO));
-	if (ret!=noErr)
-	{
-		//printf("can't set output : %d\n", ret);
+	ret = AudioUnitSetProperty( inputUnit, kAudioOutputUnitProperty_EnableIO, kAudioUnitScope_Output, 0, &enableIO, sizeof(enableIO));
+	if( ret != noErr ) {
+        printf("can't set output : %d\n", (int)ret);
 		return false;
 	}
 
-	AudioUnitInitialize(inputUnit);
+	AudioUnitInitialize( inputUnit );
 
 	unsigned long bufferSizeBytes = 1024 * sizeof(unsigned long);
 	buflist = (AudioBufferList *) malloc(sizeof(AudioBufferList));
@@ -2538,7 +2531,7 @@ bool SC_iCoreAudioDriver::DriverSetup(int* outNumSamplesPerCallback, double* out
 	floatInputList->mBuffers[0].mData = malloc(bufferSizeBytes);
 	floatInputList->mBuffers[0].mNumberChannels = 1;
 
-/*
+    
 	floatOutputList = (AudioBufferList *) malloc(sizeof(AudioBufferList)+sizeof(AudioBuffer));
 	floatOutputList->mNumberBuffers = 2;
 	floatOutputList->mBuffers[0].mDataByteSize = (unsigned int)bufferSizeBytes;
@@ -2547,7 +2540,7 @@ bool SC_iCoreAudioDriver::DriverSetup(int* outNumSamplesPerCallback, double* out
 	floatOutputList->mBuffers[1].mDataByteSize = (unsigned int)bufferSizeBytes;
 	floatOutputList->mBuffers[1].mData = malloc(bufferSizeBytes);
 	floatOutputList->mBuffers[1].mNumberChannels = 1;
-*/
+    
     
 	AURenderCallbackStruct inputStruct;
 	inputStruct.inputProc = InputCallback;
@@ -2566,19 +2559,19 @@ bool SC_iCoreAudioDriver::DriverSetup(int* outNumSamplesPerCallback, double* out
                 | kAudioFormatFlagsNativeEndian
                 | kLinearPCMFormatFlagIsNonInterleaved
                 | (24 << kLinearPCMFormatFlagsSampleFractionShift);
-	streamFormat.mSampleRate       = 44100;
+	streamFormat.mSampleRate       = this->sample_rate;
 	streamFormat.mBitsPerChannel   = 32;
 	streamFormat.mChannelsPerFrame = 2;
 	streamFormat.mFramesPerPacket  = 1;
 	streamFormat.mBytesPerFrame    = ( streamFormat.mBitsPerChannel / 8 );
-	streamFormat.mBytesPerPacket   = streamFormat.mBytesPerFrame *
-                                 streamFormat.mFramesPerPacket;
+	streamFormat.mBytesPerPacket   = streamFormat.mBytesPerFrame * streamFormat.mFramesPerPacket;
 
-	ret = AudioUnitSetProperty(unit, kAudioUnitProperty_StreamFormat, kAudioUnitScope_Input, 0, &streamFormat, sizeof(streamFormat));
+	ret = AudioUnitSetProperty( unit, kAudioUnitProperty_StreamFormat,
+                                kAudioUnitScope_Input, 0, &streamFormat, sizeof(streamFormat) );
 
 
 	AudioStreamBasicDescription audioFormat;
-	audioFormat.mSampleRate = 44100.00;
+	audioFormat.mSampleRate = this->sample_rate;
 	audioFormat.mFormatID = kAudioFormatLinearPCM;
 	audioFormat.mFormatFlags = kAudioFormatFlagIsSignedInteger | kAudioFormatFlagIsPacked;
 	audioFormat.mFramesPerPacket = 1;
@@ -2586,12 +2579,12 @@ bool SC_iCoreAudioDriver::DriverSetup(int* outNumSamplesPerCallback, double* out
 	audioFormat.mBitsPerChannel	= 16;
 	audioFormat.mBytesPerPacket	= 2;
 	audioFormat.mBytesPerFrame = 2;
-	ret = AudioUnitSetProperty(inputUnit, kAudioUnitProperty_StreamFormat, kAudioUnitScope_Output, 1, &audioFormat, sizeof(audioFormat));
+	ret = AudioUnitSetProperty( inputUnit, kAudioUnitProperty_StreamFormat,
+                                kAudioUnitScope_Output, 1, &audioFormat, sizeof(audioFormat) );
 
-
-/*
+    
 	AudioStreamBasicDescription d;
-	size = sizeof(d);
+	UInt32 size = sizeof(d);
 	ret = AudioUnitGetProperty(unit, kAudioUnitProperty_StreamFormat, kAudioUnitScope_Input, 1, &d, &size);
 
 	AudioStreamBasicDescription inputFormat;
@@ -2619,10 +2612,10 @@ bool SC_iCoreAudioDriver::DriverSetup(int* outNumSamplesPerCallback, double* out
 	ret = AudioConverterNew(&inputFormat, &f32Format, &converter_in_to_F32);
 	ret = AudioConverterNew(&f32Format, &outputFormat, &converter_F32_to_out);
 	ret = AudioConverterNew(&inputFormat, &outputFormat, &converter_in_to_out);
-*/
-	AUGraphInitialize(graph);
 
-	if(mWorld->mVerbosity >= 0){
+	AUGraphInitialize( graph );
+
+	if( mWorld->mVerbosity >= 0 ) {
 		scprintf("<-SC_CoreAudioDriver::Setup world %p\n", mWorld);
 	}
 	return true;
@@ -2636,10 +2629,11 @@ bool SC_iCoreAudioDriver::DriverStart()
 
 	try
 	{
-		/*OSStatus ret =*/ AUGraphStart(graph);         // kengo: add comment.
+        // kengo: remove return variants.
+		AUGraphStart(graph);
 		AudioOutputUnitStart(inputUnit);
 	} catch (...) {
-	scprintf("exception in SC_CoreAudioDriver::DriverStart\n");
+        scprintf("exception in SC_CoreAudioDriver::DriverStart\n");
 	}
 	if(mWorld->mVerbosity >= 0){
 		scprintf("<-SC_CoreAudioDriver::DriverStart\n");
