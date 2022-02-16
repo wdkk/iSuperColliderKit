@@ -88,7 +88,7 @@ psf_store_string (SF_PRIVATE *psf, int str_type, const char *str)
 	if (k == 0)
 		psf->str_end = psf->str_storage ;
 
-	len_remaining = SIGNED_SIZEOF ((int)psf->str_storage) - ((int)psf->str_end - (int)psf->str_storage) ; // kengo:
+	len_remaining = SIGNED_SIZEOF (psf->str_storage) - (psf->str_end - psf->str_storage) ; // kengo:
 
 	if (len_remaining < str_len + 2)
 		return SFE_STR_MAX_DATA ;
