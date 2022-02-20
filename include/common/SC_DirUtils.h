@@ -32,9 +32,13 @@
 # endif
 # include <string.h>
 # define snprintf _snprintf
+#else
+# include <Foundation/Foundation.h>
+# include <glob.h>
 #endif
 
 #include <boost/algorithm/string.hpp>
+
 
 static inline bool stringCaseCompare(const char * a, const char * b)
 {
@@ -130,7 +134,12 @@ bool sc_ReadDir(SC_DirHandle *dir, const char *dirname, char *path, bool &skipEn
 // Globbing
 
 // Abstract glob handle
-struct SC_GlobHandle;
+//struct SC_GlobHandle;
+@interface SC_GlobHandle : NSObject {
+    @public glob_t* mHandle;
+    @public size_t mEntry;
+};
+@end
 
 // Create glob iterator from 'pattern'. Return NULL on failure.
 SC_GlobHandle* sc_Glob(const char* pattern);

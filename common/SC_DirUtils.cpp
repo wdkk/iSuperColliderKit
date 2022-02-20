@@ -524,56 +524,21 @@ bool sc_ReadDir(SC_DirHandle* dir, const char* dirname, char* path, bool& skipEn
 
 
 // Globbing
-
-
-struct SC_GlobHandle
-{
-#ifdef _WIN32
-	HANDLE mHandle;
-	char mFolder[PATH_MAX];
-	WIN32_FIND_DATA mEntry;
-	char mEntryPath[PATH_MAX];
-	bool mAtEnd;
-#else
-	glob_t mHandle;
-	size_t mEntry;
-#endif
-};
+@implementation SC_GlobHandle {
+}
+@end
 
 SC_GlobHandle* sc_Glob(const char* pattern)
 {
-	SC_GlobHandle* glob = new SC_GlobHandle;
+	SC_GlobHandle* glob = [[SC_GlobHandle alloc] init];
 
-#ifdef _WIN32
-	char patternWin[1024];
-
-	strncpy(patternWin, pattern, 1024);
-	patternWin[1023] = 0;
-	win32_ReplaceCharInString(patternWin, 1024, '/', '\\');
-
-	win32_ExtractContainingFolder(glob->mFolder, patternWin, PATH_MAX);
-
-	glob->mHandle = ::FindFirstFile(patternWin, &glob->mEntry);
-	if (glob->mHandle == INVALID_HANDLE_VALUE) {
-		delete glob;
-		return 0;
-	}
-
-	glob->mAtEnd = false;
-#else
 	int flags = GLOB_MARK | GLOB_TILDE;
-#ifdef __APPLE__
 	flags |= GLOB_QUOTE;
-#endif
 
-	int err = ::glob(pattern, flags, NULL, &glob->mHandle);
-	if (err < 0) {
-		delete glob;
-		return 0;
-	}
+    int err = ::glob(pattern, flags, NULL, glob->mHandle);
+	if (err < 0) { return 0; }
 
 	glob->mEntry = 0;
-#endif
 
 	return glob;
 }
@@ -583,9 +548,8 @@ void sc_GlobFree(SC_GlobHandle* glob)
 #ifdef _WIN32
 	::FindClose(glob->mHandle);
 #else
-	globfree(&glob->mHandle);
+	globfree(glob->mHandle);
 #endif
-	delete glob;
 }
 
 const char* sc_GlobNext(SC_GlobHandle* glob)
@@ -599,8 +563,8 @@ const char* sc_GlobNext(SC_GlobHandle* glob)
 		glob->mAtEnd = true;
 	return glob->mEntryPath;
 #else
-	if (glob->mEntry >= glob->mHandle.gl_pathc)
+	if (glob->mEntry >= glob->mHandle->gl_pathc)
 		return 0;
-	return glob->mHandle.gl_pathv[glob->mEntry++];
+	return glob->mHandle->gl_pathv[glob->mEntry++];
 #endif
 }

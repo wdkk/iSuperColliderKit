@@ -487,29 +487,29 @@ int prStringPathMatch(struct VMGlobals *g, int numArgsPushed)
 	int err = slotStrVal(a, pattern, 1023);
 	if (err) return err;
 
-	glob_t pglob;
+	glob_t* pglob;
 
 	int gflags = GLOB_MARK | GLOB_TILDE;
 #ifdef SC_DARWIN
 	gflags |= GLOB_QUOTE;
 #endif
 
-	int gerr = glob(pattern, gflags, NULL, &pglob);
+	int gerr = ::glob(pattern, gflags, NULL, pglob);
 	if (gerr) {
-		pglob.gl_pathc = 0;
+		pglob->gl_pathc = 0;
 	}
-	PyrObject* array = newPyrArray(g->gc, (int)pglob.gl_pathc, 0, true);
+	PyrObject* array = newPyrArray(g->gc, (int)pglob->gl_pathc, 0, true);
 	SetObject(a, array);
 	if (gerr) return errNone;
 
-	for (unsigned int i=0; i<pglob.gl_pathc; ++i) {
-		PyrObject *string = (PyrObject*)newPyrString(g->gc, pglob.gl_pathv[i], 0, true);
+	for (unsigned int i=0; i<pglob->gl_pathc; ++i) {
+		PyrObject *string = (PyrObject*)newPyrString(g->gc, pglob->gl_pathv[i], 0, true);
 		SetObject(array->slots+i, string);
 		g->gc->GCWrite(array, string);
 		array->size++;
 	}
 
-	globfree(&pglob);
+	globfree(pglob);
 
 	return errNone;
 }
