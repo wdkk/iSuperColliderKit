@@ -44,7 +44,7 @@ void Gsm_Preprocess (
 	word		msp, lsp;
 	word		SO;
 
-	register int		k = 160;
+	int		k = 160;
 
 	while (k--) {
 

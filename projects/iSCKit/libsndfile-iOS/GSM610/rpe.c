@@ -15,7 +15,7 @@
 /* 4.2.13 */
 
 static void Weighting_filter (
-	register word	* e,		/* signal [-5..0.39.44]	IN  */
+	word	* e,		/* signal [-5..0.39.44]	IN  */
 	word		* x		/* signal [0..39]	OUT */
 )
 /*
@@ -27,8 +27,8 @@ static void Weighting_filter (
 {
 	/* word			wt[ 50 ]; */
 
-	register longword	L_result;
-	register int		k /* , i */ ;
+	longword	L_result;
+	int		k /* , i */ ;
 
 	/*  Initialization of a temporary working array wt[0...49]
 	 */
@@ -118,9 +118,9 @@ static void RPE_grid_selection (
  *  represented by Mc.
  */
 {
-	/* register word	temp1;	*/
-	register int		/* m, */  i;
-	register longword	L_result, L_temp;
+	/* word	temp1;	*/
+	int		/* m, */  i;
+	longword	L_result, L_temp;
 	longword		EM;	/* xxx should be L_EM? */
 	word			Mc;
 
@@ -341,10 +341,10 @@ static void APCM_quantization (
 /* 4.2.16 */
 
 static void APCM_inverse_quantization (
-	register word	* xMc,	/* [0..12]			IN 	*/
+	word	* xMc,	/* [0..12]			IN 	*/
 	word		mant,
 	word		expon,
-	register word	* xMp)	/* [0..12]			OUT 	*/
+	word	* xMp)	/* [0..12]			OUT 	*/
 /* 
  *  This part is for decoding the RPE sequence of coded xMc[0..12]
  *  samples to obtain the xMp[0..12] array.  Table 4.6 is used to get
@@ -379,8 +379,8 @@ static void APCM_inverse_quantization (
 
 static void RPE_grid_positioning (
 	word		Mc,		/* grid position	IN	*/
-	register word	* xMp,		/* [0..12]		IN	*/
-	register word	* ep		/* [0..39]		OUT	*/
+	word	* xMp,		/* [0..12]		IN	*/
+	word	* ep		/* [0..39]		OUT	*/
 )
 /*
  *  This procedure computes the reconstructed long term residual signal

@@ -19,7 +19,7 @@ static void Decoding_of_the_coded_Log_Area_Ratios (
 	word 	* LARc,		/* coded log area ratio	[0..7] 	IN	*/
 	word	* LARpp)	/* out: decoded ..			*/
 {
-	register word	temp1 /* , temp2 */;
+	word	temp1 /* , temp2 */;
 
 	/*  This procedure requires for efficient implementation
 	 *  two tables.
@@ -91,11 +91,11 @@ temp1    = GSM_MULT_R( INVA, temp1 );        \
  */
 
 static void Coefficients_0_12 (
-	register word * LARpp_j_1,
-	register word * LARpp_j,
-	register word * LARp)
+	word * LARpp_j_1,
+	word * LARpp_j,
+	word * LARp)
 {
-	register int 	i;
+	int 	i;
 
 	for (i = 1; i <= 8; i++, LARp++, LARpp_j_1++, LARpp_j++) {
 		*LARp = GSM_ADD( SASR_W( *LARpp_j_1, 2 ), SASR_W( *LARpp_j, 2 ));
@@ -104,22 +104,22 @@ static void Coefficients_0_12 (
 }
 
 static void Coefficients_13_26 (
-	register word * LARpp_j_1,
-	register word * LARpp_j,
-	register word * LARp)
+	word * LARpp_j_1,
+	word * LARpp_j,
+	word * LARp)
 {
-	register int i;
+	int i;
 	for (i = 1; i <= 8; i++, LARpp_j_1++, LARpp_j++, LARp++) {
 		*LARp = GSM_ADD( SASR_W( *LARpp_j_1, 1), SASR_W( *LARpp_j, 1 ));
 	}
 }
 
 static void Coefficients_27_39 (
-	register word * LARpp_j_1,
-	register word * LARpp_j,
-	register word * LARp)
+	word * LARpp_j_1,
+	word * LARpp_j,
+	word * LARp)
 {
-	register int i;
+	int i;
 
 	for (i = 1; i <= 8; i++, LARpp_j_1++, LARpp_j++, LARp++) {
 		*LARp = GSM_ADD( SASR_W( *LARpp_j_1, 2 ), SASR_W( *LARpp_j, 2 ));
@@ -129,10 +129,10 @@ static void Coefficients_27_39 (
 
 
 static void Coefficients_40_159 (
-	register word * LARpp_j,
-	register word * LARp)
+	word * LARpp_j,
+	word * LARp)
 {
-	register int i;
+	int i;
 
 	for (i = 1; i <= 8; i++, LARp++, LARpp_j++)
 		*LARp = *LARpp_j;
@@ -141,15 +141,15 @@ static void Coefficients_40_159 (
 /* 4.2.9.2 */
 
 static void LARp_to_rp (
-	register word * LARp)	/* [0..7] IN/OUT  */
+	word * LARp)	/* [0..7] IN/OUT  */
 /*
  *  The input of this procedure is the interpolated LARp[0..7] array.
  *  The reflection coefficients, rp[i], are used in the analysis
  *  filter and in the synthesis filter.
  */
 {
-	register int 		i;
-	register word		temp;
+	int 		i;
+	word		temp;
 
 	for (i = 1; i <= 8; i++, LARp++) {
 
@@ -180,9 +180,9 @@ static void LARp_to_rp (
 /* 4.2.10 */
 static void Short_term_analysis_filtering (
 	struct gsm_state * S,
-	register word	* rp,	/* [0..7]	IN	*/
-	register int 	k_n, 	/*   k_end - k_start	*/
-	register word	* s	/* [0..n-1]	IN/OUT	*/
+	word	* rp,	/* [0..7]	IN	*/
+	int 	k_n, 	/*   k_end - k_start	*/
+	word	* s	/* [0..n-1]	IN/OUT	*/
 )
 /*
  *  This procedure computes the short term residual signal d[..] to be fed
@@ -195,9 +195,9 @@ static void Short_term_analysis_filtering (
  *  needs to keep the array u[0..7] in memory for each call.
  */
 {
-	register word		* u = S->u;
-	register int		i;
-	register word		di, zzz, ui, sav, rpi;
+	word		* u = S->u;
+	int		i;
+	word		di, zzz, ui, sav, rpi;
 
 	for (; k_n--; s++) {
 
@@ -224,19 +224,19 @@ static void Short_term_analysis_filtering (
 
 static void Fast_Short_term_analysis_filtering (
 	struct gsm_state * S,
-	register word	* rp,	/* [0..7]	IN	*/
-	register int 	k_n, 	/*   k_end - k_start	*/
-	register word	* s	/* [0..n-1]	IN/OUT	*/
+	word	* rp,	/* [0..7]	IN	*/
+	int 	k_n, 	/*   k_end - k_start	*/
+	word	* s	/* [0..n-1]	IN/OUT	*/
 )
 {
-	register word		* u = S->u;
-	register int		i;
+	word		* u = S->u;
+	int		i;
 
 	float 	  uf[8],
 		 rpf[8];
 
-	register float scalef = 3.0517578125e-5;
-	register float		sav, di, temp;
+	float scalef = 3.0517578125e-5;
+	float		sav, di, temp;
 
 	for (i = 0; i < 8; ++i) {
 		uf[i]  = u[i];
@@ -245,8 +245,8 @@ static void Fast_Short_term_analysis_filtering (
 	for (; k_n--; s++) {
 		sav = di = *s;
 		for (i = 0; i < 8; ++i) {
-			register float rpfi = rpf[i];
-			register float ufi  = uf[i];
+			float rpfi = rpf[i];
+			float ufi  = uf[i];
 
 			uf[i] = sav;
 			temp  = rpfi * di + ufi;
@@ -261,15 +261,15 @@ static void Fast_Short_term_analysis_filtering (
 
 static void Short_term_synthesis_filtering (
 	struct gsm_state * S,
-	register word	* rrp,	/* [0..7]	IN	*/
-	register int	k,	/* k_end - k_start	*/
-	register word	* wt,	/* [0..k-1]	IN	*/
-	register word	* sr	/* [0..k-1]	OUT	*/
+	word	* rrp,	/* [0..7]	IN	*/
+	int	k,	/* k_end - k_start	*/
+	word	* wt,	/* [0..k-1]	IN	*/
+	word	* sr	/* [0..k-1]	OUT	*/
 )
 {
-	register word		* v = S->v;
-	register int		i;
-	register word		sri, tmp1, tmp2;
+	word		* v = S->v;
+	int		i;
+	word		sri, tmp1, tmp2;
 
 	while (k--) {
 		sri = *wt++;
@@ -304,24 +304,24 @@ static void Short_term_synthesis_filtering (
 
 static void Fast_Short_term_synthesis_filtering (
 	struct gsm_state * S,
-	register word	* rrp,	/* [0..7]	IN	*/
-	register int	k,	/* k_end - k_start	*/
-	register word	* wt,	/* [0..k-1]	IN	*/
-	register word	* sr	/* [0..k-1]	OUT	*/
+	word	* rrp,	/* [0..7]	IN	*/
+	int	k,	/* k_end - k_start	*/
+	word	* wt,	/* [0..k-1]	IN	*/
+	word	* sr	/* [0..k-1]	OUT	*/
 )
 {
-	register word		* v = S->v;
-	register int		i;
+	word		* v = S->v;
+	int		i;
 
 	float va[9], rrpa[8];
-	register float scalef = 3.0517578125e-5, temp;
+	float scalef = 3.0517578125e-5, temp;
 
 	for (i = 0; i < 8; ++i) {
 		va[i]   = v[i];
 		rrpa[i] = (float)rrp[i] * scalef;
 	}
 	while (k--) {
-		register float sri = *wt++;
+		float sri = *wt++;
 		for (i = 8; i--;) {
 			sri -= rrpa[i] * va[i];
 			if     (sri < -32768.) sri = -32768.;

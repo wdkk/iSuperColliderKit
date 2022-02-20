@@ -12,16 +12,16 @@
 // From the ARM Architecture Reference Manual for architecture v6:
 //
 // LDREX{<cond>} <Rd>, [<Rn>]
-// <Rd> Specifies the destination register for the memory word addressed by <Rd>
-// <Rn> Specifies the register containing the address.
+// <Rd> Specifies the destination for the memory word addressed by <Rd>
+// <Rn> Specifies the containing the address.
 //
 // STREX{<cond>} <Rd>, <Rm>, [<Rn>]
-// <Rd> Specifies the destination register for the returned status value.
+// <Rd> Specifies the destination for the returned status value.
 //      0  if the operation updates memory
 //      1  if the operation fails to update memory
-// <Rm> Specifies the register containing the word to be stored to memory.
-// <Rn> Specifies the register containing the address.
-// Rd must not be the same register as Rm or Rn.
+// <Rm> Specifies the containing the word to be stored to memory.
+// <Rn> Specifies the containing the address.
+// Rd must not be the same as Rm or Rn.
 //
 // ARM v7 is like ARM v6 plus:
 // There are half-word and byte versions of the LDREX and STREX instructions,
@@ -47,7 +47,7 @@ namespace detail {
 // You can only change between ARM and Thumb modes when branching using the bx instruction.
 // bx takes an address specified in a register.  The least significant bit of the address
 // indicates the mode, so 1 is added to indicate that the destination code is Thumb.
-// A temporary register is needed for the address and is passed as an argument to these
+// A temporary is needed for the address and is passed as an argument to these
 // macros.  It must be one of the "low" registers accessible to Thumb code, specified
 // usng the "l" attribute in the asm statement.
 //

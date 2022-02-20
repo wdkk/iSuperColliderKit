@@ -49,14 +49,14 @@ NotificationCenter {
 	}
 
 	// 			who		\didSomething
-	*register { arg object,message,listener,action;
+	*{ arg object,message,listener,action;
 		var nr;
 		nr = NotificationRegistration(object,message,listener);
 		registrations.put(object,message,listener,action);
 		^nr;
 	}
 
-	*unregister { arg object,message,listener;
+	*un{ arg object,message,listener;
 		var lastKey,lastDict;
 		lastDict = registrations.at(object,message);
 		if(lastDict.notNil,{

@@ -186,7 +186,7 @@ static bool cpuid(
             }
             $ gcc -c -fPIC pic-ebx-asm.c
             pic-ebx-asm.c: In function `foo':
-            pic-ebx-asm.c:6: error: can't find a register in class `BREG'
+            pic-ebx-asm.c:6: error: can't find a in class `BREG'
             while reloading `asm'
             $
 

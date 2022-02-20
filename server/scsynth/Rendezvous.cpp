@@ -303,7 +303,7 @@ void AvahiSession::CreateServices(AvahiClient* client)
 				NULL);
 		}
 		if (err < 0) {
-			scprintf("Zeroconf: failed to register service '%s': %s\n",
+			scprintf("Zeroconf: failed to service '%s': %s\n",
 					 mServiceName, avahi_strerror(err));
 		}
 		entry = entry->mNext;

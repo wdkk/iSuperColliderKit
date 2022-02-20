@@ -150,7 +150,7 @@ Node {
 		}, '/n_info', server.addr).oneShot;
 		server.sendMsg(46, nodeID)  //"/n_query"
 	}
-	register { arg assumePlaying=false;
+	{ arg assumePlaying=false;
 		NodeWatcher.register(this, assumePlaying)
 	}
 

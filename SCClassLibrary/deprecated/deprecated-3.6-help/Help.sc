@@ -600,7 +600,7 @@ gui { |sysext=true,userext=true, allowCached=true|
 					}.fork;
 				});
 			});
-			}.defer(0.01); // defer because .action above needs to register the new index
+			}.defer(0.01); // defer because .action above needs to the new index
 
 			if(clickCount == 2, {
 				if(lv.value.notNil and: { try { if(index==0, tree, {selectednodes[index-1]})[lists[index][lv.value]] }.isNil}, {

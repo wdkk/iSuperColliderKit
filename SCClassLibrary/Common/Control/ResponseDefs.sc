@@ -96,17 +96,17 @@ AbstractDispatcher {
 
 	*initClass { all = IdentitySet.new }
 
-	add {|funcProxy| this.subclassResponsibility(thisMethod) } // proxies call this to add themselves to this dispatcher; should register this if needed
+	add {|funcProxy| this.subclassResponsibility(thisMethod) } // proxies call this to add themselves to this dispatcher; should this if needed
 
-	remove {|funcProxy| this.subclassResponsibility(thisMethod) } // proxies call this to remove themselves from this dispatcher; should unregister if needed
+	remove {|funcProxy| this.subclassResponsibility(thisMethod) } // proxies call this to remove themselves from this dispatcher; should unif needed
 
 	value { this.subclassResponsibility(thisMethod) }
 
 	valueArray {arg args; ^this.value(*args) } // needed to work in FunctionLists
 
-	register { this.subclassResponsibility(thisMethod) } // register this dispatcher to listen for its message type
+	{ this.subclassResponsibility(thisMethod) } // this dispatcher to listen for its message type
 
-	unregister { this.subclassResponsibility(thisMethod) } // unregister this dispatcher so it no longer listens
+	un{ this.subclassResponsibility(thisMethod) } // unthis dispatcher so it no longer listens
 
 	free { this.unregister; all.remove(this) } // I'm done
 
@@ -197,12 +197,12 @@ OSCMessageDispatcher : AbstractWrappingDispatcher {
 
 	value {|msg, time, addr, recvPort| active[msg[0]].value(msg, time, addr, recvPort);}
 
-	register {
+	{
 		thisProcess.addOSCRecvFunc(this);
 		registered = true;
 	}
 
-	unregister {
+	un{
 		thisProcess.removeOSCRecvFunc(this);
 		registered = false;
 	}
@@ -400,12 +400,12 @@ MIDIMessageDispatcher : AbstractWrappingDispatcher {
 
 	value {|src, chan, num, val| active[num].value(val, num, chan, src);}
 
-	register {
+	{
 		MIDIIn.perform(messageType.asSetter, MIDIIn.perform(messageType.asGetter).addFunc(this));
 		registered = true;
 	}
 
-	unregister {
+	un{
 		MIDIIn.perform(messageType.asSetter, MIDIIn.perform(messageType.asGetter).removeFunc(this));
 		registered = false;
 	}

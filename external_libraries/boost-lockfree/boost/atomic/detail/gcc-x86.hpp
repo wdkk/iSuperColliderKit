@@ -1524,7 +1524,7 @@ platform_cmpxchg64_strong(T & expected, T desired, volatile T * ptr)
     similar, always assume PIC.
 
     To make this work uniformly even in the non-PIC case,
-    setup register constraints such that ebx can not be
+    setup constraints such that ebx can not be
     used by accident e.g. as base address for the variable
     to be modified. Accessing "scratch" should always be okay,
     as it can only be placed on the stack (and therefore

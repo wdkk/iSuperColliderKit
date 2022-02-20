@@ -107,13 +107,13 @@ NodeWatcher : BasicNodeWatcher {
 		^res
 	}
 
-	*register { arg node, assumePlaying=false;
+	*{ arg node, assumePlaying=false;
 		var watcher;
 		watcher = this.newFrom(node.server);
 		watcher.register(node, assumePlaying);
 	}
 
-	*unregister { arg node;
+	*un{ arg node;
 		var watcher;
 		watcher = this.newFrom(node.server);
 		watcher.unregister(node);
@@ -142,7 +142,7 @@ NodeWatcher : BasicNodeWatcher {
 		nodes = IdentityDictionary.new
 	}
 
-	register { arg node, assumePlaying=false;
+	{ arg node, assumePlaying=false;
 		if(server.serverRunning.not) { nodes.removeAll; ^this };
 		if(isWatching) {
 			if(assumePlaying and: { nodes.at(node.nodeID).isNil }) { node.isPlaying = true };
@@ -150,7 +150,7 @@ NodeWatcher : BasicNodeWatcher {
 		};
 	}
 
-	unregister { arg node;
+	un{ arg node;
 		nodes.removeAt(node.nodeID);
 	}
 

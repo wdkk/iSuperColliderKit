@@ -45,13 +45,13 @@ static void Cut_Calculation_of_the_LTP_parameters (
 
 	struct gsm_state * st,
 
-	register word	* d,		/* [0..39]	IN	*/
-	register word	* dp,		/* [-120..-1]	IN	*/
+	word	* d,		/* [0..39]	IN	*/
+	word	* dp,		/* [-120..-1]	IN	*/
 	word		* bc_out,	/* 		OUT	*/
 	word		* Nc_out	/* 		OUT	*/
 )
 {
-	register int  	k, lambda;
+	int  	k, lambda;
 	word		Nc, bc;
 	word		wt[40];
 
@@ -60,7 +60,7 @@ static void Cut_Calculation_of_the_LTP_parameters (
 	word		R, S, dmax, scal, best_k;
 	word		ltp_cut;
 
-	register word	temp, wt_k;
+	word	temp, wt_k;
 
 	/*  Search of the optimum scaling of d[0..39].
 	 */
@@ -112,7 +112,7 @@ static void Cut_Calculation_of_the_LTP_parameters (
 	L_power = 0;
 	for (k = 0; k <= 39; k++) {
 
-		register longword L_temp;
+		longword L_temp;
 
 		L_temp   = SASR_W( dp[k - Nc], 3 );
 		L_power += L_temp * L_temp;
@@ -149,19 +149,19 @@ static void Cut_Calculation_of_the_LTP_parameters (
 #endif 	/* LTP_CUT */
 
 static void Calculation_of_the_LTP_parameters (
-	register word	* d,		/* [0..39]	IN	*/
-	register word	* dp,		/* [-120..-1]	IN	*/
+	word	* d,		/* [0..39]	IN	*/
+	word	* dp,		/* [-120..-1]	IN	*/
 	word		* bc_out,	/* 		OUT	*/
 	word		* Nc_out	/* 		OUT	*/
 )
 {
-	register int  	k, lambda;
+	int  	k, lambda;
 	word		Nc, bc;
 	word		wt[40];
 
 	longword	L_max, L_power;
 	word		R, S, dmax, scal;
-	register word	temp;
+	word	temp;
 
 	/*  Search of the optimum scaling of d[0..39].
 	 */
@@ -200,7 +200,7 @@ static void Calculation_of_the_LTP_parameters (
 # undef STEP
 #		define STEP(k) 	(longword)wt[k] * dp[k - lambda]
 
-		register longword L_result;
+		longword L_result;
 
 		L_result  = STEP(0)  ; L_result += STEP(1) ;
 		L_result += STEP(2)  ; L_result += STEP(3) ;
@@ -247,7 +247,7 @@ static void Calculation_of_the_LTP_parameters (
 	L_power = 0;
 	for (k = 0; k <= 39; k++) {
 
-		register longword L_temp;
+		longword L_temp;
 
 		L_temp   = SASR_W( dp[k - Nc], 3 );
 		L_power += L_temp * L_temp;
@@ -287,13 +287,13 @@ static void Calculation_of_the_LTP_parameters (
 
 static void Cut_Calculation_of_the_LTP_parameters (
 	struct gsm_state * st,		/*              IN 	*/
-	register word	* d,		/* [0..39]	IN	*/
-	register word	* dp,		/* [-120..-1]	IN	*/
+	word	* d,		/* [0..39]	IN	*/
+	word	* dp,		/* [-120..-1]	IN	*/
 	word		* bc_out,	/* 		OUT	*/
 	word		* Nc_out	/* 		OUT	*/
 )
 {
-	register int  	k, lambda;
+	int  	k, lambda;
 	word		Nc, bc;
 	word		ltp_cut;
 
@@ -302,7 +302,7 @@ static void Cut_Calculation_of_the_LTP_parameters (
 
 	longword	L_max, L_power;
 	word		R, S, dmax, scal;
-	register word	temp;
+	word	temp;
 
 	/*  Search of the optimum scaling of d[0..39].
 	 */
@@ -332,7 +332,7 @@ static void Cut_Calculation_of_the_LTP_parameters (
 	 */
 
 	for (k = 0; k < 40; k++) {
-		register word w = SASR_W( d[k], scal );
+		word w = SASR_W( d[k], scal );
 		if (w < 0 ? w > -ltp_cut : w < ltp_cut) {
 			wt_float[k] = 0.0;
 		}
@@ -351,14 +351,14 @@ static void Cut_Calculation_of_the_LTP_parameters (
 
 		/*  Calculate L_result for l = lambda .. lambda + 9.
 		 */
-		register float *lp = dp_float - lambda;
+		float *lp = dp_float - lambda;
 
-		register float	W;
-		register float	a = lp[-8], b = lp[-7], c = lp[-6],
+		float	W;
+		float	a = lp[-8], b = lp[-7], c = lp[-6],
 				d = lp[-5], e = lp[-4], f = lp[-3],
 				g = lp[-2], h = lp[-1];
-		register float  E; 
-		register float  S0 = 0, S1 = 0, S2 = 0, S3 = 0, S4 = 0,
+		float  E; 
+		float  S0 = 0, S1 = 0, S2 = 0, S3 = 0, S4 = 0,
 				S5 = 0, S6 = 0, S7 = 0, S8 = 0;
 
 #		undef STEP
@@ -436,7 +436,7 @@ static void Cut_Calculation_of_the_LTP_parameters (
 	L_power = 0;
 	for (k = 0; k <= 39; k++) {
 
-		register longword L_temp;
+		longword L_temp;
 
 		L_temp   = SASR_W( dp[k - Nc], 3 );
 		L_power += L_temp * L_temp;
@@ -473,13 +473,13 @@ static void Cut_Calculation_of_the_LTP_parameters (
 #endif /* LTP_CUT */
 
 static void Calculation_of_the_LTP_parameters (
-	register word	* din,		/* [0..39]	IN	*/
-	register word	* dp,		/* [-120..-1]	IN	*/
+	word	* din,		/* [0..39]	IN	*/
+	word	* dp,		/* [-120..-1]	IN	*/
 	word		* bc_out,	/* 		OUT	*/
 	word		* Nc_out	/* 		OUT	*/
 )
 {
-	register int  	k, lambda;
+	int  	k, lambda;
 	word		Nc, bc;
 
 	float		wt_float[40];
@@ -487,7 +487,7 @@ static void Calculation_of_the_LTP_parameters (
 
 	longword	L_max, L_power;
 	word		R, S, dmax, scal;
-	register word	temp;
+	word	temp;
 
 	/*  Search of the optimum scaling of d[0..39].
 	 */
@@ -526,14 +526,14 @@ static void Calculation_of_the_LTP_parameters (
 
 		/*  Calculate L_result for l = lambda .. lambda + 9.
 		 */
-		register float *lp = dp_float - lambda;
+		float *lp = dp_float - lambda;
 
-		register float	W;
-		register float	a = lp[-8], b = lp[-7], c = lp[-6],
+		float	W;
+		float	a = lp[-8], b = lp[-7], c = lp[-6],
 				d = lp[-5], e = lp[-4], f = lp[-3],
 				g = lp[-2], h = lp[-1];
-		register float  E; 
-		register float  S0 = 0, S1 = 0, S2 = 0, S3 = 0, S4 = 0,
+		float  E; 
+		float  S0 = 0, S1 = 0, S2 = 0, S3 = 0, S4 = 0,
 				S5 = 0, S6 = 0, S7 = 0, S8 = 0;
 
 #		undef STEP
@@ -610,7 +610,7 @@ static void Calculation_of_the_LTP_parameters (
 	L_power = 0;
 	for (k = 0; k <= 39; k++) {
 
-		register longword L_temp;
+		longword L_temp;
 
 		L_temp   = SASR_W( dp[k - Nc], 3 );
 		L_power += L_temp * L_temp;
@@ -649,20 +649,20 @@ static void Calculation_of_the_LTP_parameters (
 
 static void Cut_Fast_Calculation_of_the_LTP_parameters (
 	struct gsm_state * st,		/*              IN	*/
-	register word	* d,		/* [0..39]	IN	*/
-	register word	* dp,		/* [-120..-1]	IN	*/
+	word	* d,		/* [0..39]	IN	*/
+	word	* dp,		/* [-120..-1]	IN	*/
 	word		* bc_out,	/* 		OUT	*/
 	word		* Nc_out	/* 		OUT	*/
 )
 {
-	register int  	k, lambda;
-	register float	wt_float;
+	int  	k, lambda;
+	float	wt_float;
 	word		Nc, bc;
 	word		wt_max, best_k, ltp_cut;
 
 	float		dp_float_base[120], * dp_float = dp_float_base + 120;
 
-	register float	L_result, L_max, L_power;
+	float	L_result, L_max, L_power;
 
 	wt_max = 0;
 
@@ -701,7 +701,7 @@ static void Cut_Fast_Calculation_of_the_LTP_parameters (
 	dp_float -= Nc;
 	L_power = 0;
 	for (k = 0; k < 40; ++k) {
-		register float f = dp_float[k];
+		float f = dp_float[k];
 		L_power += f * f;
 	}
 
@@ -722,19 +722,19 @@ static void Cut_Fast_Calculation_of_the_LTP_parameters (
 #endif /* LTP_CUT */
 
 static void Fast_Calculation_of_the_LTP_parameters (
-	register word	* din,		/* [0..39]	IN	*/
-	register word	* dp,		/* [-120..-1]	IN	*/
+	word	* din,		/* [0..39]	IN	*/
+	word	* dp,		/* [-120..-1]	IN	*/
 	word		* bc_out,	/* 		OUT	*/
 	word		* Nc_out	/* 		OUT	*/
 )
 {
-	register int  	k, lambda;
+	int  	k, lambda;
 	word		Nc, bc;
 
 	float		wt_float[40];
 	float		dp_float_base[120], * dp_float = dp_float_base + 120;
 
-	register float	L_max, L_power;
+	float	L_max, L_power;
 
 	for (k = 0; k < 40; ++k) wt_float[k] = (float) din [k] ;
 	for (k = -120; k < 0; ++k) dp_float[k] = (float) dp [k] ;
@@ -748,14 +748,14 @@ static void Fast_Calculation_of_the_LTP_parameters (
 
 		/*  Calculate L_result for l = lambda .. lambda + 9.
 		 */
-		register float *lp = dp_float - lambda;
+		float *lp = dp_float - lambda;
 
-		register float	W;
-		register float	a = lp[-8], b = lp[-7], c = lp[-6],
+		float	W;
+		float	a = lp[-8], b = lp[-7], c = lp[-6],
 				d = lp[-5], e = lp[-4], f = lp[-3],
 				g = lp[-2], h = lp[-1];
-		register float  E; 
-		register float  S0 = 0, S1 = 0, S2 = 0, S3 = 0, S4 = 0,
+		float  E; 
+		float  S0 = 0, S1 = 0, S2 = 0, S3 = 0, S4 = 0,
 				S5 = 0, S6 = 0, S7 = 0, S8 = 0;
 
 #		undef STEP
@@ -819,7 +819,7 @@ static void Fast_Calculation_of_the_LTP_parameters (
 	dp_float -= Nc;
 	L_power = 0;
 	for (k = 0; k < 40; ++k) {
-		register float f = dp_float[k];
+		float f = dp_float[k];
 		L_power += f * f;
 	}
 
@@ -846,10 +846,10 @@ static void Fast_Calculation_of_the_LTP_parameters (
 static void Long_term_analysis_filtering (
 	word		bc,	/* 					IN  */
 	word		Nc,	/* 					IN  */
-	register word	* dp,	/* previous d	[-120..-1]		IN  */
-	register word	* d,	/* d		[0..39]			IN  */
-	register word	* dpp,	/* estimate	[0..39]			OUT */
-	register word	* e	/* long term res. signal [0..39]	OUT */
+	word	* dp,	/* previous d	[-120..-1]		IN  */
+	word	* d,	/* d		[0..39]			IN  */
+	word	* dpp,	/* estimate	[0..39]			OUT */
+	word	* e	/* long term res. signal [0..39]	OUT */
 )
 /*
  *  In this part, we have to decode the bc parameter to compute
@@ -858,7 +858,7 @@ static void Long_term_analysis_filtering (
  *  is then calculated to be fed to the RPE encoding section.
  */
 {
-	register int      k;
+	int      k;
 
 #	undef STEP
 #	define STEP(BP)					\
@@ -918,8 +918,8 @@ void Gsm_Long_Term_Synthesis_Filtering (
 
 	word			Ncr,
 	word			bcr,
-	register word		* erp,	   /* [0..39]		  	 IN */
-	register word		* drp	   /* [-120..-1] IN, [-120..40] OUT */
+	word		* erp,	   /* [0..39]		  	 IN */
+	word		* drp	   /* [-120..-1] IN, [-120..40] OUT */
 )
 /*
  *  This procedure uses the bcr and Ncr parameter to realize the
@@ -927,7 +927,7 @@ void Gsm_Long_Term_Synthesis_Filtering (
  *  table 4.3b.
  */
 {
-	register int 		k;
+	int 		k;
 	word			brp, drpp, Nr;
 
 	/*  Check the limits of Nr.

@@ -102,7 +102,7 @@ namespace YAML
 		
 	private:
 		ostream m_stream;
-		std::auto_ptr <EmitterState> m_pState;
+		std::shared_ptr<EmitterState> m_pState;
 	};
 	
 	template <typename T>

@@ -281,7 +281,7 @@ public:
     // auto_ptr<Y> is special cased to provide the strong guarantee
 
     template<class Y>
-    explicit shared_count( std::auto_ptr<Y> & r ): pi_( new sp_counted_impl_p<Y>( r.get() ) )
+    explicit shared_count( std::shared_ptr<Y> & r ): pi_( new sp_counted_impl_p<Y>( r.get() ) )
 #if defined(BOOST_SP_ENABLE_DEBUG_HOOKS)
         , id_(shared_count_id)
 #endif

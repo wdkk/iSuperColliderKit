@@ -24,7 +24,7 @@ static void Autocorrelation (
  *  be scaled in order to avoid an overflow situation.
  */
 {
-	register int	k, i;
+	int	k, i;
 
 	word		temp, smax, scalauto;
 
@@ -85,8 +85,8 @@ static void Autocorrelation (
 	 */
 	{
 # ifdef	USE_FLOAT_MUL
-		register float * sp = float_s;
-		register float   sl = *sp;
+		float * sp = float_s;
+		float   sl = *sp;
 
 #		define STEP(k)	 L_ACF[k] += (longword)(sl * sp[ -(k) ]);
 # else
@@ -143,17 +143,17 @@ static void Fast_Autocorrelation (
 	word * s,		/* [0..159]	IN/OUT  */
  	longword * L_ACF)	/* [0..8]	OUT     */
 {
-	register int	k, i;
+	int	k, i;
 	float f_L_ACF[9];
 	float scale;
 
 	float          s_f[160];
-	register float *sf = s_f;
+	float *sf = s_f;
 
 	for (i = 0; i < 160; ++i) sf[i] = s[i];
 	for (k = 0; k <= 8; k++) {
-		register float L_temp2 = 0;
-		register float *sfl = sf - k;
+		float L_temp2 = 0;
+		float *sfl = sf - k;
 		for (i = k; i < 160; ++i) L_temp2 += sf[i] * sfl[i];
 		f_L_ACF[k] = L_temp2;
 	}
@@ -169,11 +169,11 @@ static void Fast_Autocorrelation (
 
 static void Reflection_coefficients (
 	longword	* L_ACF,		/* 0...8	IN	*/
-	register word	* r			/* 0...7	OUT 	*/
+	word	* r			/* 0...7	OUT 	*/
 )
 {
-	register int	i, m, n;
-	register word	temp;
+	int	i, m, n;
+	word	temp;
 	word		ACF[9];	/* 0..8 */
 	word		P[  9];	/* 0..8 */
 	word		K[  9]; /* 2..8 */
@@ -236,7 +236,7 @@ static void Reflection_coefficients (
 /* 4.2.6 */
 
 static void Transformation_to_Log_Area_Ratios (
-	register word	* r 			/* 0..7	   IN/OUT */
+	word	* r 			/* 0..7	   IN/OUT */
 )
 /*
  *  The following scaling for r[..] and LAR[..] has been used:
@@ -246,8 +246,8 @@ static void Transformation_to_Log_Area_Ratios (
  *  with -1.625 <= real_LAR <= 1.625
  */
 {
-	register word	temp;
-	register int	i;
+	word	temp;
+	int	i;
 
 
 	/* Computation of the LAR[0..7] from the r[0..7]
@@ -277,10 +277,10 @@ static void Transformation_to_Log_Area_Ratios (
 /* 4.2.7 */
 
 static void Quantization_and_coding (
-	register word * LAR    	/* [0..7]	IN/OUT	*/
+	word * LAR    	/* [0..7]	IN/OUT	*/
 )
 {
-	register word	temp;
+	word	temp;
 
 	/*  This procedure needs four tables; the following equations
 	 *  give the optimum scaling for the constants:

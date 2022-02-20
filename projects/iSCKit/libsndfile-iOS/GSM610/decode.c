@@ -14,11 +14,11 @@
 
 static void Postprocessing (
 	struct gsm_state	* S,
-	register word 		* s)
+	word 		* s)
 {
-	register int		k;
-	register word		msr = S->msr;
-	register word		tmp;
+	int		k;
+	word		msr = S->msr;
+	word		tmp;
 
 	for (k = 160; k--; s++) {
 		tmp = GSM_MULT_R( msr, 28180 );

@@ -143,7 +143,7 @@ template< class T, class R > struct sp_enable_if_auto_ptr
 {
 };
 
-template< class T, class R > struct sp_enable_if_auto_ptr< std::auto_ptr< T >, R >
+template< class T, class R > struct sp_enable_if_auto_ptr< std::shared_ptr< T >, R >
 {
     typedef R type;
 }; 
@@ -282,7 +282,7 @@ public:
 #ifndef BOOST_NO_AUTO_PTR
 
     template<class Y>
-    explicit shared_ptr(std::auto_ptr<Y> & r): px(r.get()), pn()
+    explicit shared_ptr(std::shared_ptr<Y> & r): px(r.get()), pn()
     {
         Y * tmp = r.get();
         pn = boost::detail::shared_count(r);
@@ -326,7 +326,7 @@ public:
 #ifndef BOOST_NO_AUTO_PTR
 
     template<class Y>
-    shared_ptr & operator=( std::auto_ptr<Y> & r )
+    shared_ptr & operator=( std::shared_ptr<Y> & r )
     {
         this_type(r).swap(*this);
         return *this;

@@ -1035,7 +1035,7 @@ Boolean wiiremote_irsensor(WiiRemoteRef wiiremote, Boolean enabled)
 		return ret;
 	usleep(kWait);
 
-	// set register 0x1a (ir enable 2)
+	// set 0x1a (ir enable 2)
 	unsigned char cmd2[] = {0x1a, 0x00};
 	if (enabled)	cmd2[1] |= 0x04;
 	if ((ret = sendCommand(wiiremote, cmd2, 2)) == false)

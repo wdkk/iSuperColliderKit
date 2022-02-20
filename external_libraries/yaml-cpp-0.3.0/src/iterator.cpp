@@ -8,7 +8,7 @@ namespace YAML
 	{
 	}
 
-	Iterator::Iterator(std::auto_ptr<IterPriv> pData): m_pData(pData)
+	Iterator::Iterator(std::shared_ptr<IterPriv> pData): m_pData(pData)
 	{
 	}
 

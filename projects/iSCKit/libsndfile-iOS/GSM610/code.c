@@ -73,7 +73,7 @@ void Gsm_Coder (
 		 *			( dpp, State->e + 5, dp );
 		 */
 
-		{ register int i;
+		{ int i;
 		  for (i = 0; i <= 39; i++)
 			dp[ i ] = GSM_ADD( State->e[5 + i], dpp[i] );
 		}

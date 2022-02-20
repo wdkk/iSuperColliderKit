@@ -1058,7 +1058,7 @@
 					../../external_libraries/boost,
 					"../../external_libraries/boost-lockfree",
 				);
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				OBJROOT = "$(PROJECT_DIR)/build";
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -1105,7 +1105,7 @@
 					../../external_libraries/boost,
 					"../../external_libraries/boost-lockfree",
 				);
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				OBJROOT = "$(PROJECT_DIR)/build";
 				SDKROOT = iphoneos;
 				SYMROOT = "$(PROJECT_DIR)/../../lib";

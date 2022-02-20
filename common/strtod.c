@@ -95,8 +95,8 @@ sc_strtod(
 {
     int sign, expSign = FALSE;
     double fraction, dblExp, *d;
-    register const char *p;
-    register int c;
+    const char *p;
+    int c;
     int exp = 0;		/* Exponent read from "EX" field. */
     int fracExp = 0;		/* Exponent that derives from the fractional
 				 * part.  Under normal circumstatnces, it is

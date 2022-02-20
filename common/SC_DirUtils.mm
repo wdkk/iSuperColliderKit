@@ -525,6 +525,7 @@ bool sc_ReadDir(SC_DirHandle* dir, const char* dirname, char* path, bool& skipEn
 
 // Globbing
 
+
 struct SC_GlobHandle
 {
 #ifdef _WIN32

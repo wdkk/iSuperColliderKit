@@ -36,12 +36,12 @@ namespace boost
         }
 
         template<typename F>
-        thread* create_thread(F threadfunc)
+        std::shared_ptr<thread> create_thread(F threadfunc)
         {
             boost::lock_guard<shared_mutex> guard(m);
-            std::auto_ptr<thread> new_thread(new thread(threadfunc));
+            std::shared_ptr<thread> new_thread(new thread(threadfunc));
             threads.push_back(new_thread.get());
-            return new_thread.release();
+            return new_thread;
         }
         
         void add_thread(thread* thrd)

@@ -21,7 +21,7 @@ namespace YAML
 		Setting(): m_value() {}
 		
 		const T get() const { return m_value; }
-		std::auto_ptr <SettingChangeBase> set(const T& value);
+		std::shared_ptr <SettingChangeBase> set(const T& value);
 		void restore(const Setting<T>& oldSetting) {
 			m_value = oldSetting.get();
 		}
@@ -56,8 +56,8 @@ namespace YAML
 	};
 
 	template <typename T>
-	inline std::auto_ptr <SettingChangeBase> Setting<T>::set(const T& value) {
-		std::auto_ptr <SettingChangeBase> pChange(new SettingChange<T> (this));
+	inline std::shared_ptr <SettingChangeBase> Setting<T>::set(const T& value) {
+		std::shared_ptr <SettingChangeBase> pChange(new SettingChange<T> (this));
 		m_value = value;
 		return pChange;
 	}
@@ -70,9 +70,6 @@ namespace YAML
 		
 		void clear() {
 			restore();
-			
-			for(setting_changes::const_iterator it=m_settingChanges.begin();it!=m_settingChanges.end();++it)
-				delete *it;
 			m_settingChanges.clear();
 		}
 		
@@ -81,11 +78,11 @@ namespace YAML
 				(*it)->pop();
 		}
 		
-		void push(std::auto_ptr <SettingChangeBase> pSettingChange) {
-			m_settingChanges.push_back(pSettingChange.release());
+		void push(std::shared_ptr<SettingChangeBase> pSettingChange) {
+			m_settingChanges.push_back(pSettingChange);
 		}
 		
-		// like std::auto_ptr - assignment is transfer of ownership
+		// like std::shared_ptr - assignment is transfer of ownership
 		SettingChanges& operator = (SettingChanges& rhs) {
 			if(this == &rhs)
 				return *this;
@@ -97,7 +94,7 @@ namespace YAML
 		}
 		
 	private:
-		typedef std::vector <SettingChangeBase *> setting_changes;
+		typedef std::vector<std::shared_ptr<SettingChangeBase>> setting_changes;
 		setting_changes m_settingChanges;
 	};
 }

@@ -11,7 +11,7 @@
 #ifndef BOOST_LOCKFREE_FIFO_HPP_INCLUDED
 #define BOOST_LOCKFREE_FIFO_HPP_INCLUDED
 
-#include <memory>               /* std::auto_ptr */
+#include <memory>               /* std::shared_ptr */
 
 #include <boost/noncopyable.hpp>
 #include <boost/static_assert.hpp>

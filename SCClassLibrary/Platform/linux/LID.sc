@@ -303,7 +303,7 @@ LID {
 	*closeAll {
 		all.copy.do({ | dev | dev.close });
 	}
-	*register { | name, spec |
+	*{ | name, spec |
 		specs[name] = spec;
 	}
 	*new { | path |
