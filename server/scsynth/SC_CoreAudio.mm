@@ -2431,7 +2431,7 @@ bool SC_iCoreAudioDriver::DriverSetup(int* outNumSamplesPerCallback, double* out
 {
     // kengo:AudioSession converted to AVAudioSession API below.
     NSError *error = nil;
-    
+        
     AVAudioSession *av_session = [AVAudioSession sharedInstance]; // kengo:as02
 
     NSString *category = AVAudioSessionCategoryPlayAndRecord;

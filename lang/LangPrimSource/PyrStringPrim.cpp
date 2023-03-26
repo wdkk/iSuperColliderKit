@@ -508,9 +508,12 @@ int prStringPathMatch(struct VMGlobals *g, int numArgsPushed)
 		g->gc->GCWrite(array, string);
 		array->size++;
 	}
-
-	globfree(pglob);
-
+    
+    // kengo:add null check
+    if( pglob != NULL ) {
+        globfree(pglob);
+    }
+    
 	return errNone;
 }
 #else //#ifndef SC_WIN32
