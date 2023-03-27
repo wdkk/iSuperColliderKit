@@ -41,6 +41,7 @@
 
 #ifdef SC_IPHONE
 #include "SC_VFP11.h"
+#include "../scsynth_extra/SCEX_CoreAudioAccessor.h"
 #endif
 
 
@@ -2179,6 +2180,8 @@ OSStatus RenderCallback(void *inRefCon, AudioUnitRenderActionFlags *ioActionFlag
 	int64 oscTime = GetCurrentOSCTime();
 	//driver->Run(driver->floatInputList, driver->floatOutputList, oscTime);
 	driver->Run(driver->floatInputList, ioData, oscTime);
+    
+    SCEX_CoreAudioAccessorCallCallback( ((float *)ioData->mBuffers[0].mData), inNumberFrames, oscTime );
 
 	for (i=0; i<inNumberFrames; i++)
 	{

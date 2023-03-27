@@ -9,10 +9,8 @@
 /* Begin PBXBuildFile section */
 		39D745D714D5004F002A4E59 /* CoreMIDI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39D745D614D5004F002A4E59 /* CoreMIDI.framework */; };
 		5D051F631A85E7B300A042FF /* SCClassLibrary in Resources */ = {isa = PBXBuildFile; fileRef = 5D051F621A85E7B300A042FF /* SCClassLibrary */; };
-		5D1090AD1A7F81AF00C653FF /* libscsynth.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D1090AC1A7F81AF00C653FF /* libscsynth.a */; };
 		5D560F4A199E879E007CDE26 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D560F49199E879E007CDE26 /* AVFoundation.framework */; };
 		5D8EA415199A023D0026877D /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D8EA414199A023D0026877D /* Default-568h@2x.png */; };
-		5D95289F1A7F865000758498 /* libsndfile.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D95289E1A7F865000758498 /* libsndfile.a */; };
 		5D9E84791A8607670057C9A8 /* libscsynth.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D1090AC1A7F81AF00C653FF /* libscsynth.a */; };
 		5D9E847A1A8607670057C9A8 /* libsndfile.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D95289E1A7F865000758498 /* libsndfile.a */; };
 		5D9E847B1A8607BE0057C9A8 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7759955212FDE20A00603187 /* Accelerate.framework */; };
@@ -599,8 +597,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				5D9E85001A8610360057C9A8 /* libiSCKit.a in Frameworks */,
-				5D95289F1A7F865000758498 /* libsndfile.a in Frameworks */,
-				5D1090AD1A7F81AF00C653FF /* libscsynth.a in Frameworks */,
 				77BA5223129C371F00CE89DD /* CFNetwork.framework in Frameworks */,
 				77BA5234129C373400CE89DD /* CoreFoundation.framework in Frameworks */,
 				77BA5236129C373B00CE89DD /* CoreGraphics.framework in Frameworks */,
@@ -1761,6 +1757,10 @@
 				GCC_THUMB_SUPPORT = NO;
 				INFOPLIST_FILE = "iPhone Resources/SuperCollider.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/lib",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = jp.co.wdkk.iSCTestApp;
 				PRODUCT_NAME = iSCTestApp;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
@@ -1789,6 +1789,10 @@
 				GCC_UNROLL_LOOPS = YES;
 				INFOPLIST_FILE = "iPhone Resources/SuperCollider.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/lib",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = jp.co.wdkk.iSCTestApp;
 				PRODUCT_NAME = iSCTestApp;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
@@ -1871,6 +1875,10 @@
 				GCC_UNROLL_LOOPS = YES;
 				INFOPLIST_FILE = "iPhone Resources/SuperCollider_Cydia.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/lib",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = jp.co.wdkk.iSCTestApp;
 				PRODUCT_NAME = iSCTestApp;
 				SEPARATE_STRIP = NO;

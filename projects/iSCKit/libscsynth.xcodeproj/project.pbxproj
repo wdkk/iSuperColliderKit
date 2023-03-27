@@ -10,6 +10,8 @@
 		0B09F52114C9D5260048AB9A /* function_attributes.h in Headers */ = {isa = PBXBuildFile; fileRef = 0B09F52014C9D5260048AB9A /* function_attributes.h */; };
 		3939A12E14E35A8700ADDAE2 /* SC_Reply.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3939A12714E35A5800ADDAE2 /* SC_Reply.cpp */; };
 		5D8EA418199A05630026877D /* SC_PlugIn.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 5D8EA417199A05630026877D /* SC_PlugIn.hpp */; };
+		5DABDC9529D208FD0067EEEC /* SCEX_CoreAudioAccessor.h in Headers */ = {isa = PBXBuildFile; fileRef = 5DABDC9429D208FD0067EEEC /* SCEX_CoreAudioAccessor.h */; };
+		5DABDC9729D209190067EEEC /* SCEX_CoreAudioAccessor.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5DABDC9629D209190067EEEC /* SCEX_CoreAudioAccessor.mm */; };
 		772C0EC312DA0F65009C0126 /* FFT_UGens.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7751B8430F43603A0044CAC0 /* FFT_UGens.cpp */; };
 		772C0ECA12DA0FC0009C0126 /* PV_UGens.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7751B85F0F43603A0044CAC0 /* PV_UGens.cpp */; };
 		772C0F0212DA1043009C0126 /* FFTInterfaceTable.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7751B8450F43603A0044CAC0 /* FFTInterfaceTable.cpp */; };
@@ -134,6 +136,8 @@
 		5D990FAE199A661B00974FE2 /* lockpool.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = lockpool.cpp; sourceTree = "<group>"; };
 		5D990FB4199A667200974FE2 /* error_code.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = error_code.cpp; sourceTree = "<group>"; };
 		5D990FB5199A667200974FE2 /* local_free_on_destruction.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = local_free_on_destruction.hpp; sourceTree = "<group>"; };
+		5DABDC9429D208FD0067EEEC /* SCEX_CoreAudioAccessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCEX_CoreAudioAccessor.h; sourceTree = "<group>"; };
+		5DABDC9629D209190067EEEC /* SCEX_CoreAudioAccessor.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = SCEX_CoreAudioAccessor.mm; sourceTree = "<group>"; };
 		772C0BD912DA09E4009C0126 /* FFT_UGens.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FFT_UGens.h; sourceTree = "<group>"; };
 		772C0BDA12DA09E4009C0126 /* Hash.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Hash.h; sourceTree = "<group>"; };
 		772C0BDB12DA09E4009C0126 /* SC_BufGen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SC_BufGen.h; sourceTree = "<group>"; };
@@ -355,6 +359,7 @@
 				77724A490EABEA3B00732A1C /* include */,
 				7772497D0EABE96E00732A1C /* common */,
 				77724A060EABE96E00732A1C /* scsynth */,
+				5DABDC9329D208FD0067EEEC /* scsynth_extra */,
 				7751B8330F43603A0044CAC0 /* plugins */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
@@ -528,6 +533,16 @@
 				5D990FB5199A667200974FE2 /* local_free_on_destruction.hpp */,
 			);
 			path = src;
+			sourceTree = "<group>";
+		};
+		5DABDC9329D208FD0067EEEC /* scsynth_extra */ = {
+			isa = PBXGroup;
+			children = (
+				5DABDC9429D208FD0067EEEC /* SCEX_CoreAudioAccessor.h */,
+				5DABDC9629D209190067EEEC /* SCEX_CoreAudioAccessor.mm */,
+			);
+			name = scsynth_extra;
+			path = ../../server/scsynth_extra;
 			sourceTree = "<group>";
 		};
 		7751B8330F43603A0044CAC0 /* plugins */ = {
@@ -824,6 +839,7 @@
 				7796FF81148D8D5C003E89BB /* scope_buffer.hpp in Headers */,
 				7796FF82148D8D5C003E89BB /* server_shm.hpp in Headers */,
 				0B09F52114C9D5260048AB9A /* function_attributes.h in Headers */,
+				5DABDC9529D208FD0067EEEC /* SCEX_CoreAudioAccessor.h in Headers */,
 				5D8EA418199A05630026877D /* SC_PlugIn.hpp in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -917,6 +933,7 @@
 				77AA93B70EB368B700DC0BCB /* SC_GraphDef.cpp in Sources */,
 				77AA93B80EB368B700DC0BCB /* SC_Group.cpp in Sources */,
 				77AA93B90EB368B700DC0BCB /* SC_Lib.cpp in Sources */,
+				5DABDC9729D209190067EEEC /* SCEX_CoreAudioAccessor.mm in Sources */,
 				77AA93BA0EB368B700DC0BCB /* SC_MiscCmds.cpp in Sources */,
 				77AA93BB0EB368B700DC0BCB /* SC_Lib_Cintf.cpp in Sources */,
 				77AA93BC0EB368B700DC0BCB /* SC_Node.cpp in Sources */,

@@ -315,6 +315,11 @@ void setCmdLine(const char *buf)
     }
 }
 
++ (void) setRenderCallback:(SCEXCoreAudioRenderCallback)f 
+{
+    SCEX_CoreAudioAccessorSetCallback( f );
+}
+
 - (id) init
 {
 	if (self = [super init])

@@ -23,6 +23,7 @@
 #import <UIKit/UIKit.h>
 #import <MediaPlayer/MediaPlayer.h>
 #import "iSCWindow.h"
+#include "../server/scsynth_extra/SCEX_CoreAudioAccessor.h"
 
 typedef UITextView iSCLogView;
 
@@ -44,6 +45,8 @@ typedef UITextView iSCLogView;
 + (iSC *)sharedInstance;
 
 + (void) outputSpeaker;
+
++ (void) setRenderCallback:(SCEXCoreAudioRenderCallback)f;
 
 // instance methods
 - (void) interpretSCMessage:(NSString *)string;
