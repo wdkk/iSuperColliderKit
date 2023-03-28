@@ -50,6 +50,10 @@ class ViewController: UIViewController {
         tv_green?.backgroundColor = .green
         tv_green?.touches_began = touchesGreen
         self.view.addSubview(tv_green!)
+        
+        iSC.setRenderCallback { waves, count, time in
+            print( time )
+        }
     }
 
     override func didReceiveMemoryWarning()

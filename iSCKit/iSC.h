@@ -23,7 +23,7 @@
 #import <UIKit/UIKit.h>
 #import <MediaPlayer/MediaPlayer.h>
 #import "iSCWindow.h"
-#include "../server/scsynth_extra/SCEX_CoreAudioAccessor.h"
+#include "../iSCKit/scsynth_extra/SCEX_CoreAudioAccessor.h"
 
 typedef UITextView iSCLogView;
 

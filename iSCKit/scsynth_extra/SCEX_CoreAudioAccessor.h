@@ -10,9 +10,9 @@
 
 #include <stdio.h>
 
-typedef void(*SCEXCoreAudioRenderCallback)( float*, int, long long );
+typedef void(*SCEXCoreAudioRenderCallback)( float*, int, unsigned long long );
 
 void SCEX_CoreAudioAccessorSetCallback( SCEXCoreAudioRenderCallback f );
-void SCEX_CoreAudioAccessorCallCallback( float*, int, long long );
+void SCEX_CoreAudioAccessorCallCallback( float*, int, unsigned long long );
 
 #endif 

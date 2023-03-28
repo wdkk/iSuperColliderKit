@@ -14,7 +14,7 @@ void SCEX_CoreAudioAccessorSetCallback( SCEXCoreAudioRenderCallback f ) {
     _internal_render_callback = f;
 }
 
-void SCEX_CoreAudioAccessorCallCallback( float* waves, int count, long long time ) {
+void SCEX_CoreAudioAccessorCallCallback( float* waves, int count, unsigned long long time ) {
     if( _internal_render_callback == nullptr ) { return; }
     _internal_render_callback( waves, count, time );
 }

@@ -148,6 +148,7 @@
 		5DAE398C1A88A14A00C059F3 /* iSCGUIPrimitives.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5DAE39851A88A14A00C059F3 /* iSCGUIPrimitives.mm */; };
 		5DAE398D1A88A14A00C059F3 /* iSCView.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5DAE39871A88A14A00C059F3 /* iSCView.mm */; };
 		5DAE398E1A88A14A00C059F3 /* iSCWindow.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5DAE39891A88A14A00C059F3 /* iSCWindow.mm */; };
+		5DDE1A9129D29BC0002CDD25 /* SCEX_CoreAudioAccessor.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5DDE1A9029D29BC0002CDD25 /* SCEX_CoreAudioAccessor.mm */; };
 		772C0F3312DA126F009C0126 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77BA5239129C374C00CE89DD /* MediaPlayer.framework */; };
 		7759955312FDE20A00603187 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7759955212FDE20A00603187 /* Accelerate.framework */; };
 		778F12CA0F50A94600CB6629 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 778F12C90F50A94600CB6629 /* icon.png */; };
@@ -357,6 +358,8 @@
 		5DB1214D199A4DB1000D2100 /* windows_file_codecvt.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = windows_file_codecvt.cpp; path = src/windows_file_codecvt.cpp; sourceTree = "<group>"; };
 		5DB1214E199A4DB1000D2100 /* windows_file_codecvt.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = windows_file_codecvt.hpp; path = src/windows_file_codecvt.hpp; sourceTree = "<group>"; };
 		5DBDD2CE257AA6CC00D1A4A5 /* iSCTestApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = iSCTestApp.entitlements; sourceTree = "<group>"; };
+		5DDE1A8F29D29BC0002CDD25 /* SCEX_CoreAudioAccessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCEX_CoreAudioAccessor.h; sourceTree = "<group>"; };
+		5DDE1A9029D29BC0002CDD25 /* SCEX_CoreAudioAccessor.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SCEX_CoreAudioAccessor.mm; sourceTree = "<group>"; };
 		7713C6A90F422BE400B0055E /* iSCTestApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iSCTestApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		772C0E2E12DA0C69009C0126 /* clz.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = clz.h; sourceTree = "<group>"; };
 		772C0E2F12DA0C69009C0126 /* dfftlib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dfftlib.h; sourceTree = "<group>"; };
@@ -864,6 +867,7 @@
 		5DAE39801A88A14A00C059F3 /* iSCKit */ = {
 			isa = PBXGroup;
 			children = (
+				5DDE1A8E29D29BC0002CDD25 /* scsynth_extra */,
 				5DAE39911A88AC4300C059F3 /* iSCKit.h */,
 				5DAE39811A88A14A00C059F3 /* iSC.h */,
 				5DAE39821A88A14A00C059F3 /* iSC.mm */,
@@ -885,6 +889,15 @@
 				5DD2C1971A7F7EF800FF9517 /* libscsynth.a */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		5DDE1A8E29D29BC0002CDD25 /* scsynth_extra */ = {
+			isa = PBXGroup;
+			children = (
+				5DDE1A8F29D29BC0002CDD25 /* SCEX_CoreAudioAccessor.h */,
+				5DDE1A9029D29BC0002CDD25 /* SCEX_CoreAudioAccessor.mm */,
+			);
+			path = scsynth_extra;
 			sourceTree = "<group>";
 		};
 		7751A9330EB36D500051CF38 /* scapp */ = {
@@ -1555,6 +1568,7 @@
 				5D9E84DC1A860EAB0057C9A8 /* path_traits.cpp in Sources */,
 				5D9E84DD1A860EAB0057C9A8 /* path.cpp in Sources */,
 				5D9E84DE1A860EAB0057C9A8 /* portability.cpp in Sources */,
+				5DDE1A9129D29BC0002CDD25 /* SCEX_CoreAudioAccessor.mm in Sources */,
 				5D9E84DF1A860EAB0057C9A8 /* unique_path.cpp in Sources */,
 				5D9E84E01A860EAB0057C9A8 /* utf8_codecvt_facet.cpp in Sources */,
 				5D9E84E11A860EAB0057C9A8 /* windows_file_codecvt.cpp in Sources */,
