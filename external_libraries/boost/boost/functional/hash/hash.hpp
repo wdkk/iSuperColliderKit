@@ -16,6 +16,8 @@
 #include <string>
 #include <boost/limits.hpp>
 
+using namespace std;
+
 #if defined(BOOST_NO_TEMPLATE_PARTIAL_SPECIALIZATION)
 #include <boost/type_traits/is_pointer.hpp>
 #endif
@@ -382,13 +384,14 @@ namespace boost
     };
 #endif
 
-    BOOST_HASH_SPECIALIZE(bool)
-    BOOST_HASH_SPECIALIZE(char)
-    BOOST_HASH_SPECIALIZE(signed char)
-    BOOST_HASH_SPECIALIZE(unsigned char)
+    //BOOST_HASH_SPECIALIZE(bool)
+    //BOOST_HASH_SPECIALIZE(char)
+    //BOOST_HASH_SPECIALIZE(signed char)
+    //BOOST_HASH_SPECIALIZE(unsigned char)
 #if !defined(BOOST_NO_INTRINSIC_WCHAR_T)
-    BOOST_HASH_SPECIALIZE(wchar_t)
+    //BOOST_HASH_SPECIALIZE(wchar_t)
 #endif
+/*
     BOOST_HASH_SPECIALIZE(short)
     BOOST_HASH_SPECIALIZE(unsigned short)
     BOOST_HASH_SPECIALIZE(int)
@@ -401,17 +404,18 @@ namespace boost
     BOOST_HASH_SPECIALIZE(long double)
 
     BOOST_HASH_SPECIALIZE_REF(std::string)
+*/
 #if !defined(BOOST_NO_STD_WSTRING)
-    BOOST_HASH_SPECIALIZE_REF(std::wstring)
+    //BOOST_HASH_SPECIALIZE_REF(std::wstring)
 #endif
 
 #if !defined(BOOST_NO_LONG_LONG)
-    BOOST_HASH_SPECIALIZE(boost::long_long_type)
-    BOOST_HASH_SPECIALIZE(boost::ulong_long_type)
+    //BOOST_HASH_SPECIALIZE(boost::long_long_type)
+    //BOOST_HASH_SPECIALIZE(boost::ulong_long_type)
 #endif
 
 #if !defined(BOOST_NO_CXX11_HDR_TYPEINDEX)
-    BOOST_HASH_SPECIALIZE(std::type_index)
+    //BOOST_HASH_SPECIALIZE(std::type_index)
 #endif
 
 #undef BOOST_HASH_SPECIALIZE
@@ -423,7 +427,7 @@ namespace boost
 
     template <class T>
     struct hash<T*>
-        : public std::unary_function<T*, std::size_t>
+        : public std::__unary_function<T*, std::size_t>
     {
         std::size_t operator()(T* v) const
         {

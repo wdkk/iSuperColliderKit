@@ -450,7 +450,7 @@ namespace boost { namespace numeric { namespace convdetail
   // Trivial Converter : used when (cv-unqualified) T == (cv-unqualified)  S
   //
   template<class Traits>
-  struct trivial_converter_impl : public std::unary_function<  BOOST_DEDUCED_TYPENAME Traits::argument_type
+  struct trivial_converter_impl : public std::__unary_function<  BOOST_DEDUCED_TYPENAME Traits::argument_type
                                                               ,BOOST_DEDUCED_TYPENAME Traits::result_type
                                                             >
                                  ,public dummy_range_checker<Traits>
@@ -471,7 +471,7 @@ namespace boost { namespace numeric { namespace convdetail
   // Rounding Converter : used for float to integral conversions.
   //
   template<class Traits,class RangeChecker,class RawConverter,class Float2IntRounder>
-  struct rounding_converter : public std::unary_function<  BOOST_DEDUCED_TYPENAME Traits::argument_type
+  struct rounding_converter : public std::__unary_function<  BOOST_DEDUCED_TYPENAME Traits::argument_type
                                                           ,BOOST_DEDUCED_TYPENAME Traits::result_type
                                                         >
                              ,public RangeChecker
@@ -501,7 +501,7 @@ namespace boost { namespace numeric { namespace convdetail
   // Non-Rounding Converter : used for all other conversions.
   //
   template<class Traits,class RangeChecker,class RawConverter>
-  struct non_rounding_converter : public std::unary_function< BOOST_DEDUCED_TYPENAME Traits::argument_type
+  struct non_rounding_converter : public std::__unary_function< BOOST_DEDUCED_TYPENAME Traits::argument_type
                                                              ,BOOST_DEDUCED_TYPENAME Traits::result_type
                                                            >
                                  ,public RangeChecker

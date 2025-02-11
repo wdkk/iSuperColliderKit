@@ -474,7 +474,7 @@ class segment_manager_iterator_value_adaptor<Iterator, false>
 
 template<class Iterator, bool intrusive>
 struct segment_manager_iterator_transform
-   :  std::unary_function< typename Iterator::value_type
+   :  std::__unary_function< typename Iterator::value_type
                          , segment_manager_iterator_value_adaptor<Iterator, intrusive> >
 {
    typedef segment_manager_iterator_value_adaptor<Iterator, intrusive> result_type;

@@ -90,7 +90,7 @@ namespace boost {
                 typename SeqT, 
                 typename IteratorT=BOOST_STRING_TYPENAME SeqT::const_iterator >
             struct copy_iterator_rangeF : 
-                public std::unary_function< iterator_range<IteratorT>, SeqT >
+                public std::__unary_function< iterator_range<IteratorT>, SeqT >
             {
                 SeqT operator()( const iterator_range<IteratorT>& Range ) const
                 {

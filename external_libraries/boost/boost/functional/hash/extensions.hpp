@@ -249,7 +249,7 @@ namespace boost
 #if !defined(BOOST_NO_TEMPLATE_PARTIAL_SPECIALIZATION)
 
     template <class T> struct hash
-        : std::unary_function<T, std::size_t>
+        : std::__unary_function<T, std::size_t>
     {
 #if !defined(BOOST_NO_FUNCTION_TEMPLATE_ORDERING)
         std::size_t operator()(T const& val) const

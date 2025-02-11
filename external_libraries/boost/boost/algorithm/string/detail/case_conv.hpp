@@ -17,6 +17,8 @@
 
 #include <boost/type_traits/make_unsigned.hpp>
 
+using namespace std;
+
 namespace boost {
     namespace algorithm {
         namespace detail {
@@ -30,7 +32,7 @@ namespace boost {
 
             // a tolower functor
             template<typename CharT>
-            struct to_lowerF : public std::unary_function<CharT, CharT>
+            struct to_lowerF : public std::__unary_function<CharT, CharT>
             {
                 // Constructor
                 to_lowerF( const std::locale& Loc ) : m_Loc( &Loc ) {}
@@ -50,7 +52,7 @@ namespace boost {
 
             // a toupper functor
             template<typename CharT>
-            struct to_upperF : public std::unary_function<CharT, CharT>
+            struct to_upperF : public std::__unary_function<CharT, CharT>
             {
                 // Constructor
                 to_upperF( const std::locale& Loc ) : m_Loc( &Loc ) {}

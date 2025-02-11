@@ -52,7 +52,7 @@ class ViewController: UIViewController {
         self.view.addSubview(tv_green!)
         
         iSC.setRenderCallback { waves, count, time in
-            print( time )
+            //print( time )
         }
     }
 

@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -1416,13 +1416,11 @@
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 1320;
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1620;
 				TargetAttributes = {
 					5D9E845D1A8605BE0057C9A8 = {
 						CreatedOnToolsVersion = 6.1;
-					};
-					7713C5EB0F422BE400B0055E = {
-						DevelopmentTeam = YC4UJA55P2;
 					};
 				};
 			};
@@ -1762,7 +1760,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = iSCTestApp/iSCTestApp.entitlements;
 				COPY_PHASE_STRIP = YES;
-				DEVELOPMENT_TEAM = YC4UJA55P2;
+				DEVELOPMENT_TEAM = N6DRT9P33S;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
@@ -1788,7 +1786,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = iSCTestApp/iSCTestApp.entitlements;
 				COPY_PHASE_STRIP = YES;
-				DEVELOPMENT_TEAM = YC4UJA55P2;
+				DEVELOPMENT_TEAM = N6DRT9P33S;
 				GCC_AUTO_VECTORIZATION = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_OPTIMIZATION_LEVEL = 3;
@@ -1844,6 +1842,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
@@ -1873,7 +1872,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = iSCTestApp/iSCTestApp.entitlements;
 				COPY_PHASE_STRIP = YES;
-				DEVELOPMENT_TEAM = YC4UJA55P2;
+				DEVELOPMENT_TEAM = N6DRT9P33S;
 				GCC_AUTO_VECTORIZATION = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_OPTIMIZATION_LEVEL = 3;
@@ -1930,6 +1929,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
@@ -1983,6 +1983,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
